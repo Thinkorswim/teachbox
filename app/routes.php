@@ -11,7 +11,22 @@
 			'as' => 'sign-in',
 			'uses' => 'AuthController@postSign'
 		));
+
+		Route::post('/password-recovery', array(
+			 'as' => 'password-send',
+			 'uses' => 'AuthController@postRecover'
+			));
 	});
+
+	Route::get('/password-recovery', array(
+			 'as' => 'password-recovery',
+			 'uses' => 'AuthController@recover'
+	));
+
+	Route::get('/password-recovery/{code}', array(
+			 'as' => 'password-recovery-code',
+			 'uses' => 'AuthController@recoverCode'
+	));
 
 	//Create Account (GET)
 	Route::get('/', array( 

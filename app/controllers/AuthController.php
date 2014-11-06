@@ -16,6 +16,80 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	public function recover()
+	{
+		if(Auth::check()){
+			return Redirect::route('home');
+		}else{
+			return View::make('home.recover');
+		}
+	}
+
+	public function postRecover()
+	{
+		$validator = Validator::make(Input::all(), array(
+			'email' => 'required|email'
+		));
+
+		if($validator->fails()){
+			return Redirect::route('password-recovery')
+					->withErrors($validator)
+					->withInput();
+		}else{
+
+			$user = User::where('email', '=', Input::get('email'));
+
+			if($user->count()){
+				$user = $user->first();
+
+				$code 				 = str_random(60);
+				$password  			 = str_random(10);
+
+				$user->code 		 = $code;
+				$user->password_temp = Hash::make($password);
+
+				if($user->save()){
+					Mail::send('emails.auth.recover', array(
+						'link' => URL::route('password-recovery-code', $code),
+						'username' => $user->username,
+						'password' => $password
+					), function($message) use ($user){
+						$message->to($user->email,$user->username)->subject('Your new Teachbox password!');
+					});	
+
+					return Redirect::route('home')->with('global', 'We have send you an email with new password.');
+				}
+			}
+
+
+
+		}
+
+		return Redirect::route('password-recovery')
+				->with('global', 'Could not request password.');
+	}
+
+	public function recoverCode($code){
+		$user = User::where('code','=',$code)
+		 	  ->where('password_temp','!=', '');
+
+		if($user->count()){
+			$user = $user->first();
+
+			$user->password 	 = $user->password_temp;
+			$user->password_temp = '';
+			$user->code          = '';
+
+			if($user->save()){
+				return Redirect::route('home')
+				   ->with('global', 'You account has been recoverd. You may now login with your new password.');
+			}
+
+			return Redirect::route('home')
+				   ->with('global', 'Could not recover your account.');
+		}
+	}
+
 	public function signout(){
 		if(Auth::check()){
 			Auth::logout();

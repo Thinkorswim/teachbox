@@ -9,7 +9,7 @@
 		</div>
 	@endif
 	
-
+	<a href="{{ URL::route('password-recovery') }}">Forgot Password</a>
 <!-- Sign in -->
 	{{ Form::open(['route' => 'sign-in']) }}
 		 {{ Form::text('email_s', null , array('placeholder'=>'E-mail')) }}
