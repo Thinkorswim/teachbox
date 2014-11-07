@@ -3,11 +3,6 @@
 @section('content')
 
 <!-- After registration -->
-	@if(Session::has('global'))
-		<div>
-				{{Session::get('global')}}
-		</div>
-	@endif
 	<section class="full-screen">
 		<div class="container">
 			<div class="col-xs-1 col-sm-3 col-md-4">
@@ -25,6 +20,16 @@
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
 						<h6><span  class="line-center">or</span></h6>
+						@if(Session::has('global-positive'))
+						<div class="alert alert-success" role="alert">
+						{{Session::get('global-positive')}}
+						</div>
+						@endif
+						@if(Session::has('global-negative'))
+						<div class="alert alert-warning" role="alert">
+						{{Session::get('global-negative')}}
+						</div>
+						@endif
 						@if($errors->has('email_s'))					
 						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
 						 @else
