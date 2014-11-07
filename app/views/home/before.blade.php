@@ -26,19 +26,25 @@
 						</a>
 						<h6><span  class="line-center">or</span></h6>					
 						<div class="input-group">
-						  <span class="input-group-addon"><i class="pe-7s-mail"></i></span>					
+						  @if($errors->has('email_s'))
+						  <span id="mistake-mail" class="input-group-addon" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
+						  	<i class="pe-7s-mail"></i>
+						  </span>	
+						  @else
+						  <span class="input-group-addon"><i class="pe-7s-mail"></i></span>
+						  @endif					
 						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
-							  @if($errors->has('email_s'))
-								{{$errors->first('email_s')}}
-							  @endif
 						</div>
 						<div class="input-group">
+						  @if($errors->has('password_s'))
+						  <span id="mistake-pass" class="input-group-addon" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
+						  	<i class="pe-7s-lock"></i>
+						  </span>	
+						  @else
 						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
+						  @endif	
 							 {{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
-							  @if($errors->has('password_s'))
-								{{$errors->first('password_s')}}
-							  @endif
 						</div>
 						<div class="row">
 							<div class="col-xs-6">
@@ -69,29 +75,29 @@
 								{{$errors->first('name')}}
 							 @endif
 						</div>
-						<div class="input-group">
+						<div id="mail" class="input-group">
 						  <span class="input-group-addon"><i class="pe-7s-mail"></i></span>
-							 {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control', 'id'=>'mail')) }}
+							 {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
 							 @if($errors->has('email'))
 								{{$errors->first('email')}}
 							 @endif
 						</div>
-						<div class="input-group">
+						<div id="password" class="input-group">
 						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-							 {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control', 'id'=>'password')) }}
+							 {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control')) }}
 							 @if($errors->has('password'))
 								{{$errors->first('password')}}
 							 @endif 
 						</div>
-						<div class="input-group">
+						<div id="repeat" class="input-group">
 						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-							 {{ Form::password('password_again', array('placeholder'=>'Repeat Password', 'class'=>'form-control', 'id'=>'repeat')) }}
+							 {{ Form::password('password_again', array('placeholder'=>'Repeat Password', 'class'=>'form-control')) }}
 							 @if($errors->has('password_again'))
 								{{$errors->first('password_again')}}
 							 @endif
 						</div>
 						<div class="input-group submit">
-							 {{ Form::submit('Register', array('class'=>'form-control')) }}
+							 {{ Form::submit('Register', array('class'=>'form-control register-button')) }}
 						</div>
 						{{ Form::close() }}
 					</div>

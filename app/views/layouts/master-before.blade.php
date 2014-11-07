@@ -25,9 +25,13 @@
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 	<script>
 	$(document).ready(function () {
-		$('#register #password').tooltip({'trigger':'focus', 'title': 'Your password needs to be 6-20 characters','placement' : 'bottom'});
-		$('#register #repeat').tooltip({'trigger':'focus', 'title': 'Repeat the password','placement' : 'bottom'});
-		$('#register #mail').tooltip({'trigger':'focus', 'title': 'It will be used for your authenticaion','placement' : 'bottom'});
+		$('#register #password').tooltip({'trigger':'focus', 'title': 'Your password needs to be 6-20 characters','placement' : 'top'});
+		$('#register #repeat').tooltip({'trigger':'focus', 'title': 'Repeat the password','placement' : 'top'});
+		$('#register #mail').tooltip({'trigger':'focus', 'title': 'It will be used for your authenticaion','placement' : 'top'});
+		$('#mistake-mail').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#mistake-pass').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#mistake-mail').tooltip('show');
+		$('#mistake-pass').tooltip('show');
 		$('.input-group').click(function(e) {
 		    e.stopPropagation();
 		$('.input-group').removeClass('current');
