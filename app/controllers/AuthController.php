@@ -37,7 +37,8 @@ class AuthController extends \BaseController {
 					->withInput();
 		}else{
 
-			$user = User::where('email', '=', Input::get('email'));
+			$user = User::where('email', '=', Input::get('email'))
+							  ->where('active','=', '1');
 
 			if($user->count()){
 				$user = $user->first();
@@ -99,6 +100,78 @@ class AuthController extends \BaseController {
 		}
 	}
 
+	/**
+	 * Login user with facebook
+	 *
+	 * @return void
+	 */
+
+	public function fbLogin() {
+
+	    // get data from input
+	    $code = Input::get( 'code' );
+
+	    // get fb service
+	    $fb = OAuth::consumer( 'Facebook' );
+
+	    // check if code is valid
+
+	    // if code is provided get user data and sign in
+	    if ( !empty( $code ) ) {
+
+	        // This was a callback request from facebook, get the token
+	        $token = $fb->requestAccessToken( $code );
+
+	        // Send a request with it
+	        $result = json_decode( $fb->request( '/me' ), true );
+	
+		$signed = User::where('email','=',$result['email']);
+
+		if($signed->count()){
+				$auth = Auth::attempt(array(
+					'email' => $result['email'],
+					'password' => $result['id'],
+				), true);
+
+				if($auth){
+					return Redirect::route('home');		 		
+				}else{
+					return Redirect::route('home')
+							->with('global', 'Email/password combination wrong or account not activated.');
+				}	
+		}else{
+				$user = User::create(array(
+					'email' 	=> $result['email'] ,
+					'name' 		=> $result['name'] ,
+					'password'  => Hash::make($result['id']),
+					'active'	=> 0
+				));
+
+			if($user){
+	        	$auth = Auth::attempt(array(
+					'email' => $result['email'],
+					'password' => $result['id'],
+				), true);
+
+				if($auth){
+					return Redirect::route('home');		 		
+				}else{
+					return Redirect::route('home')
+							->with('global', 'Email/password combination wrong or account not activated.');
+				}	
+	  		}
+	  	}
+
+	  	}else {
+		        // get fb authorization
+		        $url = $fb->getAuthorizationUri();
+
+		        // return to facebook login url
+		         return Redirect::to( (string)$url );
+	    	
+	    }
+	}
+
 	public function postSign(){
 		$validator = Validator::make(Input::all(),
 			array(
@@ -106,7 +179,6 @@ class AuthController extends \BaseController {
 				'password_s' => 'required'
 				)
 			);
-
 		if($validator->fails()){
 			return Redirect::route('home')
 					->withErrors($validator)
