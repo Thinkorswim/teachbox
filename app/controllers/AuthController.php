@@ -58,7 +58,7 @@ class AuthController extends \BaseController {
 						$message->to($user->email,$user->username)->subject('Your new Teachbox password!');
 					});	
 
-					return Redirect::route('home')->with('global', 'We have send you an email with new password.');
+					return Redirect::route('home')->with('global-positive', 'We have send you an email with new password.');
 				}
 			}
 
@@ -67,7 +67,7 @@ class AuthController extends \BaseController {
 		}
 
 		return Redirect::route('password-recovery')
-				->with('global', 'Could not request password.');
+				->with('global-negative', 'Could not request password.');
 	}
 
 	public function recoverCode($code){
@@ -83,11 +83,11 @@ class AuthController extends \BaseController {
 
 			if($user->save()){
 				return Redirect::route('home')
-				   ->with('global', 'You account has been recoverd. You may now login with your new password.');
+				   ->with('global-positive', 'You account has been recoverd. You may now login with your new password.');
 			}
 
 			return Redirect::route('home')
-				   ->with('global', 'Could not recover your account.');
+				   ->with('global-negative', 'Could not recover your account.');
 		}
 	}
 
@@ -137,7 +137,7 @@ class AuthController extends \BaseController {
 					return Redirect::route('home');		 		
 				}else{
 					return Redirect::route('home')
-							->with('global', 'Email/password combination wrong or account not activated.');
+							->with('global-negative', 'Email/password combination wrong or account not activated.');
 				}	
 		}else{
 				$user = User::create(array(
@@ -157,7 +157,7 @@ class AuthController extends \BaseController {
 					return Redirect::route('home');		 		
 				}else{
 					return Redirect::route('home')
-							->with('global', 'Email/password combination wrong or account not activated.');
+							->with('global-negative', 'Email/password combination wrong or account not activated.');
 				}	
 	  		}
 	  	}
@@ -197,12 +197,12 @@ class AuthController extends \BaseController {
 				return Redirect::intended('/');		 		
 			}else{
 				return Redirect::route('home')
-						->with('global', 'Email/password combination wrong or account not activated.');
+						->with('global-negative', 'Email/password combination wrong or account not activated.');
 			}	
 		}
 
 		return Redirect::route('home')
-						->with('global', 'There was a problem signing you in.');
+						->with('global-negative', 'There was a problem signing you in.');
 
 	}
 
@@ -244,7 +244,7 @@ class AuthController extends \BaseController {
 		} );
 
 				return Redirect::route('home')
-							->with('global', 'You account has been created. We have sent you and email to activate your account');
+							->with('global-positive', 'You account has been created. We have sent you and email to activate your account');
 			}
 		}
 	}
@@ -260,11 +260,11 @@ class AuthController extends \BaseController {
 
 			if($user->save()){
 				return Redirect::route('home')
-						->with('global', 'Your account was activated');
+						->with('global-positive', 'Your account was activated');
 			}
 		} 
 
 		return Redirect::route('home')
-						->with('global', 'We could not activate your account');
+						->with('global-negative', 'We could not activate your account');
 	}
 }
