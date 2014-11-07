@@ -1,0 +1,46 @@
+body,html{
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+    .container{
+	padding:0;
+	}
+	h1,h2,h3,h4,h5,h6,h1 a,h2 a,h3 a,h4 a,h5 a, h6 a{
+	color:@blue;
+	font-weight:900;
+	.transition ( all .3s ease);
+	}
+	h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover, h6 a:hover{
+	color:@blue;
+	}
+	a{color:@blue}
+	.row{
+	margin-left:0;
+	margin-right:0;
+	}
+	.radio, .checkbox{
+	margin-top:0;
+	}
+	a:hover{
+	color:@darkGrey;
+	text-decoration:none;
+	}
+	h3{
+	font-size:21px;
+	}
+	.main{
+	position:relative;
+	top:72px;
+	margin:0 auto;
+	display:block;
+	}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,button[type="submit"]{
+border-radius:0;
+box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 0px rgba(126, 239, 104, 0.6);
+}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus,button[type="submit"],textarea {   
+border-color: @blue;
+box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 0px rgba(126, 239, 104, 0.6);
+outline: 0 none;
+border-radius:0;
+}
+}

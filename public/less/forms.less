@@ -1,0 +1,46 @@
+.input-group {
+	.transition (all .3s ease);
+	margin-bottom:15px;
+	border: 1px solid #ccc;
+	&.current{
+	border: 1px solid @blue;
+	input{
+	color:@blue;
+	}
+		i{
+		color:@blue;
+		}
+	}
+	&.submit{
+	margin-bottom:0px;
+	min-width:50%;
+	}
+	.input-group-addon{
+	border-radius:0;
+	background:none;
+	border:0px;
+	border-right:0px;
+	min-width:41px;
+	}
+	i{
+	.transition (all .3s ease);
+	font-size:20px;
+	}
+	.form-control{
+	border:0px;
+	}
+}
+.input-group:hover{
+border: 1px solid @blue;
+}
+.form-control:focus .input-group{
+border: 1px solid @blue;
+}
+input[type="submit"]{
+background:#ccc;
+.transition (all .3s ease);
+&:hover{
+background:@blue;
+color:@white;
+}
+}
