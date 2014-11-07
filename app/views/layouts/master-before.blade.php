@@ -23,11 +23,27 @@
 	    @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    	@if(($errors->has('email')) || $errors->has('name') || $errors->has('password') || $errors->has('password_again'))
 	<script>
 	$(document).ready(function () {
-		$('#register #password').tooltip({'trigger':'focus', 'title': 'Your password needs to be 6-20 characters','placement' : 'top'});
-		$('#register #repeat').tooltip({'trigger':'focus', 'title': 'Repeat the password','placement' : 'top'});
-		$('#register #mail').tooltip({'trigger':'focus', 'title': 'It will be used for your authenticaion','placement' : 'top'});
+		$('.nav.nav-tabs li').removeClass('active');
+		$('.tab-pane:first-child').removeClass('in active');
+		$('.nav.nav-tabs .register').addClass('in active');
+		$('.tab-pane.register').addClass('in active');
+		$('#mistake-pass').tooltip('show');
+		});
+	</script>
+	@endif
+	<script>
+	$(document).ready(function () {
+		$('#user-error').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#pass-error').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#repeat-error').tooltip({'trigger':'focus', 'placement' : 'top'});
+		$('#mail-error').tooltip({'trigger':'focus', 'placement' : 'top'});
+		$('#user-error').tooltip('show');
+		$('#pass-error').tooltip('show');
+		$('#repeat-error').tooltip('show');
+		$('#mail-error').tooltip('show');
 		$('#mistake-mail').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#mistake-pass').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#mistake-mail').tooltip('show');
@@ -36,7 +52,7 @@
 		    e.stopPropagation();
 		$('.input-group').removeClass('current');
 		$(this).addClass('current');
-	});
+		});
 	$('body').click(function(e) {
 	$('.input-group').removeClass('current');
 		});
