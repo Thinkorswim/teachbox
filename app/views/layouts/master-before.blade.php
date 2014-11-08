@@ -14,11 +14,30 @@
   </head>
   <body>
   	<header>
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		  <div class="container">
-			 <a class="centered-brand" href="#"><img src="{{ URL::asset('img/logo.png') }}"/>teachbox</a>
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span><i class="fa fa-2x fa-bars"></i></span>
+		      </button>
+			  <a class="navbar-brand" href="#">
+			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
+			    teachbox
+			  </a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right navbar-before-registration">
+		        <li><a href="#">Vision</a></li>
+		        <li><a href="#">Testimonials</a></li>
+		        <li><a href="#">Explore</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
-		</nav>		
+		</nav>	
 	</header>
 	    @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -56,6 +75,38 @@
 	$('body').click(function(e) {
 	$('.input-group').removeClass('current');
 		});
+	$(".more").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".learn-screen").offset().top},
+        'slow');
+	});
+
+	$(".navbar-before-registration li:first-child").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".learn-screen").offset().top},
+        'slow');
+	});
+	$(".navbar-before-registration li:nth-child(2)").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".testimonials").offset().top},
+        'slow');
+	});
+
+	$(".navbar-before-registration li:nth-child(3)").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".explore").offset().top},
+        'slow');
+	});
+
+	$(function(){
+    $('.carousel').carousel({
+      interval: 4000
+    });
+	});
 	});
 	</script>
    </body>

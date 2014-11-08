@@ -1,7 +1,7 @@
 @extends('layouts.master-before')
 
 @section('content')
-   <section class="full-screen">
+   <section class="full-screen main-screen">
       <div class="container">
          <div class="col-xs-1 col-sm-3 col-md-4">
             <!--<h1>Education is the key!</h1>-->
