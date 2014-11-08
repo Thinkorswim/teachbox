@@ -26,7 +26,7 @@
 						</div>
 						@endif
 						@if(Session::has('global-negative'))
-						<div class="alert alert-warning" role="alert">
+						<div class="alert alert-danger" role="alert">
 						{{Session::get('global-negative')}}
 						</div>
 						@endif
