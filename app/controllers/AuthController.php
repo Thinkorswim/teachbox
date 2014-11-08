@@ -58,8 +58,12 @@ class AuthController extends \BaseController {
 						$message->to($user->email,$user->username)->subject('Your new Teachbox password!');
 					});	
 
-					return Redirect::route('home')->with('global-positive', 'We have send you an email with new password.');
+					return Redirect::route('home')
+							->with('global-positive', 'We have send you an email with new password.');
 				}
+			}else{
+					return Redirect::route('password-recovery')
+							->with('global-negative', 'This email could not be found.');
 			}
 
 
