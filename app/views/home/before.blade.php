@@ -8,7 +8,13 @@
 			<div class="col-xs-1 col-sm-3 col-md-4">
 				<!--<h1>Education is the key!</h1>-->
 			</div>
+				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
+				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
+				|| $errors->has('password_again'))
+			<div class="col-xs-10 col-sm-6 col-md-4 tab-register shake">	
+			@else
 			<div class="col-xs-10 col-sm-6 col-md-4 tab-register">	
+            @endif
 				<ul class="nav nav-tabs" role="tablist">
 				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
 				  <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
