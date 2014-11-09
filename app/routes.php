@@ -1,6 +1,5 @@
 <?php
 
-
 	//CSRF protection
 	Route::group(array('before' => 'csrf'), function(){
 		Route::post('/', array( 
@@ -19,6 +18,15 @@
 	});
 
 
+	//Pofile (GET)
+		Route::get('/user/{id}',array(
+				 'as' => 'user-profile',
+				 'uses' => 'ProfileController@user'
+		));
+
+
+
+	//Facebook Login (GET)
 		Route::get('/fb-login', array(
 				 'as' => 'fb-login',
 				 'uses' => 'AuthController@fbLogin'
