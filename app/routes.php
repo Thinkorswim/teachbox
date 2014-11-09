@@ -18,7 +18,18 @@
 	});
 
 
-	//Pofile (GET)
+	//Pofile
+		Route::post('/user/{id}/picture-change', array(
+				'as'   => 'user-picture',
+				'uses' => 'ProfileController@userPic'
+		));
+
+
+		Route::get('/user/{id}/picture-change',array(
+				 'as' => 'change-picture',
+				 'uses' => 'ProfileController@changePic'
+		));
+		
 		Route::get('/user/{id}',array(
 				 'as' => 'user-profile',
 				 'uses' => 'ProfileController@user'
