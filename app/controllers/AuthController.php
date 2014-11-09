@@ -112,21 +112,14 @@ class AuthController extends \BaseController {
 
 	public function fbLogin() {
 
-	    // get data from input
 	    $code = Input::get( 'code' );
 
-	    // get fb service
 	    $fb = OAuth::consumer( 'Facebook' );
 
-	    // check if code is valid
-
-	    // if code is provided get user data and sign in
 	    if ( !empty( $code ) ) {
 
-	        // This was a callback request from facebook, get the token
 	        $token = $fb->requestAccessToken( $code );
 
-	        // Send a request with it
 	        $result = json_decode( $fb->request( '/me' ), true );
 	
 		$signed = User::where('email','=',$result['email']);
@@ -148,10 +141,15 @@ class AuthController extends \BaseController {
 					'email' 	=> $result['email'] ,
 					'name' 		=> $result['name'] ,
 					'password'  => Hash::make($result['id']),
-					'active'	=> 0
+					'active'	=> 0,
 				));
 
 			if($user){
+				$user->pic = 'logo.png';
+				$user->save();
+				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
+				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
+
 	        	$auth = Auth::attempt(array(
 					'email' => $result['email'],
 					'password' => $result['id'],
@@ -167,12 +165,9 @@ class AuthController extends \BaseController {
 	  	}
 
 	  	}else {
-		        // get fb authorization
 		        $url = $fb->getAuthorizationUri();
 
-		        // return to facebook login url
 		         return Redirect::to( (string)$url );
-	    	
 	    }
 	}
 
@@ -261,14 +256,24 @@ class AuthController extends \BaseController {
 
 			$user->active =1;
 			$user->code   ='';
+			$user->pic    ='logo.png';
 
 			if($user->save()){
-				return Redirect::route('home')
-						->with('global-positive', 'Your account was activated');
+				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
+				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
+				
+
+				if($resultMake && $resultCopy){
+					return Redirect::route('home')
+							->with('global-positive', 'Your account was activated.');
+				}else{
+					return Redirect::route('home')
+							->with('global-negative', 'Something terrible happen. We are sorry for the inconvenience. You may need to create a new account or contact our support.');
+				}
 			}
 		} 
 
 		return Redirect::route('home')
-						->with('global-negative', 'We could not activate your account');
+						->with('global-negative', 'We could not activate your account. It may');
 	}
 }
