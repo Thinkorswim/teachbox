@@ -73,11 +73,3 @@
 			'uses' => 'AuthController@signout'
 
 		));
-
-
-    //Admin Login (GET)
-
-		Route::controller('/admin', 'AdminController');
-
-	//User controller for AdminPanel (GET)
-		Route::resource('/user', 'UserController');
