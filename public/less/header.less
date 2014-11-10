@@ -1,10 +1,11 @@
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{background:@white;}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{background:@lightGrey;}
 header{
 .navbar.navbar-default .nav.navbar-nav .dropdown-menu {
-padding:0;
+padding:5px 0;
 box-shadow:none;
 border-radius:0;
-border-top:0px;
+border:0;
+background:@lightGrey;
 li{
 min-height:1px;
 a{
@@ -75,7 +76,7 @@ span{font-size:12px;}
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		font-size:14px;
-		img{.RoundBorders (50%)}
+		img{.RoundBorders (50%);margin-top:-2px;}
 		}
 		&.seperator{
 		padding-top:14px;
@@ -100,23 +101,36 @@ span{font-size:12px;}
 		}
 	}
 	&.sign-up li a{
-	padding:10px 15px;
+	padding:12px 15px;
 	}
 	}
 	
 }
 header .navbar.navbar-default .nav.navbar-nav .dropdown-menu.notification{
 background:@lightGrey;
-padding:0 20px;
+padding:10px;
 overflow:hidden;
+img{
+margin:0 10px;
+border-radius:0;
+}
 li{
 max-width: 400px;
-padding:10px 0;
-margin:10px;
+padding:0px;
+margin:0 0 10px;
 background:@white;
 color:@blue;
 }
-a{font-size:12px;text-transform: initial;}
+p{
+display: inline-block;
+margin-right:10px;
+}
+a{font-size:12px;text-transform: initial;padding:10px;}
+& > a{
+	margin:0;
+	height:auto;
+	padding:0;
+}
 }
 @media screen and (max-width: 1200px){
 body header .container {

@@ -18,7 +18,7 @@
 		  <div class="container">
 		    <div class="navbar-header">
 			  <a class="navbar-brand" href="#">
-			    <img alt="Brand" src="public/img/logo.png"/>
+			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 				<small>teachbox</small>
 			  </a>
 		    </div>
@@ -36,21 +36,18 @@
 		        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa-2x pe-7s-bell"></i><sup>1</sup></a>
 					<ul class="dropdown-menu notification" role="menu">
 						<li class="navbar-brand profile">
-							    <div class="col-xs-3">
-									<img alt="Brand" src="public/img/ivan.jpeg"/>
-								</div>
-								<div class="col-xs-9">
-								Ivan likes your actievment from today.
-								</div>
+							<a href="#">
+								<img alt="Brand" src="{{ URL::asset('img/ivan.jpeg') }}"/>
+								<p>Ivan likes your actievment from today.</p>
+							</a>
 						</li>
 						<li class="navbar-brand profile">
-							    <div class="col-xs-3">
-									<img alt="Brand" src="public/img/ivan.jpeg"/>
-								</div>
-								<div class="col-xs-9">
-								Ivan likes your actievment from today.
-								</div>
+							<a href="#">
+								<img alt="Brand" src="{{ URL::asset('img/ivan.jpeg') }}"/>
+								<p>Ivan likes your actievment from today.</p>
+							</a>
 						</li>
+						<a href="">All notifications</a>
 					</ul>
 				</li>
 		        <li class="dropdown">
@@ -86,12 +83,31 @@
 	    @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-		<script>
-	$(document).ready(function () {
-$('.search2').click(function(e) {
-$('.mobile-form').toggleClass('visible');
-	});
-	});
+	<script>
+		$(document).ready(function () {
+
+var removeClass = true;
+
+// when clicking the button : toggle the class, tell the background to leave it as is
+$(".search2").click(function () {
+    $(".mobile-form").toggleClass('visible');
+    removeClass = false;
+});
+
+// when clicking the div : never remove the class
+$(".mobile-form").click(function() {
+    removeClass = false;
+});
+
+// when click event reaches "html" : remove class if needed, and reset flag
+$("html").click(function () {
+    if (removeClass) {
+        $(".mobile-form").removeClass('visible');
+    }
+    removeClass = true;
+});
+		});
+
 	</script>
   </body>
 </html>
