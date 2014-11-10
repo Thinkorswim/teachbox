@@ -1,4 +1,29 @@
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{background:@white;}
+header{
+.navbar.navbar-default .nav.navbar-nav .dropdown-menu {
+padding:0;
+box-shadow:none;
+border-radius:0;
+border-top:0px;
+li{
+min-height:1px;
+a{
+height:auto;
+}
+}
+}
+.search2{display:none}
+.container{overflow:visible;}
+.input-group-addon{
+height:30px;
+background:@white;
+}
+.input-group{
+margin-bottom: 0; 
+}
+span{font-size:12px;}
 
+}
 .navbar.navbar-default{
     border:none;
     background:@darkGrey;
@@ -8,7 +33,7 @@
 	
 	.navbar-toggle.collapsed{
 	.transition( all .3s ease);
-	:hover{
+	&:hover{
 	background:none;
 	}
 	}
@@ -39,7 +64,27 @@
 	.nav.navbar-nav{
 		min-height:50px;
 	  li{
-	  	height:50px;
+	  	min-height:50px;
+		.navbar-brand.profile{
+		padding-top:13px;
+		text-transform:capitalize;
+		font-weight:300;
+		margin-left: 0px;
+		max-width: 189px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size:14px;
+		img{.RoundBorders (50%)}
+		}
+		&.seperator{
+		padding-top:14px;
+		color:@white;
+		font-weight:900;
+		}
+		.navbar-brand.profile span{
+		font-size:12px;
+		}
 	    a{
 	    height:50px;
 		text-transform: uppercase;
@@ -54,5 +99,94 @@
 		background:@blue;
 		}
 	}
+	&.sign-up li a{
+	padding:10px 15px;
+	}
+	}
+	
 }
+header .navbar.navbar-default .nav.navbar-nav .dropdown-menu.notification{
+background:@lightGrey;
+padding:0 20px;
+overflow:hidden;
+li{
+max-width: 400px;
+padding:10px 0;
+margin:10px;
+background:@white;
+color:@blue;
+}
+a{font-size:12px;text-transform: initial;}
+}
+@media screen and (max-width: 1200px){
+body header .container {
+width: 100%;
+}
+body header .container .navbar-brand.profile.dropdown-toggle span{
+display:none;
+}
+body header{
+	.navbar-form{
+	padding-right:0;
+	.input-group{
+	min-width:400px;
+	.input-group-btn{
+	max-width: 18px;
+	}
+	}
+	}
+}
+}
+@media screen and (max-width: 767px){
+body .mobile-form{display:block}
+body .mobile-form.visible{display:block!important}
+.navbar.navbar-default .nav.navbar-nav .dropdown-menu {
+border: 1px solid #ccc;
+border-top:0;
+}
+html body {
+	.navbar-form{
+	padding:0 15px;
+	display:none;
+	margin-top:0px;
+	position: absolute;
+	top:0px;
+	left:15px;
+	height: auto;
+	width: 100%;
+	z-index: 0;
+	.input-group{
+	min-width: 100%;
+	.input-group-btn{
+	max-width: 39px;
+	}
+	}
+}
+.search2{display:block}
+}
+
+.nav.navbar-nav.navbar-right.sign-up{
+position: fixed;
+top: 0;
+right: 15px;
+}
+.container>.nav>li {
+position: relative;
+display: inline-block;
+float: left;
+}
+.navbar-header .navbar-brand{
+margin-left: 15px;
+}
+html .navbar-nav .open .dropdown-menu{
+position: absolute;
+left: auto;
+right: 0;
+z-index:9999;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{border:none}
+.navbar-nav{margin: 0 -15px;}
+}
+@media screen and (max-width: 430px){
+header small{display:none}
 }

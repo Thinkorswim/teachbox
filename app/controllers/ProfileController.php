@@ -1,7 +1,6 @@
 <?php
 
 class ProfileController extends \BaseController {
-
 	public function user($id){
 		$user = User::find($id);
 
@@ -12,7 +11,6 @@ class ProfileController extends \BaseController {
 
 		return App::abort(404);
 	}
-
 	public function changePic($id){
 		$user = User::find($id);
 
@@ -23,13 +21,12 @@ class ProfileController extends \BaseController {
 
 		return App::abort(404);
 	}
-
 	public function userPic($id){
 			$image = Input::file('image');
 
 			$newImage = Image::make($image->getRealPath());
 			$filename = $image->getClientOriginalName();
-			$ratio = 4/3;
+			$ratio = 1;
 			$width = $newImage->width();
 			$newImage->fit($width, intval($width / $ratio));
 
