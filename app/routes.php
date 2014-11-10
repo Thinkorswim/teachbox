@@ -19,7 +19,12 @@
 
 
 	//Pofile
-		Route::post('/user/{id}/picture-change', array(
+		Route::get('/user/{id}/settings', array(
+				'as'   => 'user-settings',
+				'uses' => 'ProfileController@userSettings'
+		));
+
+		Route::post('/user/{id}/settings/picture-change', array(
 				'as'   => 'user-picture',
 				'uses' => 'ProfileController@userPic'
 		));

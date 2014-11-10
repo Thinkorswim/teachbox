@@ -149,6 +149,7 @@ class AuthController extends \BaseController {
 				$user->save();
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
 				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
+				$resultCopyThumb  = File::copy(public_path() .'/img/logo-100x100.png' , public_path() .'/img/' . $user->id . '/logo-100x100.png');
 
 	        	$auth = Auth::attempt(array(
 					'email' => $result['email'],
@@ -261,9 +262,9 @@ class AuthController extends \BaseController {
 			if($user->save()){
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
 				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
-				
+				$resultCopyThumb  = File::copy(public_path() .'/img/logo-100x100.png' , public_path() .'/img/' . $user->id . '/logo-100x100.png');
 
-				if($resultMake && $resultCopy){
+				if($resultMake && $resultCopy && $resultCopyThumb){
 					return Redirect::route('home')
 							->with('global-positive', 'Your account was activated.');
 				}else{

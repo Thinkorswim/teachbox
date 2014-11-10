@@ -22,7 +22,7 @@
 		        <span class="sr-only">Toggle navigation</span>
 		        <span><i class="fa fa-2x fa-bars"></i></span>
 		      </button>
-			  <a class="navbar-brand" href="#">
+			  <a class="navbar-brand" href="{{ URL::route('home') }}">
 			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 			    teachbox
 			  </a>

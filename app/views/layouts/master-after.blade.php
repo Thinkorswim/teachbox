@@ -17,7 +17,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		  <div class="container">
 		    <div class="navbar-header">
-			  <a class="navbar-brand" href="#">
+			  <a class="navbar-brand" href="{{ URL::route('home') }}" >
 			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 				<small>teachbox</small>
 			  </a>
@@ -52,12 +52,12 @@
 				</li>
 		        <li class="dropdown">
 			        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
-			        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . Auth::user()->pic) }}" >
+			        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" >
 			        	<span>{{ getFirstName(Auth::user()->name) }}</span> 
 			        </a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="pe-7s-user"></i> My profile</a></li>
-						<li><a href="#"><i class="pe-7s-tools"></i> Settings</a></li>
+						<li><a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"><i class="pe-7s-tools"></i> Settings</a></li>
 						<li><a href="{{ URL::route('sign-out') }}">Sign out</a> </li>
 					</ul>
 				</li>
@@ -77,11 +77,10 @@
 			</form>
 	
 	</div>
-
-		<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"> Profile </a></li>
 		
 	    @yield('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
