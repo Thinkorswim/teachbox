@@ -30,6 +30,7 @@
 					</div>
 				</div>
 			</form>
+			@if(Auth::check())
 		      <ul class="nav navbar-nav navbar-right sign-up">
 		        <li class="search2"><a href="#"><i class="fa-2x pe-7s-search"></i></a></li>
 		        <li><a href="#"><i class="fa-2x pe-7s-chat"></i></a></li>
@@ -62,6 +63,7 @@
 					</ul>
 				</li>
 		      </ul>
+		   @endif
 		  </div><!-- /.container-fluid -->
 		</nav>	
 	</header>

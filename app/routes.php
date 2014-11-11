@@ -14,7 +14,17 @@
 		Route::post('/password-recovery', array(
 			 'as' => 'password-send',
 			 'uses' => 'AuthController@postRecover'
-			));
+		));
+
+		Route::post('/user/{id}/settings/picture-change', array(
+					'as'   => 'post-change-picture',
+					'uses' => 'ProfileController@postChangePic'
+		));
+
+		Route::post('/user/{id}/settings/password-change', array(
+					'as'   => 'post-change-password',
+					'uses' => 'ProfileController@postChangePassword'
+		));
 	});
 
 
@@ -24,17 +34,20 @@
 				'uses' => 'ProfileController@userSettings'
 		));
 
-		Route::post('/user/{id}/settings/picture-change', array(
-				'as'   => 'user-picture',
-				'uses' => 'ProfileController@userPic'
-		));
+		// PICTURE CHANGE
 
+			Route::get('/user/{id}/picture-change',array(
+					 'as' => 'change-picture',
+					 'uses' => 'ProfileController@changePic'
+			));
 
-		Route::get('/user/{id}/picture-change',array(
-				 'as' => 'change-picture',
-				 'uses' => 'ProfileController@changePic'
-		));
-		
+		// PASSWORD CHANGE
+
+			Route::get('/user/{id}/settings/password-change',array(
+						 'as' => 'change-password',
+						 'uses' => 'ProfileController@changePassword'
+			));
+			
 		Route::get('/user/{id}',array(
 				 'as' => 'user-profile',
 				 'uses' => 'ProfileController@user'
