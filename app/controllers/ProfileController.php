@@ -113,4 +113,41 @@ class ProfileController extends \BaseController {
 
 		return App::abort(404);
 	}
+
+	public function postUserSettings($id){
+		if(Auth::check()){
+			$validator = Validator::make(Input::all(),
+				array(
+						'name' 				 => 'required|min:4|max:40',
+						'country' 			 => 'min:4|max:35',
+						'city'				 => 'min:4|max:30',
+				));
+
+			if($validator->fails()){		
+				return Redirect::action('ProfileController@userSettings',[$id])
+						->withErrors($validator);
+			}else{
+				$name 	 = Input::get('name');
+				$country = Input::get('country');
+				$city 	 = Input::get('city');
+				$date 	 = Input::get('day') . '/' . Input::get('month') . '/' . Input::get('year');
+
+				$user = User::find($id);
+
+				$user->name    = $name;
+				$user->country = $country;
+				$user->city    = $city;
+				$user->date    = $date;
+
+					if($user->save()){
+						return Redirect::action('ProfileController@user',[$id]);
+					}
+
+
+			}
+
+				return Redirect::action('ProfileController@userSettings',[$id])
+					->with('global-negative', 'Your profile settings could not be changed.');
+		}
+	}
 }

@@ -68,6 +68,7 @@
 						<div class="input-group submit">
 							 {{ Form::submit('Login', array('class'=>'form-control')) }}
 						</div>
+						{{ Form::token() }}
 						{{ Form::close() }}
 					</div>
 
@@ -114,6 +115,7 @@
 						<div class="input-group submit">
 							 {{ Form::submit('Register', array('class'=>'form-control register-button')) }}
 						</div>
+						{{ Form::token() }}
 						{{ Form::close() }}
 					</div>
 			</div>

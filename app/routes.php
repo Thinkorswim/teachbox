@@ -25,6 +25,11 @@
 					'as'   => 'post-change-password',
 					'uses' => 'ProfileController@postChangePassword'
 		));
+		
+		Route::post('/user/{id}/settings', array(
+				'as'   => 'post-user-settings',
+				'uses' => 'ProfileController@postUserSettings'
+		));
 	});
 
 
