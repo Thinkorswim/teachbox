@@ -53,7 +53,7 @@
 				</li>
 		        <li class="dropdown">
 			        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
-			        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" >
+			        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
 			        	<span>{{ getFirstName(Auth::user()->name) }}</span> 
 			        </a>
 					<ul class="dropdown-menu" role="menu">
@@ -108,7 +108,6 @@ $("html").click(function () {
     removeClass = true;
 });
 		});
-
 	</script>
   </body>
 </html>
