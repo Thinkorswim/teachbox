@@ -31,6 +31,7 @@ return array(
 	/*
 	|--------------------------------------------------------------------------
 	| Database Connections
+	
 	|--------------------------------------------------------------------------
 	|
 	| Here are each of the database connections setup for your application.
@@ -57,7 +58,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'main',
 			'username'  => 'root',
-			'password'  => 'root',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
