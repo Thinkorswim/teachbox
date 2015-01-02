@@ -58,6 +58,11 @@
 				 'uses' => 'ProfileController@user'
 		));
 
+		// CREATE COURSE
+		Route::get('/create_course',array(
+				 'as' => 'create_course',
+				 'uses' => 'CourseController@create'
+		));
 
 
 	//Facebook Login (GET)
