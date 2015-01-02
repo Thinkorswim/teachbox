@@ -12,11 +12,10 @@ class AddDescriptionToCourse extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('courses', function($table){
+		Schema::table('courses', function($table){
 
 		    $table->string('description', 400);
-
-            $table->timestamps();
+		    
 		});
 	}
 
