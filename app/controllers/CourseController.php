@@ -106,7 +106,18 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			return View::make('courses.edit');
+			return View::make('courses.edit')
+					->with('course', $course);;
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function courseAdd($id)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			return View::make('courses.add');
 		}else{
 			return View::make('home.before');
 		}

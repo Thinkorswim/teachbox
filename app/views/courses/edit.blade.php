@@ -1,5 +1,7 @@
 @extends('layouts.master-after')
 
 @section('content')
-edit
+
+<a href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"> Add Lesson </a>
+
 @endsection

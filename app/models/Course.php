@@ -10,4 +10,8 @@ protected $fillable = array('name');
      public function userCourse() {
         return $this->belongsTo('UserCourse');
     }
+
+    public function lesson() {
+        return $this->hasMany('Lesson'); // this matches the Eloquent model
+    }
 }
