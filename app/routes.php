@@ -30,6 +30,11 @@
 				'as'   => 'post-user-settings',
 				'uses' => 'ProfileController@postUserSettings'
 		));
+
+		Route::post('/create_course',array(
+				 'as' => 'create-course',
+				 'uses' => 'CourseController@postCreate'
+		));
 	});
 
 
