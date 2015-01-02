@@ -1,17 +1,26 @@
 @extends('layouts.master-after')
 
 @section('content')
-	User Email: {{ $user->email }}
-	<br><br>
-	User Name: {{ $user->name }}
-	<br><br>
-	Country: {{ $user->country }}
-	<br><br>
-	City: {{ $user->city }}
-	<br><br>
-	Date of birth: {{ $user->date }}
-	<br><br>
-	Pic: <img src="{{ URL::asset('img/'. Auth::user()->id . '/' . Auth::user()->pic) }}" style="width:200px;height:200px;">
-	<br><br>
-	
+	<div class="cover-section">
+		<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . Auth::user()->pic) }}"alt="{{ $user->name }}'s profile"/>
+		<span class="age"></span>
+		<h1>{{ $user->name }}</h1>
+		<h5>{{ $user->email }}</h5>
+		<small>130 followers | 180 following</small>
+	</div>
+	<div class="tabs-profile">
+		<div class="container">
+			<ul class="nav nav-pills">
+			  <li role="presentation" class="active"><a href="#">Timeline</a></li>
+			  <li role="presentation"><a href="#">Courses</a></li>
+			  <li role="presentation"><a href="#">About</a></li>
+			  <li role="presentation"><a href="#">Friends</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		Country: {{ $user->country }}
+		City: {{ $user->city }}
+		Date of birth: {{ $user->date }}
+	</div>
 @endsection

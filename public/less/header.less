@@ -18,7 +18,7 @@
 }
 .navbar-nav {
   float: none!important;
-  margin: 7.5px -15px;
+  margin: 7.5px 0;
 }
 .navbar-nav>li {
   float: none;
@@ -32,13 +32,17 @@ header{
 	color:@white;
 	width:100%;
 	min-height:52px;
+	position:fixed;
+	top: 0;
+	z-index: 9999;
+	left: 0;
 	img{
 		width:25px;
 	}
 	.categories{
 		max-width: 315px;
 		position: absolute;
-		top: -2px;
+		top: -1px;
 		left: 0;
 		li a{
 			padding-left:42px;
@@ -54,6 +58,7 @@ header{
 	.input-group{
 		padding:0 15px;
 		margin-top:10px;
+		margin-bottom:0;
 		border:none;
 		.RoundBorders(4px);
 		i{
@@ -69,10 +74,10 @@ header{
 	}
 	.navbar-nav{
 		  background-color:@grey;
-		  margin:0 -15px;
+		  margin:0;
 	}
 	.navbar-nav{
-		width:330px;
+		width:100%;
 	}
 	.navbar-header{
 		padding: 0 15px;
@@ -106,6 +111,9 @@ header{
 	.nav-tabs{
 		border:none;
 	}
+	.dropdown-menu{
+		right:0;
+	}
 }
 .navbar-fixed-top .navbar-collapse{
 	height:90vh!important;
@@ -117,4 +125,14 @@ header{
 	background:none;
 	border:none;
 	color:@blue;
+}
+@media screen and (max-width: 1140px){
+	body header .navbar-header small{
+		display: none;
+	}
+}
+.navbar-collapse{
+	padding-left:0;
+	padding-right:0;
+
 }

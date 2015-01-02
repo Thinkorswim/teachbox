@@ -30,7 +30,10 @@
 
 		return '';
 	}
+	function getAge(){
 
+		return $userAge;
+	}
 	function getThumbName($name){
 			$newThumbExtension = substr($name, -4);
 			$newThumbName = substr($name, 0, -4);
