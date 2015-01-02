@@ -17,6 +17,7 @@ class CourseController extends \BaseController {
 			$validator = Validator::make(Input::all(),
 				array(
 						'name' 				 => 'required|min:4|max:40',
+						'description'		 => 'required|min:30|max:400',
 				));
 
 			if($validator->fails()){		
@@ -25,11 +26,13 @@ class CourseController extends \BaseController {
 			}else{
 
 				$name 	 = Input::get('name');
+				$description = Input::get('description');
 
 				$user_id = Auth::user()->id;
 				$course = Course::create(array(
 						'name' 		=> $name,
 						'user_id'  => $user_id,
+						'description' => $description,
 					));
 
 				if($course){
