@@ -16,3 +16,45 @@
 @blue: #1abc9c;
 @red:#e74c3c;
 @grey:#2c3e50;
+
+
+//== Video player
+//
+//##
+@border-radius-large:       6px;
+@inverse:                   white;
+@midnight-blue:             #2c3e50;
+@brand-primary: #34495e;
+@brand-secondary: #1abc9c;
+@component-font-size-base:  15px; 
+@vplayer-border-radius:               @border-radius-large;
+@vplayer-fullscreen-bg:               #000;
+@vplayer-fullscreen-zindex:           10000;
+
+@vplayer-control-bar-color:           @inverse;
+@vplayer-control-bar-bg:              @midnight-blue;
+
+@vplayer-preloader-primary-bg:        #e74c3c;
+@vplayer-preloader-secondary-bg:      #ebedee;
+
+@vplayer-text-track-bg:               rgba(0,0,0,.5);
+
+@vplaver-play-control-color:          @brand-secondary;
+@vplaver-play-control-hover-color:    mix(@brand-secondary, black, 85%);
+
+@vplaver-second-controls-color:       desaturate(lighten(@midnight-blue, 12%), 6%);
+@vplaver-second-controls-hover-color: desaturate(lighten(@midnight-blue, 20%), 6%);
+
+@vplaver-progress-bg:                 mix(@brand-primary, @inverse, 93%);
+@vplaver-play-progress-bg:            @brand-secondary;
+@vplaver-load-progress-bg:            mix(@brand-primary, @inverse, 20%);
+
+@vplayer-seek-handle-bg:              mix(@brand-secondary, black, 85%);
+@vplayer-seek-handle-hover-bg:        mix(@brand-secondary, black, 75%);
+@vplayer-seek-handle-active-bg:       mix(@brand-secondary, black, 65%);
+
+@vplayer-time-divider-color:          mix(@brand-primary, @inverse, 80%);
+@vplayer-duration-color:              mix(@brand-primary, @inverse, 80%);
+
+
+
