@@ -35,10 +35,16 @@
 				 'as' => 'create-course',
 				 'uses' => 'CourseController@postCreate'
 		));
+
+		Route::post('/course/{id}',array(
+				 'as' => 'join-course',
+				 'uses' => 'CourseController@postJoin'
+		));
 	});
 
 
-	//Pofile
+	//Pofile --------------------------------------------------
+
 		Route::get('/user/{id}/settings', array(
 				'as'   => 'user-settings',
 				'uses' => 'ProfileController@userSettings'
@@ -63,11 +69,25 @@
 				 'uses' => 'ProfileController@user'
 		));
 
+	// Courses ---------------------------------------------------------------
+
 		// CREATE COURSE
-		Route::get('/create_course',array(
-				 'as' => 'create_course',
-				 'uses' => 'CourseController@create'
-		));
+			Route::get('/create_course',array(
+					 'as' => 'create_course',
+					 'uses' => 'CourseController@create'
+			));
+
+		// COURSE PAGE
+			Route::get('/course/{id}',array(
+					 'as' => 'course-page',
+					 'uses' => 'CourseController@course'
+			));
+
+		//Edit Course
+			Route::get('/course/{id}/edit',array(
+					 'as' => 'course-edit',
+					 'uses' => 'CourseController@courseEdit'
+			));
 
 
 	//Facebook Login (GET)

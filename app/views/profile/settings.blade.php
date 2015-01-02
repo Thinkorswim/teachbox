@@ -19,7 +19,7 @@
 		{{Session::get('global-negative')}}
 		</div>
 	@endif
-
+ 
 	{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
 		<br><br>
 		Name: 

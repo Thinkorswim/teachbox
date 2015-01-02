@@ -1,7 +1,7 @@
 @extends('layouts.master-after')
 
 @section('content')
-{{ Form::open(['route' => 'create-course']) }}	
+	{{ Form::open(['route' => 'create-course']) }}	
 		<br><br>
 		Name: 
 		 {{ Form::text('name') }}
