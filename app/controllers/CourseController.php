@@ -33,8 +33,22 @@ class CourseController extends \BaseController {
 					));
 
 				if($course){
-					return Redirect::route('home')
-							->with('global-positive', 'Your course is created.');
+					
+						$user_id = Auth::user()->id;
+						$userCourse = UserCourse::create(array(
+					'course_id' => $course->id,
+					'user_id'  => $user_id,
+				));
+		    	if($userCourse){
+					return Redirect::route('course-page', array('id' => $course->id));
+				
+				}else{
+					return Redirect::route('course-page', array('id' => $course->id))
+											->with('global-negative', 'You could not join this course.');
+					 }
+
+					return View::make('courses.join')
+							->with('course', $course);		
 
 				}
 
