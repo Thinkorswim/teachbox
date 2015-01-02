@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 	    "artdarek/oauth-4-laravel": "dev-master",
-		"intervention/image": "~2.0"
+		"intervention/image": "~2.0",
+		"doctrine/dbal": "~2.3"
 	},
 	"autoload": {
 		"classmap": [
