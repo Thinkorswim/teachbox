@@ -33,12 +33,12 @@ class CourseController extends \BaseController {
 					));
 
 				if($course){
-					
+					    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
 						$user_id = Auth::user()->id;
 						$userCourse = UserCourse::create(array(
-					'course_id' => $course->id,
-					'user_id'  => $user_id,
-				));
+							'course_id' => $course->id,
+							'user_id'  => $user_id,
+						));
 		    	if($userCourse){
 					return Redirect::route('course-page', array('id' => $course->id));
 				
