@@ -6,3 +6,13 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
+public/img/6/profile.png
+*.png
+public/img/9/1913442_749793428398665_6962907746832890537_o-100x100.jpg
+public/img/9/1913442_749793428398665_6962907746832890537_o.jpg
+public/img/9/first screen-100x100.jpg
+public/img/9/first screen.jpg
+public/img/9/tumblr_ndyfvm0EwX1tubinno1_1280-100x100.jpg
+public/img/9/tumblr_ndyfvm0EwX1tubinno1_1280.jpg
+app/database/migrations/media,182992,en.docx
+public/css/header.css
