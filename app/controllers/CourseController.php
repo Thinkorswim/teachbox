@@ -17,6 +17,7 @@ class CourseController extends \BaseController {
 			$validator = Validator::make(Input::all(),
 				array(
 						'name' 				 => 'required|min:4|max:40',
+						'description'		 => 'required|min:30|max:400',
 				));
 
 			if($validator->fails()){		
@@ -25,20 +26,22 @@ class CourseController extends \BaseController {
 			}else{
 
 				$name 	 = Input::get('name');
+				$description = Input::get('description');
 
 				$user_id = Auth::user()->id;
 				$course = Course::create(array(
 						'name' 		=> $name,
 						'user_id'  => $user_id,
+						'description' => $description,
 					));
 
 				if($course){
-					
+					    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
 						$user_id = Auth::user()->id;
 						$userCourse = UserCourse::create(array(
-					'course_id' => $course->id,
-					'user_id'  => $user_id,
-				));
+							'course_id' => $course->id,
+							'user_id'  => $user_id,
+						));
 		    	if($userCourse){
 					return Redirect::route('course-page', array('id' => $course->id));
 				
@@ -106,7 +109,18 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			return View::make('courses.edit');
+			return View::make('courses.edit')
+					->with('course', $course);;
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function courseAdd($id)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			return View::make('courses.add');
 		}else{
 			return View::make('home.before');
 		}

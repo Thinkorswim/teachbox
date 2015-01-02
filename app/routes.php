@@ -89,6 +89,12 @@
 					 'uses' => 'CourseController@courseEdit'
 			));
 
+		//Add lesson
+			Route::get('/course/{id}/add',array(
+					 'as' => 'course-add',
+					 'uses' => 'CourseController@courseAdd'
+			));
+
 
 	//Facebook Login (GET)
 		Route::get('/fb-login', array(
