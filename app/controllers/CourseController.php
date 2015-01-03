@@ -72,13 +72,16 @@ class CourseController extends \BaseController {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
+			$lessonList = Lesson::where('course_id', '=', $id)->get();
+
+			$user = User::find($course->user_id);
 
 			if($isJoined){
 				return View::make('courses.join')
-							->with('course', $course);
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user ));
 			}else{
 				return View::make('courses.not_join')
-							->with('course', $course);
+							->with(array('course' => $course, 'user' => $user ));
 			}
 		}else{
 			return View::make('home.before');

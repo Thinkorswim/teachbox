@@ -7,11 +7,17 @@
 				<img src="{{ URL::asset('img/logo.png') }}"/>
 			</div>
 			<div class="col-xs-12 col-xs-9">
-				<h1>Course name</h1>
-				<h5> by Ivan Lebanov</h5>
+				<h1>{{ $course->name }}</h1>
+				<h5> by <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></h5>
 			</div>
 		</div>
 	</div>
+	<h1>{{ $course->description }}</h1>
+ {{ $lessonList->count() }}
+
+	@foreach ($lessonList as $lesson)
+ 		<p> <a href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"> {{ $lesson->name; }} </a> </p>
+    @endforeach
 
 joined
 <br>

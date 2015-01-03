@@ -8,8 +8,8 @@
 				<img src="{{ URL::asset('img/logo.png') }}" alt="kartinka za kursa geiove"/>
 			</div>
 			<div class="col-xs-9">
-				<h1>Course name</h1>
-				<h5>by <a href="profilamu">Ivan Lebanov</a></h5>
+					<h1>{{ $course->name }}</h1>
+				    <h5> by <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></h5>
 		{{ Form::token() }}
 		{{ Form::submit('Join', array('class'=>'btn btn-default')) }}
 			</div>
