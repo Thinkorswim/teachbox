@@ -13,15 +13,16 @@
 		</div>
 	</div>
 	<h1>{{ $course->description }}</h1>
- {{ $lessonList->count() }}
 
 	@foreach ($lessonList as $lesson)
  		<p> <a href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"> {{ $lesson->name; }} </a> </p>
     @endforeach
 
-joined
+
+@if (Auth::user()->id == $course->id)
 <br>
 <a href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"> Add Lesson </a>
 <br>
 <a href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"> Edit Course </a>
+@endif
 @endsection

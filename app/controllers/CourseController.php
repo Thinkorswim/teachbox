@@ -112,8 +112,13 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
+			if(Auth::user()->id==$id){
 			return View::make('courses.edit')
 					->with('course', $course);
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
+
 		}else{
 			return View::make('home.before');
 		}
@@ -155,8 +160,14 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
+
+			if(Auth::user()->id==$id){
 			return View::make('courses.add')
 					->with('course', $course);
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
+		
 		}else{
 			return View::make('home.before');
 		}
@@ -205,7 +216,7 @@ class CourseController extends \BaseController {
 					'course_id'  => $id,
 					'name'       => $name,
 					'description' => $description,
-					'order'       => $order+1,
+					'order'       => $order,
 					));
 
 	   		  if($lesson){
