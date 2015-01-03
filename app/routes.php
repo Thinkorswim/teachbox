@@ -50,6 +50,11 @@
 			      'as' => 'post-edit-course',
 			      'uses' => 'CourseController@postCourseEdit'
 		));
+
+		Route::post('/search', array(
+			      'as' => 'post-search',
+			      'uses' => 'SearchController@postSearch'
+		));
 	});
 
 
@@ -111,6 +116,11 @@
 					 'uses' => 'CourseController@courseLesson'
 			));
 
+	//Search
+		Route::get('/search',array(
+					 'as' => 'search',
+					 'uses' => 'CourseController@courseLesson'
+			));	
 
 	//Facebook Login (GET)
 		Route::get('/fb-login', array(

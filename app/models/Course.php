@@ -12,7 +12,7 @@ protected $fillable = array('name', 'user_id', 'description');
     }
 
     public function lesson() {
-        return $this->hasMany('Lesson'); // this matches the Eloquent model
+        return $this->hasMany('Lesson');
     }
 
      public function courseQuestion() {
