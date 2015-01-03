@@ -88,6 +88,7 @@
     <script src="//vjs.zencdn.net/4.7/video.js"></script>
 	<script>
 		$(document).ready(function () {
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
