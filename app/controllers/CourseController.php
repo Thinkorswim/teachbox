@@ -93,7 +93,7 @@ class CourseController extends \BaseController {
 			$userCourse = UserCourse::create(array(
 					'course_id' => $id,
 					'user_id'  => $user_id,
-				));
+			));
 		    if($userCourse){
 				return Redirect::route('course-page', array('id' => $id));
 			}else{
@@ -110,17 +110,111 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 			return View::make('courses.edit')
-					->with('course', $course);;
+					->with('course', $course);
 		}else{
 			return View::make('home.before');
 		}
 	}
 
+	public function postCourseEdit($id)
+	{
+		if(Auth::check()){
+		
+			$course = Course::find($id);
+			$validator = Validator::make(Input::all(),
+				array(
+						'name' 				 => 'required|min:4|max:40',
+						'description' 			 => 'min:30|max:400',
+				));
+
+			if($validator->fails()){		
+				return Redirect::action('CourseController@courseEdit',[$id])
+						->withErrors($validator);
+
+			}else{
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+				$courseEdit = Course::find($id);
+
+				$courseEdit->name    = $name;
+				$courseEdit->description = $description;
+
+					if($courseEdit->save()){
+						return Redirect::route('course-page', array('id' => $id));
+					}
+			}
+
+			return Redirect::action('CourseController@courseEdit',[$id])
+					->with('global-negative', 'Your course settings could not be changed.');
+		}
+	}
+
+
 	public function courseAdd($id)
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			return View::make('courses.add');
+			return View::make('courses.add')
+					->with('course', $course);
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function courseLesson($id,$lesson)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			$lesson = Lesson::where('order', '=', $lesson)->first();
+			return View::make('courses.lesson')
+					->with(array('course' => $course, 'lesson' => $lesson));
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function coursePostAdd($id){
+	
+		if(Auth::check()){
+				$validator = Validator::make(Input::all(),
+				array(
+						'name' 				 => 'required|min:4|max:50',
+						'description'		 => 'required|min:30|max:400',
+				));
+
+			if($validator->fails()){		
+				return Redirect::action('CourseController@create')
+						->withErrors($validator);
+			}else{
+
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+			 $course = Course::find($id);
+   			 $file = Input::file('video');
+	   		 $filename = $file->getClientOriginalName();
+	   		 $path = public_path().'/courses/'. $id ;
+	   		 $file->move($path, $filename);
+
+	   		 $order = Lesson::where('course_id', '=', $id)->count();
+
+	   		 $lesson = Lesson::create(array(
+					'filepath' => $filename,
+					'course_id'  => $id,
+					'name'       => $name,
+					'description' => $description,
+					'order'       => $order+1,
+					));
+
+	   		  if($lesson){
+				return Redirect::route('course-page', array('id' => $id));
+			}else{
+				return Redirect::route('course-page', array('id' => $id))
+											->with('global-negative', 'You could not join this course.');
+			}
+		}
+
 		}else{
 			return View::make('home.before');
 		}
