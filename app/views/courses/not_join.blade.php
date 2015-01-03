@@ -10,8 +10,10 @@
 			<div class="col-xs-9">
 					<h1>{{ $course->name }}</h1>
 				    <h5> by <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></h5>
-		{{ Form::token() }}
-		{{ Form::submit('Join', array('class'=>'btn btn-default')) }}
+			@if(Auth::check())
+				{{ Form::token() }}
+				{{ Form::submit('Join', array('class'=>'btn btn-default')) }}
+			@endif
 			</div>
 		</div>
 	</div>
