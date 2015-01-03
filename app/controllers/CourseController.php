@@ -114,7 +114,7 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			if(Auth::user()->id==$id){
+			if(Auth::user()->id==$course->user_id){
 			return View::make('courses.edit')
 					->with('course', $course);
 			}else{
@@ -163,7 +163,7 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 
-			if(Auth::user()->id==$id){
+			if(Auth::user()->id==$course->user_id){
 			return View::make('courses.add')
 					->with('course', $course);
 			}else{
