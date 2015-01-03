@@ -15,5 +15,7 @@
 
 joined
 <br>
+<a href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"> Add Lesson </a>
+<br>
 <a href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"> Edit Course </a>
 @endsection

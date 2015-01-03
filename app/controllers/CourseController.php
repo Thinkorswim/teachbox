@@ -123,7 +123,6 @@ class CourseController extends \BaseController {
 			$course = Course::find($id);
 			$validator = Validator::make(Input::all(),
 				array(
-						'name' 				 => 'required|min:4|max:40',
 						'description' 			 => 'min:30|max:400',
 				));
 
@@ -132,12 +131,10 @@ class CourseController extends \BaseController {
 						->withErrors($validator);
 
 			}else{
-				$name 	 = Input::get('name');
 				$description = Input::get('description');
 
 				$courseEdit = Course::find($id);
 
-				$courseEdit->name    = $name;
 				$courseEdit->description = $description;
 
 					if($courseEdit->save()){
