@@ -189,12 +189,13 @@ class CourseController extends \BaseController {
 				$description = Input::get('description');
 
 			 $course = Course::find($id);
+			 $order = Lesson::where('course_id', '=', $id)->count() + 1;
+	   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+
    			 $file = Input::file('video');
 	   		 $filename = $file->getClientOriginalName();
-	   		 $path = public_path().'/courses/'. $id ;
+	   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
 	   		 $file->move($path, $filename);
-
-	   		 $order = Lesson::where('course_id', '=', $id)->count();
 
 	   		 $lesson = Lesson::create(array(
 					'filepath' => $filename,
