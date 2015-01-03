@@ -14,4 +14,8 @@ protected $fillable = array('name', 'user_id', 'description');
     public function lesson() {
         return $this->hasMany('Lesson'); // this matches the Eloquent model
     }
+
+     public function courseQuestion() {
+        return $this->hasMany('CourseQuestion');
+    }
 }
