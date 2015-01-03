@@ -119,7 +119,7 @@
 	//Search
 		Route::get('/search',array(
 					 'as' => 'search',
-					 'uses' => 'CourseController@courseLesson'
+					 'uses' => 'SearchController@search'
 			));	
 
 	//Facebook Login (GET)
