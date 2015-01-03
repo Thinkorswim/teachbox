@@ -13,32 +13,25 @@
     <![endif]-->
   </head>
   <body>
-  	<header>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		  <div class="container">
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span><i class="fa fa-2x fa-bars"></i></span>
-		      </button>
-			  <a class="navbar-brand" href="{{ URL::route('home') }}">
-			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
-			    teachbox
-			  </a>
-		    </div>
-
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav navbar-right navbar-before-registration">
+	<header>
+		<div class="col-xs-3">
+			<nav class="navbar navbar-fixed-top categories">
+			   <div class="navbar-header"> 
+			    <a class="navbar-brand" href="{{ URL::route('home') }}" >
+				    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
+					<small>teachbox</small>
+				</a>
+			    </div>
+			</nav>
+		</div>
+		<div class="col-xs-9">
+			<ul class="nav nav-tabs navbar-before-registration pull-right">
 		        <li><a href="#">Vision</a></li>
 		        <li><a href="#">Testimonials</a></li>
 		        <li><a href="#">Explore</a></li>
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container-fluid -->
-		</nav>	
-	</header>
+			</ul>
+		</div>
+</header>
 	    @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
