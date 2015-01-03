@@ -45,6 +45,11 @@
 					 'as' => 'course-post-add',
 					 'uses' => 'CourseController@coursePostAdd'
 		));
+
+		Route::post('/course/{id}/edit', array(
+			      'as' => 'post-edit-course',
+			      'uses' => 'CourseController@postCourseEdit'
+		));
 	});
 
 

@@ -116,6 +116,41 @@ class CourseController extends \BaseController {
 		}
 	}
 
+	public function postCourseEdit($id)
+	{
+		if(Auth::check()){
+		
+			$course = Course::find($id);
+			$validator = Validator::make(Input::all(),
+				array(
+						'name' 				 => 'required|min:4|max:40',
+						'description' 			 => 'min:30|max:400',
+				));
+
+			if($validator->fails()){		
+				return Redirect::action('CourseController@courseEdit',[$id])
+						->withErrors($validator);
+
+			}else{
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+				$courseEdit = Course::find($id);
+
+				$courseEdit->name    = $name;
+				$courseEdit->description = $description;
+
+					if($courseEdit->save()){
+						return Redirect::route('course-page', array('id' => $id));
+					}
+			}
+
+			return Redirect::action('CourseController@courseEdit',[$id])
+					->with('global-negative', 'Your course settings could not be changed.');
+		}
+	}
+
+
 	public function courseAdd($id)
 	{
 		if(Auth::check()){

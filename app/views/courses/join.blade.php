@@ -13,5 +13,7 @@
 		</div>
 	</div>
 
-
+joined
+<br>
+<a href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"> Edit Course </a>
 @endsection
