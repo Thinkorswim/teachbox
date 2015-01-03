@@ -39,6 +39,11 @@ header{
 	img{
 		width:25px;
 	}
+	.dropdown-menu{
+		li a{
+		color:@grey;
+		}
+	}
 	.categories{
 		max-width: 315px;
 		position: absolute;
@@ -111,10 +116,22 @@ header{
 	}
 	.nav-tabs{
 		border:none;
+		.dropdown-menu a{
+			color:@grey;
+		}
 	}
 	.dropdown-menu{
 		right:0;
+		border:0;
+		box-shadow:none;
+		border-radius:0;
 	}
+}
+.dropdown.open{
+	background:@white;
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+	background:none;
 }
 .navbar-fixed-top .navbar-collapse{
 	height:100vh!important;
@@ -137,3 +154,17 @@ header{
 	padding-right:0;
 
 }
+          .navbar-collapse {
+              top:50px;
+              bottom:0;
+              left:0;
+              width:0;
+              
+              position:fixed;
+              overflow:hidden;
+              transition:width .4s;
+          }
+          .navbar-collapse.in {
+          	width:320px;
+          	margin-top: 3px;
+          }

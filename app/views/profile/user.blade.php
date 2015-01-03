@@ -3,7 +3,9 @@
 @section('content')
 	<div class="cover-section">
 		<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . Auth::user()->pic) }}"alt="{{ $user->name }}'s profile"/>
-		<span class="age"></span>
+		<span class="age"><?php echo ageCalculator( $user->date ) ?></span>
+		<span class="country" style="background:url({{countryFlag( $user->country ) }}) center center">
+		</span>
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
 		<small>130 followers | 180 following</small>
@@ -21,6 +23,6 @@
 	<div class="container">
 		Country: {{ $user->country }}
 		City: {{ $user->city }}
-		Date of birth: {{ $user->date }}
+		Date of birth:
 	</div>
 @endsection

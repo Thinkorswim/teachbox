@@ -30,9 +30,25 @@
 
 		return '';
 	}
-	function getAge(){
-
-		return $userAge;
+	function ageCalculator($dob){
+	$day = getDay($dob);
+	$month = getMonth($dob);
+	$year = getYear($dob);
+	$dob = $day.'-'.$month.'-'.$year;
+	if(!empty($dob)){
+		$birthdate = new DateTime($dob);
+		$today   = new DateTime('today');
+		$age = $birthdate->diff($today)->y;
+		return $age;
+	}else{
+		return 0;
+	}
+}
+	function countryFlag($country){
+		if ($country == "Bulgaria"){
+			$path = public_path();
+			return '../img/flags/Bulgaria.png';
+		}
 	}
 	function getThumbName($name){
 			$newThumbExtension = substr($name, -4);
