@@ -40,6 +40,11 @@
 				 'as' => 'join-course',
 				 'uses' => 'CourseController@postJoin'
 		));
+
+		Route::post('/course/{id}/add',array(
+					 'as' => 'course-post-add',
+					 'uses' => 'CourseController@coursePostAdd'
+		));
 	});
 
 
@@ -93,6 +98,12 @@
 			Route::get('/course/{id}/add',array(
 					 'as' => 'course-add',
 					 'uses' => 'CourseController@courseAdd'
+			));
+
+		//View lesson 
+			Route::get('/course/{id}/lesson/{order}',array(
+					 'as' => 'course-lesson',
+					 'uses' => 'CourseController@courseLesson'
 			));
 
 
