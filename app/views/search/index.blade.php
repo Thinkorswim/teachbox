@@ -1,5 +1,8 @@
 @extends('layouts.master-after')
 
 @section('content')
-	search
+	@foreach ($courses as $course)
+    	<p>{{ $course->name }}</p>
+	@endforeach
+
 @endsection

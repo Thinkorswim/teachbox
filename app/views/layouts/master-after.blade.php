@@ -38,12 +38,14 @@
 	</nav>
 </div>
 <div class="col-xs-6">
+	{{ Form::open(array('url' => '/search')) }}
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...' ))}}
       <span class="input-group-btn">
-        <button class="btn" type="button"><i class="fa fa-search"></i></button>
+        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
       </span>
-    </div><!-- /input-group -->
+    </div>
+    {{ Form::close() }}
 </div>
 <div class="col-xs-3">
 	@if(Auth::check())
