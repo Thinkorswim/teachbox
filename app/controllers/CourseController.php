@@ -236,12 +236,36 @@ class CourseController extends \BaseController {
 
 	public function courseQuestion($id)
 	{
+		if(Auth::check()){
+			$course = Course::find($id);
+
+			if(Auth::user()->id==$course->user_id){
+			return View::make('courses.question')
+					->with('course', $course);
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
 		
+		}else{
+			return View::make('home.before');
+		}
 	}
 
 	public function courseAnswer($id)
 	{
+		if(Auth::check()){
+			$course = Course::find($id);
 
+			if(Auth::user()->id==$course->user_id){
+			return View::make('courses.answer')
+					->with('course', $course);
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
+		
+		}else{
+			return View::make('home.before');
+		}
 	}
 
 }

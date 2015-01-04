@@ -19,7 +19,7 @@
     @endforeach
 
 
-<a href="{{ URL::action('CourseController@courseDiscution', [$course->id]) }}"> Discussion </a>
+<a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a>
 
 
 @if (Auth::user()->id == $course->user_id)
