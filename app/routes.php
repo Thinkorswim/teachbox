@@ -116,6 +116,19 @@
 					 'uses' => 'CourseController@courseLesson'
 			));
 
+		//Course Questions
+			Route::get('/course/{id}/questions',array(
+					 'as' => 'course-question',
+					 'uses' => 'CourseController@courseQuestion'
+			));
+
+		// Course Answers
+			Route::get('/course/{id}/questions/{order}',array(
+					 'as' => 'course-answer',
+					 'uses' => 'CourseController@courseAnswer'
+			));
+
+
 	//Search
 		Route::get('/search',array(
 					 'as' => 'search',

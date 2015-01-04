@@ -233,5 +233,16 @@ class CourseController extends \BaseController {
 			return View::make('home.before');
 		}
 	}
+
+	public function courseQuestion($id)
+	{
+		
+	}
+
+	public function courseAnswer($id)
+	{
+
+	}
+
 }
 
