@@ -21,4 +21,21 @@ class SearchController extends \BaseController {
 		}*/
 	}
 
+	public function autoComplete(){
+
+			$term = Input::get('term');
+
+			$data = Course::where('name', 'LIKE',  '%' .$term. '%' )->take(10)->get();
+ 			$result = [];
+
+ 			foreach ($data as $course) {
+ 				if(strpos(Str::lower($course->name), $term) !== false)
+ 				{
+ 					$result[] = ['value' => $course->name];
+ 				}
+ 			}
+
+ 			return Response::json($result);
+
+		}
 }

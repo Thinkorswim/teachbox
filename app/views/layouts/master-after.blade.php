@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Teachbox</title>
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" >
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,14 +40,15 @@
 </div>
 <div class="col-xs-6">
 	{{ Form::open(array('url' => '/search')) }}
-    <div class="input-group">
-      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...' ))}}
-      <span class="input-group-btn">
-        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
-      </span>
-    </div>
+	    <div class="input-group">
+	      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword' ))}}
+	      <span class="input-group-btn">
+	        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
+	      </span>
+	    </div>
     {{ Form::close() }}
 </div>
+
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
@@ -87,7 +89,8 @@
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-    <script src="//vjs.zencdn.net/4.7/video.js"></script>
+    <script src="https://vjs.zencdn.net/4.7/video.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script>
 		$(document).ready(function () {
 
@@ -116,6 +119,16 @@ $("html").click(function () {
 });
 		});
 
+$('#keyword').autocomplete({
+		source: 'getdata',
+		minLength: 1,
+		select:function(e, ui){
+
+		}
+
+	});
+
 	</script>
+
   </body>
 </html>

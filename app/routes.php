@@ -1,6 +1,8 @@
 <?php
 
 	//CSRF protection
+	// POST METHODS ----------------------------------------------------------------
+
 	Route::group(array('before' => 'csrf'), function(){
 		Route::post('/', array( 
 			'as' => 'create-account',
@@ -58,7 +60,7 @@
 	});
 
 
-	//Pofile --------------------------------------------------
+	//Pofile ---------------------------------------------------------------------
 
 		Route::get('/user/{id}/settings', array(
 				'as'   => 'user-settings',
@@ -84,7 +86,7 @@
 				 'uses' => 'ProfileController@user'
 		));
 
-	// Courses ---------------------------------------------------------------
+	// Courses -------------------------------------------------------------------
 
 		// CREATE COURSE
 			Route::get('/create_course',array(
@@ -129,19 +131,22 @@
 			));
 
 
-	//Search
+	//Search ----------------------------------------------------------------------------------
 		Route::get('/search',array(
 					 'as' => 'search',
 					 'uses' => 'SearchController@search'
 			));	
 
-	//Facebook Login (GET)
+		Route::get('getdata', 'SearchController@autoComplete');
+
+
+	//Facebook Login (GET) ----------------------------------------------------------------------
 		Route::get('/fb-login', array(
 				 'as' => 'fb-login',
 				 'uses' => 'AuthController@fbLogin'
 		));
 
-	//Password Recovery (GET)
+	//Password Recovery (GET) --------------------------------------------------------------------
 		Route::get('/password-recovery', array(
 				 'as' => 'password-recovery',
 				 'uses' => 'AuthController@recover'
@@ -152,7 +157,7 @@
 				 'uses' => 'AuthController@recoverCode'
 		));
 
-	//Create Account (GET)
+	//Create Account (GET) ------------------------------------------------------------------------
 		Route::get('/', array( 
 				'as' => 'home',
 				'uses' => 'AuthController@index'
@@ -164,10 +169,12 @@
 
 		));
 
-	//Sign out (GET)
+	//Sign out (GET) --------------------------------------------------------------------------------
 
 		Route::get('/sign-out', array(
 			'as' => 'sign-out',
 			'uses' => 'AuthController@signout'
 
 		));
+		
+		
