@@ -45,10 +45,8 @@
 	}
 }
 	function countryFlag($country){
-		if ($country == "Bulgaria"){
-			$path = public_path();
-			return '../img/flags/Bulgaria.png';
-		}
+			$country = str_replace(' ', '-', $country);
+			return '/img/flags/'. $country . '.png';
 	}
 	function getThumbName($name){
 			$newThumbExtension = substr($name, -4);

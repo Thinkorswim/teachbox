@@ -6,7 +6,7 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			<?php echo ageCalculator( $user->date ) ?>
 		</span>
-		<span class="country" style="background:url({{countryFlag( $user->country ) }}) center center" 
+		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		<h1>{{ $user->name }}</h1>
