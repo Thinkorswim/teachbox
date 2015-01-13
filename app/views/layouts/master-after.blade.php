@@ -55,15 +55,15 @@
         <li><a href="#"><i class="fa fa-comments"></i></a></li>
         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
 			<ul class="dropdown-menu notification pull-right" role="menu">
-				<li class="navbar-brand profile">
+				<li>
 					<a href="#">
-						<img alt="Brand" src="{{ URL::asset('img/ivan.jpeg') }}"/>
+						<img src="{{ URL::asset('img/ivan.jpeg') }}"/>
 						<p>Ivan likes your actievment from today.</p>
 					</a>
 				</li>
-				<li class="navbar-brand profile">
+				<li>
 					<a href="#">
-						<img alt="Brand" src="{{ URL::asset('img/ivan.jpeg') }}"/>
+						<img src="{{ URL::asset('img/ivan.jpeg') }}"/>
 						<p>Ivan likes your actievment from today.</p>
 					</a>
 				</li>
@@ -88,12 +88,12 @@
 	    @yield('content')
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script src="https://vjs.zencdn.net/4.7/video.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script>
 		$(document).ready(function () {
-
+		var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+		$.fn.bootstrapBtn = bootstrapButton 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -129,6 +129,6 @@ $('#keyword').autocomplete({
 	});
 
 	</script>
-
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
   </body>
 </html>
