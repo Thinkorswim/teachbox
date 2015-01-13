@@ -27,30 +27,35 @@ class ProfileController extends \BaseController {
 
 	public function postChangePic($id){
 		if(Auth::check()){
-			$image = Input::file('image');
-
-			$newImage = Image::make($image->getRealPath());
-			$newThumb = Image::make($image->getRealPath());
-
-			$filename = $image->getClientOriginalName();
-			$ratio = 1;
-			$width = $newImage->width();
-			$newImage->fit($width, intval($width / $ratio));
-
-			$newThumb->fit($width, intval($width / $ratio))->resize('100','100');
-			$newThumbName = getThumbName($filename);
-		
+			$user = User::find($id);
+			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
 
 
-			if(($newImage->save('public/img/' . $id . '/' . $filename)) && ($newThumb->save('public/img/' . $id . '/' . $newThumbName))  ){
+				$image = Input::file('image');
+
+				$newImage = Image::make($image->getRealPath());
+				$newThumb = Image::make($image->getRealPath());
+
+				$filename = $image->getClientOriginalName();
+				$ratio = 1;
+				$width = $newImage->width();
+				$newImage->fit($width, intval($width / $ratio));
+
+				$newThumb->fit($width, intval($width / $ratio))->resize('100','100');
+				$newThumbName = getThumbName($filename);
+			
 
 
-				$user = User::find($id);
-				$user->pic    = $image->getClientOriginalName();
+				if(($newImage->save('public/img/' . $id . '/' . $filename)) && ($newThumb->save('public/img/' . $id . '/' . $newThumbName))  ){
+					$user->pic    = $image->getClientOriginalName();
 
-				if($user->save()){
-					return Redirect::route('user-profile', array('id' => $user->id));
+					if($user->save()){
+						return Redirect::route('user-profile', array('id' => $user->id));
+					}
 				}
+
+			}else{
+					return Redirect::route('change-picture', array('id' => $user->id));
 			}
 		}
 	}

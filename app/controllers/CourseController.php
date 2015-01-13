@@ -190,47 +190,53 @@ class CourseController extends \BaseController {
 	public function coursePostAdd($id){
 	
 		if(Auth::check()){
+		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
+
 				$validator = Validator::make(Input::all(),
-				array(
-						'name' 				 => 'required|min:4|max:50',
-						'description'		 => 'required|min:30|max:400',
-				));
-
-			if($validator->fails()){		
-				return Redirect::action('CourseController@create')
-						->withErrors($validator);
-			}else{
-
-				$name 	 = Input::get('name');
-				$description = Input::get('description');
-
-			 $course = Course::find($id);
-			 $order = Lesson::where('course_id', '=', $id)->count() + 1;
-	   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
-
-   			 $file = Input::file('video');
-	   		 $filename = $file->getClientOriginalName();
-	   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
-	   		 $file->move($path, $filename);
-
-	   		 $lesson = Lesson::create(array(
-					'filepath' => $filename,
-					'course_id'  => $id,
-					'name'       => $name,
-					'description' => $description,
-					'order'       => $order,
+					array(
+							'name' 				 => 'required|min:4|max:50',
+							'description'		 => 'required|min:30|max:400',
 					));
 
-	   		  if($lesson){
-				return Redirect::route('course-page', array('id' => $id));
-			}else{
-				return Redirect::route('course-page', array('id' => $id))
-											->with('global-negative', 'You could not join this course.');
-			}
-		}
+				if($validator->fails()){		
+				return Redirect::route('course-add', array('id' => $id))
+							->withErrors($validator);
+				}else{
 
+					$name 	 = Input::get('name');
+					$description = Input::get('description');
+
+				 $course = Course::find($id);
+				 $order = Lesson::where('course_id', '=', $id)->count() + 1;
+		   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+
+	   			 $file = Input::file('video');
+		   		 $filename = $file->getClientOriginalName();
+		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
+		   		 $file->move($path, $filename);
+
+		   		 $lesson = Lesson::create(array(
+						'filepath' => $filename,
+						'course_id'  => $id,
+						'name'       => $name,
+						'description' => $description,
+						'order'       => $order,
+						));
+
+		   		  if($lesson){
+					return Redirect::route('course-page', array('id' => $id));
+				}else{
+					return Redirect::route('course-page', array('id' => $id))
+												->with('global-negative', 'You could not join this course.');
+				}
+			}
+
+			}else{
+					return Redirect::route('course-add', array('id' => $id));
+			}
 		}else{
-			return View::make('home.before');
+
+					return View::make('home.before');
 		}
 	}
 
