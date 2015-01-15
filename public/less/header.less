@@ -112,6 +112,9 @@ header{
 		a{
 			color:@white;
 			border:none;
+			i{
+			font-size:28px;
+			}
 		}
 	}
 	.nav-tabs{
@@ -157,9 +160,8 @@ header{
           .navbar-collapse {
               top:50px;
               bottom:0;
-              left:0;
-              width:0;
-                transition:all .2s ease;
+              left:-300px;
+                transition:all .1s ease;
               position:fixed;
               overflow:hidden;
             
@@ -167,4 +169,5 @@ header{
           .navbar-collapse.in {
           	width:320px;
           	margin-top: 3px;
+          	left:0;
           }

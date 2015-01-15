@@ -79,8 +79,8 @@
 	        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
 	        </a>
 			<ul class="dropdown-menu pull-right" role="menu">
-				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="pe-7s-user"></i> My profile</a></li>
-				<li><a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"><i class="pe-7s-tools"></i> Settings</a></li>
+				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"> My profile</a></li>
+				<li><a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"> Settings</a></li>
 				<li><a href="{{ URL::route('sign-out') }}">Sign out</a> </li>
 			</ul>
 		</li>
