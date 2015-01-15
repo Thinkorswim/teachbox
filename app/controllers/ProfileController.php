@@ -4,9 +4,16 @@ class ProfileController extends \BaseController {
 	public function user($id){
 		$user = User::find($id);
 
+		$courseListId = UserCourse::where('user_id', '=', $id)->get();
+		$courseList = array();
+
+
+		foreach ($courseListId as $tree)
+			$courseList[] = Course::where('id', '=', $tree->course_id)->first();
+		
 		if($user){
 			return View::make('profile.user')
-					->with('user', $user);
+					->with(array('courseList' => $courseList, 'user' => $user));
 		}
 
 		return App::abort(404);
@@ -15,11 +22,13 @@ class ProfileController extends \BaseController {
 	public function changePic($id){
 		if(Auth::check() && ($id == Auth::user()->id)){
 			$user = User::find($id);
-
+	
 			if($user){
 				return View::make('profile.pic')
 						->with('user', $user);
 			}
+
+		
 		}
 
 		return App::abort(404);
