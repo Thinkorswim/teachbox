@@ -7,7 +7,7 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			<?php echo ageCalculator( $user->date ) ?>
 		</span>
-		@endif
+		@endif 
 		@if ($user->country != '')
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
@@ -28,6 +28,8 @@
 		</div>
 	</div>
 	<div class="container">
-
+		@foreach ($courseList as $course)
+ 			<p> <a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a> </p>
+   		 @endforeach
 	</div>
 @endsection
