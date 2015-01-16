@@ -16,9 +16,6 @@ class SearchController extends \BaseController {
 		return View::make('search.index')
 					->with('courses', $courses);
 
-		/*foreach ($courses as $course) {
-			var_dump($course->name);
-		}*/
 	}
 
 	public function autoComplete(){

@@ -123,7 +123,7 @@ $("html").click(function () {
 		});
 
 $('#keyword').autocomplete({
-		source: 'getdata',
+		source: '/getdata',
 		minLength: 1,
 		select:function(e, ui){
 

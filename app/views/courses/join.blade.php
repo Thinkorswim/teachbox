@@ -4,7 +4,7 @@
 	<div class="course-section">
 		<div class="container">
 			<div class="col-xs-12 col-md-3">
-				<img src="{{ URL::asset('img/logo.png') }}"/>
+					<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
 			</div>
 			<div class="col-xs-12 col-xs-9">
 				<h1>{{ $course->name }}</h1>

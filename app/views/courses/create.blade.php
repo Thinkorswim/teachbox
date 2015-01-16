@@ -8,7 +8,7 @@
 			<div class="col-xs-10 col-sm-6 col-md-4 tab-register">	
 				<div class="tab-pane">
 					<h4>Start your teachning journey!</h4>
-					{{ Form::open(['route' => 'create-course']) }}	
+					{{ Form::open(['route' => 'create-course','files' => true ]) }}	
 						Name: 
 						 {{ Form::text('name') }}
 						 @if($errors->has('name'))
@@ -19,6 +19,9 @@
 						 @if($errors->has('description'))
 							{{ $errors->first('description') }}
 						@endif
+
+						{{ Form::file('image') }}
+
 						{{ Form::token() }}
 						{{ Form::submit('Create Course') }}
 					{{ Form::close() }}	

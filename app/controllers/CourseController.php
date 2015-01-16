@@ -14,50 +14,71 @@ class CourseController extends \BaseController {
 	public function postCreate()
 	{
 		if (Auth::check()){
-			$validator = Validator::make(Input::all(),
-				array(
-						'name' 				 => 'required|min:4|max:40',
-						'description'		 => 'required|min:30|max:400',
-				));
-
-			if($validator->fails()){		
-				return Redirect::action('CourseController@create')
-						->withErrors($validator);
-			}else{
-
-				$name 	 = Input::get('name');
-				$description = Input::get('description');
-
-				$user_id = Auth::user()->id;
-				$course = Course::create(array(
-						'name' 		=> $name,
-						'user_id'  => $user_id,
-						'description' => $description,
+			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
+				
+				$validator = Validator::make(Input::all(),
+					array(
+							'name' 				 => 'required|min:4|max:40',
+							'description'		 => 'required|min:30|max:400',
 					));
 
-				if($course){
-					    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
-						$user_id = Auth::user()->id;
-						$userCourse = UserCourse::create(array(
-							'course_id' => $course->id,
-							'user_id'  => $user_id,
-						));
-		    	if($userCourse){
-					return Redirect::route('course-page', array('id' => $course->id));
-				
+				if($validator->fails()){		
+					return Redirect::action('CourseController@create')
+							->withErrors($validator);
 				}else{
-					return Redirect::route('course-page', array('id' => $course->id))
-											->with('global-negative', 'You could not join this course.');
-					 }
 
-					return View::make('courses.join')
-							->with('course', $course);		
+					$image = Input::file('image');
+					$newImage = Image::make($image->getRealPath());
+					$filename = $image->getClientOriginalName();
+					$ratio = 1;
+					$width = $newImage->width();
+					$newImage->fit($width, intval($width / $ratio));
 
+
+					$name 	 = Input::get('name');
+					$description = Input::get('description');
+
+					$user_id = Auth::user()->id;
+					$course = Course::create(array(
+							'name' 		=> $name,
+							'user_id'  => $user_id,
+							'description' => $description,
+						));
+
+					if($course){
+						    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
+						    if($newImage->save('public/courses/' . $course->id . '/' . $filename)){
+						    	$course->pic    = $image->getClientOriginalName();
+						    	$course->save();
+						    }
+							$user_id = Auth::user()->id;
+							$userCourse = UserCourse::create(array(
+								'course_id' => $course->id,
+								'user_id'  => $user_id,
+							));
+			    	if($userCourse){
+						return Redirect::route('course-page', array('id' => $course->id));
+					
+					}else{
+						return Redirect::route('course-page', array('id' => $course->id))
+												->with('global-negative', 'You could not join this course.');
+						 }
+
+						return View::make('courses.join')
+								->with('course', $course);		
+
+					}
+
+						return Redirect::action('CourseController@create')
+								->with('global-negative', 'Your profile settings could not be created.');
 				}
-
+			
+			}else{
+				dd('dasasd');
 					return Redirect::action('CourseController@create')
 							->with('global-negative', 'Your profile settings could not be created.');
 			}
+			
 	    }
 	}
 
