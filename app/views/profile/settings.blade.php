@@ -2,23 +2,20 @@
 
 @section('content')
 <div class="container">
-<div role="tabpanel">
-
-  
 	<div class="col-xs-12 col-sm-3">
-	  <ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active">
+	  <ul class="nav nav-tabs">
+		<li>
 			<a href="{{ URL::action('ProfileController@changePic', [$user->id]) }}" aria-controls="profile" role="tab" data-toggle="tab"> Change picture </a>
 		</li>
 		@if($user->active == 1)
-			<li role="presentation">
-				<a href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}" aria-controls="change-pass" role="tab" data-toggle="tab"> Change password </a>
-			</li>
+		<li>
+			<a href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}" aria-controls="change-pass" role="tab" data-toggle="tab"> Change password </a>
+		</li>
 		@endif
 
 	  </ul>
 	</div> 
-	<div class="col-xs-12 col-sm-3">
+	<div class="col-xs-12 col-sm-9">
 		@if(Session::has('global-positive'))
 			<div class="alert alert-success" role="alert">
 			{{Session::get('global-positive')}}
@@ -29,10 +26,8 @@
 			{{Session::get('global-negative')}}
 			</div>
 		@endif
-		<div class="tab-content">
-		    <div role="tabpanel" class="tab-pane active" id="profile">
 				{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
-				<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"/>
+				<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" style="width:200px;height:auto;"/>
 
 					Name: 
 					 {{ Form::text('name', $user->name) }}
@@ -61,12 +56,5 @@
 					{{ Form::submit('Save Changes') }}
 				{{ Form::close() }}			    	
 		    </div>
-		    <div role="tabpanel" class="tab-pane" id="change-pass">...</div>
-		    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-		    <div role="tabpanel" class="tab-pane" id="settings">...</div>
 		</div>
-
-</div>
-	</div>
-</div>
 @endsection
