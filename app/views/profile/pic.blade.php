@@ -1,19 +1,45 @@
 @extends('layouts.master-after')
 
 @section('content')
-	<a href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}"> Edit Profile </a>
-	<br> <br>
-	<a href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a>
-	<br> <br>
-	@if($user->active == 1)
-		<a href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a>
-	@endif
-	
-	{{ Form::open(array('action' => array('ProfileController@postChangePic', $user->id), 'files' => true  )) }}
-		{{ Form::file('image') }}
+<div class="container">
+	<div class="row">
+		@if(Session::has('global-positive'))
+			<div class="alert alert-success" role="alert">
+			{{Session::get('global-positive')}}
+			</div>
+		@endif
+		@if(Session::has('global-negative'))
+			<div class="alert alert-danger" role="alert">
+			{{Session::get('global-negative')}}
+			</div>
+		@endif
+	</div>
+	<div class="col-xs-12 col-sm-3">
+	  <ul class="nav nav-pills nav-stacked settings-nav">
+	  	<li><a href="#">Profile info /napravi me da rabotq/</a></li>
+		<li class="active"><a href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a></li>
+		@if($user->active == 1)
+		<li><a href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a></li>
+		@endif
+	  </ul>
+	</div> 
+	<div class="col-xs-12 col-sm-1"></div>
+	<div class="col-xs-12 col-sm-8">
+			<div class="panel panel-default">
+			  <div class="panel-body">	
+				{{ Form::open(array('action' => array('ProfileController@postChangePic', $user->id), 'files' => true  )) }}
+						<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
+						<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+						    <span>Upload</span>
+							{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
+						</div>
+					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
 
-		{{ Form::submit('upload') }}
-
-		{{ Form::token() }}
-	{{ Form::close() }}
+					{{ Form::token() }}
+				{{ Form::close() }}
+				</div>
+			</div>
+	</div>
+</div>
 @endsection

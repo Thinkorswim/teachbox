@@ -103,7 +103,9 @@ header{
 		.navbar-toggle{
 			float:left;
 			margin-top:6px;
-			margin-bottom:0px;
+			margin-bottom:0;
+			margin-right: 0;
+			padding-right: 0;
 		}
 	}
 	.nav-tabs li{
@@ -113,8 +115,14 @@ header{
 			color:@white;
 			border:none;
 			i{
-			font-size:28px;
+			font-size:20px;
+			margin-top:3px;
 			}
+		}
+		.navbar-brand{
+			img{
+			.RoundBorders(50%);
+		}
 		}
 	}
 	.nav-tabs{
@@ -156,6 +164,26 @@ header{
 	padding-left:0;
 	padding-right:0;
 
+}
+@media screen and (max-width: 662px){
+body .navbar-brand{
+	padding: 15px 0;
+}
+body header .input-group{
+	padding: 0;
+}
+body .nav>li>a{
+	padding: 10px;
+}
+}
+@media screen and (max-width: 450px){
+	.navbar-header i{
+		padding-top: 8px;
+		font-size: 14px;
+	}
+}
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
+	z-index: 9999;
 }
           .navbar-collapse {
               top:50px;

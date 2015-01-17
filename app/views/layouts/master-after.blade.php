@@ -7,12 +7,12 @@
     <title>Teachbox</title>
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" >
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-    <link href="//vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
+    <link href="http://vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-   	<script src="//vjs.zencdn.net/4.11/video.js"></script>
+   	<script src="http://vjs.zencdn.net/4.11/video.js"></script>
 
 
   </head>
@@ -57,7 +57,7 @@
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
         <li><a href="#"><i class="fa fa-comments"></i></a></li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
+        <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
 			<ul class="dropdown-menu notification pull-right" role="menu">
 				<li>
 					<a href="#">
@@ -73,7 +73,7 @@
 				</li>
 				<a href="">All notifications</a>
 			</ul>
-		</li>
+		</li>-->
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
 	        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
@@ -120,6 +120,7 @@ $("html").click(function () {
     }
     removeClass = true;
 });
+
 		});
 
 $('#keyword').autocomplete({
@@ -130,7 +131,9 @@ $('#keyword').autocomplete({
 		}
 
 	});
-
+	document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+	}
 	</script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
   </body>
