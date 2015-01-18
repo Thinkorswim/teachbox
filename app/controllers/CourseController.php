@@ -15,7 +15,7 @@ class CourseController extends \BaseController {
 	{
 		if (Auth::check()){
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
-				
+
 				$validator = Validator::make(Input::all(),
 					array(
 							'name' 				 => 'required|min:4|max:40',
@@ -74,7 +74,6 @@ class CourseController extends \BaseController {
 				}
 			
 			}else{
-				dd('dasasd');
 					return Redirect::action('CourseController@create')
 							->with('global-negative', 'Your profile settings could not be created.');
 			}
