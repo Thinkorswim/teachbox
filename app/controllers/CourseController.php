@@ -199,7 +199,12 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			$lesson = Lesson::where('order', '=', $lesson)->first();
+			$lesson = Lesson::where(function ($query) use ($lesson) {
+			    $query->where('order', '=', $lesson);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->first();
+
 			return View::make('courses.lesson')
 					->with(array('course' => $course, 'lesson' => $lesson));
 		}else{
