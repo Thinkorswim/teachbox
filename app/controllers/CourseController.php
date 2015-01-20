@@ -149,8 +149,6 @@ class CourseController extends \BaseController {
 	public function postCourseEdit($id)
 	{
 		if(Auth::check()){
-		
-			$course = Course::find($id);
 			$validator = Validator::make(Input::all(),
 				array(
 						'description' 			 => 'min:30|max:400',
@@ -161,9 +159,26 @@ class CourseController extends \BaseController {
 						->withErrors($validator);
 
 			}else{
-				$description = Input::get('description');
-
 				$courseEdit = Course::find($id);
+
+				$description = Input::get('description');
+				if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
+					
+
+					$image = Input::file('image');
+
+					$newImage = Image::make($image->getRealPath());
+					$filename = $image->getClientOriginalName();
+					$ratio = 1;
+					$width = $newImage->width();
+					$newImage->fit($width, intval($width / $ratio));
+
+					if($newImage->save('public/courses/' . $courseEdit->id . '/' . $filename)){
+						    	$courseEdit->pic    = $image->getClientOriginalName();
+				    }
+				}
+
+				
 
 				$courseEdit->description = $description;
 
