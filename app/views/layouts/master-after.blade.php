@@ -101,40 +101,40 @@
 		$(document).ready(function () {
 		var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
 		$.fn.bootstrapBtn = bootstrapButton 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-var removeClass = true;
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+		var removeClass = true;
 
-// when clicking the button : toggle the class, tell the background to leave it as is
-$(".search2").click(function () {
-    $(".mobile-form").toggleClass('visible');
-    removeClass = false;
-});
+		// when clicking the button : toggle the class, tell the background to leave it as is
+		$(".search2").click(function () {
+		    $(".mobile-form").toggleClass('visible');
+		    removeClass = false;
+		});
 
-// when clicking the div : never remove the class
-$(".mobile-form").click(function() {
-    removeClass = false;
-});
+		// when clicking the div : never remove the class
+		$(".mobile-form").click(function() {
+		    removeClass = false;
+		});
 
-// when click event reaches "html" : remove class if needed, and reset flag
-$("html").click(function () {
-    if (removeClass) {
-        $(".mobile-form").removeClass('visible');
-    }
-    removeClass = true;
-});
+		// when click event reaches "html" : remove class if needed, and reset flag
+		$("html").click(function () {
+		    if (removeClass) {
+		        $(".mobile-form").removeClass('visible');
+		    }
+		    removeClass = true;
+		});
 
 		});
 
-$('#keyword').autocomplete({
-		source: '/getdata',
-		minLength: 1,
-		select:function(e, ui){
+		$('#keyword').autocomplete({
+				source: '/getdata',
+				minLength: 1,
+				select:function(e, ui){
+					window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+				}
 
-		}
-
-	});
+		});
 	document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;
 	}

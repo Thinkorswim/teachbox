@@ -43,7 +43,7 @@
 								<span class="input-group-addon">
 									<i class="fa fa-globe"></i>
 								</span> 
-							 {{ Form::text('country', $user->country, array('class'=>'form-control')) }}
+							 {{ Form::select('country', $country_array, $user->country, array('class'=>'form-control')) }}
 							 @if($errors->has('country'))
 								{{ $errors->first('country') }}
 							 @endif

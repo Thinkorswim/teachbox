@@ -28,7 +28,7 @@ class SearchController extends \BaseController {
  			foreach ($data as $course) {
  				if(strpos(Str::lower($course->name), $term) !== false)
  				{
- 					$result[] = ['value' => $course->name];
+ 					$result[] = ['value' => $course->name, 'course_id' => $course->id];
  				}
  			}
 

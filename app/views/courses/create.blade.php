@@ -23,7 +23,7 @@
 						<div>Upload image</div>
 						<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 						<div class="fileUpload btn btn-primary">
-						    <span>Upload</span>
+						    <span>Choose a picture</span>
 							{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
 						</div>
 						{{ Form::token() }}
