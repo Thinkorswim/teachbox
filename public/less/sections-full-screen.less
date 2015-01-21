@@ -1,3 +1,5 @@
+@import "variables.less";
+@import "mixins.less";
 .full-screen{
 padding:170px 0 20px;
   min-height:100vh;
@@ -39,9 +41,22 @@ padding:170px 0 20px;
   -o-background-size: cover;
   background-size: cover;
 }
+&.explore{
+ background: url(../img/study.png) no-repeat center center; 
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px!important;
+  
+  h1{
+  	text-align: center;
+  	margin-top:70px;
+  	color: @white;
+  }
+}
 &.learn-screen, &.explore{
 	padding:80px 0 80px;
-	background:@white;
 	display:block;
 	min-height:1px;
 	div > h1{

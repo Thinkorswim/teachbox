@@ -1,3 +1,5 @@
+@import "variables.less";
+@import "mixins.less";
 .full-screen h1{
 margin-top:0px;
 }
@@ -5,11 +7,11 @@ margin-top:0px;
 color:@blue;
 }
 .tooltip.top .tooltip-arrow{
-	border-top-color:@darkGrey;
+	border-top-color:@grey;
 }
 .tooltip-inner {
 max-width:400px;
-background:@darkGrey;
+background:@grey;
 opacity:1;
 }
 .tooltip.top {
@@ -32,7 +34,7 @@ opacity:.8;
 }
 .line-center{
     margin:0;padding:0 10px;
-    background:#fff;
+    background:@white;
     display:inline-block;
 }
 h6{
@@ -48,7 +50,7 @@ h6:after{
     top:50%;
     left:0;
     right:0;
-    border-top:solid 1px @darkGrey;
+    border-top:solid 1px @grey;
     z-index:-1;
 }
 .tab-register{
@@ -63,7 +65,7 @@ h6:after{
 
 	li{
 	width:50%;
-	background:@darkGrey;
+	background:@grey;
 	border-radius:0;
 	a{
 		margin-right:0px;

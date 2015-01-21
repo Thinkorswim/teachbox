@@ -1,3 +1,5 @@
+@import "variables.less";
+@import "mixins.less";
 .navbar-form{
 display: inline-block;
 float: left;
@@ -45,7 +47,7 @@ height:30px;
 	&.submit{
 	margin:8px 0 0;
 	min-width:100%;
-	background:@darkGrey;
+	background:@grey;
 	color:@white;
 	}
 	.input-group-addon{
@@ -70,11 +72,12 @@ border: 1px solid @blue;
 border: 1px solid @blue;
 }
 input[type="submit"]{
-.transition (all .3s ease);
-border:none;
-background:@darkGrey;
-color:@white;
-&:hover{
-background:@blue;
-}
+	.transition (all .3s ease);
+	border:none;
+	background:@grey;
+	color:@white;
+	&:hover, &:focus{
+	background:@blue;
+	color:@white;
+	}
 }

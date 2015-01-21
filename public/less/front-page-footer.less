@@ -1,0 +1,49 @@
+.front-page-footer{
+	background: @grey;
+	text-align: center;
+	h3{
+		font-weight: 900;
+		letter-spacing: 1.1px;
+	}
+	p, small{
+		color:@white;
+		max-width: 400px;
+		margin: auto;
+	}
+	 a{
+		color: @blue;
+		margin:5px;
+		&:hover{
+			color: @blue;
+		}
+	}
+	ul{
+		text-align: center;
+		margin:10px auto;
+		display: block;
+		padding:0;
+		li{
+			display: inline-block;
+			a{
+				.transition (all .3s ease);
+			}
+		}
+		li:first-child a:hover{
+			color: #3b5998;
+		}
+		li:nth-child(2) a:hover{
+			color: #55acee;
+		}
+		li:nth-child(3) a:hover{
+			color: #0976b4;
+		}
+		li:nth-child(4) a:hover{
+			color: #3f729b;
+		}
+	}
+}
+.front-page-footer div > a{
+	&:hover{
+		text-decoration: underline;
+	}
+}

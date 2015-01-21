@@ -18,7 +18,7 @@
 		<div class="col-xs-3">
 			<nav class="navbar navbar-fixed-top categories">
 			   <div class="navbar-header"> 
-			    <a class="navbar-brand" href="{{ URL::route('home') }}" >
+			    <a class="navbar-brand before-brand" href="{{ URL::route('home') }}" >
 				    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 					<small>teachbox</small>
 				</a>
@@ -34,8 +34,9 @@
 		</div>
 </header>
 	    @yield('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     	@if(($errors->has('email')) || $errors->has('name') || $errors->has('password') || $errors->has('password_again'))
 	<script>
@@ -71,13 +72,13 @@
 		$('#mistake-pass').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#mistake-mail').tooltip('show');
 		$('#mistake-pass').tooltip('show');
-		$('.input-group').click(function(e) {
+		$('.tab-register .input-group').click(function(e) {
 		    e.stopPropagation();
-		$('.input-group').removeClass('current');
+		$('.tab-register .input-group').removeClass('current');
 		$(this).addClass('current');
 		});
 	$('body').click(function(e) {
-	$('.input-group').removeClass('current');
+	$('.tab-register .input-group').removeClass('current');
 		});
 	$(".more").click(function() {
 		event.preventDefault();
@@ -85,7 +86,8 @@
         scrollTop: $(".learn-screen").offset().top},
         'slow');
 	});
-
+	
+	// Navigation scroll to
 	$(".navbar-before-registration li:first-child").click(function() {
 		event.preventDefault();
     $('html,body').animate({

@@ -171,16 +171,67 @@
 		</div>
 	</div>
 	</section>
-	<section class="full-screen explore">
-		<div class="col-xs-6">
-			{{ Form::open(array('url' => '/search')) }}
-			    <div class="input-group">
-			      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword' ))}}
-			      <span class="input-group-btn">
-			        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
-			      </span>
-			    </div>
-		    {{ Form::close() }}
+	<header class="relative-header">
+		<section class="full-screen explore">
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-6">
+				<h1>Search from hundreds of courses!</h1>
+				{{ Form::open(array('url' => '/search')) }}
+				    <div class="input-group">
+				      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword' ))}}
+				      <span class="input-group-btn">
+				        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
+				      </span>
+				    </div>
+			    {{ Form::close() }}
+			</div>
+		</section>
+	</header>
+	<footer class="front-page-footer">
+		<div class="container">
+				<h3>The teachbox</h3>
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<a href="">Privacy</a>
+				<a href="">Terms</a>
+				<a href="">Cookies</a>
+				<a href="">Advertising</a>
+				<ul>
+				  <li>
+					<a href="https://www.facebook.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="https://twitter.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>				 
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				</ul>	
+				<small>All rights reserved Teachbox 2014</small>
 		</div>
-	</section>
+	</footer>
 @endsection
