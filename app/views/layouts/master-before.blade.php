@@ -7,6 +7,7 @@
     <title>Teachbox</title>
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" >
 	<link href="{{ URL::asset('css/pe-icon-7-stroke.css" rel="stylesheet') }}" />
+	 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,6 +34,7 @@
 		</div>
 </header>
 	    @yield('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     	@if(($errors->has('email')) || $errors->has('name') || $errors->has('password') || $errors->has('password_again'))
@@ -48,6 +50,15 @@
 	@endif
 	<script>
 	$(document).ready(function () {
+		$('#keyword').autocomplete({
+				source: '/getdata',
+				minLength: 1,
+				select:function(e, ui){
+					window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+				}
+
+		});
+
 		$('#user-error').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#pass-error').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#repeat-error').tooltip({'trigger':'focus', 'placement' : 'top'});

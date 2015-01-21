@@ -172,5 +172,15 @@
 	</div>
 	</section>
 	<section class="full-screen explore">
+		<div class="col-xs-6">
+			{{ Form::open(array('url' => '/search')) }}
+			    <div class="input-group">
+			      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword' ))}}
+			      <span class="input-group-btn">
+			        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
+			      </span>
+			    </div>
+		    {{ Form::close() }}
+		</div>
 	</section>
 @endsection
