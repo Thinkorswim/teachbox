@@ -234,8 +234,11 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
+				$lessonList = Lesson::where('course_id', '=', $id)->get();
+				$creator = User::where('id', '=', $course->user_id)->first();
+
 				return View::make('courses.lesson')
-						->with(array('course' => $course, 'lesson' => $lesson));
+						->with(array('course' => $course, 'currentLesson' => $lesson, 'lessonList' => $lessonList, 'creator' => $creator));
 			}else{
 					return View::make('courses.not_join')
 							->with(array('course' => $course, 'studentCount' => $studentCount ));
@@ -326,7 +329,7 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			
+
 			$isJoined = UserCourse::where(function ($query) {
 			    $query->where('user_id', '=', Auth::user()->id);
 			})->where(function ($query) use ($id) {
