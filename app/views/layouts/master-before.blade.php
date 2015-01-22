@@ -14,7 +14,7 @@
     <![endif]-->
   </head>
   <body>
-	<header>
+	<header class="header-not-reg">
 		<div class="col-xs-3">
 			<nav class="navbar navbar-fixed-top categories">
 			   <div class="navbar-header"> 
@@ -25,6 +25,7 @@
 			    </div>
 			</nav>
 		</div>
+		@if(Request::path() == '/')
 		<div class="col-xs-9">
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
 		        <li><a href="#">Vision</a></li>
@@ -32,6 +33,7 @@
 		        <li><a href="#">Explore</a></li>
 			</ul>
 		</div>
+		@endif
 </header>
 	    @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -86,7 +88,7 @@
         scrollTop: $(".learn-screen").offset().top},
         'slow');
 	});
-	
+
 	// Navigation scroll to
 	$(".navbar-before-registration li:first-child").click(function() {
 		event.preventDefault();

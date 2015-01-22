@@ -129,19 +129,19 @@
 			<h1 class="centered">Teach. Learn. Earn. Socialise.</h2>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-glasses"></i>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<p>Everyone has something to teach the world. Spit it out. Teach the planet.</p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-notebook"></i>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<p>Nobody's perfect. Get something of that knowledge box.</p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-cash"></i>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>				
+				<p>Money for everyone. You actually can get more than your fee being an A student. </p>				
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-chat"></i>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>				
+				<p>Share your experience with your buddies. Know what they are studing/teaching.</p>				
 			</div>
 		</div>
 	</section>
@@ -159,7 +159,7 @@
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </h3>
+			        <h3><i class="fa fa-2x fa-quote-left"></i>Simply the best.</h3>
 			    </div>
 			    <div class="item">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
@@ -175,7 +175,7 @@
 		<section class="full-screen explore">
 			<div class="col-xs-3">
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-12 col-sm-6">
 				<h1>Search from hundreds of courses!</h1>
 				{{ Form::open(array('url' => '/search')) }}
 				    <div class="input-group">
@@ -191,8 +191,8 @@
 	<footer class="front-page-footer">
 		<div class="container">
 				<h3>The teachbox</h3>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<p> In teachnox we believe in eduacation without any boundries. No "must", no "have to do"- just learn 
+				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
 				<a href="">Privacy</a>
 				<a href="">Terms</a>
 				<a href="">Cookies</a>

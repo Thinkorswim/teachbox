@@ -67,6 +67,9 @@ header{
 			.RoundBorders(4px);
 		}
 	}
+	.input-group-btn:hover{
+		border-left: 0;
+	}
 	.input-group{
 		padding:0 15px;
 		margin-top:10px;
@@ -194,6 +197,20 @@ body .nav>li>a{
 .ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
 	z-index: 9999;
 }
+body .ui-widget-content{
+	border: 0;
+	background: @white;
+	color: @grey;
+}
+.ui-menu .ui-menu-item:hover, .ui-menu .ui-menu-item:active, .ui-menu .ui-menu-item:focus{
+		background: @lightGrey;
+		list-style-image: none;
+		border-color: @lightGrey;
+		margin-left: 1px;
+		margin-right: 1px;
+		font-size: 15px;
+	}
+
           .navbar-collapse {
               top:50px;
               bottom:0;
@@ -211,4 +228,10 @@ body .nav>li>a{
 .relative-header{
 	position: relative;
 	z-index: 1;
+}
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group{
+	margin-left: 0;
+}
+.header-not-reg .col-xs-9{
+	padding: 0;
 }
