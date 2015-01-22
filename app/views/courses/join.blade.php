@@ -9,6 +9,7 @@
 			<div class="col-xs-12 col-xs-9">
 				<h1>{{ $course->name }}</h1>
 				<h5> by <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></h5>
+					<p> {{ $studentCount }} </p>
 			</div>
 		</div>
 	</div>

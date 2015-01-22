@@ -84,7 +84,9 @@ class CourseController extends \BaseController {
 	public function course($id)
 	{
 		$course = Course::find($id);
-		if(Auth::check()){
+		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 
 		$isJoined = UserCourse::where(function ($query) {
 			    $query->where('user_id', '=', Auth::user()->id);
@@ -98,21 +100,22 @@ class CourseController extends \BaseController {
 
 			if($isJoined){
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user ));
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount ));
 			}else{
 				return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user ));
+							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
 			}
 		}else{
 			$user = User::find($course->user_id);
 			return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user ));
+							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
 		}
 	}
 
 	public function postJoin($id)
 	{
-		if(Auth::check()){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 
 			$user_id = Auth::user()->id;
 			$userCourse = UserCourse::create(array(
@@ -132,8 +135,8 @@ class CourseController extends \BaseController {
 
 	public function courseEdit($id)
 	{
-		if(Auth::check()){
-			$course = Course::find($id);
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			if(Auth::user()->id==$course->user_id){
 			return View::make('courses.edit')
 					->with('course', $course);
@@ -148,7 +151,8 @@ class CourseController extends \BaseController {
 
 	public function postCourseEdit($id)
 	{
-		if(Auth::check()){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 			$validator = Validator::make(Input::all(),
 				array(
 						'description' 			 => 'min:30|max:400',
@@ -195,7 +199,8 @@ class CourseController extends \BaseController {
 
 	public function courseAdd($id)
 	{
-		if(Auth::check()){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 			$course = Course::find($id);
 
 			if(Auth::user()->id==$course->user_id){
@@ -212,24 +217,37 @@ class CourseController extends \BaseController {
 
 	public function courseLesson($id,$lesson)
 	{
+		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		if(Auth::check()){
 			$course = Course::find($id);
-			$lesson = Lesson::where(function ($query) use ($lesson) {
-			    $query->where('order', '=', $lesson);
+
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
 			})->where(function ($query) use ($id) {
 			    $query->where('course_id', '=', $id);
-			})->first();
+			})->count();
 
-			return View::make('courses.lesson')
-					->with(array('course' => $course, 'lesson' => $lesson));
+			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+				$lesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+
+				return View::make('courses.lesson')
+						->with(array('course' => $course, 'lesson' => $lesson));
+			}else{
+					return View::make('courses.not_join')
+							->with(array('course' => $course, 'studentCount' => $studentCount ));
+			}
 		}else{
 			return View::make('home.before');
 		}
 	}
 
 	public function coursePostAdd($id){
-	
-		if(Auth::check()){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 
 				$validator = Validator::make(Input::all(),
@@ -285,9 +303,16 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 
-			if(Auth::user()->id==$course->user_id){
-			return View::make('courses.question')
-					->with('course', $course);
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+
+
+			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+				return View::make('courses.question')
+						->with('course', $course);
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
@@ -301,8 +326,15 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
+			
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
 
-			if(Auth::user()->id==$course->user_id){
+
+			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			return View::make('courses.answer')
 					->with('course', $course);
 			}else{

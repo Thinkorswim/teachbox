@@ -14,6 +14,7 @@
 				{{ Form::token() }}
 				{{ Form::submit('Join', array('class'=>'btn btn-default')) }}
 			@endif
+					<p> {{ $studentCount }} </p>
 			</div>
 		</div>
 	</div>
