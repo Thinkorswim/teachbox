@@ -43,16 +43,18 @@
 			<h2>Related courses</h2>
 			<div class="panel panel-default course-panel">
 				<div class="panel-body">
-					<img src="http://theglobalpanorama.com/wp-content/uploads/2014/04/rO5rw2B.jpeg">
+					<img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
 					<h3><a href="#"> Heading</a></h3>
-					<p> Some text. Get short description around 50 chars.</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam diam ut purus gravida aliquam.
+					 Curabitur et lobortis lorem, quis aliquet arcu.</p>
 				</div>
 			</div>
 			<div class="panel panel-default course-panel">
 				<div class="panel-body">
-					<img src="http://theglobalpanorama.com/wp-content/uploads/2014/04/rO5rw2B.jpeg">
+					<img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
 					<h3><a href="#"> Heading</a></h3>
-					<p> Some text. Get short description around 50 chars.</p>
+					<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquam diam ut purus gravida aliquam.
+					 Curabitur et lobortis lorem, quis aliquet arcu.</p>
 				</div>
 			</div>
 	    </div>

@@ -92,11 +92,8 @@
 	<div class="main">
 	    @yield('content')
     </div>
-	<footer class="front-page-footer">
+	<footer class="front-page-footer after-login-footer">
 		<div class="container">
-				<h3>The teachbox</h3>
-				<p> In teachnox we believe in education without any boundaries. No "must", no "have to do"- just learn 
-				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
 				<a href="">Privacy</a>
 				<a href="">Terms</a>
 				<a href="">Cookies</a>
