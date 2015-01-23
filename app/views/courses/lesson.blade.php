@@ -11,18 +11,18 @@
 				</span>
 				<div>
 					<h3>Moments of Freedom and Other Stories <span>by Marina Wasilovna</span></h3>
-					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Previous thumb"/>
+					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Previous thumb">
 				</div>
 			</a>
 			@endif
 			@if ($currentLesson->order != $lessonList->count())
-			<a class="next" href="/item3">
+			<a class="next" href="{{ URL::action('CourseController@courseLesson', [$course->id,($currentLesson->order+1)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-right"></i>
 				</span>
 				<div>
 					<h3>Garage Rocket Ships for Sarah and Ben<span>by Aldous Morrison</span></h3>
-					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Next thumb"/>
+					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Next thumb">
 				</div>
 			</a>
 			@endif
