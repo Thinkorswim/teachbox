@@ -22,8 +22,8 @@
 			<ul class="nav nav-pills">
 			  <li role="presentation" class="active"><a href="#">Timeline</a></li>
 			  <li role="presentation"><a href="#">Courses</a></li>
-			  <li role="presentation"><a href="#">About</a></li>
-			  <li role="presentation"><a href="#">Friends</a></li>
+			  <li role="presentation"><a href="#">Followers</a></li>
+			  <li role="presentation"><a href="#">Following</a></li>
 			</ul>
 		</div>
 	</div>

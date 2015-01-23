@@ -85,6 +85,16 @@ class CourseController extends \BaseController {
 	{
 		$course = Course::find($id);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		if ($studentCount > 999){
+			$thousand = substr($studentCount, 0, 1);
+			$hundred = substr($studentCount, 1, 3);
+			$studentCount = $thousand . '.'. $hundred . 'k';
+		}
+		elseif ($studentCount > 999999) {
+			$million = substr($studentCount, 0, 1);
+			$thousand = substr($studentCount, 1, 3);
+			$studentCount = $million . '.'. $thousand . 'm';
+		}
 		
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 

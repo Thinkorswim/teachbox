@@ -92,12 +92,85 @@
 	<div class="main">
 	    @yield('content')
     </div>
+	<footer class="front-page-footer">
+		<div class="container">
+				<h3>The teachbox</h3>
+				<p> In teachnox we believe in education without any boundaries. No "must", no "have to do"- just learn 
+				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
+				<a href="">Privacy</a>
+				<a href="">Terms</a>
+				<a href="">Cookies</a>
+				<a href="">Advertising</a>
+				<ul>
+				  <li>
+					<a href="https://www.facebook.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="https://twitter.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>				 
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				</ul>	
+				<small>All rights reserved Teachbox 2014</small>
+		</div>
+	</footer>
     @if(Route::current()->getName() == 'course-lesson')
 		<script src="http://vjs.zencdn.net/4.11/video.js"></script>
 	@endif
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script>
+	    $(function() {
+		 
+		    // grab the initial top offset of the navigation 
+		    var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
+		     
+		    // our function that decides weather the navigation bar should have "fixed" css position or not.
+		    var sticky_navigation = function(){
+		        var scroll_top = $(window).scrollTop(); // our current vertical position from the top
+		         
+		        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+		        // otherwise change it back to relative
+		        if (scroll_top > sticky_navigation_offset_top) { 
+		            $('.tabs-profile').css({ 'position': 'fixed', 'top':53, 'left':0, 'z-index':9995 });
+		        } else {
+		            $('.tabs-profile').css({ 'position': 'relative', 'top':0 }); 
+		        }   
+		    };
+		     
+		    // run our function on load
+		    sticky_navigation();
+		     
+		    // and run it again every time you scroll
+		    $(window).scroll(function() {
+		         sticky_navigation();
+		    });
+		 
+		});
 		$(document).ready(function () {
 		var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
 		$.fn.bootstrapBtn = bootstrapButton 
@@ -137,7 +210,7 @@
 		});
 	document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;
-	}
+}
 	</script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
   </body>

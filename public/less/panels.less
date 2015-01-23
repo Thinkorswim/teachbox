@@ -1,0 +1,62 @@
+@import "variables.less";
+@import "mixins.less";
+
+.panel{
+	border-radius: 0;
+	border:0;
+}
+.panel.panel-default.actions{
+	.panel-heading{
+		background: @blue;
+		border-bottom: 0;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+		h3{
+			color:@white;
+			font-weight: 900;
+		}
+	}
+	.panel-body{
+		padding: 0;
+	}
+	.list-group{
+		font-size: 1em;
+		margin-bottom: 0;
+		border-radius: 0;
+		.list-group-item{
+			border: 0;
+		}
+		.list-group-item:first-child{
+			border-top-right-radius: 0;
+			border-top-left-radius: 0;
+		}
+		.list-group-item:last-child{
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}
+.panel.panel-default.description{
+	.panel-body{
+	padding: 0;
+	p{
+		padding: 30px;
+	}
+	img{
+		width: 100%;
+		display: block;
+	}
+	}
+}
+.panel.panel-default.course-panel{
+	.panel-body{
+	padding: 0;
+	h3, p{
+		padding: 0 10px;
+	}
+	img{
+		width: 100%;
+		display: block;
+	}
+	}
+}

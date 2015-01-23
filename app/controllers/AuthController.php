@@ -145,11 +145,11 @@ class AuthController extends \BaseController {
 				));
 
 			if($user){
-				$user->pic = 'logo.png';
+				$user->pic = 'user.png';
 				$user->save();
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
-				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
-				$resultCopyThumb  = File::copy(public_path() .'/img/logo-100x100.png' , public_path() .'/img/' . $user->id . '/logo-100x100.png');
+				$resultCopy  = File::copy(public_path() .'/img/user.png' , public_path() .'/img/' . $user->id . '/user.png');
+				$resultCopyThumb  = File::copy(public_path() .'/img/user-100x100.png' , public_path() .'/img/' . $user->id . '/user-100x100.png');
 
 	        	$auth = Auth::attempt(array(
 					'email' => $result['email'],
@@ -257,12 +257,12 @@ class AuthController extends \BaseController {
 
 			$user->active =1;
 			$user->code   ='';
-			$user->pic    ='logo.png';
+			$user->pic    ='user.png';
 
 			if($user->save()){
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
-				$resultCopy  = File::copy(public_path() .'/img/logo.png' , public_path() .'/img/' . $user->id . '/logo.png');
-				$resultCopyThumb  = File::copy(public_path() .'/img/logo-100x100.png' , public_path() .'/img/' . $user->id . '/logo-100x100.png');
+				$resultCopy  = File::copy(public_path() .'/img/user.png' , public_path() .'/img/' . $user->id . '/user.png');
+				$resultCopyThumb  = File::copy(public_path() .'/img/user-100x100.png' , public_path() .'/img/' . $user->id . '/user-100x100.png');
 
 				if($resultMake && $resultCopy && $resultCopyThumb){
 					return Redirect::route('home')
