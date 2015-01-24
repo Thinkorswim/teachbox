@@ -31,10 +31,11 @@
 				<p>{{ $course->description }}</p>
 			  </div>
 			</div>
+			<?php $i = 1; ?>
 			@foreach ($lessonList as $lesson)
 			<div class="panel panel-default">
 			  <div class="panel-body">
-			 	<a href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"> {{ $lesson->name; }} </a>
+			 	<a href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
 			  </div>
 			</div>
 			@endforeach

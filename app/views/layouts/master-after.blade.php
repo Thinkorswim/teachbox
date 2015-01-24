@@ -141,70 +141,43 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script>
+		//active states for inputs
 		$('.settings-panel .input-group').click(function(e) {
 		    e.stopPropagation();
 		$('.settings-panel .input-group').removeClass('current');
 		$(this).addClass('current');
 		});
-	$('body').click(function(e) {
-	$('.settings-panel .input-group').removeClass('current');
-		});
+		$('body').click(function(e) {
+		$('.settings-panel .input-group').removeClass('current');
+			});
+
+		//sticky navigation
 	    $(function() {
-		 
-		    // grab the initial top offset of the navigation 
-		    var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
-		     
-		    // our function that decides weather the navigation bar should have "fixed" css position or not.
+		 	var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
 		    var sticky_navigation = function(){
-		        var scroll_top = $(window).scrollTop(); // our current vertical position from the top
-		         
-		        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
-		        // otherwise change it back to relative
+		    var scroll_top = $(window).scrollTop(); 
 		        if (scroll_top > sticky_navigation_offset_top) { 
 		            $('.tabs-profile').css({ 'position': 'fixed', 'top':53, 'left':0, 'z-index':9995 });
 		        } else {
 		            $('.tabs-profile').css({ 'position': 'relative', 'top':0 }); 
 		        }   
 		    };
-		     
-		    // run our function on load
 		    sticky_navigation();
-		     
-		    // and run it again every time you scroll
 		    $(window).scroll(function() {
 		         sticky_navigation();
 		    });
-		 
 		});
+
+		//bootstrap tooltip conflict
 		$(document).ready(function () {
-		var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+		var bootstrapButton = $.fn.button.noConflict() 
 		$.fn.bootstrapBtn = bootstrapButton 
 		$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
 		})
-		var removeClass = true;
-
-		// when clicking the button : toggle the class, tell the background to leave it as is
-		$(".search2").click(function () {
-		    $(".mobile-form").toggleClass('visible');
-		    removeClass = false;
 		});
 
-		// when clicking the div : never remove the class
-		$(".mobile-form").click(function() {
-		    removeClass = false;
-		});
-
-		// when click event reaches "html" : remove class if needed, and reset flag
-		$("html").click(function () {
-		    if (removeClass) {
-		        $(".mobile-form").removeClass('visible');
-		    }
-		    removeClass = true;
-		});
-
-		});
-
+		//search suggestion
 		$('#keyword').autocomplete({
 				source: '/getdata',
 				minLength: 1,
@@ -213,9 +186,11 @@
 				}
 
 		});
+
+	//upload path
 	document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;
-}
+	}
 	</script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
   </body>
