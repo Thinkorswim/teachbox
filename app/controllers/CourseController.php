@@ -87,12 +87,12 @@ class CourseController extends \BaseController {
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		if ($studentCount > 999){
 			$thousand = substr($studentCount, 0, 1);
-			$hundred = substr($studentCount, 1, 3);
+			$hundred = substr($studentCount, 1, 1);
 			$studentCount = $thousand . '.'. $hundred . 'k';
 		}
 		elseif ($studentCount > 999999) {
 			$million = substr($studentCount, 0, 1);
-			$thousand = substr($studentCount, 1, 3);
+			$thousand = substr($studentCount, 1, 1);
 			$studentCount = $million . '.'. $thousand . 'm';
 		}
 		

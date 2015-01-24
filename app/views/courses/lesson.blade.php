@@ -10,7 +10,7 @@
 					<i class="fa fa-2x fa-chevron-left"></i>
 				</span>
 				<div>
-					<h3>Moments of Freedom and Other Stories <span>by Marina Wasilovna</span></h3>
+					<h3>Moments of Freedom and Other Stories <span>by {{ $creator->name; }}</span></h3>
 					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Previous thumb">
 				</div>
 			</a>
@@ -21,7 +21,7 @@
 					<i class="fa fa-2x fa-chevron-right"></i>
 				</span>
 				<div>
-					<h3>Garage Rocket Ships for Sarah and Ben<span>by Aldous Morrison</span></h3>
+					<h3>Garage Rocket Ships for Sarah and Ben<span>by {{ $creator->name; }}</span></h3>
 					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Next thumb">
 				</div>
 			</a>

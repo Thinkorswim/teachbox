@@ -14,29 +14,37 @@
 			</div>
 		@endif
 	</div>
-	<div class="col-xs-12 col-sm-3">
-	  <ul class="nav nav-pills nav-stacked settings-nav">
-	  	<li><a href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}">Profile info</a></li>
-		<li class="active"><a href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a></li>
-		@if($user->active == 1)
-		<li><a href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a></li>
-		@endif
-	  </ul>
-	</div> 
-	<div class="col-xs-12 col-sm-1"></div>
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Settings</h3>
+		  </div>
+		<div class="panel-body">
+			<div class="list-group">
+				<a class="list-group-item" href="#">Profile information</a>
+				<a class="list-group-item active" href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a>
+				@if($user->active == 1)
+				<a class="list-group-item" href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a>
+				@endif
+			</div>
+		 </div>
+		</div> 
+	</div>
 	<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default">
-			  <div class="panel-body">	
+		<div class="panel panel-default settings-panel actions">
+			<div class="panel-heading">
+				<h3 class="panel-title">Change picture</h3>
+			</div>
+		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('ProfileController@postChangePic', $user->id), 'files' => true  )) }}
-						<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
-						<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-						<div class="fileUpload btn btn-primary">
-						    <span>Choose a picture</span>
-							{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
-						</div>
-					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
-
-					{{ Form::token() }}
+				<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
+				<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+				<div class="fileUpload btn btn-primary">
+				    <span>Choose a picture</span>
+					{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
+				</div>
+				{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
+				{{ Form::token() }}
 				{{ Form::close() }}
 				</div>
 			</div>

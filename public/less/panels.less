@@ -11,7 +11,7 @@
 		border-bottom: 0;
 		border-top-right-radius: 0;
 		border-top-left-radius: 0;
-		h3 a{
+		h3 a, h3{
 			color:@white;
 			font-weight: 900;
 		}
@@ -21,6 +21,12 @@
 	}
 	.panel-body{
 		padding: 0;
+	}
+	.panel-body.padding-panel{
+		padding: 20px;
+		img{
+			float: none;
+		}
 	}
 	.list-group{
 		font-size: 1em;
@@ -67,5 +73,13 @@
 		width: 100%;
 		display: block;
 	}
+	}
+}
+.settings-panel{
+	.input-group{
+		max-width: 400px;
+	}
+	input{
+		width: auto;
 	}
 }
