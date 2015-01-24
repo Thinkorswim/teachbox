@@ -32,14 +32,19 @@
 			  </div>
 			</div>
 			<?php $i = 1; ?>
-			@foreach ($lessonList as $lesson)
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			 	<a href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
-			  </div>
-			</div>
-			@endforeach
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Lessons</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($lessonList as $lesson)
+					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
+					@endforeach
+	    		</div>
+	       </div>
 	    </div>
+	   </div>
 	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">

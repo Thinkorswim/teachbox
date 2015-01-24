@@ -59,11 +59,14 @@
 		  </div>
 		  <div class="panel-body"> 
 			  <div class="list-group">
+			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson)
 					@if ($lesson->order == $currentLesson->order)
-			 		 	<a class="list-group-item active" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"> {{ $lesson->name; }} </a>
+			 		 	<a class="list-group-item active" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+			 		 	 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+			 		 	 </a>
 			 		@else
-			 			<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"> {{ $lesson->name; }} </a> 
+			 			<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }} </a> 
 			 		@endif
 			    @endforeach
 			   </div>
