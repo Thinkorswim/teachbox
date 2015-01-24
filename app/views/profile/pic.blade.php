@@ -21,7 +21,7 @@
 		  </div>
 		<div class="panel-body">
 			<div class="list-group">
-				<a class="list-group-item" href="#">Profile information</a>
+				<a class="list-group-item" href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}">Profile information</a>
 				<a class="list-group-item active" href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a>
 				@if($user->active == 1)
 				<a class="list-group-item" href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a>

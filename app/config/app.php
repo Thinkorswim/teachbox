@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
+		'Rafasamp\Sonus\SonusServiceProvider',
 
 	),
 
@@ -191,7 +192,9 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'OAuth' 		  => 'Artdarek\OAuth\Facade\OAuth',
-        'Image' 		  => 'Intervention\Image\Facades\Image'
+        'Image' 		  => 'Intervention\Image\Facades\Image',
+        'Sonus'           => 'Rafasamp\Sonus\Facade',
+
 	),
 
 );
