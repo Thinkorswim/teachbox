@@ -327,10 +327,14 @@ class CourseController extends \BaseController {
 		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
 		   		 $file->move($path, $filename);
 
-		   		 Sonus::getThumbnails($path.'/'.$filename, 'thumb', 1);
-
-		   
-
+		   		 $ffmpeg = public_path().'/ffmpeg/ffmpeg';  
+			 	 $video = $path.'/'.$filename;   
+				 $image = $path.'/thumb.png';  
+				 $interval = 1;  
+			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
+     		     shell_exec($cmd);
+                 
+		   		
 		   		 $lesson = Lesson::create(array(
 						'filepath' => $filename,
 						'course_id'  => $id,
