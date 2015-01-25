@@ -50,7 +50,7 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions playlist-panel">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">
 		  		<a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a>
