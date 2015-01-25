@@ -19,9 +19,9 @@
 	<div class="tabs-profile">
 		<div class="container">
 			<ul class="nav nav-pills">
-			  <li role="presentation" ><a href="">About the course</a></li>
+			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-			  <li role="presentation"><a href="#">Students</a></li>
+			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
 	</div>

@@ -5,24 +5,24 @@
 	<div class="container">
 		<nav class="nav-reveal">
 			@if ($currentLesson->order != 1)
-			<a class="prev" href="{{ URL::action('CourseController@courseLesson', [$course->id,($currentLesson->order-1)]) }}">
+			<a class="prev" href="{{ URL::action('CourseController@courseLesson', [$course->id,($previousLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-left"></i>
 				</span>
 				<div>
-					<h3>Moments of Freedom and Other Stories <span>by {{ $creator->name; }}</span></h3>
-					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Previous thumb">
+					<h3> {{ $previousLesson->name }} <span>by {{ $creator->name; }}</span></h3>
+					<img src="{{ URL::asset('courses/' . $course->id . '/' . $previousLesson->order . '/thumb100x100.png') }}" alt="Previous thumb">
 				</div>
 			</a>
 			@endif
 			@if ($currentLesson->order != $lessonList->count())
-			<a class="next" href="{{ URL::action('CourseController@courseLesson', [$course->id,($currentLesson->order+1)]) }}">
+			<a class="next" href="{{ URL::action('CourseController@courseLesson', [$course->id,($nextLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-right"></i>
 				</span>
 				<div>
-					<h3>Garage Rocket Ships for Sarah and Ben<span>by {{ $creator->name; }}</span></h3>
-					<img src="http://startupcollective-com.s3.amazonaws.com/wp-content/uploads/programming.jpg" alt="Next thumb">
+					<h3> {{ $nextLesson->name }}<span>by {{ $creator->name; }}</span></h3>
+					<img src="{{ URL::asset('courses/' . $course->id . '/' . $nextLesson->order . '/thumb100x100.png') }}" alt="Next thumb">
 				</div>
 			</a>
 			@endif
@@ -30,7 +30,7 @@
 		<div class="col-xs-1"></div>
 		<div class="col-xs-10">
 			<video id="video_main" class="video-js vjs-default-skin vjs-big-play-centered" controls
-			 preload="auto" width="100%" height="500" 
+			 preload="auto" width="100%" height="500" poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
 			 data-setup="{}">
 				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />  	
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>

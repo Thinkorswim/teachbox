@@ -288,8 +288,20 @@ class CourseController extends \BaseController {
 				$lessonList = Lesson::where('course_id', '=', $id)->get();
 				$creator = User::where('id', '=', $course->user_id)->first();
 
+				$previousLesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson->order-1);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+
+				$nextLesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson->order+1);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+
 				return View::make('courses.lesson')
-						->with(array('course' => $course, 'currentLesson' => $lesson, 'lessonList' => $lessonList, 'creator' => $creator));
+						->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator));
 			}else{
 					return View::make('courses.not_join')
 							->with(array('course' => $course, 'studentCount' => $studentCount ));
@@ -327,12 +339,22 @@ class CourseController extends \BaseController {
 		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
 		   		 $file->move($path, $filename);
 
+		   		 // Get Thumbnail
 		   		 $ffmpeg = public_path().'/ffmpeg/ffmpeg';  
 			 	 $video = $path.'/'.$filename;   
 				 $image = $path.'/thumb.png';  
 				 $interval = 1;  
 			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
      		     shell_exec($cmd);
+
+     		     $image = Image::make($path.'/thumb.png');
+			     $image->fit(300, 200);
+				 $image->save($path.'/thumb300x200.png');
+				 
+				 $image2 = Image::make($path.'/thumb.png');
+			     $image2->fit(100, 100);
+				 $image2->save($path.'/thumb100x100.png');
+
                  
 		   		
 		   		 $lesson = Lesson::create(array(
