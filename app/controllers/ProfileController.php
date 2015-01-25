@@ -360,4 +360,34 @@ class ProfileController extends \BaseController {
 					->with('global-negative', 'Your profile settings could not be changed.');
 		}
 	}
+
+	public function userCourses($id){
+		if(Auth::check()){
+			$user = User::find($id);
+
+				return View::make('profile.courses')
+						->with('user', $user);
+		}
+		return App::abort(404);
+	}
+
+	public function userFollowers($id){
+		if(Auth::check()){
+			$user = User::find($id);
+
+				return View::make('profile.followers')
+						->with('user', $user);
+		}
+		return App::abort(404);
+	}
+
+	public function userFollowing($id){
+		if(Auth::check()){
+			$user = User::find($id);
+
+				return View::make('profile.following')
+						->with('user', $user);
+		}
+		return App::abort(404);
+	}
 }

@@ -327,8 +327,9 @@ class CourseController extends \BaseController {
 		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
 		   		 $file->move($path, $filename);
 
-		   		 Sonus::getThumbnails($path.'/'.$filename, 'thumb');
-		   		
+		   		 Sonus::getThumbnails($path.'/'.$filename, 'thumb', 1);
+
+		   
 
 		   		 $lesson = Lesson::create(array(
 						'filepath' => $filename,
@@ -417,6 +418,42 @@ class CourseController extends \BaseController {
 
 			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			return View::make('courses.answer')
+					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
+		
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function courseStudents($id)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			if ($studentCount > 999){
+				$thousand = substr($studentCount, 0, 1);
+				$hundred = substr($studentCount, 1, 1);
+				$studentCount = $thousand . '.'. $hundred . 'k';
+			}
+			elseif ($studentCount > 999999) {
+				$million = substr($studentCount, 0, 1);
+				$thousand = substr($studentCount, 1, 1);
+				$studentCount = $million . '.'. $thousand . 'm';
+			}
+
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+
+			$user = User::find($course->user_id);
+
+			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			return View::make('courses.students')
 					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));

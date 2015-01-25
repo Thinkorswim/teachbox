@@ -18,7 +18,7 @@ return array(
 	|
 	*/
    
-   'ffmpeg'		   => '/usr/bin/ffmpeg',
+   'ffmpeg'		   => public_path().'/ffmpeg/ffmpeg',
 
     /*
 	|--------------------------------------------------------------------------

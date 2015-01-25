@@ -86,6 +86,27 @@
 				 'uses' => 'ProfileController@user'
 		));
 
+		// COURSES
+
+		Route::get('/user/{id}/courses', array(
+				'as'   => 'user-courses',
+				'uses' => 'ProfileController@userCourses'
+		));
+
+		// FOLLOWERS
+
+		Route::get('/user/{id}/followers', array(
+				'as'   => 'user-followers',
+				'uses' => 'ProfileController@userFollowers'
+		));
+
+		// FOLLOWING
+
+		Route::get('/user/{id}/following', array(
+				'as'   => 'user-following',
+				'uses' => 'ProfileController@userFollowing'
+		));
+
 	// Courses -------------------------------------------------------------------
 
 		// CREATE COURSE
@@ -130,6 +151,11 @@
 					 'uses' => 'CourseController@courseAnswer'
 			));
 
+		// Course Students
+			Route::get('/course/{id}/students',array(
+					 'as' => 'course-students',
+					 'uses' => 'CourseController@courseStudents'
+			));
 
 	//Search ----------------------------------------------------------------------------------
 		Route::get('/search',array(
