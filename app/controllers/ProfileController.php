@@ -358,15 +358,18 @@ class ProfileController extends \BaseController {
 	public function userCourses($id){
 		if(Auth::check()){
 			$user = User::find($id);
+
+			$createdList = Course::where('user_id', '=', $id)->get();
 			$courseListId = UserCourse::where('user_id', '=', $id)->get();
-			$courseList = array();
+			$joinedList = array();
 
-
-			foreach ($courseListId as $tree)
-				$courseList[] = Course::where('id', '=', $tree->course_id)->first();
+			foreach ($courseListId as $userCourse)
+			{
+				$joinedList[] = Course::where('id', '=', $userCourse->course_id)->first();
+			}
 			
 				return View::make('profile.courses')
-						->with(array('courseList' => $courseList,'user' => $user));
+						->with(array('joinedList' => $joinedList,'user' => $user, 'createdList' => $createdList));
 		}
 		return App::abort(404);
 	}

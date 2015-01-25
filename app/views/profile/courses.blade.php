@@ -31,12 +31,12 @@
 		<div class="col-xs-12 col-sm-8">
 			<div class="row">
 				<h2>Created courses</h2>
-				@foreach ($courseList as $course)
+				@foreach ($createdList as $course)
 					<div class="col-xs-12 col-sm-4">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+								<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  </div>
@@ -45,17 +45,19 @@
 				@endforeach
 			</div>
 			<h2>Enrolled courses</h2>
-			@foreach ($courseList as $course)
+			@foreach ($joinedList as $course)
+				@if ($course->user_id != Auth::user()->id)
 					<div class="col-xs-12 col-sm-4">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+								<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  </div>
 						</div>
 					</div>
+				@endif
 			@endforeach
 	    </div>
 	    <div class="col-xs-12 col-sm-4">

@@ -30,24 +30,27 @@
 
 		return '';
 	}
+
 	function ageCalculator($dob){
-	$day = getDay($dob);
-	$month = getMonth($dob);
-	$year = getYear($dob);
-	$dob = $day.'-'.$month.'-'.$year;
-	if(!empty($dob)){
-		$birthdate = new DateTime($dob);
-		$today   = new DateTime('today');
-		$age = $birthdate->diff($today)->y;
-		return $age;
-	}else{
-		return 0;
+		$day = getDay($dob);
+		$month = getMonth($dob);
+		$year = getYear($dob);
+		$dob = $day.'-'.$month.'-'.$year;
+		if(!empty($dob)){
+			$birthdate = new DateTime($dob);
+			$today   = new DateTime('today');
+			$age = $birthdate->diff($today)->y;
+			return $age;
+		}else{
+			return 0;
+		}
 	}
-}
+
 	function countryFlag($country){
 			$country = str_replace(' ', '-', $country);
 			return '/img/flags/'. $country . '.png';
 	}
+	
 	function getThumbName($name){
 			$newThumbExtension = substr($name, -4);
 			$newThumbName = substr($name, 0, -4);
