@@ -28,8 +28,6 @@
 		</div>
 	</div>
 	<div class="container">
-		@foreach ($courseList as $course)
- 			<p> <a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a> </p>
-   		 @endforeach
+	
 	</div>
 @endsection

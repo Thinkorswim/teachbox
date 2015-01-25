@@ -4,16 +4,10 @@ class ProfileController extends \BaseController {
 	public function user($id){
 		$user = User::find($id);
 
-		$courseListId = UserCourse::where('user_id', '=', $id)->get();
-		$courseList = array();
-
-
-		foreach ($courseListId as $tree)
-			$courseList[] = Course::where('id', '=', $tree->course_id)->first();
 		
 		if($user){
 			return View::make('profile.user')
-					->with(array('courseList' => $courseList, 'user' => $user));
+					->with(array('user' => $user));
 		}
 
 		return App::abort(404);
@@ -364,9 +358,15 @@ class ProfileController extends \BaseController {
 	public function userCourses($id){
 		if(Auth::check()){
 			$user = User::find($id);
+			$courseListId = UserCourse::where('user_id', '=', $id)->get();
+			$courseList = array();
 
+
+			foreach ($courseListId as $tree)
+				$courseList[] = Course::where('id', '=', $tree->course_id)->first();
+			
 				return View::make('profile.courses')
-						->with('user', $user);
+						->with(array('courseList' => $courseList,'user' => $user));
 		}
 		return App::abort(404);
 	}

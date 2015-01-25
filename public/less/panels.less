@@ -68,18 +68,25 @@
 }
 .panel.panel-default.course-panel{
 	.panel-body{
-	padding: 0;
-	h3, p{
-		padding: 0 20px;
-	}
-	img{
-		width: 100%;
-		display: block;
-	}
+		padding: 0;
+		overflow: hidden;
+		h4, h3, p{
+			padding: 0 20px;
+		}
+		img{
+			width: 100%;
+			display: block;
+			.transition ( all .3s ease);
+		}
+		img:hover{
+			opacity: 0.4;
+			-webkit-transform: scale3d(1.1,1.1,1);
+			transform: scale3d(1.1,1.1,1);
+		}
 	}
 }
 .settings-panel{
-	.input-group{
+	.input-group, textarea.form-control{
 		max-width: 400px;
 	}
 	input{
