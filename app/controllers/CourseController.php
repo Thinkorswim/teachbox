@@ -29,10 +29,13 @@ class CourseController extends \BaseController {
 
 					$image = Input::file('image');
 					$newImage = Image::make($image->getRealPath());
+					$newImage1 = Image::make($image->getRealPath());
 					$filename = $image->getClientOriginalName();
 					$ratio = 1;
+					$ratio1 = 3/2;
 					$width = $newImage->width();
 					$newImage->fit($width, intval($width / $ratio));
+					$newImage1->fit($width, intval($width / $ratio1));
 
 
 					$name 	 = Input::get('name');
@@ -47,7 +50,7 @@ class CourseController extends \BaseController {
 
 					if($course){
 						    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
-						    if($newImage->save('public/courses/' . $course->id . '/' . $filename)){
+						    if($newImage->save('public/courses/' . $course->id . '/' . $filename) && $newImage1->save('public/courses/' . $course->id . '/3x2' . $filename)){
 						    	$course->pic    = $image->getClientOriginalName();
 						    	$course->save();
 						    }
@@ -335,7 +338,7 @@ class CourseController extends \BaseController {
 		   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
 
 	   			 $file = Input::file('video');
-		   		 $filename = $file->getClientOriginalName();
+		   		 $filename = preg_replace('/\s+/', '', $file->getClientOriginalName());
 		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
 		   		 $file->move($path, $filename);
 
@@ -347,13 +350,16 @@ class CourseController extends \BaseController {
 			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
      		     shell_exec($cmd);
 
-     		     $image = Image::make($path.'/thumb.png');
-			     $image->fit(300, 200);
-				 $image->save($path.'/thumb300x200.png');
-				 
-				 $image2 = Image::make($path.'/thumb.png');
-			     $image2->fit(100, 100);
-				 $image2->save($path.'/thumb100x100.png');
+     		     if (File::exists($path.'/thumb.png')){
+     		     	$image = Image::make($path.'/thumb.png');
+					$image->fit(300, 200);
+					$image->save($path.'/thumb300x200.png');
+
+					$image2 = Image::make($path.'/thumb.png');
+					$image2->fit(100, 100);
+					$image2->save($path.'/thumb100x100.png');
+     		     }
+     		     
 
                  
 		   		

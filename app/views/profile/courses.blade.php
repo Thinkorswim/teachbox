@@ -36,7 +36,7 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  </div>
@@ -51,7 +51,7 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  </div>
