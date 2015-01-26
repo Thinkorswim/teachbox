@@ -29,7 +29,34 @@
 		<div class="col-xs-12 col-sm-8">
 			<div class="panel panel-default">
 			  <div class="panel-body padding-panel">
-			  	<h3>Question</h3>
+			  	<h3>Questions</h3>
+
+			  	<div class="panel-body padding-panel">   
+				{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}                          
+					<div class="input-group">
+						<span class="input-group-addon">
+							<i class="fa fa-book"></i>
+						</span> 
+						 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
+						 @if($errors->has('title'))
+							{{ $errors->first('title') }}
+						@endif
+					</div>
+					<div class="input-group">
+						 {{ Form::textarea('question', null, array('placeholder' => 'Describe the question', 'class'=>'form-control')) }}
+						 @if($errors->has('question'))
+							{{ $errors->first('question') }}
+						 @endif
+					</div>
+					{{ Form::submit('Upload', array('class'=>'form-control')) }}
+				{{ Form::close() }}
+			  </div>
+
+			  	@foreach ($questionList as $question)
+			  		<a href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}"> {{ $question->title; }} </a>
+			  		<br> 
+			  	@endforeach
+
 			  </div>
 			</div>
 	   </div>

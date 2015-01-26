@@ -411,10 +411,11 @@ class CourseController extends \BaseController {
 			})->count();
 
 			$user = User::find($course->user_id);
+			$questionList = CourseQuestion::where('course_id', '=', $id)->get();
 
 			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 				return View::make('courses.question')
-						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
+						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
@@ -424,7 +425,108 @@ class CourseController extends \BaseController {
 		}
 	}
 
-	public function courseAnswer($id)
+	public function postCourseQuestion($id)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			if ($studentCount > 999){
+				$thousand = substr($studentCount, 0, 1);
+				$hundred = substr($studentCount, 1, 1);
+				$studentCount = $thousand . '.'. $hundred . 'k';
+			}
+			elseif ($studentCount > 999999) {
+				$million = substr($studentCount, 0, 1);
+				$thousand = substr($studentCount, 1, 1);
+				$studentCount = $million . '.'. $thousand . 'm';
+			}
+
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+
+			$user = User::find($course->user_id);
+			$questionList = CourseQuestion::where('course_id', '=', $id);
+
+			$validator = Validator::make(Input::all(),
+					array(
+							'title' 			 => 'required|min:4|max:50',
+							'question'		 => 'required|min:30|max:400',
+					));
+
+				if($validator->fails()){		
+					return Redirect::route('course-question', array('id' => $id))
+								->withErrors($validator);
+				}else{
+
+					$title 	 = Input::get('title');
+					$question = Input::get('question');
+
+					$courseQuestion = CourseQuestion::create(array(
+						'title' => $title,
+						'question'  => $question,
+						'course_id' => $id,
+						'user_id' => Auth::user()->id,
+						));
+
+					if($courseQuestion && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+						return View::make('courses.question')
+								->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
+					}else{
+						return Redirect::route('course-page', array('id' => $id));
+					}
+				}
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+
+
+	public function courseAnswer($id, $question)
+	{
+		if(Auth::check()){
+			$course = Course::find($id);
+			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			if ($studentCount > 999){
+				$thousand = substr($studentCount, 0, 1);
+				$hundred = substr($studentCount, 1, 1);
+				$studentCount = $thousand . '.'. $hundred . 'k';
+			}
+			elseif ($studentCount > 999999) {
+				$million = substr($studentCount, 0, 1);
+				$thousand = substr($studentCount, 1, 1);
+				$studentCount = $million . '.'. $thousand . 'm';
+			}
+
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+
+			$user = User::find($course->user_id);
+			$question = CourseQuestion::where('id', '=', $question)->first();
+			$answerList = CourseAnswer::where('question_id', '=', $question->id)->get();
+
+
+
+
+			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+				return View::make('courses.answer')
+						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList ));
+			}else{
+				return Redirect::route('course-page', array('id' => $id));
+			}
+		
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+	public function postCourseAnswer($id, $question)
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
@@ -448,13 +550,31 @@ class CourseController extends \BaseController {
 
 			$user = User::find($course->user_id);
 
-			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
-			return View::make('courses.answer')
-					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
-			}else{
-				return Redirect::route('course-page', array('id' => $id));
-			}
-		
+			$validator = Validator::make(Input::all(),
+					array(
+							'answer'		 => 'required|min:30|max:400',
+					));
+
+				if($validator->fails()){		
+					return Redirect::route('course-answers', array('id' => $id, 'question' => $question ))
+								->withErrors($validator);
+				}else{
+
+					$answer = Input::get('answer');
+
+					$courseAnswer = CourseAnswer::create(array(
+						'answer' => $answer,
+						'question_id'  => $question,
+						'course_id' => $id,
+						'user_id' => Auth::user()->id,
+						));
+
+					if($courseAnswer && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+						return Redirect::route('course-answers', array('id' => $id, 'question' => $question ));
+					}else{
+						return Redirect::route('course-page', array('id' => $id));
+					}
+				}
 		}else{
 			return View::make('home.before');
 		}
@@ -495,6 +615,7 @@ class CourseController extends \BaseController {
 			return View::make('home.before');
 		}
 	}
+
 
 }
 
