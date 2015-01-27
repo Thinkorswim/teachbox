@@ -27,29 +27,48 @@
 	</div>
 	<div class="container">
 		<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default">
+			<div class="panel panel-default settings-panel actions">
+			<div class="panel-heading">
+			  	<h3 class="panel-title">
+			  	{{ $question->title }}
+			  	</h3>
+			</div>
 			  <div class="panel-body padding-panel">
-			  	<h3>{{ $question->title }}</h3>
-			  	{{ $question->question }}
 
-			  	@foreach ($answerList as $answer)
-			  		<br> 
-			  		 {{ $answer->answer }} 
-			  	@endforeach
-
-			  	<div class="panel-body padding-panel">   
+			  	<p>{{ $question->question }}</p>
+			  	<a href=""><img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+			  	- <strong>Who the fuck is asking</strong>
+			  </div>
+			</div>
+			@if (count($answerList) > 0)
+			  		@foreach ($answerList as $answer)
+			<div class="panel panel-default settings-panel actions">
+			  	<div class="panel-body padding-panel">
+				  		 <p>{{ $answer->answer }} </p>
+				  		 <a href="">
+				  		 	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+				  		 </a>
+				  		 - <strong>Who the fuck answered me</strong>
+				</div>
+			 </div>
+				  	@endforeach
+			 @endif
+			<div class="panel panel-default settings-panel actions">
+			<div class="panel-heading">
+			  	<h3 class="panel-title">Answer</h3>
+			</div>
+			  <div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('CourseController@postCourseAnswer', $course->id, $question->id), 'enctype' => 'multipart/form-data')) }}                          
-					<div class="input-group">
-						 {{ Form::textarea('answer', null, array('placeholder' => 'Answer the question', 'class'=>'form-control')) }}
-						 @if($errors->has('answer'))
-							{{ $errors->first('answer') }}
-						 @endif
-					</div>
-					{{ Form::submit('Upload', array('class'=>'form-control')) }}
+				@if($errors->has('answer'))
+				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('answer') }}">  
+				@else             
+				<div class="input-group">
+				@endif  
+				{{ Form::textarea('answer', null, array('rows' => '5', 'placeholder' => 'Answer the question', 'class'=>'form-control')) }}
+				</div>
+					{{ Form::submit('Answer', array('class'=>'form-control')) }}
 				{{ Form::close() }}
-			  </div>
-
-			  </div>
+				</div>
 			</div>
 	   </div>
 	    <div class="col-xs-12 col-sm-4">

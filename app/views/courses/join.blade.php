@@ -31,6 +31,7 @@
 				<p>{{ $course->description }}</p>
 			  </div>
 			</div>
+		@if (count($lessonList) > 0)
 			<?php $i = 1; ?>
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
@@ -44,6 +45,7 @@
 	    		</div>
 	       </div>
 	    </div>
+	    @endif
 	   </div>
 	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)

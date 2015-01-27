@@ -21,7 +21,7 @@
 		  </div>
 		<div class="panel-body">
 			<div class="list-group">
-				<a class="list-group-item" href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}">Profile information</a>
+				<a class="list-group-item active" href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}">Profile information</a>
 				<a class="list-group-item" href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a>
 				@if($user->active == 1)
 				<a class="list-group-item" href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a>
@@ -38,34 +38,37 @@
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
 				<div>Name</div>
-				<div class="input-group">
+					@if($errors->has('name'))
+					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
+					@else             
+					<div class="input-group">
+					@endif  
 					<span class="input-group-addon">
 						<i class="fa fa-user"></i>
 					</span> 
 					 {{ Form::text('name', $user->name, array('class'=>'form-control')) }}
-					 @if($errors->has('name'))
-						{{ $errors->first('name') }}
-					@endif
 				</div>
 				Country: 
-				<div class="input-group">
+					@if($errors->has('country'))
+					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('country') }}">  
+					@else             
+					<div class="input-group">
+					@endif  
 					<span class="input-group-addon">
 						<i class="fa fa-globe"></i>
 					</span> 
 				 {{ Form::select('country', $country_array, $user->country, array('class'=>'form-control')) }}
-				 @if($errors->has('country'))
-					{{ $errors->first('country') }}
-				 @endif
 				 </div>
 				City: 
-				<div class="input-group">
+					@if($errors->has('city'))
+					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
+					@else             
+					<div class="input-group">
+					@endif 
 					<span class="input-group-addon">
 						<i class="fa fa-map-marker"></i>
 					</span> 
 				 {{ Form::text('city', $user->city, array('class'=>'form-control')) }}
-				 @if($errors->has('city'))
-					{{ $errors->first('city') }}
-				 @endif
 				 </div>
 
 				<div>Date of birth:</div> 

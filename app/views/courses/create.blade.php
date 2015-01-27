@@ -10,19 +10,21 @@
 					</div>
 					<div class="panel-body padding-panel">
 						{{ Form::open(['route' => 'create-course','files' => true ]) }}	
+							@if($errors->has('name'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
+							@else             
 							<div class="input-group">
+							@endif  
 							<span class="input-group-addon"><i class="fa fa-university"></i></span>
 							 {{ Form::text('name', null, array('placeholder'=>'Name of course','class'=>'form-control')) }}
 							 </div>
-							 @if($errors->has('name'))
-								{{ $errors->first('name') }}
-							@endif
+							@if($errors->has('description'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
+							@else             
 							<div class="input-group">
+							@endif  
 							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 50 characters ako sum prav de!)','class'=>'form-control')) }}
 							 </div>
-							 @if($errors->has('description'))
-								{{ $errors->first('description') }}
-							@endif
 							<div>Upload image</div>
 							<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 							<div class="fileUpload btn btn-primary">

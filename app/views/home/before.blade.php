@@ -7,7 +7,7 @@
 		<div class="container">
 			<div class="col-xs-1 col-sm-3 col-md-4">
 				<!--<h1>Education is the key!</h1>-->
-			</div>
+			</div> 
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
 				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
 				|| $errors->has('password_again'))

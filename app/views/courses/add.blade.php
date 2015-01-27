@@ -31,21 +31,23 @@
 		    <h3 class="panel-title">Add lesson</h3>
 		  </div>
 		  <div class="panel-body padding-panel">   
-			{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }}                          
+			{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+				 @if($errors->has('name'))
+				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
+				@else             
 				<div class="input-group">
+				@endif  
 					<span class="input-group-addon">
 						<i class="fa fa-book"></i>
 					</span> 
 					 {{ Form::text('name', null, array('placeholder' => 'Lesson name', 'class'=>'form-control')) }}
-					 @if($errors->has('name'))
-						{{ $errors->first('name') }}
-					@endif
 				</div>
+				@if($errors->has('description'))
+				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
+				@else             
 				<div class="input-group">
+				@endif  
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
-					 @if($errors->has('description'))
-						{{ $errors->first('description') }}
-					 @endif
 				</div>
 				<div>Upload image</div>
 				<input id="uploadFile" placeholder="Choose File" disabled="disabled" />

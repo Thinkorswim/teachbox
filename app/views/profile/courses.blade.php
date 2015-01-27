@@ -29,6 +29,7 @@
 	</div>
 	<div class="container">
 		<div class="col-xs-12 col-sm-8">
+		@if(count($createdList) > 0)
 			<div class="row">
 				<h2>Created courses</h2>
 				@foreach ($createdList as $course)
@@ -44,6 +45,7 @@
 					</div>
 				@endforeach
 			</div>
+			@endif
 			<h2>Enrolled courses</h2>
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)

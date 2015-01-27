@@ -28,15 +28,18 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions">
 		    <div class="panel-heading">
-		    	<h3 class="panel-title">Add lesson</h3>
+		    	<h3 class="panel-title">Edit course</h3>
 		    </div>
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('CourseController@postCourseEdit', $course->id), 'files' => true )) }}
-					Description: 
-					{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
-					 @if($errors->has('description'))
-						{{ $errors->first('description') }}
-					@endif
+						Description: 
+						@if($errors->has('description'))
+						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
+						@else             
+						<div class="input-group">
+						@endif  
+						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
+						</div>
 						<div>Change course image</div>
 						<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 						<div class="fileUpload btn btn-primary">

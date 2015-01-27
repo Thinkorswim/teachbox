@@ -26,40 +26,53 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default">
-			  <div class="panel-body padding-panel">
-			  	<h3>Questions</h3>
 
+		<div class="col-xs-12 col-sm-8">
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-heading">
+				  	<h3 class="panel-title">Ask your question</h3>
+				</div>
 			  	<div class="panel-body padding-panel">   
 				{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}                          
-					<div class="input-group">
+						 @if($errors->has('title'))
+						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">      
+						@else             
+						<div class="input-group">
+						@endif  
 						<span class="input-group-addon">
-							<i class="fa fa-book"></i>
+							<i class="fa fa-question-circle"></i>
 						</span> 
 						 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
-						 @if($errors->has('title'))
-							{{ $errors->first('title') }}
-						@endif
 					</div>
-					<div class="input-group">
-						 {{ Form::textarea('question', null, array('placeholder' => 'Describe the question', 'class'=>'form-control')) }}
 						 @if($errors->has('question'))
-							{{ $errors->first('question') }}
-						 @endif
+						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}">      
+						@else             
+						<div class="input-group">
+						@endif  
+						 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
 					</div>
 					{{ Form::submit('Upload', array('class'=>'form-control')) }}
 				{{ Form::close() }}
 			  </div>
-
-			  	@foreach ($questionList as $question)
-			  		<a href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}"> {{ $question->title; }} </a>
-			  		<br> 
-			  	@endforeach
-
-			  </div>
 			</div>
-	   </div>
+		<?php $i = 1; ?>
+		@if (count($questionList) > 0)
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Questions</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($questionList as $question)
+					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
+					 		<strong><?php echo $i; $i++; ?>.</strong> {{ $question->title; }} 
+					 	</a>
+					@endforeach
+	    		</div>
+	       </div>
+	    </div>
+	    @endif
+		</div>
 	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">

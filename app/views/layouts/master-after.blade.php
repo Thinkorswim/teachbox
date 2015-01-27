@@ -140,7 +140,11 @@
 	@endif
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 	<script>
+		// tooltips
+	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
+	$('.shown').tooltip('show');
 		//active states for inputs
 		$('.settings-panel .input-group').click(function(e) {
 		    e.stopPropagation();
@@ -186,12 +190,16 @@
 				}
 
 		});
-
+	//scroll to lesson in playlist div
+	$('.playlist-panel .list-group').animate({
+    scrollTop: $(".playlist-panel .list-group .active").offset().top
+	}, 0);
 	//upload path
 	document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;
 	}
+
+
 	</script>
-    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
   </body>
 </html>
