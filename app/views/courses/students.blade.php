@@ -28,7 +28,7 @@
 </div>
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
 			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
@@ -47,7 +47,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
 			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
@@ -66,7 +66,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
 			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
@@ -85,7 +85,7 @@
 			  </div>
 			</div>
 		</div>
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
 			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>

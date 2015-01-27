@@ -27,7 +27,87 @@
 			</ul>
 		</div>
 	</div>
-	<div class="container">
-
+	<div class="container follow">
+		<div class="col-xs-12 col-sm-8">
+			<div class="col-xs-12 col-sm-6 student">
+				<div class="panel panel-default student-card">
+				  <div class="panel-body padding-panel">
+				  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+						@if ($user->date != '')
+						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
+							{{ageCalculator( $user->date )}}
+						</span>
+						@endif 
+					    @if ($user->country != '')
+						<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+							data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						</span>
+						@endif
+				  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+				  		<small>Sofia, Bulgaria</small>
+				  </div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 student">
+				<div class="panel panel-default student-card">
+				  <div class="panel-body padding-panel">
+				  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+						@if ($user->date != '')
+						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
+							{{ageCalculator( $user->date )}}
+						</span>
+						@endif 
+					    @if ($user->country != '')
+						<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+							data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						</span>
+						@endif
+				  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+				  		<small>Sofia, Bulgaria</small>
+				  </div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 student">
+				<div class="panel panel-default student-card">
+				  <div class="panel-body padding-panel">
+				  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+						@if ($user->date != '')
+						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
+							{{ageCalculator( $user->date )}}
+						</span>
+						@endif 
+					    @if ($user->country != '')
+						<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+							data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						</span>
+						@endif
+				  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+				  		<small>Sofia, Bulgaria</small>
+				  </div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 student">
+				<div class="panel panel-default student-card">
+				  <div class="panel-body padding-panel">
+				  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+						@if ($user->date != '')
+						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
+							{{ageCalculator( $user->date )}}
+						</span>
+						@endif 
+					    @if ($user->country != '')
+						<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+							data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						</span>
+						@endif
+				  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+				  		<small>Sofia, Bulgaria</small>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<p>some more ads</p>
+		</div>
 	</div>
 @endsection
