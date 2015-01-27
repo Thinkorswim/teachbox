@@ -52,7 +52,7 @@
 				<div>Upload image</div>
 				<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 				<div class="fileUpload btn btn-primary">
-				    <span>Choose a picture</span>
+				    <span>Choose a video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
 			    </div> 
 				{{ Form::submit('Upload', array('class'=>'form-control')) }}

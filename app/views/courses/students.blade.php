@@ -28,7 +28,7 @@
 </div>
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
-		<div class="col-xs-12 col-sm-6">
+		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
 			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
@@ -47,7 +47,67 @@
 			  </div>
 			</div>
 		</div>
+<<<<<<< HEAD
 
+=======
+		<div class="col-xs-12 col-sm-6 student">
+			<div class="panel panel-default student-card">
+			  <div class="panel-body padding-panel">
+			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+					@if ($user->date != '')
+					<span class="age" data-toggle="tooltip" data-placement="left" title=" years old">
+						
+					</span>
+					@endif 
+				    @if ($user->country != '')
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+					</span>
+					@endif
+			  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+			  		<small>Sofia, Bulgaria</small>
+			  </div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 student">
+			<div class="panel panel-default student-card">
+			  <div class="panel-body padding-panel">
+			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+					@if ($user->date != '')
+					<span class="age" data-toggle="tooltip" data-placement="left" title=" years old">
+						
+					</span>
+					@endif 
+				    @if ($user->country != '')
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+					</span>
+					@endif
+			  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+			  		<small>Sofia, Bulgaria</small>
+			  </div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 student">
+			<div class="panel panel-default student-card">
+			  <div class="panel-body padding-panel">
+			  		<a href=""><img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
+					@if ($user->date != '')
+					<span class="age" data-toggle="tooltip" data-placement="left" title=" years old">
+						
+					</span>
+					@endif 
+				    @if ($user->country != '')
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+					</span>
+					@endif
+			  		<h4><a href="">Ivan Lebanov Jr</a></h4>
+			  		<small>Sofia, Bulgaria</small>
+			  </div>
+			</div>
+		</div>
+>>>>>>> 5a2b537754fd5390022884b1d74c3614d368822b
    </div>
     <div class="col-xs-12 col-sm-4">
 		@if (Auth::user()->id == $course->user_id)

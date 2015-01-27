@@ -171,7 +171,21 @@
 		         sticky_navigation();
 		    });
 		});
-
+	    // thumbnail fix
+		var $span = $(".course");
+		for (var i = 0; i < $span.length; i += 2) {
+		    var $div = $("<div/>", {
+		        class: 'row'
+		    });
+		    $span.slice(i, i + 2).wrapAll($div);
+		}
+		var $span = $(".student");
+		for (var i = 0; i < $span.length; i += 2) {
+		    var $div = $("<div/>", {
+		        class: 'row'
+		    });
+		    $span.slice(i, i + 2).wrapAll($div);
+		}
 		//bootstrap tooltip conflict
 		$(document).ready(function () {
 		var bootstrapButton = $.fn.button.noConflict() 
