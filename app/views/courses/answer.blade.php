@@ -36,22 +36,22 @@
 			  <div class="panel-body padding-panel">
 
 			  	<p>{{ $question->question }}</p>
-			  	<a href=""><img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg"></a>
-			  	- <strong>Who the fuck is asking</strong>
+			  	<?php $user = User::find($question->user_id) ?>
+			  	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+				<strong> <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a> </strong>
 			  </div>
 			</div>
 			@if (count($answerList) > 0)
 			  		@foreach ($answerList as $answer)
-			<div class="panel panel-default settings-panel actions">
-			  	<div class="panel-body padding-panel">
-				  		 <p>{{ $answer->answer }} </p>
-				  		 <a href="">
-				  		 	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-				  		 </a>
-				  		 - <strong>Who the fuck answered me</strong>
-				</div>
-			 </div>
-				  	@endforeach
+					 <div class="panel panel-default settings-panel actions">
+					  	<div class="panel-body padding-panel">
+						  	<p>{{ $answer->answer }} </p>
+						  	<?php $user = User::find($answer->user_id) ?>
+						  	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+							<strong> <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a> </strong>
+						</div>
+					 </div>
+				   	@endforeach
 			 @endif
 			<div class="panel panel-default settings-panel actions">
 			<div class="panel-heading">

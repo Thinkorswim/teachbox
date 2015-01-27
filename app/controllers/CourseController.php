@@ -41,6 +41,9 @@ class CourseController extends \BaseController {
 					$name 	 = Input::get('name');
 					$description = Input::get('description');
 
+					$message = nl2br($description);
+					$description = trim($message);
+
 					$user_id = Auth::user()->id;
 					$course = Course::create(array(
 							'name' 		=> $name,
@@ -222,6 +225,8 @@ class CourseController extends \BaseController {
 				}
 
 				
+				$message = nl2br($description);
+				$description = trim($message);
 
 				$courseEdit->description = $description;
 
@@ -330,8 +335,12 @@ class CourseController extends \BaseController {
 							->withErrors($validator);
 				}else{
 
-					$name 	 = Input::get('name');
-					$description = Input::get('description');
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+				$message = nl2br($description);
+				$description = trim($message);
+
 
 				 $course = Course::find($id);
 				 $order = Lesson::where('course_id', '=', $id)->count() + 1;
@@ -464,6 +473,9 @@ class CourseController extends \BaseController {
 					$title 	 = Input::get('title');
 					$question = Input::get('question');
 
+					$message = nl2br($question);
+					$question = trim($message);
+
 					$courseQuestion = CourseQuestion::create(array(
 						'title' => $title,
 						'question'  => $question,
@@ -510,8 +522,6 @@ class CourseController extends \BaseController {
 			$user = User::find($course->user_id);
 			$question = CourseQuestion::where('id', '=', $question)->first();
 			$answerList = CourseAnswer::where('question_id', '=', $question->id)->get();
-
-
 
 
 			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
@@ -561,6 +571,9 @@ class CourseController extends \BaseController {
 				}else{
 
 					$answer = Input::get('answer');
+
+					$message = nl2br($answer);
+					$answer = trim($message);
 
 					$courseAnswer = CourseAnswer::create(array(
 						'answer' => $answer,

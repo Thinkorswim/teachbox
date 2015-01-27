@@ -51,11 +51,10 @@
 						@endif  
 						 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
 					</div>
-					{{ Form::submit('Upload', array('class'=>'form-control')) }}
+					{{ Form::submit('Post', array('class'=>'form-control')) }}
 				{{ Form::close() }}
 			  </div>
 			</div>
-		<?php $i = 1; ?>
 		@if (count($questionList) > 0)
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
@@ -65,7 +64,7 @@
 			  	<div class="list-group">
 					@foreach ($questionList as $question)
 					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
-					 		<strong><?php echo $i; $i++; ?>.</strong> {{ $question->title; }} 
+					 		 {{ $question->title; }} 
 					 	</a>
 					@endforeach
 	    		</div>
