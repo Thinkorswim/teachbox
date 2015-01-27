@@ -4,10 +4,15 @@ class ProfileController extends \BaseController {
 	public function user($id){
 		$user = User::find($id);
 
-		
+		if(Follow::where('follower_id', '=', Auth::user()->id)->count()){
+			$isFollowing = true;
+		}else{
+			$isFollowing = false;
+		}
+
 		if($user){
 			return View::make('profile.user')
-					->with(array('user' => $user));
+					->with(array('user' => $user, 'isFollowing' => $isFollowing));
 		}
 
 		return App::abort(404);
@@ -377,9 +382,16 @@ class ProfileController extends \BaseController {
 	public function userFollowers($id){
 		if(Auth::check()){
 			$user = User::find($id);
+			$followerListId = Follow::where('following_id', '=', $id)->get();
+			$followerList = array();
+
+			foreach ($followerListId as $follower)
+			{
+				$followerList[] = User::find($follower->follower_id);
+			}
 
 				return View::make('profile.followers')
-						->with('user', $user);
+						->with(array('user' => $user, 'followerList' => $followerList ));
 		}
 		return App::abort(404);
 	}
@@ -387,9 +399,35 @@ class ProfileController extends \BaseController {
 	public function userFollowing($id){
 		if(Auth::check()){
 			$user = User::find($id);
+			$followingListId = Follow::where('follower_id', '=', $id)->get();
+
+			$followingList = array();
+
+			foreach ($followingListId as $following)
+			{
+				$followingList[] = User::find($following->following_id);
+			}
 
 				return View::make('profile.following')
-						->with('user', $user);
+						->with(array('user' => $user, 'followingList' => $followingList ));
+		}
+		return App::abort(404);
+	}
+
+	public function postFollow($id){
+		if(Auth::check()){
+			$user = User::find($id);
+
+				$follow = Follow::create(array(
+							'follower_id' 		=> Auth::user()->id,
+							'following_id'  => $id,
+						));
+
+			if($user){
+				return Redirect::action('ProfileController@user',[$id])
+						->with('user',$user);
+			}	
+
 		}
 		return App::abort(404);
 	}

@@ -28,6 +28,13 @@
 		</div>
 	</div>
 	<div class="container">
-	
+	@if (!$isFollowing && $user->id != Auth::user()->id)
+		{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
+			@if(Auth::check())
+				{{ Form::token() }}
+				{{ Form::submit('Follow', array('class'=>'btn btn-default')) }}
+			@endif
+		{{ Form::close() }}
+	@endif
 	</div>
 @endsection

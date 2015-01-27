@@ -67,6 +67,12 @@
 				 'as' => 'post-course-answer',
 				 'uses' => 'CourseController@postCourseAnswer'
 		));
+
+		Route::post('/user/{id}/follow', array(
+					'as'   => 'post-follow',
+					'uses' => 'ProfileController@postFollow'
+		));
+
 	});
 
 
