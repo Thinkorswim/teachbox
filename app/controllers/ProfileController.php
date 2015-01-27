@@ -6,11 +6,11 @@ class ProfileController extends \BaseController {
 		$followersCount = Follow::where('following_id', '=', $id)->count();
 		$followingCount = Follow::where('follower_id', '=', $id)->count();
 
-		if(Follow::where('follower_id', '=', Auth::user()->id)->count()){
-			$isFollowing = true;
-		}else{
-			$isFollowing = false;
-		}
+		$isFollowing = UserCourse::where(function ($query) {
+			    $query->where('follower_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('following_id', '=', $id);
+			})->count();
 
 		if($user){
 			return View::make('profile.user')
