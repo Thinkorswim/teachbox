@@ -15,12 +15,12 @@
 		@endif
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
-		<small>130 followers | 180 following</small>
+		<small>{{$followersCount}} followers | {{$followingCount}} following</small>
 	</div>
 	<div class="tabs-profile">
 		<div class="container">
 			<ul class="nav nav-pills">
-			  <li role="presentation"><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">Timeline</a></li>
+			  <li class="active" role="presentation"><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">Timeline</a></li>
 			  <li role="presentation"><a href="{{ URL::action('ProfileController@userCourses', [$user->id]) }}">Courses</a></li>
 			  <li role="presentation"><a href="{{ URL::action('ProfileController@userFollowers', [$user->id]) }}">Followers</a></li>
 			  <li role="presentation"><a href="{{ URL::action('ProfileController@userFollowing', [$user->id]) }}">Following</a></li>

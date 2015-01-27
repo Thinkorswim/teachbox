@@ -15,7 +15,7 @@
 		@endif
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
-		<small>130 followers | 180 following</small>
+		<small>{{$followersCount}} followers | {{$followingCount}} following</small>
 	</div>
 	<div class="tabs-profile">
 		<div class="container">

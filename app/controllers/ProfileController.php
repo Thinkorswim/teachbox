@@ -3,6 +3,8 @@
 class ProfileController extends \BaseController {
 	public function user($id){
 		$user = User::find($id);
+		$followersCount = Follow::where('following_id', '=', $id)->count();
+		$followingCount = Follow::where('follower_id', '=', $id)->count();
 
 		if(Follow::where('follower_id', '=', Auth::user()->id)->count()){
 			$isFollowing = true;
@@ -12,7 +14,8 @@ class ProfileController extends \BaseController {
 
 		if($user){
 			return View::make('profile.user')
-					->with(array('user' => $user, 'isFollowing' => $isFollowing));
+					->with(array('user' => $user, 'isFollowing' => $isFollowing, 'followersCount' => $followersCount,
+						'followingCount' => $followingCount));
 		}
 
 		return App::abort(404);
@@ -367,6 +370,8 @@ class ProfileController extends \BaseController {
 			$createdList = Course::where('user_id', '=', $id)->get();
 			$courseListId = UserCourse::where('user_id', '=', $id)->get();
 			$joinedList = array();
+			$followersCount = Follow::where('following_id', '=', $id)->count();
+			$followingCount = Follow::where('follower_id', '=', $id)->count();
 
 			foreach ($courseListId as $userCourse)
 			{
@@ -374,7 +379,8 @@ class ProfileController extends \BaseController {
 			}
 			
 				return View::make('profile.courses')
-						->with(array('joinedList' => $joinedList,'user' => $user, 'createdList' => $createdList));
+						->with(array('joinedList' => $joinedList,'user' => $user,
+						 'createdList' => $createdList, 'followersCount' => $followersCount,'followingCount' => $followingCount ));
 		}
 		return App::abort(404);
 	}
@@ -384,6 +390,8 @@ class ProfileController extends \BaseController {
 			$user = User::find($id);
 			$followerListId = Follow::where('following_id', '=', $id)->get();
 			$followerList = array();
+			$followersCount = Follow::where('following_id', '=', $id)->count();
+			$followingCount = Follow::where('follower_id', '=', $id)->count();
 
 			foreach ($followerListId as $follower)
 			{
@@ -391,7 +399,8 @@ class ProfileController extends \BaseController {
 			}
 
 				return View::make('profile.followers')
-						->with(array('user' => $user, 'followerList' => $followerList ));
+						->with(array('user' => $user, 'followerList' => $followerList,
+						 'followersCount' => $followersCount, 'followingCount' => $followingCount));
 		}
 		return App::abort(404);
 	}
@@ -400,8 +409,8 @@ class ProfileController extends \BaseController {
 		if(Auth::check()){
 			$user = User::find($id);
 			$followingListId = Follow::where('follower_id', '=', $id)->get();
-
 			$followingList = array();
+			$followersCount = Follow::where('following_id', '=', $id)->count();
 
 			foreach ($followingListId as $following)
 			{
@@ -409,7 +418,7 @@ class ProfileController extends \BaseController {
 			}
 
 				return View::make('profile.following')
-						->with(array('user' => $user, 'followingList' => $followingList ));
+						->with(array('user' => $user, 'followingList' => $followingList, 'followersCount' =>$followersCount ));
 		}
 		return App::abort(404);
 	}

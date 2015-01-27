@@ -45,7 +45,7 @@
 						data-toggle="tooltip" data-placement="left" title="{{ $student->city }}, {{ $student->country }}">
 					</span>
 					@endif
-			  		<h4><a href="">{{ $student->name }} </a></h4>
+			  		<h4><a href="{{ URL::action('ProfileController@user', [$student->id]) }}">{{ $student->name }} </a></h4>
 			  		<small>{{ $student->city }}, {{ $student-> country }}</small>
 			  </div>
 			</div>

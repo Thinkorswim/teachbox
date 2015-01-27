@@ -28,7 +28,25 @@
 	<div class="container">
 
 		<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default settings-panel actions">
+		@if (count($questionList) > 0)
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Questions</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($questionList as $question)
+					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
+					 		 {{ $question->title; }} 
+					 	</a>
+					@endforeach
+	    		</div>
+	       </div>
+	    </div>
+	    @endif
+		</div>
+	    <div class="col-xs-12 col-sm-4">
+	    	<div class="panel panel-default settings-panel actions">
 				<div class="panel-heading">
 				  	<h3 class="panel-title">Ask your question</h3>
 				</div>
@@ -55,24 +73,6 @@
 				{{ Form::close() }}
 			  </div>
 			</div>
-		@if (count($questionList) > 0)
-		<div class="panel panel-default actions">
-		  <div class="panel-heading">
-		  	<h3 class="panel-title">Questions</h3>
-		  </div>
-		  <div class="panel-body"> 
-			  	<div class="list-group">
-					@foreach ($questionList as $question)
-					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
-					 		 {{ $question->title; }} 
-					 	</a>
-					@endforeach
-	    		</div>
-	       </div>
-	    </div>
-	    @endif
-		</div>
-	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">

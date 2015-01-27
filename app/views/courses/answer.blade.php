@@ -53,6 +53,7 @@
 					 </div>
 				   	@endforeach
 			 @endif
+		<div class="col-xs-12 col-sm-8">
 			<div class="panel panel-default settings-panel actions">
 			<div class="panel-heading">
 			  	<h3 class="panel-title">Answer</h3>
@@ -70,6 +71,7 @@
 				{{ Form::close() }}
 				</div>
 			</div>
+	   </div>
 	   </div>
 	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)
