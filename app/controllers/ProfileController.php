@@ -365,7 +365,7 @@ class ProfileController extends \BaseController {
 
 			foreach ($courseListId as $userCourse)
 			{
-				$joinedList[] = Course::where('id', '=', $userCourse->course_id)->first();
+				$joinedList[] = Course::find($userCourse->course_id);
 			}
 			
 				return View::make('profile.courses')

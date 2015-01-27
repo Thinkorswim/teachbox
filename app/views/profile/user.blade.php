@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="cover-section">
-		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile"/>
+		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
 		@if ($user->date != '')
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			{{ ageCalculator( $user->date ) }}

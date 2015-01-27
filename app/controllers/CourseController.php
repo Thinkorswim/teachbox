@@ -616,10 +616,16 @@ class CourseController extends \BaseController {
 			})->count();
 
 			$user = User::find($course->user_id);
+			$studentId = UserCourse::where('course_id', '=', $id)->get();
+			$studentList = array();
+
+			foreach ($studentId as $key) {
+				$studentList[] = User::find($key->user_id);
+			}
 
 			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			return View::make('courses.students')
-					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
+					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}

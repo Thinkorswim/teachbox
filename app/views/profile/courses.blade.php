@@ -46,7 +46,7 @@
 				@endforeach
 			</div>
 			@endif
-			@if(count($joinedList) > count(array($course->user_id == Auth::user()->id)))
+			@if(count($joinedList) - count($createdList) > 0)
 			<h2>Enrolled courses</h2>
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)
