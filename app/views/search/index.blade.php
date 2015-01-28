@@ -4,13 +4,21 @@
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
 		<h1>Search for <strong>search term</strong></h1>
-		@foreach ($courses as $course)
-			<div class="panel panel-default">
-			  <div class="panel-body">
-			  	<h2>{{ $course->name }}</h2>
-			  </div>
-			</div>
-		@endforeach
+		
+
+			@foreach ($courses as $course)
+					<div class="col-xs-12 col-sm-6 course">
+						<div class="panel panel-default course-panel">
+						  <div class="panel-body">
+							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
+							  </a>
+						  	  <h2><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h2>
+						  </div>
+						</div>
+					</div>
+			@endforeach
+
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		<div class="panel panel-default course-panel">
