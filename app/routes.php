@@ -227,4 +227,11 @@
 
 		));
 
+	// MOBILE
+
+		Route::get('/mobile/sign-in', array(
+			'as' => 'mobile-sign-in',
+			'uses' => 'MobileAuthController@postSign'
+
+		));
 		
