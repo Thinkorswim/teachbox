@@ -13,6 +13,15 @@
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
+		@if (!$isFollowing && $user->id != Auth::user()->id)
+			{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
+				@if(Auth::check())
+					{{ Form::token() }}
+						{{ Form::button('<i class="fa fa-user-plus"></i>', array('type' => 'submit','class'=>'follow-circle',
+						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Follow  '. $user->name)) }}
+				@endif
+			{{ Form::close() }}
+		@endif
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
 		<small>{{$followersCount}} followers | {{$followingCount}} following</small>
@@ -28,13 +37,6 @@
 		</div>
 	</div>
 	<div class="container">
-	@if (!$isFollowing && $user->id != Auth::user()->id)
-		{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
-			@if(Auth::check())
-				{{ Form::token() }}
-				{{ Form::submit('Follow', array('class'=>'btn btn-default')) }}
-			@endif
-		{{ Form::close() }}
-	@endif
+
 	</div>
 @endsection
