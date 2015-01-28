@@ -38,20 +38,25 @@
 	      <ul class="nav navbar-nav">
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
 	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span>Tutor dashboard</span></a></li>
-	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
 	        <?php $courseListId = UserCourse::where('user_id', '=', [Auth::user()->id])->get();
+	        $createdList= array();
 	        foreach ($courseListId as $userCourse)
 				{
 					$joinedList[] = Course::find($userCourse->course_id);
 				}
 				$firstFiveJoined = array_slice($joinedList, 0, 5, true);
-				?>
+				?>	   
+	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
+
 	        @foreach ($firstFiveJoined as $course)
-	        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-	        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
-	        	<span>{{$course->name}}</span>
-	        </a></li>
+	        	@if ($course->user_id != Auth::user()->id)
+			        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+			        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+			        	<span>{{$course->name}}</span>
+			        </a></li>
+	        	@endif
 	        @endforeach
+	 
 	      	<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
 	      </ul>
 
@@ -95,9 +100,9 @@
 	        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
 	        </a>
 			<ul class="dropdown-menu pull-right" role="menu">
-				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"> My profile</a></li>
-				<li><a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"> Settings</a></li>
-				<li><a href="{{ URL::route('sign-out') }}">Sign out</a> </li>
+				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="fa fa-user"></i> My profile</a></li>
+				<li><a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"><i class="fa  fa-cog"></i> Settings</a></li>
+				<li><a href="{{ URL::route('sign-out') }}"><i class="fa fa-sign-out"></i>Sign out</a> </li>
 			</ul>
 		</li>
       </ul>
