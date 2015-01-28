@@ -42,6 +42,15 @@ header{
 	top: 0;
 	z-index: 9999;
 	left: 0;
+        ::-webkit-scrollbar {
+	    width: 12px;
+	}
+	 ::-webkit-scrollbar-thumb {
+	    background: rgba(255, 255, 255,1.0); 
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+		background: rgba(255, 255, 255,.5); 
+	}
 	img{
 		width:25px;
 	}
@@ -62,7 +71,7 @@ header{
 		left: 0;
 		height:auto;
 		li a{
-			padding-left:42px;
+			padding-left:30px;
 		}
 	}
 	.form-control{
@@ -234,8 +243,7 @@ body .ui-widget-content{
               left:-300px;
                 transition:all .1s ease;
               position:fixed;
-              overflow:hidden;
-            
+              overflow:auto;
           }
           .navbar-collapse.in {
           	width:320px;
@@ -251,4 +259,45 @@ body .ui-widget-content{
 }
 .header-not-reg .col-xs-9{
 	padding: 0;
+}
+header .categories{
+	.heading-courses{
+		margin: 0 29px 10px;
+		border-bottom: 3px solid @white; 
+		font-weight: 900;
+		a{
+			padding-left: 0;
+			color:@white;
+			&:hover{
+				background-color: @grey;
+			}
+		}
+		&:hover{
+			background: none;
+		}
+	}
+	.course-list{
+		a{
+		min-height: 50px;
+		padding: 10px 30px 0;
+		}
+		span{
+		position: absolute;
+		top: 14px;		
+		}
+	}
+	.icon-list{
+		span{
+		padding-left: 33px;
+		}
+		i{
+		position: absolute;
+		width: 40px;
+		left: 30px;
+		top: 7px;
+		}
+	}
+	.icon-list:nth-child(2) i{
+		top: 5px;
+	}
 }

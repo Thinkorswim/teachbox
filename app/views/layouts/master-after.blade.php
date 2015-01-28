@@ -36,8 +36,30 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-	        <li><a href="{{ URL::action('CourseController@create')}}"> Create Course </a></li>
+	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
+	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span>Tutor dashboard</span></a></li>
+	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
+	        <li class="course-list"><a href="">
+	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+	        	<span>Course name</span>
+	        </a></li>
+	        <li class="course-list"><a href="">
+	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+	        	<span>Course name</span>
+	        </a></li>
+	        <li class="course-list"><a href="">
+	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+	        	<span>Course name</span>
+	        </a></li>
+	        <li class="course-list"><a href="">
+	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+	        	<span>Course name</span>
+	        </a></li>
+	        <li class="course-list"><a href="">
+	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
+	        	<span>Course name</span>
+	        </a></li>
+	      	<li><a href="">All courses</a></li>
 	      </ul>
 
 	    </div><!-- /.navbar-collapse -->
