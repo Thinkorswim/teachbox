@@ -50,7 +50,10 @@
 			$country = str_replace(' ', '-', $country);
 			return '/img/flags/'. $country . '.png';
 	}
-	
+	function excerpt($description){
+		$excerpt = substr($description, 0, 70);
+		return $excerpt . '...';
+	}
 	function getThumbName($name){
 			$newThumbExtension = substr($name, -4);
 			$newThumbName = substr($name, 0, -4);
