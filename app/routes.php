@@ -218,5 +218,13 @@
 			'uses' => 'AuthController@signout'
 
 		));
-		
+	
+	// Admin ---------------------------------------------------------------------------------------
+
+		Route::get('/admin', array(
+			'as' => 'admin',
+			'uses' => 'AdminController@index'
+
+		));
+
 		
