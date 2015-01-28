@@ -39,27 +39,20 @@
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
 	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span>Tutor dashboard</span></a></li>
 	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
-	        <li class="course-list"><a href="">
-	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-	        	<span>Course name</span>
+	        <?php $courseListId = UserCourse::where('user_id', '=', [Auth::user()->id])->get();
+	        foreach ($courseListId as $userCourse)
+				{
+					$joinedList[] = Course::find($userCourse->course_id);
+				}
+				$firstFiveJoined = array_slice($joinedList, 0, 5, true);
+				?>
+	        @foreach ($firstFiveJoined as $course)
+	        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+	        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+	        	<span>{{$course->name}}</span>
 	        </a></li>
-	        <li class="course-list"><a href="">
-	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-	        	<span>Course name</span>
-	        </a></li>
-	        <li class="course-list"><a href="">
-	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-	        	<span>Course name</span>
-	        </a></li>
-	        <li class="course-list"><a href="">
-	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-	        	<span>Course name</span>
-	        </a></li>
-	        <li class="course-list"><a href="">
-	        	<img class="small-profile" src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
-	        	<span>Course name</span>
-	        </a></li>
-	      	<li><a href="">All courses</a></li>
+	        @endforeach
+	      	<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
 	      </ul>
 
 	    </div><!-- /.navbar-collapse -->
