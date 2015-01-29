@@ -192,7 +192,7 @@
 		    });
 		});
 	    // thumbnail fix
-		var $span = $(".course");
+		var $span = $(".course.two-in-line");
 		for (var i = 0; i < $span.length; i += 2) {
 		    var $div = $("<div/>", {
 		        class: 'row'

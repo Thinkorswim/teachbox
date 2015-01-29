@@ -22,12 +22,14 @@
 				@endif
 			{{ Form::close() }}
 		@else
+			@if($user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postUnfollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
 						{{ Form::button('<i class="fa fa-user-times"></i>', array('type' => 'submit','class'=>'follow-circle',
 						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
 				@endif
+			@endif
 			{{ Form::close() }}		
 		@endif
 		<h1>{{ $user->name }}</h1>

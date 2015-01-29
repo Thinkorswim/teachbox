@@ -22,12 +22,14 @@
 				@endif
 			{{ Form::close() }}
 		@else
+			@if($user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postUnfollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
 						{{ Form::button('<i class="fa fa-user-times"></i>', array('type' => 'submit','class'=>'follow-circle',
 						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
 				@endif
+			@endif
 			{{ Form::close() }}		
 		@endif
 		<h1>{{ $user->name }}</h1>
@@ -50,7 +52,7 @@
 			<div class="row">
 				<h2>Created courses</h2>
 				@foreach ($createdList as $course)
-					<div class="col-xs-12 col-sm-6 course">
+					<div class="col-xs-12 col-sm-6 course two-in-line">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
@@ -71,7 +73,7 @@
 			<h2>Enrolled courses</h2>
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)
-					<div class="col-xs-12 col-sm-6 course">
+					<div class="col-xs-12 col-sm-6 course two-in-line">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">

@@ -1,0 +1,46 @@
+@import "variables.less";
+@import "mixins.less";
+
+#course-slider{
+	.panel{	
+		margin:30px 60px;
+	}
+	.carousel-control{
+		width:30px;
+		background: none;
+		.fa{
+			position: absolute;
+			top: 45%;
+			color: @blue;
+			font-size: 30px;
+		}
+	}
+}
+.carousel-fade {
+  .carousel-inner {
+    .item {
+      opacity: 0;
+      .transition ( opacity 3s ease);
+    }
+
+    .active {
+      opacity: 1;
+    }
+
+    .active.left,
+    .active.right {
+      left: 0;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .next.left,
+    .prev.right {
+      opacity: 1;
+    }
+  }
+
+  .carousel-control {
+    z-index: 2;
+  }
+}
