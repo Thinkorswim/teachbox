@@ -229,3 +229,11 @@
 	// Admin ---------------------------------------------------------------------------------------
 
 		Route::resource('/admin', 'AdminController');
+
+	// MOBILE
+
+		Route::get('/mobile/sign-in', array(
+			'as' => 'mobile-sign-in',
+			'uses' => 'MobileAuthController@postSign'
+
+		));
