@@ -43,6 +43,7 @@ class AdminController extends \BaseController {
 
         $user->name   	  = Input::get('name');
         $user->email      = Input::get('email');
+        $user->admin      = Input::get('admin');
  
         $user->save();
  
