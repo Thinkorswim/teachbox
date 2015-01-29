@@ -13,6 +13,23 @@
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
+		@if (!$isFollowing && $user->id != Auth::user()->id)
+			{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
+				@if(Auth::check())
+					{{ Form::token() }}
+						{{ Form::button('<i class="fa fa-user-plus"></i>', array('type' => 'submit','class'=>'follow-circle',
+						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Follow  '. $user->name)) }}
+				@endif
+			{{ Form::close() }}
+		@else
+			{{ Form::open(array('action' => array('ProfileController@postUnfollow', $user->id))) }}
+				@if(Auth::check())
+					{{ Form::token() }}
+						{{ Form::button('<i class="fa fa-user-times"></i>', array('type' => 'submit','class'=>'follow-circle',
+						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
+				@endif
+			{{ Form::close() }}		
+		@endif
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
 		<small>{{$followersCount}} followers | {{$followingCount}} following</small>
@@ -39,7 +56,11 @@
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
+							  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
+							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
+							  <p>{{ excerpt($course->description) }}</p>	
 						  </div>
 						</div>
 					</div>
@@ -56,6 +77,7 @@
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
+							  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  </div>
 						</div>

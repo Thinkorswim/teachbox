@@ -169,19 +169,34 @@ nav a.next {
 }
 
 }
+
 .course{
 	.btn{
 		margin-left:20px;
 	}
-	.small-profile:hover{
+	.ribbon{
+		position: absolute;
+		right: -6px;
+		top: -6px;
+		width: 100px!important;
+		height: auto;
+	}
+	.small-profile:hover,.ribbon:hover{
 		opacity: 1!important;
 		-webkit-transform: scale3d(1,1,1)!important;
 		transform: scale3d(1,1,1)!important;
 	}
+
 	 div.col-lg-3{
 		padding: 0;
 		img{
 			min-height: 100%;
 		}
+	}
+}
+.col-sm-6.course{
+	.ribbon{
+		right: 25px;
+		top: 29px;
 	}
 }
