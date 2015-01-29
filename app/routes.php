@@ -123,6 +123,13 @@
 				'uses' => 'ProfileController@userFollowing'
 		));
 
+		//UNFOLLOWING
+
+		Route::post('/user/{id}/unfollow', array(
+     			'as'   => 'post-unfollow',
+     			'uses' => 'ProfileController@postUnfollow'
+  ));
+
 	// Courses -------------------------------------------------------------------
 
 		// CREATE COURSE
@@ -221,17 +228,4 @@
 	
 	// Admin ---------------------------------------------------------------------------------------
 
-		Route::get('/admin', array(
-			'as' => 'admin',
-			'uses' => 'AdminController@index'
-
-		));
-
-	// MOBILE
-
-		Route::get('/mobile/sign-in', array(
-			'as' => 'mobile-sign-in',
-			'uses' => 'MobileAuthController@postSign'
-
-		));
-		
+		Route::resource('/admin', 'AdminController');
