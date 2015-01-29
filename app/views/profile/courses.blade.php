@@ -73,6 +73,7 @@
 			<h2>Enrolled courses</h2>
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)
+				<?php $user = User::find($course->user_id); ?>
 					<div class="col-xs-12 col-sm-6 course two-in-line">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
@@ -81,6 +82,9 @@
 							  </a>
 							  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
+						  	  <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $user->name; }} </a></strong></p>
+							  <p>{{ excerpt($course->description) }}</p>
 						  </div>
 						</div>
 					</div>

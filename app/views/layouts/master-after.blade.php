@@ -38,13 +38,18 @@
 	      <ul class="nav navbar-nav">
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
 	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span>Tutor dashboard</span></a></li>
-	        <?php $courseListId = UserCourse::where('user_id', '=', [Auth::user()->id])->get();
+	        <?php 
+	        $courseListIdMenu = UserCourse::where('user_id', '=', [Auth::user()->id])->get();
 	        $createdList= array();
-	        foreach ($courseListId as $userCourse)
-				{
-					$joinedList[] = Course::find($userCourse->course_id);
-				}
-				$firstFiveJoined = array_slice($joinedList, 0, 5, true);
+	        $joinedListMenu= array();
+
+	        foreach ($courseListIdMenu as $userCourse)
+					{
+						$joinedListMenu[] = Course::find($userCourse->course_id);
+					}
+				
+
+				$firstFiveJoined = array_slice($joinedListMenu, 0, 5);
 				?>	   
 	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
 
