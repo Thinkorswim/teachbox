@@ -26,11 +26,13 @@ class CourseController extends \BaseController {
 					return Redirect::action('CourseController@create')
 							->withErrors($validator);
 				}else{
-
+					$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
+					$replace = array("", "", "",  "",  "", "", "");
 					$image = Input::file('image');
 					$newImage = Image::make($image->getRealPath());
 					$newImage1 = Image::make($image->getRealPath());
 					$filename = $image->getClientOriginalName();
+					$filename  =  str_replace($symbols, $replace, $filename);
 					$ratio = 1;
 					$ratio1 = 3/2;
 					$width = $newImage->width();
@@ -54,7 +56,7 @@ class CourseController extends \BaseController {
 					if($course){
 						    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
 						    if($newImage->save('public/courses/' . $course->id . '/' . $filename) && $newImage1->save('public/courses/' . $course->id . '/3x2' . $filename)){
-						    	$course->pic    = $image->getClientOriginalName();
+						    	$course->pic    = $filename;
 						    	$course->save();
 						    }
 							$user_id = Auth::user()->id;
@@ -212,15 +214,20 @@ class CourseController extends \BaseController {
 					
 
 					$image = Input::file('image');
-
+					$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
+					$replace = array("", "", "",  "",  "", "", "");
 					$newImage = Image::make($image->getRealPath());
+					$newImage1 = Image::make($image->getRealPath());
 					$filename = $image->getClientOriginalName();
+					$filename  =  str_replace($symbols, $replace, $filename);
 					$ratio = 1;
+					$ratio1 = 3/2;
 					$width = $newImage->width();
 					$newImage->fit($width, intval($width / $ratio));
+					$newImage1->fit($width, intval($width / $ratio1));
 
-					if($newImage->save('public/courses/' . $courseEdit->id . '/' . $filename)){
-						    	$courseEdit->pic    = $image->getClientOriginalName();
+					if($newImage->save('public/courses/' . $courseEdit->id . '/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/3x2' . $filename)){
+						    	$courseEdit->pic    = $filename;
 				    }
 				}
 

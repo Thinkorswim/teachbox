@@ -41,13 +41,15 @@ class ProfileController extends \BaseController {
 			$user = User::find($id);
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
 
-
+				$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
+				$replace = array("", "", "",  "",  "", "", "");
 				$image = Input::file('image');
 
 				$newImage = Image::make($image->getRealPath());
 				$newThumb = Image::make($image->getRealPath());
 
 				$filename = $image->getClientOriginalName();
+				$filename  =  str_replace($symbols, $replace, $filename);
 				$ratio = 1;
 				$width = $newImage->width();
 				$newImage->fit($width, intval($width / $ratio));
@@ -55,10 +57,10 @@ class ProfileController extends \BaseController {
 				$newThumb->fit($width, intval($width / $ratio))->resize('100','100');
 				$newThumbName = getThumbName($filename);
 			
-
-
+	
+				
 				if(($newImage->save('public/img/' . $id . '/' . $filename)) && ($newThumb->save('public/img/' . $id . '/' . $newThumbName))  ){
-					$user->pic    = $image->getClientOriginalName();
+					$user->pic    = $filename;
 
 					if($user->save()){
 						return Redirect::route('user-profile', array('id' => $user->id));
