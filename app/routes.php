@@ -73,6 +73,18 @@
 					'uses' => 'ProfileController@postFollow'
 		));
 
+		
+		Route::post('/admin/users/{id}/edit', array(
+					'as'   => 'post-admin-user',
+					'uses' => 'AdminController@updateUser'
+		));
+
+		Route::post('/admin/courses/{id}/edit', array(
+					'as'   => 'post-admin-course',
+					'uses' => 'AdminController@updateCourse'
+		));
+
+
 	});
 
 
@@ -228,7 +240,30 @@
 	
 	// Admin ---------------------------------------------------------------------------------------
 
-		Route::resource('/admin', 'AdminController');
+		Route::get('/admin/users', array(
+				'as' => 'admin-users-show',
+				'uses' => 'AdminController@showUsers'
+
+		));
+
+		Route::get('/admin/users/{id}/edit', array(
+				'as' => 'admin-user-edit',
+				'uses' => 'AdminController@editUser'
+
+		));
+		
+
+		Route::get('/admin/courses', array(
+				'as' => 'admin-courses-show',
+				'uses' => 'AdminController@showCourses'
+
+		));
+
+		Route::get('/admin/courses/{id}/edit', array(
+				'as' => 'admin-course-edit',
+				'uses' => 'AdminController@editCourse'
+
+		));
 
 	// MOBILE
 

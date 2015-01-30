@@ -2,7 +2,8 @@
 
 class AdminController extends \BaseController {
 
-	public function index()
+
+    public function showUsers()
 	{
 		if(Auth::check() && Auth::user()->admin){
 
@@ -14,31 +15,50 @@ class AdminController extends \BaseController {
 		}
 	}
 
-
- 
-    public function store()
+    public function showCourses()
     {
-        $user = new User;
- 
-        $user->name       = Input::get('name');
-        $user->email      = Input::get('email');
- 
-        $user->save();
- 
-        return Redirect::to('/admin');
-    }
- 
+        if(Auth::check() && Auth::user()->admin){
 
+            $courses = Course::all();
 
-    public function edit($id)
-    {
-        $user = User::find($id);
- 
-        return View::make('admin.edit', [ 'user' => $user ]);
+            return View::make('admin.index', ['courses' => $courses]);
+        }else{
+            return Redirect::action('AuthController@index');
+        }
+
     }
 
-    public function update($id)
+
+
+    public function editUser($id)
     {
+        if(Auth::check() && Auth::user()->admin){
+
+            $user = User::find($id);
+
+            return View::make('admin.edit_user', [ 'user' => $user ]);
+        }else{
+            return Redirect::action('AuthController@index');
+        }
+    }
+
+
+    public function editCourse($id)
+    {
+        if(Auth::check() && Auth::user()->admin){
+
+             $course = Course::find($id);
+
+              return View::make('admin.edit_course', [ 'course' => $course ]);
+         }else{
+              return Redirect::action('AuthController@index');
+        }
+    }
+
+
+    public function updateUser($id)
+    {
+
         $user = User::find($id);
 
         $user->name   	  = Input::get('name');
@@ -46,15 +66,27 @@ class AdminController extends \BaseController {
         $user->admin      = Input::get('admin');
  
         $user->save();
- 
-        return Redirect::to('/admin');
+        
+        return Redirect::to('/admin/users');
     }
- 
-    public function destroy($id)
+
+    public function updateCourse($id)
+
     {
-        User::destroy($id);
- 
-        return Redirect::to('/admin');
+        $name      = Input::get('name');
+        $approved  = Input::get('approved');
+
+        $course = Course::find($id);
+
+        $course->name = $name;
+        $course->approved = $approved;
+        
+        $course->save();
+        
+        if($course->save()){
+            return Redirect::to('/admin/courses');
+   
+        }
     }
  
 }

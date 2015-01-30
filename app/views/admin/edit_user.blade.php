@@ -6,25 +6,24 @@
  
 <div class='col-lg-4 col-lg-offset-4'>
  
- 
     <h1>Edit User</h1>
+
  
-    {{ Form::model($user, ['role' => 'form', 'url' => '/admin/' . $user->id, 'method' => 'PUT']) }}
- 
- 
+    {{ Form::open(array('action' => array('AdminController@updateUser', $user->id))) }}
+    
     <div class='form-group'>
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) }}
+        {{ Form::text('name', $user->name, array('class'=>'form-control')) }}
     </div>
  
     <div class='form-group'>
         {{ Form::label('email', 'Email') }}
-        {{ Form::email('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) }}
+        {{ Form::text('email', $user->email, array('class'=>'form-control')) }}
     </div>
 
     <div class='form-group'>
         {{ Form::label('admin', 'Is admin') }}
-        {{ Form::text('admin', null, ['placeholder' => 'Is admin', 'class' => 'form-control']) }}
+        {{ Form::text('admin', $user->admin, array('class'=>'form-control')) }}
     </div>
 
 
@@ -32,8 +31,8 @@
         {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
     </div>
  
-    {{ Form::close() }}
- 
+    {{ Form::close() }} 
+
 </div>
 
 @stop
