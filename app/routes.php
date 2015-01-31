@@ -240,6 +240,12 @@
 	
 	// Admin ---------------------------------------------------------------------------------------
 
+		Route::get('/admin', array(
+				'as' => 'admin-home-show',
+				'uses' => 'AdminController@adminHome'
+
+		));
+
 		Route::get('/admin/users', array(
 				'as' => 'admin-users-show',
 				'uses' => 'AdminController@showUsers'

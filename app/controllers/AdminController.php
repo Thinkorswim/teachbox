@@ -2,6 +2,17 @@
 
 class AdminController extends \BaseController {
 
+    public function adminHome()
+    {
+        if(Auth::check() && Auth::user()->admin){
+
+
+            return View::make('admin.home');
+        }else{
+            return Redirect::action('AuthController@index');
+        }
+    }
+
 
     public function showUsers()
 	{
