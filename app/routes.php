@@ -198,9 +198,14 @@
 			));
 
 	//Search ----------------------------------------------------------------------------------
-		Route::get('/search',array(
+		Route::get('/search/{keyword}',array(
 					 'as' => 'search',
 					 'uses' => 'SearchController@search'
+			));	
+
+		Route::get('/search',array(
+					 'as' => 'search-front',
+					 'uses' => 'SearchController@searchFront'
 			));	
 
 		Route::get('getdata', 'SearchController@autoComplete');
@@ -284,7 +289,7 @@
 
 		));
 
-			// Messages
+	// Messages
 
 		Route::get('/messages', array(
 			'as' => 'messages',
