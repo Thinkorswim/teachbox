@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
+
 	<div class="col-xs-12 col-sm-8">
 		<h1>Search for <strong>search term</strong></h1>
 		
-		
+		<div class="scroll">
 			@foreach ($courses as $course)
 			<?php $user = User::find($course->user_id); ?>
 					<div class="course">
@@ -29,7 +30,11 @@
 					</div>
 			@endforeach
 
+		{{ $courses->links() }}
+</div>
 	</div>
+
+
 	<div class="col-xs-12 col-sm-4">
 		<div class="panel panel-default course-panel">
 			<div class="panel-body">
@@ -49,5 +54,6 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 @endsection

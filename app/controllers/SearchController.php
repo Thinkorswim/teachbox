@@ -2,19 +2,30 @@
 
 class SearchController extends \BaseController {
 
-	public function search(){
+	public function search($keyword){
 
-		return View::make('search.index');
-
+		$courses = Course::where('name', 'LIKE',  '%' .$keyword. '%' )->paginate(5);
+			return View::make('search.index')
+					->with(array('courses' => $courses, 'keyword' => $keyword));
 	}
+
+	public function searchFront(){
+
+		$courses = Course::paginate(5);
+			return View::make('search.index')
+					->with(array('courses' => $courses));
+	}
+
 
 	public function postSearch(){
 
 		$keyword = Input::get('keyword');
-		$courses = Course::where('name', 'LIKE',  '%' .$keyword. '%' )->get();
 
-		return View::make('search.index')
-					->with('courses', $courses);
+		if($keyword){
+				return Redirect::action('SearchController@search', array('keyword' => $keyword));
+		}else{
+			return Redirect::action('SearchController@searchFront');
+		}
 
 	}
 

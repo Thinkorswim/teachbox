@@ -164,7 +164,27 @@
 	@endif
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+
+    @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front')
+    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+	    <script type="text/javascript">
+			$(function() {
+				$('.pagination').hide();
+
+			    $('.scroll').jscroll({
+			    	 loadingHtml: '<p> Loading...',
+			        autoTrigger: true,
+			        nextSelector: '.pagination li.active + li a', 
+			        contentSelector: 'div.scroll',
+			        callback: function() {
+			            $('ul.pagination:visible:first').hide();
+			        }
+			    });
+			});
+		</script>
+	@endif
+
 	<script>
 		// tooltips
 	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
