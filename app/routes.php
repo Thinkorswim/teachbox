@@ -283,3 +283,10 @@
 			'uses' => 'MobileAuthController@postSign'
 
 		));
+
+			// Messages
+
+		Route::get('/messages', array(
+			'as' => 'messages',
+			'uses' => 'MessagesController@index'
+		));

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFollowTable extends Migration {
+class AddRememberMeAndroid extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,10 @@ class CreateFollowTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('follows', function($table){
-			$table->increments('id');
-
-			$table->integer('follower_id');
-			$table->integer('following_id');
-
-            $table->timestamps();
-		});	
+		Schema::table('users', function($table)
+		{
+		    $table->string('android_token', 30);
+		});
 	}
 
 	/**

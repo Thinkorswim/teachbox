@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFollowTable extends Migration {
+class CreateMessagesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,12 @@ class CreateFollowTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('follows', function($table){
+		Schema::create('messages', function($table){
 			$table->increments('id');
 
-			$table->integer('follower_id');
-			$table->integer('following_id');
+			$table->integer('sender_id');
+			$table->integer('recipient_id');
+			$table->string('messege', 400);
 
             $table->timestamps();
 		});	
