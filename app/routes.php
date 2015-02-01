@@ -83,7 +83,18 @@
 					'as'   => 'post-admin-course',
 					'uses' => 'AdminController@updateCourse'
 		));
+		//UNFOLLOWING
 
+		Route::post('/user/{id}/unfollow', array(
+     			'as'   => 'post-unfollow',
+     			'uses' => 'ProfileController@postUnfollow'
+  		));
+
+		//Making admin
+		Route::post('/admin/users/{id}', array(
+				'as'   => 'admin-make',
+				'uses' => 'AdminController@makeAdmin'
+		));
 
 	});
 
@@ -135,12 +146,6 @@
 				'uses' => 'ProfileController@userFollowing'
 		));
 
-		//UNFOLLOWING
-
-		Route::post('/user/{id}/unfollow', array(
-     			'as'   => 'post-unfollow',
-     			'uses' => 'ProfileController@postUnfollow'
-  ));
 
 	// Courses -------------------------------------------------------------------
 

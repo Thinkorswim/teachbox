@@ -54,11 +54,11 @@
 				@foreach ($createdList as $course)
 					<div class="col-xs-12 col-sm-6 course two-in-line">
 						<div class="panel panel-default course-panel">
+						<img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
-							  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
@@ -76,11 +76,12 @@
 				<?php $user = User::find($course->user_id); ?>
 					<div class="col-xs-12 col-sm-6 course two-in-line">
 						<div class="panel panel-default course-panel">
+						<img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  <div class="panel-body">
+						 	  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
 							  </a>
-							  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  	  <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $user->name; }} </a></strong></p>
@@ -93,6 +94,5 @@
 			@endif
 	    </div>
 	<div class="col-xs-12 col-sm-4">
-			
     </div>
 @endsection

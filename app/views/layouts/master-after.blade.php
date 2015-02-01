@@ -36,8 +36,9 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
+	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
-	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span>Tutor dashboard</span></a></li>
+	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li>
 	        <?php 
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->take(5)->get();
 	        $createdList= array();
@@ -47,13 +48,10 @@
 					{
 						$joinedListMenu[] = Course::find($userCourse->course_id);
 					}
-				
-
-				$firstFiveJoined = array_slice($joinedListMenu, 0, 5);
-				?>	   
+			?>	   
 	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
 
-	        @foreach ($firstFiveJoined as $course)
+	        @foreach ($joinedListMenu as $course)
 	        	@if ($course->user_id != Auth::user()->id)
 			        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 			        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
@@ -123,6 +121,7 @@
 				<a href="">Terms</a>
 				<a href="">Cookies</a>
 				<a href="">Advertising</a>
+				<a href=""><strong>Give us feedback</strong></a>
 				<ul>
 				  <li>
 					<a href="https://www.facebook.com/">
@@ -157,7 +156,7 @@
 					</a>
 				  </li>
 				</ul>	
-				<small>All rights reserved Teachbox 2014</small>
+				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
 	</footer>
     @if(Route::current()->getName() == 'course-lesson')

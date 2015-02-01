@@ -1,5 +1,10 @@
 @import "variables.less";
 @import "mixins.less";
+#bs-example-navbar-collapse-1 .btn{
+	margin:0 30px;
+	background: @blue;
+	text-align: left;
+}
 .navbar-header {
   float: none;
 }
@@ -204,15 +209,13 @@ body header .input-group{
 }
 
 }
-@media screen and (max-width: 450px){
+@media screen and (max-width: 500px){
 	.navbar-header i{
 		padding-top: 8px;
 		font-size: 14px;
 	}
-}
-@media screen and (max-width: 400px){
 	header .caret{
-		display: none;
+	display: none;
 	}
 	body header .nav-tabs li a{
 		padding: 10px 4px;
@@ -302,5 +305,6 @@ header .categories{
 	}
 	.icon-list:nth-child(2) i{
 		top: 5px;
+		left:30px;
 	}
 }

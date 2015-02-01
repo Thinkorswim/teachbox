@@ -67,6 +67,7 @@
 		  </div>
 		</div>
 		@endif
+		<a class="btn btn-default feedback"><i class="fa fa-exchange"></i> <strong>Give us feedback</strong></a>
 	</div>
 </div>
 @endsection

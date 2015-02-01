@@ -36,6 +36,52 @@
 		@endif
 </header>
 	    @yield('content')
+	<footer class="front-page-footer">
+		<div class="container">
+				<h3>The teachbox</h3>
+				<p> In teachbox we believe in education without any boundaries. No "must", no "have to do"- just learn 
+				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
+				<a href="">Privacy</a>
+				<a href="">Terms</a>
+				<a href="">Cookies</a>
+				<a href="">Advertising</a>
+				<ul>
+				  <li>
+					<a href="https://www.facebook.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="https://twitter.com/">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>				 
+				  <li>
+					<a href="#">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				  </li>
+				</ul>	
+				<small>All rights reserved Teachbox beta 2014</small>
+		</div>
+	</footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 

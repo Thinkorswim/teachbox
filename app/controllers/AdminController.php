@@ -5,9 +5,9 @@ class AdminController extends \BaseController {
     public function adminHome()
     {
         if(Auth::check() && Auth::user()->admin){
+            $users = User::where('admin', '=',  '1')->get();
 
-
-            return View::make('admin.home');
+            return View::make('admin.home', ['users' => $users]);
         }else{
             return Redirect::action('AuthController@index');
         }
@@ -20,7 +20,7 @@ class AdminController extends \BaseController {
 
 			$users = User::all();
 
-			return View::make('admin.index', ['users' => $users]);
+			return View::make('admin.users', ['users' => $users]);
 		}else{
 			return Redirect::action('AuthController@index');
 		}
@@ -32,7 +32,7 @@ class AdminController extends \BaseController {
 
             $courses = Course::all();
 
-            return View::make('admin.index', ['courses' => $courses]);
+            return View::make('admin.courses', ['courses' => $courses]);
         }else{
             return Redirect::action('AuthController@index');
         }
@@ -98,6 +98,21 @@ class AdminController extends \BaseController {
             return Redirect::to('/admin/courses');
    
         }
+    }
+
+    public function makeAdmin($id){
+        if(Auth::check()){
+            $user = User::find($id);
+            $user->admin = 1;
+            $user->save();
+
+            if($user){
+                return Redirect::action('AdminController@showUsers')
+                        ->with('user',$user);
+            }   
+
+        }
+        return App::abort(404);
     }
  
 }

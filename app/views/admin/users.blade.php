@@ -1,13 +1,9 @@
 @extends('layouts.master-admin')
  
 @section('content')
- 
 <div class="col-lg-10 col-lg-offset-1">
 
-    <h1> Admin Panel </h1>
-    <a href="/admin/users" class="btn btn-info pull-left" style="margin-right: 3px;">Users</a>
-    <a href="/admin/courses" class="btn btn-info pull-left" style="margin-right: 3px;">Courses</a>
-    <h1> Admins </h1>
+    <h1> Users </h1>
  
     <div class="table-responsive">
         <table class="table table-bordered table-striped">
@@ -28,13 +24,13 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->active }}</td>
                     <td>
-                    <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-		            {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
-		                @if(Auth::check())
-		                    {{ Form::token() }}
-		                        {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
-		                @endif
-		            {{ Form::close() }}
+                        <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+            {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
+                @if(Auth::check())
+                    {{ Form::token() }}
+                        {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
+                @endif
+            {{ Form::close() }}
                     </td>
                 </tr>
                 @endforeach
@@ -42,7 +38,6 @@
  
         </table>
     </div>
-
-
+    
 </div>
 @endsection
