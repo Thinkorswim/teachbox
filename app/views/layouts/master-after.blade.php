@@ -80,7 +80,7 @@
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-        <li><a href="#"><i class="fa fa-comments"></i></a></li>
+        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i></a></li>
         <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
 			<ul class="dropdown-menu notification pull-right" role="menu">
 				<li>
@@ -179,6 +179,11 @@
 		$('.settings-panel .input-group').removeClass('current');
 			});
 
+		$('.message-list .list-group-item').click(function(e) {
+		    e.stopPropagation();
+		$('.message-list .list-group-item').removeClass('active');
+		$(this).addClass('active');
+		});
 		//sticky navigation
 	    $(function() {
 		 	var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
