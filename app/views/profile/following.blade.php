@@ -32,6 +32,28 @@
 			@endif
 			{{ Form::close() }}		
 		@endif
+		@if($user->id != Auth::user()->id)
+		{{ Form::button('<i class="fa fa-comment"></i>', array(
+		'data-toggle'=>'modal', 'data-target'=>'#exampleModal', 'class'=>'message-circle',
+		 'data-placement' =>'left','title' => 'Start conversation with  '. $user->name)) }}
+		<div class="modal fade settings-panel actions" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+		        <h4 class="modal-title" id="exampleModalLabel">New message to {{ $user->name }}</h4>
+		      </div>
+		      <div class="modal-body padding-panel">
+		        {{ Form::open() }}	
+					{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
+					'rows' => '5', 'class'=>'form-control')) }}
+					{{ Form::submit('Send message', array('class'=>'form-control')) }}
+				{{ Form::close() }}	
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		@endif
 		<h1>{{ $user->name }}</h1>
 		<h5>{{ $user->email }}</h5>
 		<small>{{$followersCount}} followers | {{count($followingList)}} following</small>

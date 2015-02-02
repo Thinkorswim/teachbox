@@ -173,7 +173,7 @@
 				$('.pagination').hide();
 
 			    $('.scroll').jscroll({
-			    	 loadingHtml: '<p> Loading...',
+			    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
 			        autoTrigger: true,
 			        nextSelector: '.pagination li.active + li a', 
 			        contentSelector: 'div.scroll',

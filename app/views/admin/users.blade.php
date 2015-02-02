@@ -24,13 +24,13 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->active }}</td>
                     <td>
-                        <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-            {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
-                @if(Auth::check())
-                    {{ Form::token() }}
-                        {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
-                @endif
-            {{ Form::close() }}
+                    <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                    {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
+                        @if(Auth::check())
+                            {{ Form::token() }}
+                                {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
+                        @endif
+                    {{ Form::close() }}
                     </td>
                 </tr>
                 @endforeach

@@ -1,0 +1,24 @@
+@import "variables.less";
+@import "mixins.less";
+
+.modal{
+	margin: 50px auto 0;
+	.modal-content{
+		box-shadow: none;
+	}
+	.fa-times{
+		position: absolute;
+		right: 20px;
+		top: 17px;
+	}
+	.modal-header{
+		background: @blue;
+		.modal-title{
+			color: @white;
+			text-align: left;
+		}
+	}
+	textarea{
+		margin-bottom: 15px;
+	}
+}
