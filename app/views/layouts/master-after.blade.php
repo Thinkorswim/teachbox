@@ -80,7 +80,7 @@
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge">3</span></a></li>
+        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge"></span></a></li>
         <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
 			<ul class="dropdown-menu notification pull-right" role="menu">
 				<li>
@@ -165,6 +165,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+
+    @if(Route::current()->getName() != 'messages')
+  		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
+  	@endif
 
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front')
     <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>

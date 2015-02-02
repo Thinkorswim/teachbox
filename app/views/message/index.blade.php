@@ -9,20 +9,27 @@
 		    <h3 class="panel-title">Chat with</h3>
 		  </div>
 		  <ul class="list-group" role="tablist">
-		  		<?php $active = true; ?>
+		  		<?php $active = true;
+		  			  $i = 1;
+		  		 ?>
 		  		@foreach ($users as $user)
 			  			@if ($active)
 					    	<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item active" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
-						    	<strong> {{ $user->name }}<span class="badge">4</span></strong>
+						    	<strong> {{ $user->name }}<span id="badge-{{ $user->id }}" class="badge"></span></strong>
 					    	</a>
 							<?php $active = false; ?>				    	
 				    	@else
 				    		<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
-						    	<strong> {{ $user->name }} <span class="badge">4</span></strong>
+						    	<strong> {{ $user->name }} 
+						    	@if ($count[$i] > 0 )
+						    		<span id="badge-{{ $user->id }}" class="badge">{{ $count[$i] }}</span>
+						    	@endif
+						    	</strong>
 					    	</a>
 				    	@endif
+				    	<?php $i++; ?>	
 			    @endforeach
 		  </ul>
 		</div>

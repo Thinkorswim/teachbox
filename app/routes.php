@@ -313,3 +313,8 @@
 				'as'   => 'get-new-message',
 				'uses' => 'MessagesController@getNewMessage'
 		));
+
+		Route::post('/messages/get-notification', array(
+				'as'   => 'get-notification',
+				'uses' => 'MessagesController@getNotification'
+		));
