@@ -83,8 +83,8 @@
 					'as'   => 'post-admin-course',
 					'uses' => 'AdminController@updateCourse'
 		));
-		//UNFOLLOWING
 
+		//UNFOLLOWING
 		Route::post('/user/{id}/unfollow', array(
      			'as'   => 'post-unfollow',
      			'uses' => 'ProfileController@postUnfollow'
@@ -96,8 +96,11 @@
 				'uses' => 'AdminController@makeAdmin'
 		));
 
-	});
+		
 
+
+	});
+	
 
 	//Pofile ---------------------------------------------------------------------
 
@@ -294,4 +297,19 @@
 		Route::get('/messages', array(
 			'as' => 'messages',
 			'uses' => 'MessagesController@index'
+		));
+
+		Route::post('/messages/send', array(
+				'as'   => 'send-message',
+				'uses' => 'MessagesController@sendMessage'
+		));
+
+		Route::post('/messages/get', array(
+				'as'   => 'get-message',
+				'uses' => 'MessagesController@getMessage'
+		));
+
+		Route::post('/messages/get-new', array(
+				'as'   => 'get-new-message',
+				'uses' => 'MessagesController@getNewMessage'
 		));

@@ -185,6 +185,10 @@
 		</script>
 	@endif
 
+	@if(Route::current()->getName() == 'messages')
+		<script src="{{ URL::asset('js/messages.min.js') }}"></script>
+	@endif
+
 	<script>
 		// tooltips
 	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
