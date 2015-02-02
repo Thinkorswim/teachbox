@@ -28,14 +28,18 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
-	  <div class="tab-content panel panel-default actions">
-	   			<input type="text" id="text" class="form-control col-lg-12" autofocus="" >
-			  	<div id="chat-window" role="tabpanel" class="tab-pane active">
-			  	  		
-			  	</div>
-	  </div>		
-
+		<div class="tab-content">
+		  <div id="chat" class="panel panel-default actions">
+				  	<div id="chat-window" role="tabpanel" class="tab-pane active">
+				  	  		
+				  	</div>
+		  </div>		
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel send-message">
+					<input type="text" id="text" class="form-control col-lg-12" autofocus="" placeholder="Compose and press enter">
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
 @endsection

@@ -261,6 +261,7 @@
 	$('.playlist-panel .list-group').animate({
     scrollTop: $(".playlist-panel .list-group .active").offset().top
 	}, 0);
+
 	//upload path
 	document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;

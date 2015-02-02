@@ -164,8 +164,21 @@
 		line-height: 2;
 	}
 }
-.tab-content.panel.panel-default.actions{
-	min-height: 400px;
+.tab-content{
+		::-webkit-scrollbar {
+		    width: 12px;
+		}
+		 ::-webkit-scrollbar-thumb {
+		    background: rgba(44, 62, 80,1.0); 
+		}
+		::-webkit-scrollbar-thumb:window-inactive {
+			background: rgba(44, 62, 80,.5); 
+		}
+ .panel.panel-default.actions:first-child{
+	height: 300px;
+	overflow: auto;
+	
+}
 }
  .message-list a{
 line-height: 2;
