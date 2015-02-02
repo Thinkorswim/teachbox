@@ -100,7 +100,7 @@
 		</li>-->
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
-	        	<img src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
+	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
 	        </a>
 			<ul class="dropdown-menu pull-right" role="menu">
 				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="fa fa-user"></i> My profile</a></li>
@@ -188,6 +188,22 @@
 	@if(Route::current()->getName() == 'messages')
 		<script src="{{ URL::asset('js/messages.min.js') }}"></script>
 	@endif
+
+		@if (Request::is('user/*'))
+			<script type="text/javascript">
+			$( "#send-message" ).click(function() {
+			  var text = $('#text').val();
+
+			    if (text.length > 0)
+			    {
+			        $.post( '{{ URL::to('/'); }}/messages/send', {message: text, userId: {{ $user->id }}}, function()
+			        {
+			            window.location = "{{ URL::to('/'); }}/messages";
+			        });
+			    }
+			});
+			</script>
+		@endif
 
 	<script>
 		// tooltips

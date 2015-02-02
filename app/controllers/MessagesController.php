@@ -55,18 +55,18 @@ class MessagesController extends \BaseController {
 
 				if($tMessage->sender_id == $myId)
 				{		
-					if($key%2 == 0){
-						$messageList[$key] = $message->message;
-					}else{
-						$messageList[$key+1] = $message->message;
-					}
+					$messageList[$key]['sender'] = 0;
 				}else{
-					if($key%2 == 0){
-						$messageList[$key+1] = $message->message;
-					}else{
-						$messageList[$key] = $message->message;
-					}
+				
+					$messageList[$key]['sender'] = 1;
 				}
+				
+				$user = User::find($tMessage->sender_id);
+
+				$messageList[$key]['id'] = $user->id;
+				$messageList[$key]['pic'] = $user->pic;
+				$messageList[$key]['message'] = $message->message;
+
 				$key++;
 		}
 		
@@ -88,20 +88,13 @@ class MessagesController extends \BaseController {
 					$tMessage->seen_recipient = 1;
 					$tMessage->save(); 
 				
-					if($tMessage->sender_id == $myId)
-					{		
-						if($key%2 == 0){
-							$messageList[$key] = $message->message;
-						}else{
-							$messageList[$key+1] = $message->message;
-						}
-					}else{
-						if($key%2 == 0){
-							$messageList[$key+1] = $message->message;
-						}else{
-							$messageList[$key] = $message->message;
-						}
-					}
+					$user = User::find($tMessage->sender_id);
+
+					$messageList[$key]['id'] = $user->id;
+					$messageList[$key]['pic'] = $user->pic;
+					$messageList[$key]['message'] = $message->message;
+
+					$key++;
 				}
 		}
 		

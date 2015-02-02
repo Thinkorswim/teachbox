@@ -44,11 +44,9 @@
 		        <h4 class="modal-title" id="exampleModalLabel">New message to {{ $user->name }}</h4>
 		      </div>
 		      <div class="modal-body padding-panel">
-		        {{ Form::open() }}	
 					{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
-					'rows' => '5', 'class'=>'form-control')) }}
-					{{ Form::submit('Send message', array('class'=>'form-control')) }}
-				{{ Form::close() }}	
+					'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}
+					{{ Form::submit('Send message', array('class'=>'form-control', 'id' => 'send-message')) }}
 		      </div>
 		    </div>
 		  </div>
