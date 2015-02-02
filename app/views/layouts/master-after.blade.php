@@ -80,7 +80,7 @@
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i></a></li>
+        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge">3</span></a></li>
         <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
 			<ul class="dropdown-menu notification pull-right" role="menu">
 				<li>
