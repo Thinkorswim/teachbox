@@ -182,6 +182,7 @@
 }
  .message-list a{
 line-height: 2;
+cursor: pointer;
 .badge{
 	background: @grey;
 	top: 3px;
@@ -189,4 +190,32 @@ line-height: 2;
 	right: 10px;
 	top: 14px;
 }
+}
+.status {
+	p{
+		padding: 20px;
+		line-height: 2;
+	}
+	p:first-child{
+		margin-bottom: 0;
+	}
+	hr{
+		margin-top: 0;
+		width: 100%;
+	}
+	img{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.content-status{
+		margin: 0 20px;
+	}
+	.course  .panel-body{
+		border: 1px solid @lightGrey;
+		div:first-child img{margin: 0}
+		p:last-child{
+			line-height: 1;
+			float: left;
+		}
+	}
 }

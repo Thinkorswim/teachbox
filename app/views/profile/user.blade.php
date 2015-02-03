@@ -68,7 +68,49 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="col-xs-12 col-sm-8">
+		<div class="col-xs-12 col-sm-8 status">
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body">
+				  	 <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+					 <strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
+					 followed 5 people recently.
+					 </p>
+					 <hr>
+					 <div class="content-status">
+					 	<a  href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+					 	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+					 	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+					</div>
+				</div>		
+			</div>
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body">
+				  	 <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+					 <strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
+					 created <strong><a href="">Intro to programming</a></strong> course.
+					 </p>
+					 <hr>
+					 <div class="content-status">
+						<div class="course">
+							<div class="panel panel-default course-panel">
+							  <div class="panel-body">
+							  	<div class="col-xs-12 col-lg-3">
+								 
+									<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic)  }}">
+								</div>
+								<div class="col-xs-12 col-lg-9">
+							  	  <h3><a href=""> {{ $user->name; }} </a></h3>
+								   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+							  	  <strong><a href=""> {{  $user->name }} </a></strong></p>
+								  <p>A single, possibly large, repository of data that can be used simultan...</p>
+				
+								</div>					  
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>		
+			</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
 		</div>
