@@ -210,6 +210,9 @@
 		@endif
 
 	<script>
+	$('#choose-user').on('click' , function() { 
+  $('#list-modal').modal('hide')
+});
 		// tooltips
 	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
 	$('.shown').tooltip('show');

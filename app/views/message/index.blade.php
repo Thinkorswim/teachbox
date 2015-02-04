@@ -1,13 +1,62 @@
 @extends('layouts.master-after')
 
 @section('content')
-
 <div class="container" role="tabpanel">
 	<div class="col-xs-12 col-sm-4">
 		<div class="panel panel-default actions playlist-panel message-list">
 		  <div class="panel-heading">
-		    <h3 class="panel-title">Chat with</h3>
+		    <h3 class="panel-title">Chat with<button type="button" data-toggle="modal" data-target="#list-modal" class="btn btn-default"><i class="fa fa-plus"></i></button></h3>
 		  </div>
+	<div class="modal fade settings-panel actions" id="list-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel">Choose a user </h4>
+	      </div>
+	      <div class="modal-body">
+				<!--{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
+				'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}-->
+				<ul class="list-group" role="tablist">
+					<a class="list-group-item" role="presentation">
+				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
+				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
+			    	</a>
+					<a class="list-group-item" role="presentation">
+				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
+				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
+			    	</a>
+					<a class="list-group-item" role="presentation">
+				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
+				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
+			    	</a>
+					<a class="list-group-item" role="presentation">
+				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
+				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
+			    	</a>
+				</ul>
+				{{ Form::submit('Choose person', array('data-toggle'=>'modal', 'data-target'=>'#chat-with', 
+				'class'=>'form-control', 'id' => 'choose-user')) }}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade settings-panel actions" id="chat-with" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel">Choose a user </h4>
+	      </div>
+	      <div class="modal-body">
+				{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
+				'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}
+				{{ Form::submit('Choose person', array('data-toggle'=>'modal', 'data-target'=>'#chat-with', 
+				'class'=>'form-control', 'id' => 'send-message')) }}
+	      </div>
+	    </div>
+	  </div>
+	</div>
 		  <ul class="list-group" role="tablist">
 		  		<?php $active = true;
 		  			  $i = 1;
