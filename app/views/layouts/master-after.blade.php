@@ -170,7 +170,7 @@
   		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
   	@endif
 
-    @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front')
+    @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' )
     <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 	    <script type="text/javascript">
 			$(function() {

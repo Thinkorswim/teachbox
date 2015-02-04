@@ -1,6 +1,6 @@
 <?php
 
-class ProfileController extends \BaseController {
+class ProfileController extends \BaseController { 
 	public function user($id){
 		$user = User::find($id);
 		$followersCount = Follow::where('following_id', '=', $id)->count();
@@ -12,10 +12,24 @@ class ProfileController extends \BaseController {
 			    $query->where('following_id', '=', $id);
 			})->count();
 
+		$timeline = DB::select( DB::raw("SELECT users.id, users.email, users.created_at FROM users, follows WHERE follows.follower_id = '$user->id' AND follows.following_id = users.id
+										 UNION 
+										 SELECT courses.id, courses.user_id, courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
+										 UNION 
+										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id'
+										 ORDER BY created_at DESC
+										 ") );
+
+		$perPage = 2;
+		$currentPage = Input::get('page', 1) - 1;
+		$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
+		$timeline = Paginator::make($pagedData, count($timeline), $perPage);
+
+
 		if($user){
 			return View::make('profile.user')
 					->with(array('user' => $user, 'isFollowing' => $isFollowing, 'followersCount' => $followersCount,
-						'followingCount' => $followingCount));
+						'followingCount' => $followingCount, 'timeline' => $timeline));
 		}
 
 		return App::abort(404);
