@@ -41,7 +41,7 @@
 	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li>
 	        <?php 
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->take(5)->get();
-	        $createdList= array();
+	        $createdList = Course::where('user_id', '=', Auth::user()->id)->get();
 	        $joinedListMenu= array();
 
 	        foreach ($courseListIdMenu as $userCourse)
@@ -49,6 +49,8 @@
 						$joinedListMenu[] = Course::find($userCourse->course_id);
 					}
 			?>	   
+
+			@if(count($joinedListMenu) - count($createdList) > 0)
 	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
 
 	        @foreach ($joinedListMenu as $course)
@@ -59,6 +61,7 @@
 			        </a></li>
 	        	@endif
 	        @endforeach
+	        @endif
 	 
 	      	<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
 	      </ul>
