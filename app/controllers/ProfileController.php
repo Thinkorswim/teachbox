@@ -14,9 +14,9 @@ class ProfileController extends \BaseController {
 
 		$timeline = DB::select( DB::raw("SELECT users.id, users.email, users.created_at FROM users, follows WHERE follows.follower_id = '$user->id' AND follows.following_id = users.id
 										 UNION 
-										 SELECT courses.id, courses.user_id, courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
+										 SELECT courses.id, courses.user_id, user_courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
 										 UNION 
-										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id'
+										 SELECT courses.id, courses.user_id, user_courses.created_at FROM user_courses, courses WHERE courses.user_id = '$user->id'
 										 ORDER BY created_at DESC
 										 ") );
 
