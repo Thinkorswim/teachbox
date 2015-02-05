@@ -15,28 +15,24 @@
 	        <h4 class="modal-title" id="exampleModalLabel">Choose a user </h4>
 	      </div>
 	      <div class="modal-body">
-				<!--{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
-				'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}-->
 				<ul class="list-group" role="tablist">
-					<a class="list-group-item" role="presentation">
+					<btn class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</a>
-					<a class="list-group-item" role="presentation">
+			    	</btn>
+					<btn class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</a>
-					<a class="list-group-item" role="presentation">
+			    	</btn>
+					<btn class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</a>
-					<a class="list-group-item" role="presentation">
+			    	</btn>
+					<btn class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</a>
+			    	</btn>
 				</ul>
-				{{ Form::submit('Choose person', array('data-toggle'=>'modal', 'data-target'=>'#chat-with', 
-				'class'=>'form-control', 'id' => 'choose-user')) }}
 	      </div>
 	    </div>
 	  </div>
@@ -51,7 +47,7 @@
 	      <div class="modal-body">
 				{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
 				'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}
-				{{ Form::submit('Choose person', array('data-toggle'=>'modal', 'data-target'=>'#chat-with', 
+				{{ Form::submit('Send', array('data-toggle'=>'modal', 'data-target'=>'#chat-with', 
 				'class'=>'form-control', 'id' => 'send-message')) }}
 	      </div>
 	    </div>

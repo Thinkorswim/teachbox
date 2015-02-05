@@ -19,7 +19,6 @@
 						  </a>
 						</div>
 						<div class="col-xs-12 col-lg-9">
-						<img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 					  	  <h3><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h3>
 						   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 					  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
@@ -42,7 +41,6 @@
 						  </a>
 						</div>
 						<div class="col-xs-12 col-lg-9">
-						  <img class="ribbon" src="{{ URL::asset('img/free.png')}}">
 					  	  <h3><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h3>
 						   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 					  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>

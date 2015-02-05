@@ -20,7 +20,11 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->city }}, {{ $user->country }}</td>
-                <td>{{ $user->date }}</td>
+                <td>
+                @if(!empty($user->date))
+                    {{ ageCalculator( $user->date ) }}
+                @endif
+                </td>
                 <td>
                 @if(Auth::check())
                     {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}    

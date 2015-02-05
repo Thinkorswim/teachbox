@@ -78,7 +78,7 @@
 					<div class="panel-body">
 					  	<p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						<strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
-						@if ($course->user_id == $post->email)
+						@if ($userT->id == $user->id)
 						    created
 						@else
 							joined
@@ -91,11 +91,12 @@
 								<div class="panel panel-default course-panel">
 								  <div class="panel-body">
 								  	<div class="col-xs-12 col-lg-3">
-									 
-										<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+										<a href="{{ URL::action('CourseController@course', $course->id) }}">
+											<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+										</a>
 									</div>
 									<div class="col-xs-12 col-lg-9">
-								  	  <h3><a href="{{ URL::action('ProfileController@user', $userT->user_id) }}"> {{ $userT->name; }} </a></h3>
+								  	  <h3><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{	$course->name }} </a></h3>
 									   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 								  	  <strong><a href=""> {{  $userT->name }} </a></strong></p>
 									  <p> {{ excerpt($course->description) }}</p>
@@ -114,11 +115,9 @@
 					  	 <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						 <strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
 						 followed  
-						 <a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						 <strong><a href="{{ URL::action('ProfileController@user', $userT->user_id) }}"> {{  $userT->name }} </a></strong> 
 
 						 </p>
-						 <hr>
 						 <!--<div class="content-status">
 						 	<a  href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						 	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>

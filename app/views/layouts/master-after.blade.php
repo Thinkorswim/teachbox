@@ -213,8 +213,9 @@
 		@endif
 
 	<script>
-	$('#choose-user').on('click' , function() { 
-  $('#list-modal').modal('hide')
+	$('.choose-user').on('click' , function() { 
+    $('#list-modal').modal('hide');
+    $('#chat-with').modal('show');
 });
 		// tooltips
 	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
