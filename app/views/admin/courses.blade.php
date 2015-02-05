@@ -2,37 +2,47 @@
  
 @section('content')
  
-<div class="col-lg-10 col-lg-offset-1">
-
-    <h1> Courses </h1>
- 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
- 
+<div class="container">
+    <div class="row">
+        <h1> Courses </h1>
+        <table class="table table-responsive table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>User id</th>
-                    <th>Is approved</th>
+                    <th>Creator</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
- 
             <tbody>
                 @foreach ($courses as $course)
+                <?php $user = User::find($course->user_id); ?>
                 <tr>
-                    <td>{{ $course->name }}</td>
-                    <td>{{ $course->user_id }}</td>
-                    <td>{{ $course->approved }}</td>
                     <td>
-                        <a href="/admin/courses/{{ $course->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+                        <a href="{{ URL::action('CourseController@course', [$course->id]) }}">{{ $course->name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ URL::action('ProfileController@user', $user->id) }}">{{ $user->name }}</a>
+                    </td>
+                    <td> 
+                        @if(Auth::check())
+                        {{ Form::open(array('action' => array('AdminController@approveCourse', $course->id))) }} 
+                        {{ Form::token() }}
+                        <div class="btn-group">
+                            <a href="{{ URL::action('AdminController@updateCourse', [$course->id]) }}" class="btn btn-info pull-left">
+                                <i class="fa fa-edit"></i>Edit
+                            </a>
+                            @if($course->approved != 1)
+                                            {{ Form::button('<i class="fa fa-check"></i> Approve course', array('type' => 'submit','class'=>'btn btn default')) }}
+                                    @endif
+                                
+                        {{ Form::close() }}
+                         @endif   
+                        </div>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
- 
         </table>
-    </div>
-    
+    </div>   
 </div>
-
 @endsection

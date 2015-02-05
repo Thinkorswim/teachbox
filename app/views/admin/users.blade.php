@@ -1,42 +1,45 @@
 @extends('layouts.master-admin')
  
 @section('content')
-<div class="col-lg-10 col-lg-offset-1">
-
+<div class="container">
+    <div class="row">
     <h1> Users </h1>
- 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
- 
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Activated</th>
-                    <th>Is admin</th>
-                </tr>
-            </thead>
- 
-            <tbody>
-                @foreach ($users as $user)
-                <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->active }}</td>
-                    <td>
-                    <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-                    {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
-                        @if(Auth::check())
+     <table class="table table-responsive table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Location</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->city }}, {{ $user->country }}</td>
+                <td>{{ ageCalculator( $user->date ) }}</td>
+                <td>
+                @if(Auth::check())
+                    {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}    
                             {{ Form::token() }}
-                                {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
-                        @endif
-                    {{ Form::close() }}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
- 
-        </table>
+                    <div class="btn-group">
+                        <a href="{{ URL::action('AdminController@updateUser', [$user->id]) }}" class="btn btn-info pull-left">
+                        <i class="fa fa-edit"></i>Edit
+                        </a>
+                        @if($user->admin != 1)
+                                        {{ Form::button('<i class="fa fa-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn-info pull-left')) }}
+                                @endif
+                            {{ Form::close() }}
+                         @endif
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
     
 </div>

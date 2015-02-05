@@ -5,9 +5,40 @@ class AdminController extends \BaseController {
     public function adminHome()
     {
         if(Auth::check() && Auth::user()->admin){
-            $users = User::where('admin', '=',  '1')->get();
+            $users = User::all();
+            $courses = Course::all();
+            $admins = User::where('admin', '=',  '1')->get();
+            $users_this_month = array();
+            $users_last_month = array();
+            $courses_this_month = array();
+            $courses_last_month = array();
 
-            return View::make('admin.home', ['users' => $users]);
+            foreach ($users as $user) {
+                if (strpos($user->created_at,'2015-02') !== false) {
+                    $users_this_month[] = $user;
+                }
+                else{
+                    $users_last_month[] = $user;
+                }
+            }
+
+            foreach ($courses as $course) {
+                if (strpos($course->created_at,'2015-02') !== false) {
+                    $courses_this_month[] = $course;
+                }
+                else{
+                    $courses_last_month[] = $course;
+                }
+            }
+
+            $users_this_month = count($users_this_month); 
+            $users_last_month = count($users_last_month);
+            $courses_last_month = count($courses_last_month);
+            $courses_this_month = count($courses_this_month);
+            return View::make('admin.home')->with(array(
+                        'admins' => $admins, 'users_this_month' => $users_this_month,
+                        'users_last_month' => $users_last_month, 'courses_last_month'=>$courses_last_month,
+                        'courses_this_month'=>$courses_this_month ));
         }else{
             return Redirect::action('AuthController@index');
         }
@@ -38,6 +69,21 @@ class AdminController extends \BaseController {
         }
 
     }
+    public function coursesApprove()
+    {
+        if(Auth::check() && Auth::user()->admin){
+
+            $courses =  Course::where('approved', '=',  '0')->get();
+
+            return View::make('admin.courses_approve')->with(array(
+                        'courses' => $courses));
+        }else{
+            return Redirect::action('AuthController@index');
+        }
+
+
+        }
+
 
 
 
@@ -84,14 +130,13 @@ class AdminController extends \BaseController {
     public function updateCourse($id)
 
     {
-        $name      = Input::get('name');
-        $approved  = Input::get('approved');
-
         $course = Course::find($id);
+        $name = Input::get('name');
+        $description = Input::get('description');
+        
 
         $course->name = $name;
-        $course->approved = $approved;
-        
+        $course->description = $description;
         $course->save();
         
         if($course->save()){
@@ -114,5 +159,19 @@ class AdminController extends \BaseController {
         }
         return App::abort(404);
     }
- 
+
+    public function approveCourse($id){
+        if(Auth::check()){
+            $course = Course::find($id);
+            $course->approved = 1;
+            $course->save();
+
+            if($course){
+                return Redirect::action('AdminController@showCourses')
+                        ->with('user',$course);
+            }   
+
+        }
+        return App::abort(404);
+    }
 }

@@ -17,8 +17,8 @@
     </div>
  
     <div class='form-group'>
-        {{ Form::label('approved', 'Is approved') }}
-        {{ Form::text('approved', $course->approved, array('class'=>'form-control')) }}
+        {{ Form::label('description', 'Description') }}
+        {{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
     </div>
 
     <div class='form-group'>

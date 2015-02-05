@@ -96,7 +96,11 @@
 				'uses' => 'AdminController@makeAdmin'
 		));
 
-		
+		//Approve course
+		Route::post('/admin/users/{id}', array(
+				'as'   => 'post-admin-course-approve',
+				'uses' => 'AdminController@approveCourse'
+		));		
 
 
 	});
@@ -262,6 +266,11 @@
 		Route::get('/admin/users', array(
 				'as' => 'admin-users-show',
 				'uses' => 'AdminController@showUsers'
+
+		));
+		Route::get('/admin/courses/approve', array(
+				'as' => 'admin-courses-approve',
+				'uses' => 'AdminController@coursesApprove'
 
 		));
 

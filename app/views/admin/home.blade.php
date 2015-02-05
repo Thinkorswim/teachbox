@@ -1,48 +1,28 @@
 @extends('layouts.master-admin')
  
 @section('content')
- 
-<div class="col-lg-10 col-lg-offset-1">
+<div class="container">
+          
+        <div id="curve_chart" style="width: 100%; height: 500px"></div>
 
-    <h1> Admin Panel </h1>
-    <a href="/admin/users" class="btn btn-info pull-left" style="margin-right: 3px;">Users</a>
-    <a href="/admin/courses" class="btn btn-info pull-left" style="margin-right: 3px;">Courses</a>
     <h1> Admins </h1>
- 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
- 
+        <table class="table table-responsive table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Activated</th>
-                    <th>Is admin</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
- 
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($admins as $admin)
                 <tr>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->active }}</td>
-                    <td>
-                    <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-		            {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}
-		                @if(Auth::check())
-		                    {{ Form::token() }}
-		                        {{ Form::button('<i class="fa fa-user-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn default')) }}
-		                @endif
-		            {{ Form::close() }}
-                    </td>
+                    <td>{{ $admin->name }}</td>
+                    <td>{{ $admin->email }}</td>
+                    <td><a href="{{ URL::action('AdminController@updateUser', [$admin->id]) }}" class="btn btn-info pull-left">Edit</a></td>
                 </tr>
                 @endforeach
             </tbody>
- 
         </table>
-    </div>
-
-
 </div>
 @endsection
