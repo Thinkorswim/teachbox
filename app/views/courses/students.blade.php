@@ -26,9 +26,10 @@
 		</ul>
 	</div>
 </div>
-<div class="container">
+<div class="container follow">
 	<div class="col-xs-12 col-sm-8">
 		@foreach ($studentList as $student)
+		@if ($student->id != $user->id)
 		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
 			  <div class="panel-body padding-panel">
@@ -50,6 +51,7 @@
 			  </div>
 			</div>
 		</div>
+		@endif
 		@endforeach
    </div>
     <div class="col-xs-12 col-sm-4">

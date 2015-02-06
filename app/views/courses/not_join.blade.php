@@ -38,6 +38,21 @@
 				<p>{{ $course->description }}</p>
 			  </div>
 			</div>
+		@if (count($lessonList) > 0)
+			<?php $i = 1; ?>
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Lessons</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($lessonList as $lesson)
+					 	<div class="list-group-item"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </div>
+					@endforeach
+	    		</div>
+	       </div>
+	    </div>
+	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4">
 	    </div>

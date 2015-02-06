@@ -121,12 +121,12 @@ class CourseController extends \BaseController {
 							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount ));
 			}else{
 				return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
+							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
 		}else{
 			$user = User::find($course->user_id);
 			return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount ));
+							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 		}
 	}
 
@@ -605,6 +605,7 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = $studentCount - 1;
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
@@ -623,14 +624,16 @@ class CourseController extends \BaseController {
 			})->count();
 
 			$user = User::find($course->user_id);
-			$studentId = UserCourse::where('course_id', '=', $id)->get();
-			$studentList = array();
+			$studentId = DB::table('user_courses')
+			        ->join('users', function($join)  use ($id)
+			        {
+			            $join->on('user_courses.user_id', '=', 'users.id')
+			                 ->where('course_id', '=', $id);
+			        })->orderBy('users.name')->get();
+			$studentList = $studentId;
 
-			foreach ($studentId as $key) {
-				$studentList[] = User::find($key->user_id);
-			}
 
-			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			if($course->approved == 1 || $course->user_id == Auth::user()->id){
 			return View::make('courses.students')
 					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
 			}else{
