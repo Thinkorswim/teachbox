@@ -7,9 +7,9 @@
 	<div class="container">
 		<div class="col-xs-12 col-md-3">
 				<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
-				<span class="age" data-toggle="tooltip" data-placement="right" title="{{ $studentCount }} student(s)">
-					{{ $studentCount }} 
-				</span>
+				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
+				 {{$studentCount}} 			
+				 </span>
 		</div>
 		<div class="col-xs-12 col-xs-9">
 			<h1>{{ $course->name }}</h1>

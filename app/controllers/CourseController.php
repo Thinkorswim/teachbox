@@ -93,6 +93,7 @@ class CourseController extends \BaseController {
 	{
 		$course = Course::find($id);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		$studentCount = $studentCount - 1;
 		if ($studentCount > 999){
 			$thousand = substr($studentCount, 0, 1);
 			$hundred = substr($studentCount, 1, 1);
@@ -154,7 +155,8 @@ class CourseController extends \BaseController {
 	public function courseEdit($id)
 	{
 		$course = Course::find($id);
-		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		$studentCount = UserCourse::where('course_id', '=', $id)->count();
+		$studentCount = $studentCount - 1;	
 		if ($studentCount > 999){
 			$thousand = substr($studentCount, 0, 1);
 			$hundred = substr($studentCount, 1, 1);
@@ -185,6 +187,7 @@ class CourseController extends \BaseController {
 	{
 		$course = Course::find($id);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		$studentCount = $studentCount - 1;	
 		if ($studentCount > 999){
 			$thousand = substr($studentCount, 0, 1);
 			$hundred = substr($studentCount, 1, 1);
@@ -251,7 +254,8 @@ class CourseController extends \BaseController {
 	public function courseAdd($id)
 	{
 		$course = Course::find($id);
-		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		$studentCount = UserCourse::where('course_id', '=', $id)->count();
+		$studentCount = $studentCount - 1;		
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
@@ -284,6 +288,7 @@ class CourseController extends \BaseController {
 	public function courseLesson($id,$lesson)
 	{
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+		$studentCount = $studentCount - 1;	
 		if(Auth::check()){
 			$course = Course::find($id);
 
@@ -409,6 +414,7 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = $studentCount - 1;	
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
@@ -445,7 +451,8 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = UserCourse::where('course_id', '=', $id)->count();
+			$studentCount = $studentCount - 1;		
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
@@ -509,6 +516,7 @@ class CourseController extends \BaseController {
 		if(Auth::check()){
 			$course = Course::find($id);
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = $studentCount - 1;	
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
@@ -547,7 +555,8 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
-			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = UserCourse::where('course_id', '=', $id)->count();
+			$studentCount = $studentCount - 1;		
 			if ($studentCount > 999){
 				$thousand = substr($studentCount, 0, 1);
 				$hundred = substr($studentCount, 1, 1);
