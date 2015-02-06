@@ -68,11 +68,12 @@
 	</div>
 	<div class="container">
 		<div class="col-xs-12 col-sm-8">
+		<div class="row">
 		@if(count($createdList) > 0)
-			<div class="row">
+			
 				<h2>Created courses</h2>
 				@foreach ($createdList as $course)
-					<div class="col-xs-12 col-sm-6 course two-in-line">
+					<div class="col-xs-12 col-sm-6 course two-in-line created">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
@@ -86,14 +87,16 @@
 						</div>
 					</div>
 				@endforeach
-			</div>
 			@endif
+			</div>
+			
+			<div class="row"> 
 			@if(count($joinedList) - count($createdList) > 0)
 			<h2>Enrolled courses</h2>
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)
 				<?php $user = User::find($course->user_id); ?>
-					<div class="col-xs-12 col-sm-6 course two-in-line">
+					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
@@ -110,6 +113,7 @@
 			@endforeach
 			@endif
 	    </div>
+	</div>
 	<div class="col-xs-12 col-sm-4">
     </div>
 @endsection

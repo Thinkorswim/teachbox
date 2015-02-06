@@ -252,7 +252,14 @@
 		    });
 		});
 	    // thumbnail fix
-		var $span = $(".course.two-in-line");
+		var $span = $(".course.created");
+		for (var i = 0; i < $span.length; i += 2) {
+		    var $div = $("<div/>", {
+		        class: 'row'
+		    });
+		    $span.slice(i, i + 2).wrapAll($div);
+		}
+		var $span = $(".course.joined");
 		for (var i = 0; i < $span.length; i += 2) {
 		    var $div = $("<div/>", {
 		        class: 'row'
