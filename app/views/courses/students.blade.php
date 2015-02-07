@@ -1,5 +1,12 @@
 @extends('layouts.master-after')
 
+@section('title')
+	Students in {{$course->name}} -
+@stop
+
+@section('description')
+	{{ excerpt($course->description) }}
+@stop
 
 @section('content')
 

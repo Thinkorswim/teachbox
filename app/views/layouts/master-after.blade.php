@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Teachbox</title>
+    <title>@yield('title') Teachbox</title>
+	<meta name="description" content="@yield('description')">
     <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" >
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <!--[if lt IE 9]>
@@ -15,13 +16,13 @@
 	@if(Route::current()->getName() == 'course-lesson')
 	    <link href="http://vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
 	@endif
-   	
+
   </head>
   <body>
 <header>
 	<div class="col-xs-3">
 		<nav class="navbar navbar-fixed-top categories">
-		   <div class="navbar-header"> 
+		   <div class="navbar-header">
 		    <a class="navbar-brand" href="{{ URL::route('home') }}" >
 			    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 				<small>teachbox</small>
@@ -39,7 +40,7 @@
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
 	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li>
-	        <?php 
+	        <?php
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->take(5)->get();
 	        $createdList = Course::where('user_id', '=', Auth::user()->id)->get();
 	        $joinedListMenu= array();
@@ -48,7 +49,7 @@
 					{
 						$joinedListMenu[] = Course::find($userCourse->course_id);
 					}
-			?>	   
+			?>
 
 			@if(count($joinedListMenu) - count($createdList) > 0)
 	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
@@ -62,7 +63,6 @@
 	        	@endif
 	        @endforeach
 	        @endif
-	 
 	      	<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
 	      </ul>
 
@@ -149,16 +149,8 @@
 						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
 						</span>
 					</a>
-				  </li>				 
-				  <li>
-					<a href="#">
-						<span class="fa-stack fa-lg">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-						</span>
-					</a>
 				  </li>
-				</ul>	
+				</ul>
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
 	</footer>
@@ -174,22 +166,41 @@
   	@endif
 
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' )
-    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
-	    <script type="text/javascript">
-			$(function() {
-				$('.pagination').hide();
+    	@if(Route::current()->getName() == 'user-profile' && count($timeline) > 4)
+		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+			    <script type="text/javascript">
+					$(function() {
+						$('.pagination').hide();
 
-			    $('.scroll').jscroll({
-			    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
-			        autoTrigger: true,
-			        nextSelector: '.pagination li.active + li a', 
-			        contentSelector: 'div.scroll',
-			        callback: function() {
-			            $('ul.pagination:visible:first').hide();
-			        }
-			    });
-			});
-		</script>
+					    $('.scroll').jscroll({
+					    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+					        autoTrigger: true,
+					        nextSelector: '.pagination li.active + li a',
+					        contentSelector: 'div.scroll',
+					        callback: function() {
+					            $('ul.pagination:visible:first').hide();
+					        }
+					    });
+					});
+				</script>
+		@elseif(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' && count($courses) > 0)
+		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+			    <script type="text/javascript">
+					$(function() {
+						$('.pagination').hide();
+
+					    $('.scroll').jscroll({
+					    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+					        autoTrigger: true,
+					        nextSelector: '.pagination li.active + li a',
+					        contentSelector: 'div.scroll',
+					        callback: function() {
+					            $('ul.pagination:visible:first').hide();
+					        }
+					    });
+					});
+				</script>		
+		@endif
 	@endif
 
 	@if(Route::current()->getName() == 'messages')

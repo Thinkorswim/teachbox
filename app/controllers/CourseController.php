@@ -125,9 +125,7 @@ class CourseController extends \BaseController {
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
 		}else{
-			$user = User::find($course->user_id);
-			return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
+				return View::make('home.before');
 		}
 	}
 

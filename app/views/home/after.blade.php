@@ -1,5 +1,9 @@
 @extends('layouts.master-after')
 
+@section('description')
+	???
+@stop
+
 @section('content')
 <div class="container">
 	<div id="course-slider" class="carousel slide carousel-fade" data-ride="carousel">

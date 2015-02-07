@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+  {{ $user->name }}'s courses -
+@stop
+
+@section('description')
+  	{{ excerpt($user->decription) }}
+@stop
+
 @section('content')
 	<div class="cover-section">
 		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile"/>
@@ -7,9 +15,9 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			<?php echo ageCalculator( $user->date ) ?>
 		</span>
-		@endif 
+		@endif
 		@if ($user->country != '')
-		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
@@ -30,7 +38,7 @@
 						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
 				@endif
 			@endif
-			{{ Form::close() }}		
+			{{ Form::close() }}
 		@endif
 		@if($user->id != Auth::user()->id)
 		{{ Form::button('<i class="fa fa-comment"></i>', array(
@@ -69,9 +77,9 @@
 	<div class="container">
 		<div class="col-xs-12 col-sm-8">
 		<div class="row">
+			<h2>Created courses</h2>
 		@if(count($createdList) > 0)
-			
-				<h2>Created courses</h2>
+
 				@foreach ($createdList as $course)
 					<div class="col-xs-12 col-sm-6 course two-in-line created">
 						<div class="panel panel-default course-panel">
@@ -82,17 +90,23 @@
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
-							  <p>{{ excerpt($course->description) }}</p>	
+							  <p>{{ excerpt($course->description) }}</p>
 						  </div>
 						</div>
 					</div>
 				@endforeach
-			@endif
+		@else
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel">
+					<h4><strong>No created courses yet.</strong></h4>
+				</div>
 			</div>
-			
-			<div class="row"> 
-			@if(count($joinedList) - count($createdList) > 0)
+		@endif
+			</div>
+
+			<div class="row">
 			<h2>Enrolled courses</h2>
+			@if(count($joinedList) - count($createdList) > 0)
 			@foreach ($joinedList as $course)
 				@if ($course->user_id != Auth::user()->id)
 				<?php $user = User::find($course->user_id); ?>
@@ -111,9 +125,25 @@
 					</div>
 				@endif
 			@endforeach
-			@endif
+		@else
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel">
+					<h4><strong>No joined courses yet.</strong></h4>
+				</div>
+			</div>
+		@endif
 	    </div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
+			@if($user->decription != '')
+				<div class="panel panel-default actions">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
     </div>
 @endsection

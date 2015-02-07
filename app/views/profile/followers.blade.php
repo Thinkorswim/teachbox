@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+  {{ $user->name }}'s followers -
+@stop
+
+@section('description')
+  	{{ excerpt($user->decription) }}
+@stop
+
 @section('content')
 	<div class="cover-section">
 		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile"/>
@@ -7,9 +15,9 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			<?php echo ageCalculator( $user->date ) ?>
 		</span>
-		@endif 
+		@endif
 		@if ($user->country != '')
-		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
@@ -68,6 +76,16 @@
 	</div>
 	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
+			@if(count($followerList) == 0)
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel">
+					<h2><strong>Doesn't have followers yet.</strong></h2>
+					@if ($user->id == Auth::user()->id)
+						<small>Share your profile with your friends.  </small>
+					@endif
+				</div>
+			</div>
+			@endif
 			@foreach ($followerList as $follower)
 			<div class="col-xs-12 col-sm-6 student">
 				<div class="panel panel-default student-card">
@@ -92,6 +110,16 @@
 			@endforeach
 			</div>
 		<div class="col-xs-12 col-sm-4">
+			@if($user->decription != '')
+				<div class="panel panel-default actions">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
 		</div>
 	</div>
 

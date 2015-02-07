@@ -1,11 +1,23 @@
 @extends('layouts.master-after')
+@section('title')
+	 search term -
+@stop
+
+@section('description')
+	Search the courses in teachbox
+@stop
 
 @section('content')
 <div class="container">
-
 	<div class="col-xs-12 col-sm-8">
-		<h1>Search for <strong>search term</strong></h1>
-		
+		@if(count($courses) == 0)
+			<div class="row centered">
+				<h2><strong>No results.</strong></h2>
+				<small>Maybe change your search to something less specific. </small>
+			</div>
+		@else
+			<h1>Search for <strong>search term</strong></h1>
+		@endif
 		<div class="scroll">
 			@foreach ($courses as $course)
 			<?php $user = User::find($course->user_id); ?>
@@ -23,8 +35,8 @@
 							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
-			
-							</div>					  
+
+							</div>
 						  </div>
 						</div>
 					</div>

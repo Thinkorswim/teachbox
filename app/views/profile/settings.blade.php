@@ -1,5 +1,11 @@
 @extends('layouts.master-after')
+@section('title')
+  Change your profile -
+@stop
 
+@section('description')
+  	{{ excerpt($user->decription) }}
+@stop
 @section('content')
 <div class="container">
 	<div class="row">
@@ -28,7 +34,7 @@
 				@endif
 			</div>
 		</div>
-		</div> 
+		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions">
@@ -40,49 +46,59 @@
 				<div>Name</div>
 					@if($errors->has('name'))
 					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
-					@else             
+					@else
 					<div class="input-group">
-					@endif  
+					@endif
 					<span class="input-group-addon">
 						<i class="fa fa-user"></i>
-					</span> 
+					</span>
 					 {{ Form::text('name', $user->name, array('class'=>'form-control')) }}
 				</div>
-				Country: 
+				Country:
 					@if($errors->has('country'))
 					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('country') }}">  
-					@else             
+					@else
 					<div class="input-group">
-					@endif  
+					@endif
 					<span class="input-group-addon">
 						<i class="fa fa-globe"></i>
-					</span> 
+					</span>
 				 {{ Form::select('country', $country_array, $user->country, array('class'=>'form-control')) }}
 				 </div>
-				City: 
+				City:
 					@if($errors->has('city'))
 					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
-					@else             
+					@else
 					<div class="input-group">
-					@endif 
+					@endif
 					<span class="input-group-addon">
 						<i class="fa fa-map-marker"></i>
-					</span> 
+					</span>
 				 {{ Form::text('city', $user->city, array('class'=>'form-control')) }}
+				</div>
+				Describe yourself in a few words:
+					@if($errors->has('decription'))
+					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('decription') }}">  
+					@else
+					<div class="input-group">
+					@endif
+					<span class="input-group-addon">
+						<i class="fa fa-quote-left"></i>
+					</span>
+				 {{ Form::textarea('decription', $user->decription, array('class'=>'form-control','rows' => '5')) }}
 				 </div>
 
-				<div>Date of birth:</div> 
+				<div>Date of birth:</div>
 				{{ Form::selectRange('day', 1, 31, getDay($user->date)) }}
 			    {{ Form::selectMonth('month',getMonth($user->date)) }}
 				{{ Form::selectRange('year', 2014, 1914, getYear($user->date)) }}
 
 				{{ Form::token() }}
 				{{ Form::submit('Save Changes', array('class'=>'form-control')) }}
-			{{ Form::close() }}		
+			{{ Form::close() }}
 
 		  </div>
 		</div>
-					    	
 	</div>
 </div>
 @endsection

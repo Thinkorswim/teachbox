@@ -1,12 +1,17 @@
 @extends('layouts.master-after')
-
+@section('title')
+	{{$course->name}} -
+@stop
+@section('description')
+	{{ excerpt($course->description) }}
+@stop
 @section('content')
 	<div class="course-section">
 		<div class="container">
 			<div class="col-xs-12 col-md-3">
 					<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
 					<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-						{{ $studentCount }} 
+						{{ $studentCount }}
 					</span>
 			</div>
 			<div class="col-xs-12 col-xs-9">

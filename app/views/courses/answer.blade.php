@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+	{{ $question->title }} -
+@stop
+
+@section('description')
+	{{ excerpt($question->question) }}
+@stop
+
 @section('content')
 
 	<div class="course-section">

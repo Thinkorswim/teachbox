@@ -1,5 +1,13 @@
 @extends('layouts.master-before')
 
+@section('title')
+  Recover password -
+@stop
+
+@section('description')
+  Recover your password in case you've forgotten it.
+@stop
+
 @section('content')
    <section class="full-screen main-screen">
       <div class="container">

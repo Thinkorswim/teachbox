@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+	Create course -
+@stop
+
+@section('description')
+	????
+@stop
+
 @section('content')
 	<section class="full-screen teach-screen">
 		<div class="container">

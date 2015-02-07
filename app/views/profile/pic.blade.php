@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+  Change profilce picture -
+@stop
+
+@section('description')
+  	{{ excerpt($user->decription) }}
+@stop
+
 @section('content')
 <div class="container">
 	<div class="row">

@@ -12,19 +12,22 @@ class ProfileController extends \BaseController {
 			    $query->where('following_id', '=', $id);
 			})->count();
 
-		$timeline = DB::select( DB::raw("SELECT users.id, users.email, users.created_at FROM users, follows WHERE follows.follower_id = '$user->id' AND follows.following_id = users.id
+		$timeline = DB::select( DB::raw("SELECT users.id, users.email, follows.created_at FROM users, follows WHERE follows.follower_id = '$user->id' AND follows.following_id = users.id
 										 UNION 
 										 SELECT courses.id, courses.user_id, user_courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
 										 UNION 
-										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id'
+										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id' AND courses.approved = 1
 										 ORDER BY created_at DESC
 									 ") );
+		if(count($timeline) < 5){
 
-		$perPage = 5;
-		$currentPage = Input::get('page', 1) - 1;
-		$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
-		$timeline = Paginator::make($pagedData, count($timeline), $perPage);
-
+		}
+		else{
+			$perPage = 5;
+			$currentPage = Input::get('page', 1) - 1;
+			$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
+			$timeline = Paginator::make($pagedData, count($timeline), $perPage);
+		}
 
 		if($user){
 			return View::make('profile.user')
@@ -349,9 +352,10 @@ class ProfileController extends \BaseController {
 						'name' 				 => 'required|min:4|max:40',
 						'country' 			 => 'min:4|max:35',
 						'city'				 => 'min:4|max:30',
-				));
+						'decription'		 => 'min:4|max:300'
+					));
 
-			if($validator->fails()){		
+			if($validator->fails()){
 				return Redirect::action('ProfileController@userSettings',[$id])
 						->withErrors($validator);
 			}else{
@@ -359,14 +363,14 @@ class ProfileController extends \BaseController {
 				$country = Input::get('country');
 				$city 	 = Input::get('city');
 				$date 	 = Input::get('day') . '/' . Input::get('month') . '/' . Input::get('year');
-
+				$description 	 = Input::get('decription');
 				$user = User::find($id);
 
 				$user->name    = $name;
 				$user->country = $country;
 				$user->city    = $city;
 				$user->date    = $date;
-
+				$user->decription = $description;
 					if($user->save()){
 						return Redirect::action('ProfileController@user',[$id]);
 					}

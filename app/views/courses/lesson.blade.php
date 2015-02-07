@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+	{{$currentLesson->name}} -
+@stop
+
+@section('description')
+	{{ excerpt($currentLesson->description) }}
+@stop
+
 @section('content')
 <section class="video-section">
 	<div class="container">

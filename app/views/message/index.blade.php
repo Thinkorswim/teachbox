@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+  Chat -
+@stop
+
+@section('description')
+  Chat with  your classmates or teachers.
+@stop
+
 @section('content')
 	<div class="modal fade settings-panel actions" id="list-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">

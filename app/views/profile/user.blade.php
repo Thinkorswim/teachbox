@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+	{{ $user->name }} -
+@stop
+
+@section('description')
+	{{ excerpt($user->decription) }}
+@stop
+
 @section('content')
 
 	<div class="cover-section">
@@ -8,9 +16,9 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			{{ ageCalculator( $user->date ) }}
 		</span>
-		@endif 
+		@endif
 		@if ($user->country != '')
-		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
@@ -31,7 +39,7 @@
 						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
 				@endif
 			@endif
-			{{ Form::close() }}		
+			{{ Form::close() }}
 		@endif
 		@if($user->id != Auth::user()->id)
 		{{ Form::button('<i class="fa fa-comment"></i>', array(
@@ -69,6 +77,16 @@
 	</div>
 	<div class="container">
 		<div class="col-xs-12 col-sm-8 status">
+		@if(count($timeline) == 0)
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel">
+					<h2><strong>Nothing on the timeline yet.</strong></h2>
+					@if ($user->id == Auth::user()->id)
+						<small>Follow somebody, join or create a course. </small>
+					@endif
+				</div>
+			</div>
+		@endif
 		<div class="scroll">
 		@foreach ($timeline as $post)
 			@if (is_numeric($post->email))
@@ -100,38 +118,42 @@
 									   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 								  	  <strong><a href=""> {{  $userT->name }} </a></strong></p>
 									  <p> {{ excerpt($course->description) }}</p>
-					
-									</div>					  
+									</div>
 								  </div>
 								</div>
 							</div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			@else
 				<?php $userT = User::find($post->id)?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	 <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						 <strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
-						 followed  
-						 <strong><a href="{{ URL::action('ProfileController@user', $userT->user_id) }}"> {{  $userT->name }} </a></strong> 
-
+						 <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{  $user->name }} </a></strong>
+						 followed
+						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
 						 </p>
-						 <!--<div class="content-status">
-						 	<a  href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						 	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						 	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img data-toggle="tooltip" data-placement="top" title="{{ $user->name }}" class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						</div>-->
-					</div>		
+					</div>
 				</div>
 			@endif
 		@endforeach
-
-		{{ $timeline->links() }}
+		@if(count($timeline) > 4)
+			{{ $timeline->links() }}
+		@endif
 		</div>
 		</div>
 		<div class="col-xs-12 col-sm-4">
+			@if($user->decription != '')
+				<div class="panel panel-default actions">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
 		</div>
-	</div>
+		</div>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.master-admin')
  
-@section('title') Edit Course @stop
+@section('title') Edit Course {{$course->name}} @stop
  
 @section('content')
  

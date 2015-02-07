@@ -1,5 +1,13 @@
 @extends('layouts.master-after')
 
+@section('title')
+  {{ $user->name }}'s following -
+@stop
+
+@section('description')
+  	{{ excerpt($user->decription) }}
+@stop
+
 @section('content')
 	<div class="cover-section">
 		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile"/>
@@ -7,9 +15,9 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			 {{ ageCalculator( $user->date ) }}
 		</span>
-		@endif 
+		@endif
 		@if ($user->country != '')
-		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
@@ -30,7 +38,7 @@
 						 'data-toggle' =>'tooltip','data-placement' =>'left','title' => 'Unfollow  '. $user->name)) }}
 				@endif
 			@endif
-			{{ Form::close() }}		
+			{{ Form::close() }}
 		@endif
 		@if($user->id != Auth::user()->id)
 		{{ Form::button('<i class="fa fa-comment"></i>', array(
@@ -68,19 +76,29 @@
 	</div>
 	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
+			@if(count($followingList) == 0)
+			<div class="panel panel-default settings-panel actions">
+				<div class="panel-body padding-panel">
+					<h2><strong>Doesn't follow anyone yet.</strong></h2>
+					@if ($user->id == Auth::user()->id)
+						<small>Connect with your friends.  </small>
+					@endif
+				</div>
+			</div>
+			@endif
 			@foreach ($followingList as $follower)
 			<div class="col-xs-12 col-sm-6 student">
 				<div class="panel panel-default student-card">
 				  <div class="panel-body padding-panel">
 			  		<a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">
 			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						@if ($follower->date != '')
-					</a>	
+					</a>
 						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $follower->date )}} years old">
 							{{ageCalculator( $follower->date )}}
 						</span>
-						@endif 
+						@endif
 					    @if ($follower->country != '')
-						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center" 
+						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center"
 							data-toggle="tooltip" data-placement="left" title="{{ $follower->city }}, {{ $follower->country }}">
 						</span>
 						@endif
@@ -92,6 +110,16 @@
 			@endforeach
 		</div>
 		<div class="col-xs-12 col-sm-4">
+			@if($user->decription != '')
+				<div class="panel panel-default actions">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
 		</div>
 	</div>
 @endsection
