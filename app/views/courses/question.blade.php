@@ -34,6 +34,35 @@
 	<div class="container">
 
 		<div class="col-xs-12 col-sm-8">
+			<div class="col-lg-8">
+		    	<div class="panel panel-default settings-panel actions">
+					<div class="panel-heading">
+					  	<h3 class="panel-title">Ask your question</h3>
+					</div>
+				  	<div class="panel-body padding-panel">   
+					{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}                  
+							 @if($errors->has('title'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">      
+							@else             
+							<div class="input-group">
+							@endif  
+							<span class="input-group-addon">
+								<i class="fa fa-question-circle"></i>
+							</span> 
+							 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
+						</div>
+							 @if($errors->has('question'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}">      
+							@else             
+							<div class="input-group">
+							@endif  
+							 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
+						</div>
+						{{ Form::submit('Post', array('class'=>'form-control')) }}
+					{{ Form::close() }}
+				  </div>
+				</div>
+			</div>
 		@if (count($questionList) > 0)
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
@@ -51,33 +80,33 @@
 	    </div>
 	    @endif
 		</div>
-	    <div class="col-xs-12 col-sm-4">
-	    	<div class="panel panel-default settings-panel actions">
+	    <div class="col-xs-12 col-sm-4 author-card">
+			<div class="panel panel-default student-card">
 				<div class="panel-heading">
-				  	<h3 class="panel-title">Ask your question</h3>
+					<h3 class="panel-title">About the tutor</h3>
 				</div>
-			  	<div class="panel-body padding-panel">   
-				{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}                          
-						 @if($errors->has('title'))
-						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">      
-						@else             
-						<div class="input-group">
-						@endif  
-						<span class="input-group-addon">
-							<i class="fa fa-question-circle"></i>
-						</span> 
-						 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
-					</div>
-						 @if($errors->has('question'))
-						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}">      
-						@else             
-						<div class="input-group">
-						@endif  
-						 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
-					</div>
-					{{ Form::submit('Post', array('class'=>'form-control')) }}
-				{{ Form::close() }}
-			  </div>
+			  <div class="panel-body padding-panel author">
+			  		<a href="{{ URL::action('ProfileController@user', [$user->id]) }}">
+			  		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
+			  		</a>
+					@if ($user->date != '')
+					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
+						{{ageCalculator( $user->date )}}
+					</span>
+					@endif 
+				    @if ($user->country != '')
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+					</span>
+					@endif
+			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
+			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
+			  	</div>
+				<div class="row">
+				@if($user->decription != '')
+					<p>{{$user->decription}}</p>
+				@endif
+				</div>
 			</div>
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">

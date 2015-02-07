@@ -94,7 +94,10 @@
 				  $userT = User::find($post->email)?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-					  	<p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+						<div class="clock" data-toggle="tooltip" data-placement="top" title="{{dateTimeline($post->created_at)}}">
+							<i class="fa fa-clock-o"></i>
+						</div>
+					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						<strong><a href="{{ URL::action('ProfileController@user', $user->user_id) }}"> {{  $user->name }} </a></strong> 
 						@if ($userT->id == $user->id)
 						    created
@@ -129,7 +132,10 @@
 				<?php $userT = User::find($post->id)?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-					  	 <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+						<div class="clock" data-toggle="tooltip" data-placement="top" title="{{dateTimeline($post->created_at)}}">
+							<i class="fa fa-clock-o"></i>
+						</div>
+					  	 <p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						 <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{  $user->name }} </a></strong>
 						 followed
 						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>

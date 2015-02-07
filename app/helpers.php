@@ -60,6 +60,13 @@
 
 			return $newThumbName . '-100x100'.$newThumbExtension;
 	}
+	function dateTimeline($date){
+		$day = substr($date,8,2);
+		$month = substr($date,5,2);
+		$year = substr($date,0,4);
+
+		return $day . '.'. $month. '.'. $year;
+	}
 
 	function generateRandomString($length) {
 	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

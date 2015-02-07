@@ -183,7 +183,7 @@
 					    });
 					});
 				</script>
-		@elseif(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' && count($courses) > 0)
+		@elseif(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' && count($courses) > 4)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
 					$(function() {

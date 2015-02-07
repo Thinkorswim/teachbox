@@ -113,6 +113,14 @@
 		font-weight: 900;
 	}
 }
+	.author-card .panel-heading{
+		background: @blue;
+		border-radius: 0;
+		h3{
+			color:@white;
+			font-weight: 900;
+		}
+	}
 .student-card{
 	margin-bottom: 0;
 	img{
@@ -132,6 +140,10 @@
 		margin: 0 10px 0 20px;
 		display: block;
 		float: left;
+		max-width: 100px;
+	}
+	.row p{
+		padding:0 20px;
 	}
 	span.country{
 		margin-left: 0;
@@ -140,6 +152,9 @@
 		width: 25px;
 		height: 25px;
 		background-size: 30px!important;
+	}
+	.author span.country{
+		top:80px;
 	}
 	span.age{
 		margin-left: 0;
@@ -150,6 +165,9 @@
 		text-align: center;
 		padding: 2px 0 0 0;
 		font-size: 12px;
+	}
+	.author span.age{
+		top:105px;
 	}
 }
 .small-profile{
@@ -204,6 +222,13 @@ cursor: pointer;
 }
 }
 .status {
+	.heading{
+		margin-bottom: 0;
+		overflow: hidden;
+		img{
+			margin-bottom: 0;
+		}
+	}
 	p{
 		padding: 20px;
 		line-height: 2;
@@ -229,5 +254,19 @@ cursor: pointer;
 			line-height: 1;
 			float: left;
 		}
+	}
+}
+.clock{
+	float: right;
+	margin: 15px 20px 0 0;
+	font-size: 24px;
+	color:@lightGrey;
+	cursor: pointer;
+	.transition ( all .5s ease);
+	&:hover {
+		color:@grey;
+	}
+	i{
+	text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
 	}
 }
