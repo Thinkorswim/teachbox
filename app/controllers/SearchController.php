@@ -11,10 +11,10 @@ class SearchController extends \BaseController {
 	}
 
 	public function searchFront(){
-
+		$keyword = ' ';
 		$courses = Course::paginate(5);
 			return View::make('search.index')
-					->with(array('courses' => $courses));
+					->with(array('courses' => $courses, 'keyword' => $keyword));
 	}
 
 

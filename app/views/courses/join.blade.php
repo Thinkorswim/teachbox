@@ -9,12 +9,12 @@
 	<div class="course-section">
 		<div class="container">
 			<div class="col-xs-12 col-md-3">
-					<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
+					<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}">
 					<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
 						{{ $studentCount }}
 					</span>
 			</div>
-			<div class="col-xs-12 col-xs-9">
+			<div class="col-xs-12 col-md-9">
 				<h1>{{ $course->name }}</h1>
 				<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			</div>

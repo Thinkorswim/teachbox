@@ -48,14 +48,15 @@
 						@endif  
 						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
 						</div>
-						<div>Change course image</div>
-						<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-						<div class="fileUpload btn btn-primary">
-						    <span>Choose a picture</span>
-							{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
-						</div>	
+						<div class="row">
+							<img class="circle" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}">
+							<div class="fileUpload btn btn-primary">
+							    <span>Change the picture</span>
+								{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
+							</div>	
+						</div>
 					{{ Form::token() }}
-					{{ Form::submit('Save settings', array('class'=>'form-control')) }}
+					{{ Form::submit('Save settings', array('class'=>'form-control register-button')) }}
 				{{ Form::close() }}	
 			</div>
 		</div>
@@ -74,33 +75,6 @@
 		  </div>
 		</div>
 		@endif
-			<div class="panel panel-default student-card">
-				<div class="panel-heading">
-					<h3 class="panel-title">About the tutor</h3>
-				</div>
-			  <div class="panel-body padding-panel author">
-			  		<a href="{{ URL::action('ProfileController@user', [$user->id]) }}">
-			  		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
-			  		</a>
-					@if ($user->date != '')
-					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
-						{{ageCalculator( $user->date )}}
-					</span>
-					@endif 
-				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
-					</span>
-					@endif
-			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
-			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
-			  	</div>
-				<div class="row">
-				@if($user->decription != '')
-					<p>{{$user->decription}}</p>
-				@endif
-				</div>
-			</div>
 	    </div>
 	</div>
 </div>

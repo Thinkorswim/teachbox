@@ -28,7 +28,7 @@
 	.panel-body.padding-panel{
 		padding: 20px;
 		img{
-			float: none;
+			float: left;
 		}
 	}
 	.list-group{
@@ -301,16 +301,18 @@ cursor: pointer;
 }
 .missing-page{
 	background: @grey;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	top:0;
 	left:0;
+	bottom: 0;
+	right: 0;
 	z-index: 9999;
 	text-align: center;
 	img{
 		display:block;
-		margin: 10em auto 0;
+		margin: 0 auto;
 	}
 	h1{
 		font-weight: 900;
@@ -323,5 +325,35 @@ cursor: pointer;
 	a:hover{
 		color:@blue;
 		text-decoration: underline;
+	}
+}
+@media screen and (max-width: 500px){
+	.settings-panel, .action{
+		margin:30px 0 0 0;
+	}
+	body .course-section{
+		img{
+			margin:0 auto;
+		}
+	}
+	body .status {
+		.content-status{
+		margin:0;
+		.course .panel.panel-default{
+			margin:0;
+		}
+		}
+		hr{
+			display: none;
+		}
+	}
+	body .tabs-profile{
+		padding: 0!important;
+		 .container{
+			padding:0;
+		}
+		.nav.nav-pills li{
+			font-size: 12px;
+		}
 	}
 }

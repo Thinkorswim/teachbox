@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="missing-page">
-	<img alt="Brand" src="{{ URL::asset('img/logo.png') }}">
+	<img alt="Brand" src="{{ URL::asset('img/teachbox-logo.jpg') }}">
 	<h1>404</h1>
 	<p>Someting went terribly wrong! <a href="{{ URL::route('home') }}" >Go home.</a></p>
 </div>

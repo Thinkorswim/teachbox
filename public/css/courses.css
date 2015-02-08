@@ -200,3 +200,18 @@
 .btn.btn-default.join:hover {
   background: #1abc9c;
 }
+@media screen and (max-width: 991px) {
+  body .course-section {
+    text-align: center;
+  }
+  body .course-section img {
+    margin: 0 auto;
+  }
+  body .course-section span.age {
+    left: initial;
+    margin-left: 30px;
+  }
+  .student-card .panel-body {
+    max-width: 300px;
+  }
+}

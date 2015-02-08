@@ -85,7 +85,7 @@ class CourseController extends \BaseController {
 					return Redirect::action('CourseController@create')
 							->with('global-negative', 'Your profile settings could not be created.');
 			}
-			
+
 	    }
 	}
 

@@ -8187,7 +8187,10 @@ html .main {
 .fileUpload {
   position: relative;
   overflow: hidden;
-  margin: 10px;
+  margin: 80px 10px;
+}
+.fileUpload.no-upload {
+  margin: 10px 0 15px;
 }
 .fileUpload input.upload {
   position: absolute;
@@ -8199,6 +8202,9 @@ html .main {
   cursor: pointer;
   opacity: 0;
   filter: alpha(opacity=0);
+}
+.register-button {
+  margin-top: 20px;
 }
 select {
   margin-bottom: 15px;
@@ -9159,7 +9165,7 @@ input[type="submit"]:focus {
   padding: 20px;
 }
 .panel.panel-default.actions .panel-body.padding-panel img {
-  float: none;
+  float: left;
 }
 .panel.panel-default.actions .list-group {
   font-size: 1em;
@@ -9425,17 +9431,19 @@ input[type="submit"]:focus {
 }
 .missing-page {
   background: #2c3e50;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 9999;
   text-align: center;
 }
 .missing-page img {
   display: block;
-  margin: 10em auto 0;
+  margin: 0 auto;
 }
 .missing-page h1 {
   font-weight: 900;
@@ -9448,6 +9456,33 @@ input[type="submit"]:focus {
 .missing-page a:hover {
   color: #1abc9c;
   text-decoration: underline;
+}
+@media screen and (max-width: 500px) {
+  .settings-panel,
+  .action {
+    margin: 30px 0 0 0;
+  }
+  body .course-section img {
+    margin: 0 auto;
+  }
+  body .status .content-status {
+    margin: 0;
+  }
+  body .status .content-status .course .panel.panel-default {
+    margin: 0;
+  }
+  body .status hr {
+    display: none;
+  }
+  body .tabs-profile {
+    padding: 0!important;
+  }
+  body .tabs-profile .container {
+    padding: 0;
+  }
+  body .tabs-profile .nav.nav-pills li {
+    font-size: 12px;
+  }
 }
 .course-section {
   background: #1abc9c;
@@ -9651,6 +9686,21 @@ input[type="submit"]:focus {
 }
 .btn.btn-default.join:hover {
   background: #1abc9c;
+}
+@media screen and (max-width: 991px) {
+  body .course-section {
+    text-align: center;
+  }
+  body .course-section img {
+    margin: 0 auto;
+  }
+  body .course-section span.age {
+    left: initial;
+    margin-left: 30px;
+  }
+  .student-card .panel-body {
+    max-width: 300px;
+  }
 }
 #course-slider .panel {
   margin: 30px 60px;
