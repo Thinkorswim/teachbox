@@ -301,6 +301,15 @@
 
 		));
 
+	//Feedback
+
+		Route::get('/feedback', array(
+			'as' => 'feedback',
+			'uses' => 'ProfileController@feedback'
+
+		));
+
+
 	// Messages
 
 		Route::get('/messages', array(

@@ -37,9 +37,9 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
+	      	<li class="icon-list"><a href="{{ URL::action('ProfileController@feedback')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
-	      	<li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li>
+	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->take(5)->get();
 	        $createdList = Course::where('user_id', '=', Auth::user()->id)->get();
@@ -122,9 +122,8 @@
 		<div class="container">
 				<a href="">Privacy</a>
 				<a href="">Terms</a>
-				<a href="">Cookies</a>
 				<a href="">Advertising</a>
-				<a href=""><strong>Give us feedback</strong></a>
+				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
 				<ul>
 				  <li>
 					<a href="https://www.facebook.com/">

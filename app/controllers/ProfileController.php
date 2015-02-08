@@ -494,4 +494,12 @@ class ProfileController extends \BaseController {
 		}
 		return App::abort(404);
 	}
+
+	public function feedback(){
+		if(Auth::check()){
+
+			return View::make('feedback.send_feedback');
+		}
+
+	}
 }
