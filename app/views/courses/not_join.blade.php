@@ -21,10 +21,6 @@
 			<div class="col-xs-9">
 					<h1>{{ $course->name }}</h1>
 				    <h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
-			@if(Auth::check())
-				{{ Form::token() }}
-				{{ Form::submit('Join', array('class'=>'btn btn-default')) }}
-			@endif
 			</div>
 		</div>
 	</div>
@@ -63,6 +59,10 @@
 	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
+	    		@if(Auth::check())
+					{{ Form::token() }}
+					{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+				@endif
 			<div class="panel panel-default student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
@@ -85,6 +85,7 @@
 			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
 			  	</div>
 				<div class="row">
+				<hr>
 				@if($user->decription != '')
 					<p>{{$user->decription}}</p>
 				@endif

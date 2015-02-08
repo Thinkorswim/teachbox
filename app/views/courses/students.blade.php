@@ -61,7 +61,21 @@
 		@endif
 		@endforeach
    </div>
-	    <div class="col-xs-12 col-sm-4 author-card">
+		<div class="col-xs-12 col-sm-4 author-card">
+			@if (Auth::user()->id == $course->user_id)
+			<div class="panel panel-default actions">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Actions</h3>
+			  </div>
+			  <div class="panel-body">
+				<div class="list-group">
+				  <a class="list-group-item" href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
+				  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
+				</div>
+				
+			  </div>
+			</div>
+		@endif
 			<div class="panel panel-default student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
@@ -88,21 +102,6 @@
 					<p>{{$user->decription}}</p>
 				@endif
 				</div>
-			</div>
-		@if (Auth::user()->id == $course->user_id)
-		<div class="panel panel-default actions">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Actions</h3>
-		  </div>
-		  <div class="panel-body">
-			<div class="list-group">
-			  <a class="list-group-item" href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
-			  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
-			</div>
-			
-		  </div>
-		</div>
-		@endif
     </div>
 </div>
 

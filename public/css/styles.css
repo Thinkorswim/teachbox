@@ -9241,6 +9241,17 @@ input[type="submit"]:focus {
 .playlist-panel .active {
   font-weight: 900;
 }
+.follow .author-card .student-card {
+  margin-bottom: 0;
+}
+.author-card .student-card {
+  margin-bottom: 30px;
+}
+.author-card hr {
+  margin-top: 0;
+  margin-bottom: 10px;
+  width: 100%;
+}
 .author-card .panel-heading {
   background: #1abc9c;
   border-radius: 0;
@@ -9285,7 +9296,7 @@ input[type="submit"]:focus {
   background-size: 30px!important;
 }
 .student-card .author span.country {
-  top: 80px;
+  top: initial;
 }
 .student-card span.age {
   margin-left: 0;
@@ -9298,7 +9309,10 @@ input[type="submit"]:focus {
   font-size: 12px;
 }
 .student-card .author span.age {
-  top: 105px;
+  top: initial;
+  margin-top: 30px;
+  left: 120px;
+  margin-left: 10px;
 }
 .small-profile {
   border-radius: 50%;
@@ -9398,6 +9412,9 @@ input[type="submit"]:focus {
 .clock i {
   text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
 }
+.no-timeline h2 {
+  margin-bottom: 0;
+}
 .course-section {
   background: #1abc9c;
   padding: 30px 0;
@@ -9415,22 +9432,6 @@ input[type="submit"]:focus {
 }
 .course-section h1,
 .course-section h5 {
-  color: #ffffff;
-}
-.course-section .btn {
-  border: 3px solid #2c3e50;
-  background: none;
-  color: #2c3e50;
-  font-weight: 900;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  padding: 5px 15px;
-}
-.course-section .btn:hover {
-  background: #2c3e50;
   color: #ffffff;
 }
 .course-section a {
@@ -9595,6 +9596,24 @@ input[type="submit"]:focus {
 .col-sm-6.course .ribbon {
   right: 25px;
   top: 29px;
+}
+.btn.btn-default.join {
+  font-weight: 900;
+  font-size: 14px;
+  margin: 30px 0;
+  border-radius: 0;
+  padding: 10px 20px;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+}
+.btn.btn-default.join:hover {
+  background: #1abc9c;
 }
 #course-slider .panel {
   margin: 30px 60px;

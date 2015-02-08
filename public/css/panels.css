@@ -108,6 +108,17 @@
 .playlist-panel .active {
   font-weight: 900;
 }
+.follow .author-card .student-card {
+  margin-bottom: 0;
+}
+.author-card .student-card {
+  margin-bottom: 30px;
+}
+.author-card hr {
+  margin-top: 0;
+  margin-bottom: 10px;
+  width: 100%;
+}
 .author-card .panel-heading {
   background: #1abc9c;
   border-radius: 0;
@@ -152,7 +163,7 @@
   background-size: 30px!important;
 }
 .student-card .author span.country {
-  top: 80px;
+  top: initial;
 }
 .student-card span.age {
   margin-left: 0;
@@ -165,7 +176,10 @@
   font-size: 12px;
 }
 .student-card .author span.age {
-  top: 105px;
+  top: initial;
+  margin-top: 30px;
+  left: 120px;
+  margin-left: 10px;
 }
 .small-profile {
   border-radius: 50%;
@@ -263,4 +277,7 @@
 }
 .clock i {
   text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
+}
+.no-timeline h2 {
+  margin-bottom: 0;
 }

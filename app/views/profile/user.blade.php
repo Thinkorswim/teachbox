@@ -78,7 +78,7 @@
 	<div class="container">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)
-			<div class="panel panel-default settings-panel actions">
+			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h2><strong>Nothing on the timeline yet.</strong></h2>
 					@if ($user->id == Auth::user()->id)

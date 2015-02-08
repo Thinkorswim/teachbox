@@ -96,7 +96,7 @@
 					</div>
 				@endforeach
 		@else
-			<div class="panel panel-default settings-panel actions">
+			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h4><strong>No created courses yet.</strong></h4>
 				</div>
@@ -136,7 +136,7 @@
 	</div>
 	<div class="col-xs-12 col-sm-4">
 			@if($user->decription != '')
-				<div class="panel panel-default actions">
+				<div class="panel panel-default actions no-timeline">
 				  <div class="panel-heading">
 				    <h3 class="panel-title">About</h3>
 				  </div>

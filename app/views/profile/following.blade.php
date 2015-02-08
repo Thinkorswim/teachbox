@@ -77,7 +77,7 @@
 	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
 			@if(count($followingList) == 0)
-			<div class="panel panel-default settings-panel actions">
+			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h2><strong>Doesn't follow anyone yet.</strong></h2>
 					@if ($user->id == Auth::user()->id)

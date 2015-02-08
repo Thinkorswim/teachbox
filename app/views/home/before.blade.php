@@ -82,7 +82,7 @@
 
 
 					<!-- Registration -->
-					<div role="tabpanel" class="tab-pane register" id="register">
+					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
 						@if($errors->has('name'))
 						<div id="user-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('name')}}">
@@ -123,6 +123,7 @@
 						<div class="input-group submit">
 							 {{ Form::submit('Register', array('class'=>'form-control register-button')) }}
 						</div>
+						<small>By clicking register you agree with our <strong><a href=""> Terms and conditions</a></strong></small>
 						{{ Form::token() }}
 						{{ Form::close() }}
 					</div>
