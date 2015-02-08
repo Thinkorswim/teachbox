@@ -4,7 +4,8 @@ class SearchController extends \BaseController {
 
 	public function search($keyword){
 
-		$courses = Course::where('name', 'LIKE',  '%' .$keyword. '%' )->paginate(5);
+		$courses = Course::where('approved', '=', '1')
+		->where('name', 'LIKE',  '%' .$keyword. '%' )->paginate(5);
 			return View::make('search.index')
 					->with(array('courses' => $courses, 'keyword' => $keyword));
 	}
@@ -33,7 +34,8 @@ class SearchController extends \BaseController {
 
 			$term = Input::get('term');
 
-			$data = Course::where('name', 'LIKE',  '%' .$term. '%' )->take(10)->get();
+			$data = Course::where('approved', '=', '1')
+						->where('name', 'LIKE',  '%' .$term. '%' )->take(10)->get();
  			$result = [];
 
  			foreach ($data as $course) {

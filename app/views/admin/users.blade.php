@@ -26,8 +26,8 @@
                 @endif
                 </td>
                 <td>
-                @if(Auth::check())
-                    {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }}    
+                    {{ Form::open(array('action' => array('AdminController@makeAdmin', $user->id))) }} 
+
                             {{ Form::token() }}
                     <div class="btn-group">
                         <a href="{{ URL::action('AdminController@updateUser', [$user->id]) }}" class="btn btn-info pull-left">
@@ -36,8 +36,7 @@
                         @if($user->admin != 1)
                                         {{ Form::button('<i class="fa fa-plus"></i> Make admin', array('type' => 'submit','class'=>'btn btn-info pull-left')) }}
                                 @endif
-                            {{ Form::close() }}
-                         @endif
+                    {{ Form::close() }}
                     </div>
                 </td>
             </tr>

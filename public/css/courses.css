@@ -4,6 +4,9 @@
   width: 100%;
   height: auto;
 }
+.course-section h1 {
+  margin-top: 38px;
+}
 .course-section img {
   display: block;
   border-radius: 50%;
@@ -185,7 +188,7 @@
   font-size: 14px;
   margin: 30px 0;
   border-radius: 0;
-  padding: 10px 20px;
+  padding: 10px ;
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1.1px;

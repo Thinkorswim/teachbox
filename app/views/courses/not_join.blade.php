@@ -9,7 +9,6 @@
 @stop
 
 @section('content')
-{{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 	<div class="course-section">
 		<div class="container">
 			<div class="col-xs-3">
@@ -24,7 +23,6 @@
 			</div>
 		</div>
 	</div>
-	{{ Form::close() }}	
 
 	<div class="tabs-profile">
 		<div class="container">
@@ -59,10 +57,12 @@
 	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
-	    		@if(Auth::check())
-					{{ Form::token() }}
-					{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
-				@endif
+		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+		    		@if(Auth::check())
+						{{ Form::token() }}
+						{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+					@endif
+			{{ Form::close() }}	
 			<div class="panel panel-default student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>

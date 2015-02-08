@@ -113,6 +113,7 @@
 }
 .author-card .student-card {
   margin-bottom: 30px;
+  margin: 0 0 30px;
 }
 .author-card hr {
   margin-top: 0;
@@ -280,4 +281,37 @@
 }
 .no-timeline h2 {
   margin-bottom: 0;
+}
+.no-messages {
+  padding-top: 34vh;
+}
+.no-messages .btn.btn-default {
+  background: none;
+  border: none;
+}
+.missing-page {
+  background: #2c3e50;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  text-align: center;
+}
+.missing-page img {
+  display: block;
+  margin: 10em auto 0;
+}
+.missing-page h1 {
+  font-weight: 900;
+  font-size: 6em;
+}
+.missing-page p {
+  color: #ffffff;
+  font-size: 2em;
+}
+.missing-page a:hover {
+  color: #1abc9c;
+  text-decoration: underline;
 }

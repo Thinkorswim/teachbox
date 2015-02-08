@@ -16,7 +16,7 @@
 				<small>Maybe change your search to something less specific. </small>
 			</div>
 		@else
-			<h1>Search for <strong>search term</strong></h1>
+			<h1>Search for <strong>{{ $keyword }}</strong></h1>
 		@endif
 		<div class="scroll">
 			@foreach ($courses as $course)

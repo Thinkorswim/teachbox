@@ -18,22 +18,22 @@
 	      </div>
 	      <div class="modal-body">
 				<ul class="list-group" role="tablist">
-					<btn class="list-group-item choose-user">
+					<button class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</btn>
-					<btn class="list-group-item choose-user">
+			    	</button>
+					<button class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</btn>
-					<btn class="list-group-item choose-user">
+			    	</button>
+					<button class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</btn>
-					<btn class="list-group-item choose-user">
+			    	</button>
+					<button class="list-group-item choose-user">
 				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
 				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</btn>
+			    	</button>
 				</ul>
 	      </div>
 	    </div>
@@ -50,12 +50,15 @@
 	      <form>
 				{{ Form::textarea('', null, array('placeholder' => 'Say hi!',
 				'rows' => '5', 'class'=>'form-control', 'id' => 'text-new')) }}
-				<button class="form-control" id="send-message" data-toggle="modal" data-target="#chat-with"></button>
+				{{ Form::button('Send', array(
+				'data-toggle'=>'modal', 'data-target'=>'#chat-with', 'class'=>'btn btn-default form-control',
+				'id' => 'send-message')) }}
 			</form>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	@if(count($users) > 0)
 <div class="container" role="tabpanel">
 	<div class="col-xs-12 col-sm-4">
 		<div class="panel panel-default actions playlist-panel message-list">
@@ -72,7 +75,7 @@
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
 						    	<strong> {{ $user->name }}<span id="badge-{{ $user->id }}" class="badge"></span></strong>
 					    	</a>
-							<?php $active = false; ?>				    	
+							<?php $active = false; ?>
 				    	@else
 				    		<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
@@ -102,5 +105,12 @@
 			</div>
 		</div>
 	</div>
+
 </div>
+@else
+	<div class="container centered no-messages">
+		<button type="button" data-toggle="modal" data-target="#list-modal" class="btn btn-default big-plus"><i class="fa fa-3x fa-plus"></i></button>
+		<h2><strong>Click on the plus and start your first chat.</strong></h2>
+	</div>
+@endif
 @endsection

@@ -9246,6 +9246,7 @@ input[type="submit"]:focus {
 }
 .author-card .student-card {
   margin-bottom: 30px;
+  margin: 0 0 30px;
 }
 .author-card hr {
   margin-top: 0;
@@ -9415,11 +9416,47 @@ input[type="submit"]:focus {
 .no-timeline h2 {
   margin-bottom: 0;
 }
+.no-messages {
+  padding-top: 34vh;
+}
+.no-messages .btn.btn-default {
+  background: none;
+  border: none;
+}
+.missing-page {
+  background: #2c3e50;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  text-align: center;
+}
+.missing-page img {
+  display: block;
+  margin: 10em auto 0;
+}
+.missing-page h1 {
+  font-weight: 900;
+  font-size: 6em;
+}
+.missing-page p {
+  color: #ffffff;
+  font-size: 2em;
+}
+.missing-page a:hover {
+  color: #1abc9c;
+  text-decoration: underline;
+}
 .course-section {
   background: #1abc9c;
   padding: 30px 0;
   width: 100%;
   height: auto;
+}
+.course-section h1 {
+  margin-top: 38px;
 }
 .course-section img {
   display: block;
@@ -9602,7 +9639,7 @@ input[type="submit"]:focus {
   font-size: 14px;
   margin: 30px 0;
   border-radius: 0;
-  padding: 10px 20px;
+  padding: 10px ;
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 1.1px;
@@ -9683,9 +9720,13 @@ input[type="submit"]:focus {
 #chat-with .modal-dialog {
   width: 320px;
 }
-#list-modal .modal-body {
-  height: 100px;
+#list-modal .modal-body,
+#chat-with .modal-body {
+  max-height: 600px;
   overflow: auto;
+}
+#list-modal .list-group {
+  margin-bottom: 0;
 }
 #list-modal .list-group ::-webkit-scrollbar {
   width: 12px;
@@ -9696,8 +9737,23 @@ input[type="submit"]:focus {
 #list-modal .list-group ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(44, 62, 80, 0.5);
 }
-#list-modal .list-group btn {
+#list-modal .list-group button {
   cursor: pointer;
+  border-radius: none;
+  border: none;
+  width: 100%;
+  min-height: 46px;
+  line-height: 2;
+  text-align: left;
+}
+#list-modal .list-group button:hover {
+  background: #efefef;
+}
+#chat-with .modal-body button#send-message {
+  width: auto;
+  background: #2c3e50;
+  color: #ffffff;
+  border: 0;
 }
 .footer a {
   color: #384047;

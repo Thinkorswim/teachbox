@@ -69,16 +69,8 @@
 						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
 						</span>
 					</a>
-				  </li>				 
-				  <li>
-					<a href="#">
-						<span class="fa-stack fa-lg">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-						</span>
-					</a>
 				  </li>
-				</ul>	
+				</ul>
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
 	</footer>

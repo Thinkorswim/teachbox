@@ -91,7 +91,7 @@
   		));
 
 		//Making admin
-		Route::post('/admin/users/{id}', array(
+		Route::post('/admin/users/{id}/make-admin', array(
 				'as'   => 'admin-make',
 				'uses' => 'AdminController@makeAdmin'
 		));
@@ -336,3 +336,7 @@
 				'as'   => 'get-notification',
 				'uses' => 'MessagesController@getNotification'
 		));
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array('url' => Request::url()), 404);
+});

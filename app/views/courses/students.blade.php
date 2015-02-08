@@ -62,6 +62,12 @@
 		@endforeach
    </div>
 		<div class="col-xs-12 col-sm-4 author-card">
+		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+		    		@if(Auth::check())
+						{{ Form::token() }}
+						{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+					@endif
+			{{ Form::close() }}	
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">

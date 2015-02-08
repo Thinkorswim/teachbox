@@ -31,12 +31,13 @@
 #list-modal .modal-dialog, #chat-with .modal-dialog{
 	width: 320px;
 }
-#list-modal .modal-body{
-		height: 100px;
+#list-modal .modal-body, #chat-with .modal-body{
+		max-height: 600px;
 		overflow: auto;
 }
 #list-modal .list-group{
-				::-webkit-scrollbar {
+		margin-bottom: 0;
+		::-webkit-scrollbar {
 		    width: 12px;
 		}
 		 ::-webkit-scrollbar-thumb {
@@ -45,8 +46,25 @@
 		::-webkit-scrollbar-thumb:window-inactive {
 			background: rgba(44, 62, 80,.5); 
 		}
-		btn{
+		button{
 			cursor: pointer;
+			border-radius: none;
+			border: none;
+			width:100%;
+			min-height:46px;
+			line-height: 2;
+			text-align: left;
+			&:hover{
+				background:@lightGrey;
+			}
 		}
 
-}
+		}
+#chat-with .modal-body{
+		button#send-message{
+			width:auto;
+			background: @grey;
+			color:@white;
+			border:0;
+		}
+	}
