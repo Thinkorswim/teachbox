@@ -9394,7 +9394,7 @@ input[type="submit"]:focus {
   margin-bottom: 0;
 }
 .status p {
-  padding: 20px;
+  padding: 20px 20px 5px;
   line-height: 2;
 }
 .status p:first-child {
@@ -9422,22 +9422,14 @@ input[type="submit"]:focus {
   float: left;
 }
 .clock {
-  float: right;
-  margin: 15px 20px 0 0;
-  font-size: 24px;
-  color: #efefef;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-}
-.clock:hover {
+  display: block;
   color: #2c3e50;
+  margin: 0 0 20px 20px;
+  font-size: 18px;
 }
 .clock i {
   text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
 }
 .no-timeline h2 {
   margin-bottom: 0;
@@ -9724,6 +9716,9 @@ input[type="submit"]:focus {
 }
 #course-slider .panel {
   margin: 30px 24px 0;
+}
+#course-slider .col-sm-3 {
+  padding: 0;
 }
 .carousel-fade .carousel-inner .item {
   opacity: 0;

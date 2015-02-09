@@ -257,7 +257,7 @@ cursor: pointer;
 		}
 	}
 	p{
-		padding: 20px;
+		padding: 20px 20px 5px;
 		line-height: 2;
 	}
 	p:first-child{
@@ -283,18 +283,15 @@ cursor: pointer;
 		}
 	}
 }
+
 .clock{
-	float: right;
-	margin: 15px 20px 0 0;
-	font-size: 24px;
-	color:@lightGrey;
-	cursor: pointer;
-	.transition ( all .5s ease);
-	&:hover {
-		color:@grey;
-	}
+	display:block;
+	color:@grey;
+	margin:0 0 20px 20px;
+	font-size: 18px;
 	i{
 	text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
+	margin:0 8px;
 	}
 }
 .no-timeline{

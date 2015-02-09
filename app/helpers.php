@@ -61,11 +61,31 @@
 			return $newThumbName . '-100x100'.$newThumbExtension;
 	}
 	function dateTimeline($date){
-		$day = substr($date,8,2);
-		$month = substr($date,5,2);
-		$year = substr($date,0,4);
+		$dateTimeline = new DateTime($date);
+		$now = new DateTime();
+		$difference = $dateTimeline->diff($now);
+		$days = $difference->d;
+		$hours = $difference->h;
+		$min = $difference->i;
+			if($days != 0 && $days != 1){
+				return $dateTimeline->diff($now)->format("%d days ago");
+			}
+			if($hours == 1 && $days == 0){
+				return $dateTimeline->diff($now)->format("%h hour ago");
+			}
+			if($hours > 1 && $days == 0){
+				return $dateTimeline->diff($now)->format("%h hours ago");
+			}
+			if($days == 1){
+				return "Yesterday";
+			}
+			if($hours == 0 && $days == 0 && $min > 3){
+				return $dateTimeline->diff($now)->format("%i minutes ago");
+			}
+			if($hours == 0 && $days == 0 && $min <= 3){
+				return "Just now";
+			}
 
-		return $day . '.'. $month. '.'. $year;
 	}
 
 	function generateRandomString($length) {

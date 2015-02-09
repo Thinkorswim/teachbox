@@ -13,18 +13,19 @@
 	    <?php $courses = Course::all()->take(10);
 	    $isActive = true; ?>
 	    @foreach($courses as $course)
+	    @if($course->approved == 1 && $course->user_id != Auth::user()->id)
 	    <?php $user = User::find($course->user_id); ?>
 		    @if($isActive)
 		    <div class="item active">
 				<div class="course">
 					<div class="panel panel-default course-panel">
 					  <div class="panel-body">
-					  	<div class="col-xs-12 col-lg-3">
+					  	<div class="col-xs-12 col-sm-3">
 						  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 							<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
 						  </a>
 						</div>
-						<div class="col-xs-12 col-lg-9">
+						<div class="col-xs-12 col-sm-9">
 					  	  <h3><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h3>
 						   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 					  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
@@ -40,12 +41,12 @@
 				<div class="course">
 					<div class="panel panel-default course-panel">
 					  <div class="panel-body">
-					  	<div class="col-xs-12 col-lg-3">
+					  	<div class="col-xs-12 col-sm-3">
 						  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
 							<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
 						  </a>
 						</div>
-						<div class="col-xs-12 col-lg-9">
+						<div class="col-xs-12 col-sm-9">
 					  	  <h3><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h3>
 						   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 					  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
@@ -56,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+		    @endif
 		    @endif
 	    @endforeach
 	</div>  
@@ -90,9 +92,6 @@
 
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<div class="clock" data-toggle="tooltip" data-placement="top" title="{{dateTimeline($post->created_at)}}">
-							<i class="fa fa-clock-o"></i>
-						</div>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong><a href="{{ URL::action('ProfileController@user', $userT->user_id) }}"> {{  $userT->name }} </a></strong> 
 						@if (is_numeric($post->follower_id))
@@ -102,6 +101,9 @@
 						@endif
 						<strong><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{	$course->name }} </a></strong> course.
 						</p>
+						<div class="clock">
+							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
+						</div>
 						<hr>
 						<div class="content-status">
 							<div class="course">
@@ -137,14 +139,14 @@
 				?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<div class="clock" data-toggle="tooltip" data-placement="top" title="{{dateTimeline($post->created_at)}}">
-							<i class="fa fa-clock-o"></i>
-						</div>
 					  	 <p class="heading"><a href="{{ URL::action('ProfileController@user', $userF->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
 						 <strong><a href="{{ URL::action('ProfileController@user', $userF->id) }}"> {{  $userF->name }} </a></strong>
 						 followed
 						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
 						 </p>
+						<div class="clock">
+							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
+						</div>
 					</div>
 				</div>
 			@endif
