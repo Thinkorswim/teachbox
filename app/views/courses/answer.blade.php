@@ -33,7 +33,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
 			<div class="panel panel-default settings-panel actions">
 			<div class="panel-heading">
@@ -117,6 +117,7 @@
 			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
 			  	</div>
 				<div class="row">
+				<hr>
 				@if($user->decription != '')
 					<p>{{$user->decription}}</p>
 				@endif

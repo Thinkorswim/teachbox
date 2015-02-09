@@ -35,7 +35,9 @@
 </div>
 <div class="container follow">
 	<div class="col-xs-12 col-sm-8">
+		<?php $studentIdList = array(); ?> 
 		@foreach ($studentList as $student)
+		<?php $studentId = $student->id; $studentIdList[] = $studentId;?>
 		@if ($student->id != $user->id)
 		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
@@ -61,13 +63,17 @@
 		@endif
 		@endforeach
    </div>
+	
 		<div class="col-xs-12 col-sm-4 author-card">
+			@if ((in_array($user->id, $studentIdList)))
+			@else
 		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 		    		@if(Auth::check())
 						{{ Form::token() }}
 						{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
 					@endif
 			{{ Form::close() }}	
+			@endif
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">
@@ -82,7 +88,7 @@
 			  </div>
 			</div>
 		@endif
-			<div class="panel panel-default student-card">
+			<div class="panel panel-default author-card student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
 				</div>

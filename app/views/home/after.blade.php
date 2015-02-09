@@ -10,10 +10,10 @@
 	<h2>Featured courses</h2>
 	<div id="course-slider" class="carousel slide carousel-fade" data-ride="carousel">
 	  <div class="carousel-inner" role="listbox">
-	    <?php $courses = Course::all()->take(10);
+	    <?php $courses = Course::where('approved', '=', '1')->get()->take(10);
 	    $isActive = true; ?>
 	    @foreach($courses as $course)
-	    @if($course->approved == 1 && $course->user_id != Auth::user()->id)
+	    @if($course->user_id != Auth::user()->id)
 	    <?php $user = User::find($course->user_id); ?>
 		    @if($isActive)
 		    <div class="item active">

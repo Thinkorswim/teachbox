@@ -8178,7 +8178,14 @@ html .main {
   color: #ffffff;
 }
 .container.follow {
-  margin-bottom: 30px;
+  margin: 30px auto;
+}
+.container.follow .row,
+.container.follow .col-lg-8 {
+  margin: -30px 0;
+}
+.row > h2 {
+  margin: 20px 0 0 20px;
 }
 ::selection {
   background-color: #2c3e50;

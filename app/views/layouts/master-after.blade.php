@@ -193,6 +193,23 @@
 					    });
 					});
 				</script>		
+		@elseif(Route::current()->getName() == 'home'  && count($timeline) >= 5)
+		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+			    <script type="text/javascript">
+					$(function() {
+						$('.pagination').hide();
+
+					    $('.scroll').jscroll({
+					    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+					        autoTrigger: true,
+					        nextSelector: '.pagination li.active + li a',
+					        contentSelector: 'div.scroll',
+					        callback: function() {
+					            $('ul.pagination:visible:first').hide();
+					        }
+					    });
+					});
+				</script>		
 		@endif
 	@endif
 
