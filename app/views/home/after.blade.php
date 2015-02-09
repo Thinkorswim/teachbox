@@ -94,10 +94,10 @@
 						</div>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong><a href="{{ URL::action('ProfileController@user', $userT->user_id) }}"> {{  $userT->name }} </a></strong> 
-						@if ($userT->id == $user->id)
-						    created
+						@if (is_numeric($post->follower_id))
+						    joined
 						@else
-							joined
+							created
 						@endif
 						<strong><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{	$course->name }} </a></strong> course.
 						</p>
