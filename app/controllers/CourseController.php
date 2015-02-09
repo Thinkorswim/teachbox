@@ -425,7 +425,45 @@ class CourseController extends \BaseController {
 	}
 
 
-	public function lessonPostEdit($id){
+	public function postLessonEdit($id, $lesson){
+
+		if(Auth::check()){
+			$validator = Validator::make(Input::all(),
+				array(
+						'description' 			 => 'min:30|max:400',
+				));
+
+			if($validator->fails()){		
+				return Redirect::action('CourseController@lessonEdit',[$id])
+						->withErrors($validator);
+
+			}else{
+
+				$lesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+				
+				$course = Course::find($id);
+				
+				$order = Lesson::where('course_id', '=', $id)->count() + 1;
+
+				$lesson->name = $name;
+				$lesson->description = $description;
+
+					if($lesson->save()){
+						return Redirect::route('course-page', array('id' => $id));
+					}
+			}
+
+			return Redirect::action('CourseController@lessonEdit',[$id])
+					->with('global-negative', 'Your lesson settings could not be changed.');
+		}
 		
 	}
 
@@ -496,7 +534,7 @@ class CourseController extends \BaseController {
 			$user = User::find($course->user_id);
 			$questionList = CourseQuestion::where('course_id', '=', $id);
 
-			$validator = Validator::make(Input::all(),
+			$Validatorr = Validator::make(Input::all(),
 					array(
 							'title' 			 => 'required|min:4|max:50',
 							'question'		 => 'required|min:30|max:400',
