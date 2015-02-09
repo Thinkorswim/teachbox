@@ -46,6 +46,10 @@
 			  	<div class="list-group">
 					@foreach ($lessonList as $lesson)
 					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
+					@if (Auth::user()->id == $course->user_id)
+					 <a href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$lesson->order]) }}" > Edit Course </a>
+					@endif
+					
 					@endforeach
 	    		</div>
 	       </div>

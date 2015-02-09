@@ -53,6 +53,11 @@
 			      'uses' => 'CourseController@postCourseEdit'
 		));
 
+		Route::post('/course/{id}/lesson/{order}/edit', array(
+			      'as' => 'post-edit-lesson',
+			      'uses' => 'CourseController@postLessonEdit'
+		));
+
 		Route::post('/search', array(
 			      'as' => 'post-search',
 			      'uses' => 'SearchController@postSearch'
@@ -184,6 +189,12 @@
 			Route::get('/course/{id}/lesson/{order}',array(
 					 'as' => 'course-lesson',
 					 'uses' => 'CourseController@courseLesson'
+			));
+
+		//Edit lesson 
+			Route::get('/course/{id}/lesson/{order}/edit',array(
+					 'as' => 'edit-lesson',
+					 'uses' => 'CourseController@lessonEdit'
 			));
 
 		//Course Questions
@@ -336,7 +347,7 @@
 				'as'   => 'get-notification',
 				'uses' => 'MessagesController@getNotification'
 		));
-App::missing(function($exception)
+/*App::missing(function($exception)
 {
     return Response::view('errors.missing', array('url' => Request::url()), 404);
-});
+});*/

@@ -407,6 +407,31 @@ class CourseController extends \BaseController {
 		}
 	}
 
+
+	public function lessonEdit($id,$lesson)
+	{
+	if(Auth::check()){
+			$course = Course::find($id);
+			$lesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+			
+			return View::make('courses.edit_lesson')->with(array('course' => $course, 'lesson' => $lesson));
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+
+	public function lessonPostEdit($id){
+		
+	}
+
+
+
+
 	public function courseQuestion($id)
 	{
 		if(Auth::check()){
