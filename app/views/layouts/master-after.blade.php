@@ -158,12 +158,6 @@
 	@endif
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-
-    @if(Route::current()->getName() != 'messages')
-  		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
-  	@endif
-
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
     	@if((Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home') && count($timeline) > 4)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
@@ -201,6 +195,12 @@
 				</script>		
 		@endif
 	@endif
+
+    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+
+    @if(Route::current()->getName() != 'messages')
+  		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
+  	@endif
 
 	@if(Route::current()->getName() == 'messages')
 		<script src="{{ URL::asset('js/messages.min.js') }}"></script>
@@ -245,12 +245,13 @@
 		$('.message-list .list-group-item').removeClass('active');
 		$(this).addClass('active');
 		});
+		$('.clock').tooltip();
 		//sticky navigation
 	    $(function() {
 		 	var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
 		    var sticky_navigation = function(){
-		    var scroll_top = $(window).scrollTop(); 
-		        if (scroll_top > sticky_navigation_offset_top) { 
+		    var scroll_top = $(window).scrollTop();
+		        if (scroll_top > sticky_navigation_offset_top) {
 		            $('.tabs-profile').css({ 'position': 'fixed', 'top':53, 'left':0, 'z-index':9995 });
 		        } else {
 		            $('.tabs-profile').css({ 'position': 'relative', 'top':0 }); 
@@ -289,9 +290,8 @@
 		$.fn.bootstrapBtn = bootstrapButton 
 		$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
-		})
 		});
-
+		});
 		//search suggestion
 		$('#keyword').autocomplete({
 				source: '/getdata',
@@ -306,10 +306,6 @@
     scrollTop: $(".playlist-panel .list-group .active").offset().top
 	}, 0);
 
-	//upload path
-	document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-	}
 
 
 	</script>

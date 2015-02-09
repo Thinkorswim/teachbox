@@ -5,7 +5,9 @@
 @stop
 
 @section('content')
+<section class="carousel-section">
 <div class="container">
+	<h2>Featured courses</h2>
 	<div id="course-slider" class="carousel slide carousel-fade" data-ride="carousel">
 	  <div class="carousel-inner" role="listbox">
 	    <?php $courses = Course::all()->take(10);
@@ -27,11 +29,10 @@
 						   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 					  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
 						  <p>{{ excerpt($course->description) }}</p>
-		
-						</div>					  
+						</div>
 					  </div>
 					</div>
-				</div>	    
+				</div>
 		    </div>
 		    <?php $isActive = false; ?>
 		    @else
@@ -59,6 +60,7 @@
 	    @endforeach
 	</div>  
 
+	</div>
 	  <!-- Controls -->
 	  <a class="left carousel-control" href="#course-slider" role="button" data-slide="prev">
 	    <span class="fa fa-chevron-left" aria-hidden="true"></span>
@@ -68,9 +70,8 @@
 	    <span class="fa fa-chevron-right" aria-hidden="true"></span>
 	    <span class="sr-only">Next</span>
 	  </a>
-	</div>
 </div>
-
+</section>
 <div class="container">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)

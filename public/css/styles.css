@@ -8432,6 +8432,16 @@ textarea {
 .full-screen h2 {
   font-weight: 900;
 }
+.carousel-section {
+  background: #1abc9c;
+}
+.carousel-section div > h2 {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 0;
+  padding-top: 5px;
+}
 .front-page-footer {
   background: #2c3e50;
   text-align: center;
@@ -9180,6 +9190,16 @@ input[type="submit"]:focus {
 }
 .panel.panel-default.actions .list-group .list-group-item {
   border: 0;
+  background: none;
+}
+.panel.panel-default.actions .list-group .edit-lesson {
+  color: #2c3e50;
+  position: absolute;
+  right: 30px;
+  margin-top: -30px;
+}
+.panel.panel-default.actions .list-group .edit-lesson i {
+  padding: 5px;
 }
 .panel.panel-default.actions .list-group .list-group-item:first-child {
   border-top-right-radius: 0;
@@ -9703,17 +9723,7 @@ input[type="submit"]:focus {
   }
 }
 #course-slider .panel {
-  margin: 30px 60px;
-}
-#course-slider .carousel-control {
-  width: 30px;
-  background: none;
-}
-#course-slider .carousel-control .fa {
-  position: absolute;
-  top: 45%;
-  color: #1abc9c;
-  font-size: 30px;
+  margin: 30px 24px 0;
 }
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -9738,6 +9748,26 @@ input[type="submit"]:focus {
 }
 .carousel-fade .carousel-control {
   z-index: 2;
+}
+.carousel-control.left {
+  margin-left: 30px;
+}
+.right.carousel-control {
+  margin-right: 30px;
+}
+.carousel-control.left,
+.carousel-control.right {
+  width: 30px;
+  background: none;
+  opacity: 1;
+  position: absolute;
+  top: 200px;
+  height: 50px;
+}
+.carousel-control.left .fa,
+.carousel-control.right .fa {
+  color: #ffffff;
+  font-size: 30px;
 }
 .modal {
   margin: 50px auto 0;

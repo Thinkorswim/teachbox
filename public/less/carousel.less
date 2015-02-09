@@ -3,17 +3,7 @@
 
 #course-slider{
 	.panel{	
-		margin:30px 60px;
-	}
-	.carousel-control{
-		width:30px;
-		background: none;
-		.fa{
-			position: absolute;
-			top: 45%;
-			color: @blue;
-			font-size: 30px;
-		}
+		margin:30px 24px 0;
 	}
 }
 .carousel-fade {
@@ -44,3 +34,21 @@
     z-index: 2;
   }
 }
+.carousel-control.left{
+margin-left: 30px;
+}
+  .right.carousel-control{
+    margin-right: 30px;
+  }
+  .carousel-control.left, .carousel-control.right{
+    width:30px;
+    background: none;
+    opacity: 1;
+      position: absolute;
+      top:200px;
+      height:50px;
+    .fa{
+      color: @white;
+      font-size: 30px;
+    }
+  }

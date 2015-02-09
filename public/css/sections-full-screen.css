@@ -86,3 +86,13 @@
 .full-screen h2 {
   font-weight: 900;
 }
+.carousel-section {
+  background: #1abc9c;
+}
+.carousel-section div > h2 {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 900;
+  margin-bottom: 0;
+  padding-top: 5px;
+}
