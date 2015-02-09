@@ -18,14 +18,15 @@ class AuthController extends \BaseController {
 										 WHERE (follows.follower_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR follows.follower_id = '$user->id') AND follows.following_id = users.id
 	        							 UNION 
 										 SELECT courses.id, user_courses.user_id ,courses.user_id, user_courses.created_at FROM user_courses, courses 
-										 WHERE (user_courses.user_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR user_courses.user_id = '$user->id') AND user_courses.course_id = courses.id  AND courses.approved = 1
+										 WHERE (user_courses.user_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR user_courses.user_id = '$user->id') AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> user_courses.user_id
 	        							 UNION 
 										 SELECT courses.id, courses.user_id, courses.name, courses.created_at FROM courses 
 										 WHERE (courses.user_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR courses.user_id = '$user->id') AND courses.approved = 1
 
 										 ORDER BY created_at DESC
 									 ") );
-	
+
+		//dd(print_r($timeline));
 
 		if(!(count($timeline) < 5)){
 			$perPage = 5;
