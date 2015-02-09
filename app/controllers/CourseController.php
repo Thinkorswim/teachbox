@@ -427,9 +427,13 @@ class CourseController extends \BaseController {
 
 	public function postLessonEdit($id, $lesson){
 
-		if(Auth::check()){
+		$course = Course::find($id);
+
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
+		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 			$validator = Validator::make(Input::all(),
 				array(
+						'name' 				 => 'required|min:4|max:50',
 						'description' 			 => 'min:30|max:400',
 				));
 
@@ -445,27 +449,44 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
-				$name 	 = Input::get('name');
-				$description = Input::get('description');
 
-				
-				$course = Course::find($id);
 				
 				$order = Lesson::where('course_id', '=', $id)->count() + 1;
 
+
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+				$video = Input::file('video');
+
+
+				$filename = $video->getClientOriginalName();
+				
+		   		$filename = preg_replace('/\s+/', '', $video->getClientOriginalName());
+		   		$path = public_path().'/courses/'. $course->id . '/' . $order;
+		   		
+		   		$video->move($path, $filename);
+
 				$lesson->name = $name;
 				$lesson->description = $description;
+				$lesson->filepath = $video;
 
-					if($lesson->save()){
-						return Redirect::route('course-page', array('id' => $id));
-					}
+		   		  if($lesson->save()){
+					return Redirect::route('course-page', array('id' => $id));
+				}else{
+					return Redirect::route('course-page', array('id' => $id))
+												->with('global-negative', 'You could not edit this lesson.');
+				}
 			}
 
-			return Redirect::action('CourseController@lessonEdit',[$id])
-					->with('global-negative', 'Your lesson settings could not be changed.');
+			}else{
+					return Redirect::route('edit-lesson', array('id' => $id));
+			}
+		}else{
+
+					return View::make('home.before');
 		}
-		
 	}
+
 
 
 
