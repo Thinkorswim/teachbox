@@ -35,10 +35,11 @@
 				@endif  
 					 {{ Form::textarea('description', $lesson->description, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
-				<!-- <div class="fileUpload btn btn-primary no-upload">
-				    <span>Choose a video</span>
+
+				<div class="fileUpload btn btn-primary no-upload">
+				    <span>Change the video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
-			    </div>  -->
+			    </div> 
 				{{ Form::token() }}
 				{{ Form::submit('Save settings', array('class'=>'form-control register-button')) }}
 			{{ Form::close() }}
