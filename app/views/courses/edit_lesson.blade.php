@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions">
@@ -16,7 +17,7 @@
 		    <h3 class="panel-title">Edit lesson</h3>
 		  </div>
 		  <div class="panel-body padding-panel">   
-			{{ Form::open(array('action' => array('CourseController@postLessonEdit', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+			{{ Form::open(array('action' => array('CourseController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
 				 @if($errors->has('name'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
 				@else             
@@ -25,25 +26,24 @@
 					<span class="input-group-addon">
 						<i class="fa fa-book"></i>
 					</span> 
-					 {{ Form::text('name', null, array('placeholder' => 'Lesson name', 'class'=>'form-control')) }}
+					 {{ Form::text('name', $lesson->name, array('placeholder' => 'Lesson name', 'class'=>'form-control')) }}
 				</div>
 				@if($errors->has('description'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
 				@else             
 				<div class="input-group">
 				@endif  
-					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
+					 {{ Form::textarea('description', $lesson->description, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
-				<div>Upload image</div>
-				<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
-				<div class="fileUpload btn btn-primary">
+				<!-- <div class="fileUpload btn btn-primary no-upload">
 				    <span>Choose a video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
-			    </div> 
-				{{ Form::submit('Upload', array('class'=>'form-control')) }}
+			    </div>  -->
+				{{ Form::token() }}
+				{{ Form::submit('Save settings', array('class'=>'form-control register-button')) }}
 			{{ Form::close() }}
 		  </div>
 		</div>
 	</div>
-</div>
+
 @endsection
