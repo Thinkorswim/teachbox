@@ -11,17 +11,30 @@ class AuthController extends \BaseController {
 	{
 		if(Auth::check()){
 
-			$user = Auth::id();
+		$user = Auth::user();
 
-			/*$timeline = DB::select( DB::raw("SELECT users.id, users.email, users.created_at FROM users, follows WHERE follows.follower_id = '$user->id' AND follows.following_id = users.id
-										 UNION 
-										 SELECT courses.id, courses.user_id, user_courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
-										 UNION 
-										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id'
+
+		$timeline = DB::select( DB::raw("SELECT users.id, users.email, follows.follower_id, follows.created_at FROM users, follows 
+										 WHERE (follows.follower_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR follows.follower_id = '$user->id') AND follows.following_id = users.id
+	        							 UNION 
+										 SELECT courses.id, user_courses.user_id ,courses.user_id, user_courses.created_at FROM user_courses, courses 
+										 WHERE (user_courses.user_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR user_courses.user_id = '$user->id') AND user_courses.course_id = courses.id  AND courses.approved = 1
+	        							 UNION 
+										 SELECT courses.id, courses.user_id, courses.name, courses.created_at FROM courses 
+										 WHERE (courses.user_id IN (SELECT following_id FROM follows WHERE follows.follower_id = '$user->id') OR courses.user_id = '$user->id') AND courses.approved = 1
+
 										 ORDER BY created_at DESC
-									 ") );*/
+									 ") );
+	
 
-			return View::make('home.after');//->with(array('timeline' => $timeline));
+		if(!(count($timeline) < 5)){
+			$perPage = 5;
+			$currentPage = Input::get('page', 1) - 1;
+			$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
+			$timeline = Paginator::make($pagedData, count($timeline), $perPage);
+		}
+
+			return View::make('home.after')->with(array('timeline' => $timeline));
 		}else{
 			return View::make('home.before');
 		}
