@@ -1,6 +1,6 @@
 @extends('layouts.master-after')
 @section('title')
-  Give us feedback
+  Give us feedback -
 @stop
 
 @section('content')
