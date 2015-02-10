@@ -1,11 +1,11 @@
 @extends('layouts.master-after')
 
 @section('title')
-  Change profile picture -
+  Change lesson video -
 @stop
 
 @section('description')
-  	{{ excerpt($user->decription) }}
+  	{{ excerpt($lesson->decription) }}
 @stop
 
 @section('content')
@@ -29,11 +29,8 @@
 		  </div>
 		<div class="panel-body">
 			<div class="list-group">
-				<a class="list-group-item" href="{{ URL::action('ProfileController@userSettings', [$user->id]) }}">Profile information</a>
-				<a class="list-group-item active" href="{{ URL::action('ProfileController@changePic', [$user->id]) }}"> Change picture </a>
-				@if($user->active == 1)
-				<a class="list-group-item" href="{{ URL::action('ProfileController@changePassword', [$user->id]) }}"> Change password </a>
-				@endif
+				<a class="list-group-item" href="{{ URL::action('CourseController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
+				<a class="list-group-item active" href="{{ URL::action('CourseController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
 			</div>
 		 </div>
 		</div> 
@@ -41,16 +38,15 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions">
 			<div class="panel-heading">
-				<h3 class="panel-title">Change picture</h3>
+				<h3 class="panel-title">Change the video</h3>
 			</div>
 		  	<div class="panel-body padding-panel">
-				{{ Form::open(array('action' => array('ProfileController@postChangePic', $user->id), 'files' => true  )) }}
+				{{ Form::open(array('action' => array('CourseController@postChangeVideo', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
 				<div class="row">
-					<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
-					<div class="fileUpload btn btn-primary">
-					    <span>Choose a picture</span>
-						{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
-					</div>
+					<div class="fileUpload btn btn-primary no-upload">
+				    	<span>Change the video</span>
+			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
+			    </div> 
 				</div>
 				<div class="row">
 					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}

@@ -425,13 +425,30 @@ class CourseController extends \BaseController {
 		}
 	}
 
+	public function changeVideo($id,$lesson)
+	{
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
+			$course = Course::find($id);
+			$lesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+			
+			return View::make('courses.change_video')->with(array('course' => $course, 'lesson' => $lesson));
+		}else{
+			return View::make('home.before');
+		}
+	}
+
+
 
 	public function postLessonEdit($id,$lesson){
 
 		$course = Course::find($id);
 
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
-		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 			$validator = Validator::make(Input::all(),
 				array(
 						'name' 				 => 'required|min:4|max:50',
@@ -449,6 +466,46 @@ class CourseController extends \BaseController {
 
 				$message = nl2br($description);
 				$description = trim($message);
+
+
+				$course = Course::find($id);
+
+
+				$order = Lesson::where('course_id', '=', $id)->count();	
+
+				$lesson = Lesson::where(function ($query) use ($lesson) {
+				    $query->where('order', '=', $lesson);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->first();
+
+				$lesson->name = $name;
+				$lesson->description = $description;
+
+				
+
+		   		  if($lesson->save()){
+					return Redirect::route('course-page', array('id' => $id));
+				}else{
+					return Redirect::route('edit-lesson', array('id' => $id))
+												->with('global-negative', 'You could not edit this lesson.');
+				}
+			}
+
+		}else{
+
+					return View::make('home.before');
+		}
+	}
+
+
+
+	public function postChangeVideo($id,$lesson){
+
+		$course = Course::find($id);
+
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
+		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 
 
 				$course = Course::find($id);
@@ -493,27 +550,20 @@ class CourseController extends \BaseController {
 					$image2->save($path.'/thumb100x100.png');
      		     }
 
-
-				$lesson->name = $name;
-				$lesson->description = $description;
-				$lesson->filepath = $filename;
-
-				
+				  $lesson->filepath = $filename;
 
 		   		  if($lesson->save()){
 					return Redirect::route('course-page', array('id' => $id));
 				}else{
-					return Redirect::route('course-page', array('id' => $id))
+					return Redirect::route('change-lesson-video', array('id' => $id))
 												->with('global-negative', 'You could not edit this lesson.');
 				}
-			}
 
 			}else{
-					return Redirect::route('edit-lesson', array('id' => $id, 'lesson' => $lesson));
+					return Redirect::route('change-lesson-video', array('id' => $id, 'lesson' => $lesson));
 			}
 		}else{
-
-					return View::make('home.before');
+				return View::make('home.before');
 		}
 	}
 

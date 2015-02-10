@@ -53,10 +53,15 @@
 			      'uses' => 'CourseController@postCourseEdit'
 		));
 
-		Route::post('/course/{id}/lesson/{order}/edit', array(
+		Route::post('/course/{id}/lesson/{order}/settings', array(
 			      'as' => 'post-edit-lesson',
 			      'uses' => 'CourseController@postLessonEdit'
 		));
+
+		Route::post('/course/{id}/lesson/{order}/video-change',array(
+				  'as' => 'post-change-video',
+				  'uses' => 'CourseController@postChangeVideo'
+			));	
 
 		Route::post('/search', array(
 			      'as' => 'post-search',
@@ -192,10 +197,16 @@
 			));
 
 		//Edit lesson 
-			Route::get('/course/{id}/lesson/{order}/edit',array(
+			Route::get('/course/{id}/lesson/{order}/settings',array(
 					 'as' => 'edit-lesson',
 					 'uses' => 'CourseController@lessonEdit'
 			));
+
+		//Change lesson video 
+			Route::get('/course/{id}/lesson/{order}/video-change',array(
+					 'as' => 'change-lesson-video',
+					 'uses' => 'CourseController@changeVideo'
+			));		
 
 		//Course Questions
 			Route::get('/course/{id}/question',array(
