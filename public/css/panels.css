@@ -237,6 +237,9 @@
   right: 10px;
   top: 14px;
 }
+.author-card.student-card {
+  margin-bottom: 30px;
+}
 .status .heading {
   margin-bottom: 0;
   overflow: hidden;

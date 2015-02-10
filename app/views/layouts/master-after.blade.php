@@ -159,7 +159,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
-    	@if((Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home') && count($timeline) > 5)
+    	@if((Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home') && count($timeline) >= 5)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
 					$(function() {
