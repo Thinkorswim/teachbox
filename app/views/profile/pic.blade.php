@@ -46,7 +46,7 @@
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('ProfileController@postChangePic', $user->id), 'files' => true  )) }}
 				<div class="row">
-					<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
+					<img id="profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}" class="circle"/>
 					<div class="fileUpload btn btn-primary">
 					    <span>Choose a picture</span>
 						{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}

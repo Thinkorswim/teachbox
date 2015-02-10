@@ -49,7 +49,7 @@
 						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
 						</div>
 						<div class="row">
-							<img class="circle" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
+							<img id="profile" class="circle" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 							<div class="fileUpload btn btn-primary">
 							    <span>Change the picture</span>
 								{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
