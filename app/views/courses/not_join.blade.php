@@ -12,7 +12,7 @@
 	<div class="course-section">
 		<div class="container">
 			<div class="col-xs-12 col-md-3">
-				<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
+				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}"/>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
 					{{ $studentCount }} 
 				</span>
@@ -69,7 +69,7 @@
 				</div>
 			  <div class="panel-body padding-panel author">
 			  		<a href="{{ URL::action('ProfileController@user', [$user->id]) }}">
-			  		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
+			  		<img src="{{ URL::asset('img/'. $user->id . '/img/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
 			  		</a>
 					@if ($user->date != '')
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">

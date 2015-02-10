@@ -85,7 +85,7 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
+								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
@@ -114,7 +114,7 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/3x2' . $course->pic) }}">
+								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
 						  	  <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>

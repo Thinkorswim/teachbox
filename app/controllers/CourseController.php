@@ -55,7 +55,8 @@ class CourseController extends \BaseController {
 
 					if($course){
 						    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id );
-						    if($newImage->save('public/courses/' . $course->id . '/' . $filename) && $newImage1->save('public/courses/' . $course->id . '/3x2' . $filename)){
+						    $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/img/');
+						    if($newImage->save('public/courses/' . $course->id . '/img/' . $filename) && $newImage1->save('public/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
 						    	$course->pic    = $filename;
 						    	$course->save();
 						    }
@@ -226,8 +227,12 @@ class CourseController extends \BaseController {
 					$width = $newImage->width();
 					$newImage->fit($width, intval($width / $ratio));
 					$newImage1->fit($width, intval($width / $ratio1));
+					
+					$pathImg = public_path().'/courses/'. $course->id . '/img/';
+					
+					$success = File::cleanDirectory($pathImg);
 
-					if($newImage->save('public/courses/' . $courseEdit->id . '/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/3x2' . $filename)){
+					if($newImage->save('public/courses/' . $courseEdit->id . '/img/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
 						    	$courseEdit->pic    = $filename;
 				    }
 				}

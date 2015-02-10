@@ -12,7 +12,7 @@
 <div class="course-section">
 	<div class="container">
 		<div class="col-xs-12 col-md-3">
-				<img src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}" alt="{{ $course->name }}"/>
+				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}"/>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
 					{{ $studentCount }} 
 				</span>
