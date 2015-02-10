@@ -22,7 +22,11 @@ class MessagesController extends \BaseController {
 
 			$users = array_unique($users);
 
-			return View::make('message.index', ['users' => $users, 'count' => $count]);
+
+			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows
+											 WHERE follows.follower_id = '$myId' AND follows.following_id = users.id "));
+
+			return View::make('message.index', ['users' => $users, 'count' => $count, 'newUsers' => $newUsers]);
 		}else{
 			return Redirect::action('AuthController@index');
 		}

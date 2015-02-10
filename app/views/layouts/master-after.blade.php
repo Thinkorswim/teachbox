@@ -223,21 +223,22 @@
 		<script src="{{ URL::asset('js/messages.min.js') }}"></script>
 	@endif
 
-		@if (Request::is('user/*'))
-			<script type="text/javascript">
-			$( "#send-message" ).click(function() {
-			  var text = $('#text').val();
+	@if (Request::is('user/*'))
+		<script type="text/javascript">
+		$( "#send-message" ).click(function() {
+		  var text = $('#text').val();
 
-			    if (text.length > 0)
-			    {
-			        $.post( '{{ URL::to('/'); }}/messages/send', {message: text, userId: {{ $user->id }}}, function()
-			        {
-			            window.location = "{{ URL::to('/'); }}/messages";
-			        });
-			    }
-			});
-			</script>
-		@endif
+		    if (text.length > 0)
+		    {
+		        $.post( '{{ URL::to('/'); }}/messages/send', {message: text, userId: {{ $user->id }}}, function()
+		        {
+		            window.location = "{{ URL::to('/'); }}/messages";
+		        });
+		    }
+		});
+		</script>
+	@endif
+
 
 	<script>
 	$('.choose-user').on('click' , function() { 

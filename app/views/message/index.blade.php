@@ -18,22 +18,12 @@
 	      </div>
 	      <div class="modal-body">
 				<ul class="list-group" role="tablist">
-					<button class="list-group-item choose-user">
-				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
-				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</button>
-					<button class="list-group-item choose-user">
-				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
-				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</button>
-					<button class="list-group-item choose-user">
-				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
-				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</button>
-					<button class="list-group-item choose-user">
-				    	<img class="small-profile" src="http://www.villard.biz/assets/Uploads/projects/portrait-o.jpg">
-				    	<strong> Ivan Lebanov<span class="badge"></span></strong>
-			    	</button>
+					@foreach ($newUsers as $nUser)
+						<button class="list-group-item choose-user" onclick="setRecipient({{ $nUser->id }})">
+					    	<img class="small-profile" src="{{ URL::asset('img/'. $nUser->id . '/' . $nUser->pic) }}">
+					    	<strong> {{ $nUser->name }} <span class="badge"></span></strong>
+				    	</button>
+					@endforeach
 				</ul>
 	      </div>
 	    </div>
@@ -67,7 +57,7 @@
 		  </div>
 		  <ul class="list-group" role="tablist">
 		  		<?php $active = true;
-		  			  $i = 1;
+		  			  $i = 0;
 		  		 ?>
 		  		@foreach ($users as $user)
 			  			@if ($active)
