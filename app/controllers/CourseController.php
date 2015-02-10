@@ -410,7 +410,8 @@ class CourseController extends \BaseController {
 
 	public function lessonEdit($id,$lesson)
 	{
-	if(Auth::check()){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 			$course = Course::find($id);
 			$lesson = Lesson::where(function ($query) use ($lesson) {
 				    $query->where('order', '=', $lesson);
@@ -425,7 +426,7 @@ class CourseController extends \BaseController {
 	}
 
 
-	public function postLessonEdit($id, $lesson){
+	public function postLessonEdit($id,$lesson){
 
 		$course = Course::find($id);
 
@@ -438,10 +439,22 @@ class CourseController extends \BaseController {
 				));
 
 			if($validator->fails()){		
-				return Redirect::action('CourseController@lessonEdit',[$id])
-						->withErrors($validator);
+				return Redirect::route('edit-lesson', array('id' => $id))
+							->withErrors($validator);
 
 			}else{
+
+				$name 	 = Input::get('name');
+				$description = Input::get('description');
+
+				$message = nl2br($description);
+				$description = trim($message);
+
+
+				$course = Course::find($id);
+
+
+				$order = Lesson::where('course_id', '=', $id)->count();	
 
 				$lesson = Lesson::where(function ($query) use ($lesson) {
 				    $query->where('order', '=', $lesson);
@@ -450,25 +463,42 @@ class CourseController extends \BaseController {
 				})->first();
 
 
+		   		$path = public_path().'/courses/'. $course->id . '/' . $order;
+
+
+		   		$success = File::cleanDirectory($path);
+
 				
-				$order = Lesson::where('course_id', '=', $id)->count() + 1;
-
-
-				$name 	 = Input::get('name');
-				$description = Input::get('description');
 				$video = Input::file('video');
-
-
-				$filename = $video->getClientOriginalName();
 				
 		   		$filename = preg_replace('/\s+/', '', $video->getClientOriginalName());
-		   		$path = public_path().'/courses/'. $course->id . '/' . $order;
-		   		
+
 		   		$video->move($path, $filename);
+
+			    // Get Thumbnail
+		   		 $ffmpeg = public_path().'/ffmpeg/ffmpeg';  
+			 	 $video = $path.'/'.$filename;   
+				 $image = $path.'/thumb.png';  
+				 $interval = 1;  
+			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
+     		     shell_exec($cmd);
+
+     		     if (File::exists($path.'/thumb.png')){
+     		     	$image = Image::make($path.'/thumb.png');
+					$image->fit(300, 200);
+					$image->save($path.'/thumb300x200.png');
+
+					$image2 = Image::make($path.'/thumb.png');
+					$image2->fit(100, 100);
+					$image2->save($path.'/thumb100x100.png');
+     		     }
+
 
 				$lesson->name = $name;
 				$lesson->description = $description;
-				$lesson->filepath = $video;
+				$lesson->filepath = $filename;
+
+				
 
 		   		  if($lesson->save()){
 					return Redirect::route('course-page', array('id' => $id));
@@ -479,16 +509,13 @@ class CourseController extends \BaseController {
 			}
 
 			}else{
-					return Redirect::route('edit-lesson', array('id' => $id));
+					return Redirect::route('edit-lesson', array('id' => $id, 'lesson' => $lesson));
 			}
 		}else{
 
 					return View::make('home.before');
 		}
 	}
-
-
-
 
 
 	public function courseQuestion($id)

@@ -54,6 +54,11 @@
 		  <div class="panel-body">
 			<h1>{{ $currentLesson->name }}</h1>
 	        <p>{{ $currentLesson->description }}</p>
+	        @if (Auth::user()->id == $course->user_id)
+				<a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$currentLesson->order]) }}" >
+						<i class="fa fa-edit"></i>
+				</a>
+			@endif
 		 </div>
 		</div>
 	</div>

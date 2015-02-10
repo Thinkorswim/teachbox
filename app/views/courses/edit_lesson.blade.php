@@ -1,7 +1,7 @@
 @extends('layouts.master-after')
 
 @section('title')
-	Edit lesson{{$course->name}} -
+	Edit Lesson
 @stop
 
 @section('description')
