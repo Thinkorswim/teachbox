@@ -78,7 +78,7 @@
 				</div>
 			  <div class="panel-body padding-panel author">
 			  		<a href="{{ URL::action('ProfileController@user', [$user->id]) }}">
-			  		<img src="{{ URL::asset('img/'. $user->id . '/img/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
+			  		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
 			  		</a>
 					@if ($user->date != '')
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
