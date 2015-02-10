@@ -73,6 +73,9 @@ class ProfileController extends \BaseController {
 
 				$newThumb->fit($width, intval($width / $ratio))->resize('100','100');
 				$newThumbName = getThumbName($filename);
+
+				$pathImg = public_path().'/img/'. $id . '/';
+				$success = File::cleanDirectory($pathImg);
 			
 	
 				

@@ -125,7 +125,7 @@
 										   <p> {{ excerpt($course->description) }}</p>
 									  @else
 									  	   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-									  	   <strong><a href="{{ URL::action('ProfileController@user', $userF->id) }}"> {{  $userT->name }} </a></strong></p>
+									  	   <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong></p>
 										   <p> {{ excerpt($course->description) }}</p>
 				 					  @endif
 									</div>
