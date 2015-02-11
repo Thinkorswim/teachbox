@@ -48,6 +48,11 @@
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
 			    </div> 
 				</div>
+
+				@if($errors->has('video'))
+					<p style="color: red;"> {{ $errors->first('video') }} </p>
+				@endif
+
 				<div class="row">
 					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
 				</div>

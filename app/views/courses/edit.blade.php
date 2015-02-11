@@ -48,6 +48,11 @@
 						@endif  
 						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
 						</div>
+
+						@if($errors->has('pic'))
+								<p style="color: red;"> {{ $errors->first('pic') }} </p>
+						@endif
+						
 						<div class="row">
 							<img id="profile" class="circle" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 							<div class="fileUpload btn btn-primary">

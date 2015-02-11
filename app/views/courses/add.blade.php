@@ -57,6 +57,11 @@
 				@endif  
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
+
+				@if($errors->has('video'))
+							<p style="color: red;"> {{ $errors->first('video') }} </p>
+				@endif
+
 				<div class="fileUpload btn btn-primary no-upload">
 				    <span>Choose a video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 

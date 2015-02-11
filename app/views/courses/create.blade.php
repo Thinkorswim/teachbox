@@ -32,14 +32,18 @@
 							<div class="input-group">
 							@endif  
 							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 50 characters ako sum prav de!)','class'=>'form-control')) }}
-							 </div>
-						<div class="row">
-							<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>
-							<div class="fileUpload btn btn-primary">
-							    <span>Choose a picture</span>
-								{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
 							</div>
-						</div>
+							@if($errors->has('pic'))
+								<p style="color: red;"> {{ $errors->first('pic') }} </p>
+							@endif
+							<div class="row">
+									<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>
+								<div class="fileUpload btn btn-primary">
+								    <span>Choose a picture</span>
+									{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
+								</div>
+							</div>
+							
 							{{ Form::token() }}
 							{{ Form::submit('Create Course', array('class'=>'form-control register-button')) }}
 						{{ Form::close() }}	

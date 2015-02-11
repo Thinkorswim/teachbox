@@ -84,7 +84,7 @@ class CourseController extends \BaseController {
 			
 			}else{
 					return Redirect::action('CourseController@create')
-							->with('global-negative', 'Your profile settings could not be created.');
+							 ->withErrors(array('pic' => 'You have not selected a picture or it has a wrong extension.'));
 			}
 
 	    }
@@ -212,29 +212,33 @@ class CourseController extends \BaseController {
 				$courseEdit = Course::find($id);
 
 				$description = Input::get('description');
-				if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
-					
+				if(Input::hasFile('image')){
+					if((Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){	
 
-					$image = Input::file('image');
-					$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
-					$replace = array("", "", "",  "",  "", "", "");
-					$newImage = Image::make($image->getRealPath());
-					$newImage1 = Image::make($image->getRealPath());
-					$filename = $image->getClientOriginalName();
-					$filename  =  str_replace($symbols, $replace, $filename);
-					$ratio = 1;
-					$ratio1 = 3/2;
-					$width = $newImage->width();
-					$newImage->fit($width, intval($width / $ratio));
-					$newImage1->fit($width, intval($width / $ratio1));
-					
-					$pathImg = public_path().'/courses/'. $course->id . '/img/';
-					
-					$success = File::cleanDirectory($pathImg);
+						$image = Input::file('image');
+						$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
+						$replace = array("", "", "",  "",  "", "", "");
+						$newImage = Image::make($image->getRealPath());
+						$newImage1 = Image::make($image->getRealPath());
+						$filename = $image->getClientOriginalName();
+						$filename  =  str_replace($symbols, $replace, $filename);
+						$ratio = 1;
+						$ratio1 = 3/2;
+						$width = $newImage->width();
+						$newImage->fit($width, intval($width / $ratio));
+						$newImage1->fit($width, intval($width / $ratio1));
+						
+						$pathImg = public_path().'/courses/'. $course->id . '/img/';
+						
+						$success = File::cleanDirectory($pathImg);
 
-					if($newImage->save('public/courses/' . $courseEdit->id . '/img/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
-						    	$courseEdit->pic    = $filename;
-				    }
+						if($newImage->save('public/courses/' . $courseEdit->id . '/img/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
+							    	$courseEdit->pic    = $filename;
+					    }
+					}else{
+						return Redirect::action('CourseController@courseEdit',[$id])
+								 ->withErrors(array('pic' => 'The selected picture has a wrong extension.'));
+					}
 				}
 
 				
@@ -404,7 +408,8 @@ class CourseController extends \BaseController {
 			}
 
 			}else{
-					return Redirect::route('course-add', array('id' => $id));
+					return Redirect::route('course-add', array('id' => $id))
+						 ->withErrors(array('video' => 'You have not selected a video file or it has a wrong extension.'));
 			}
 		}else{
 
@@ -565,7 +570,8 @@ class CourseController extends \BaseController {
 				}
 
 			}else{
-					return Redirect::route('change-lesson-video', array('id' => $id, 'lesson' => $lesson));
+					return Redirect::route('change-lesson-video', array('id' => $id, 'lesson' => $lesson))
+						 ->withErrors(array('video' => 'You have not selected a video file or it has a wrong extension.'));
 			}
 		}else{
 				return View::make('home.before');

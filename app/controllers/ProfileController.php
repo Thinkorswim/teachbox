@@ -88,7 +88,8 @@ class ProfileController extends \BaseController {
 				}
 
 			}else{
-					return Redirect::route('change-picture', array('id' => $user->id));
+					return Redirect::route('change-picture', array('id' => $user->id))
+						 ->withErrors(array('pic' => 'You have not selected a picture or it has a wrong extension.'));
 			}
 		}
 	}

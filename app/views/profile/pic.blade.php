@@ -52,6 +52,11 @@
 						{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
 					</div>
 				</div>
+
+				@if($errors->has('pic'))
+						<p style="color: red;"> {{ $errors->first('pic') }} </p>
+				@endif
+
 				<div class="row">
 					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
 				</div>
