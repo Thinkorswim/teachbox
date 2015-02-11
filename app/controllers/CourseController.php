@@ -637,7 +637,7 @@ class CourseController extends \BaseController {
 			$user = User::find($course->user_id);
 			$questionList = CourseQuestion::where('course_id', '=', $id);
 
-			$Validatorr = Validator::make(Input::all(),
+			$validator = Validator::make(Input::all(),
 					array(
 							'title' 			 => 'required|min:4|max:50',
 							'question'		 => 'required|min:30|max:400',
@@ -662,8 +662,11 @@ class CourseController extends \BaseController {
 						));
 
 					if($courseQuestion && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
-						return View::make('courses.question')
-								->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
+						
+						return Redirect::route('course-answers', array('id' => $id, 'question' => $courseQuestion->id));
+
+						//return View::make('courses.question')
+						//		->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
 					}else{
 						return Redirect::route('course-page', array('id' => $id));
 					}
