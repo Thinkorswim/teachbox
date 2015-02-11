@@ -505,4 +505,28 @@ class ProfileController extends \BaseController {
 		}
 
 	}
+
+	public function privacy(){
+
+			return View::make('company.privacy');
+
+	}
+
+	public function terms(){
+
+			return View::make('company.terms');
+
+	}
+
+	public function contacts(){
+
+			return View::make('company.contacts');
+
+	}
+
+	public function advertising(){
+
+			return View::make('company.advertising');
+
+	}
 }

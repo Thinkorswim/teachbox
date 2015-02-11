@@ -57,7 +57,7 @@
 	        @foreach ($joinedListMenu as $course)
 	        	@if ($course->user_id != Auth::user()->id)
 			        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-			        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/' . $course->pic) }}">
+			        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}">
 			        	<span>{{$course->name}}</span>
 			        </a></li>
 	        	@endif
@@ -120,9 +120,9 @@
     </div>
 	<footer class="front-page-footer after-login-footer">
 		<div class="container">
-				<a href="">Privacy</a>
-				<a href="">Terms</a>
-				<a href="">Advertising</a>
+				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
+				<a href="{{ URL::action('ProfileController@terms')}}">Terms</a>
+				<a href="{{ URL::action('ProfileController@advertising')}}">Advertising</a>
 				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
 				<ul>
 				  <li>

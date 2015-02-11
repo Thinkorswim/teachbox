@@ -331,6 +331,37 @@
 
 		));
 
+	//Privacy
+
+		Route::get('/privacy', array(
+			'as' => 'privacy',
+			'uses' => 'ProfileController@privacy'
+
+		));
+
+	//Terms
+
+		Route::get('/terms', array(
+			'as' => 'terms',
+			'uses' => 'ProfileController@terms'
+
+		));
+
+	//Adverise
+
+		Route::get('/advertising', array(
+			'as' => 'advertise',
+			'uses' => 'ProfileController@advertising'
+
+		));
+
+	//Contacts
+
+		Route::get('/contacts', array(
+			'as' => 'contacts',
+			'uses' => 'ProfileController@contacts'
+
+		));
 
 	// Messages
 
