@@ -35,34 +35,8 @@
 
 		<div class="col-xs-12 col-sm-8">
 			<div class="col-lg-8">
-		    	<div class="panel panel-default settings-panel actions">
-					<div class="panel-heading">
-					  	<h3 class="panel-title">Ask your question</h3>
-					</div>
-				  	<div class="panel-body padding-panel">   
-					{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}                  
-							 @if($errors->has('title'))
-							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">      
-							@else             
-							<div class="input-group">
-							@endif  
-							<span class="input-group-addon">
-								<i class="fa fa-question-circle"></i>
-							</span> 
-							 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
-						</div>
-							 @if($errors->has('question'))
-							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}">      
-							@else             
-							<div class="input-group">
-							@endif  
-							 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
-						</div>
-						{{ Form::submit('Post', array('class'=>'form-control')) }}
-					{{ Form::close() }}
-				  </div>
 				</div>
-			</div>
+		<div class="col-lg-12">
 		@if (count($questionList) > 0)
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
@@ -80,9 +54,37 @@
 	    </div>
 	    @endif
 		</div>
+		</div>
 	    <div class="col-xs-12 col-sm-4 author-card">
+	    		<div class="panel panel-default settings-panel actions">
+					<div class="panel-heading">
+					  	<h3 class="panel-title">Ask your question</h3>
+					</div>
+				  	<div class="panel-body padding-panel">   
+					{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}
+							 @if($errors->has('title'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">     
+							@else
+							<div class="input-group">
+							@endif
+							<span class="input-group-addon">
+								<i class="fa fa-question-circle"></i>
+							</span>
+							 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
+						</div>
+							 @if($errors->has('question'))
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}"> 
+							@else
+							<div class="input-group">
+							@endif  
+							 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
+						</div>
+						{{ Form::submit('Post', array('class'=>'form-control')) }}
+					{{ Form::close() }}
+				  </div>
+				</div>
 			@if (Auth::user()->id == $course->user_id)
-			<div class="panel panel-default actions">
+			<div class="panel panel-default actions author">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Actions</h3>
 			  </div>
@@ -124,5 +126,6 @@
 				</div>
 			</div>
 
+</div>
 </div>
 @endsection

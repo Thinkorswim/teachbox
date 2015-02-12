@@ -6,7 +6,7 @@
 	The official privacy policy of teachbox.
 @stop
 @section('content')
-<div class="container">
+<div class="container follow">
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-body">

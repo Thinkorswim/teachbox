@@ -14,7 +14,7 @@
 		<div class="col-xs-12 col-md-3">
 				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}"/>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-					{{ $studentCount }} 
+					{{ $studentCount }}
 				</span>
 		</div>
 		<div class="col-xs-12 col-xs-9">
@@ -34,7 +34,7 @@
 </div>
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions">
+		<div class="panel panel-default settings-panel actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Add lesson</h3>
 		  </div>
@@ -42,7 +42,7 @@
 			{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
 				 @if($errors->has('name'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
-				@else             
+				@else
 				<div class="input-group">
 				@endif  
 					<span class="input-group-addon">
@@ -73,7 +73,7 @@
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		@if (Auth::user()->id == $course->user_id)
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Actions</h3>
 		  </div>
