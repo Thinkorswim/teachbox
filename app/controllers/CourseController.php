@@ -105,30 +105,29 @@ class CourseController extends \BaseController {
 			$thousand = substr($studentCount, 1, 1);
 			$studentCount = $million . '.'. $thousand . 'm';
 		}
-		
-		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
-
-		$isJoined = UserCourse::where(function ($query) {
-			    $query->where('user_id', '=', Auth::user()->id);
-			})->where(function ($query) use ($id) {
-			    $query->where('course_id', '=', $id);
-			})->count();
+		if(Auth::check()){
+			$isJoined = UserCourse::where(function ($query) {
+				    $query->where('user_id', '=', Auth::user()->id);
+				})->where(function ($query) use ($id) {
+				    $query->where('course_id', '=', $id);
+				})->count();
+		}
+		if($course->approved == 1 || $course->user_id == Auth::user()->id){
 
 			$lessonList = Lesson::where('course_id', '=', $id)->get();
 
 			$user = User::find($course->user_id);
-
+			if(Auth::check()){
 			if($isJoined){
 				return View::make('courses.join')
 							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount ));
+					}
 			}else{
 				return View::make('courses.not_join')
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
-		}else{
-				return View::make('home.before');
-		}
 	}
+}
 
 	public function postJoin($id)
 	{

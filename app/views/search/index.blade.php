@@ -8,7 +8,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container follow">
 	<div class="col-xs-12 col-sm-8">
 		@if(count($courses) == 0)
 			<div class="row centered">
@@ -47,7 +47,7 @@
 
 
 	<div class="col-xs-12 col-sm-4">
-		<div class="panel panel-default course-panel">
+		<div class="panel panel-default course-panel place">
 			<div class="panel-body">
 				<img src="http://edition2013.mama-event.com/wmedias/festival/artistes/JeremyLoopsJemSolo.jpg">
 				<h3><a href="#"> Heading</a></h3>
