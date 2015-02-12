@@ -5,8 +5,7 @@
 @stop
 
 @section('content')
-<?php $courses = Course::where('approved', '=', '1')
-		    ->where('user_id', '!=', Auth::user()->id)->get()->take(10); ?>
+
 @if(count($courses) > 0)
 	<section class="carousel-section">
 	<div class="container">

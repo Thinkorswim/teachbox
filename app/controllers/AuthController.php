@@ -26,6 +26,11 @@ class AuthController extends \BaseController {
 										 ORDER BY created_at DESC
 									 ") );
 
+        $courses = DB::select( DB::raw("SELECT courses.* FROM user_courses, courses 
+        								WHERE courses.user_id <> '$user->id' 
+        								AND (courses.id NOT IN (SELECT user_courses.course_id FROM user_courses WHERE user_courses.user_id = '$user->id' ))") );
+
+ 
 		//dd(print_r($timeline));
 
 		if(!(count($timeline) < 5)){
@@ -35,7 +40,8 @@ class AuthController extends \BaseController {
 			$timeline = Paginator::make($pagedData, count($timeline), $perPage);
 		}
 
-			return View::make('home.after')->with(array('timeline' => $timeline));
+			return View::make('home.after')
+							->with(array('timeline' => $timeline, 'courses' => $courses ));
 		}else{
 			return View::make('home.before');
 		}
