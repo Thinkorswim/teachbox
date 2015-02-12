@@ -138,25 +138,25 @@
 			<h1 class="centered">Teach. Learn. Earn. Socialise.</h2>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-glasses"></i>
-				<p>Everyone has something to teach the world. Spit it out. Teach the planet.</p>
+				<p>Everyone has some knowledge to share. Spit it out. Teach the world.</p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-notebook"></i>
-				<p>Nobody's perfect. Get something of that knowledge box.</p>
+				<p>Nobody is perfect. Get something out of that knowledge box.</p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-cash"></i>
-				<p>Money for everyone. You actually can get more than your fee being an A student. </p>				
+				<p> Earn while doing something great and having fun. </p>				
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-chat"></i>
-				<p>Share your experience with your buddies. Know what they are studing/teaching.</p>				
+				<p>Share your experience with your friends. Know what they are up to.</p>				
 			</div>
 		</div>
 	</section>
 	<section class="full-screen testimonials">
 		<div class="container">
-			<h2>People talk about us</h2>
+			<h1>People talk about us</h1>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
