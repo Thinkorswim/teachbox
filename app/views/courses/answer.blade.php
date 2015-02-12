@@ -88,7 +88,7 @@
 			</div>
 	   </div>
 	   </div>
-	    <div class="col-xs-12 col-sm-4 author-card">
+	    <div class="col-xs-12 col-sm-4">
 			@if (Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">
@@ -102,7 +102,7 @@
 			  </div>
 			</div>
 			@endif
-			<div class="panel panel-default student-card">
+			<div class="panel panel-default author-card student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
 				</div>

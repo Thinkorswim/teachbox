@@ -29,7 +29,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
 			<div class="panel panel-default description">
 			  <div class="panel-body">
@@ -43,7 +43,11 @@
 		  	<h3 class="panel-title">Lessons</h3>
 		  </div>
 		  <div class="panel-body">
+		  @if (Auth::user()->id == $course->user_id)
+		  <div class="list-group tutor-list">
+		  @else
 			  	<div class="list-group">
+			  @endif
 					@foreach ($lessonList as $lesson)
 					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
 					@if (Auth::user()->id == $course->user_id)

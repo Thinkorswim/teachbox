@@ -18,6 +18,9 @@
 					</div>
 					<div class="panel-body padding-panel">
 						{{ Form::open(['route' => 'create-course','files' => true ]) }}	
+							@if($errors->has('pic'))
+								<div class="alert alert-danger" role="alert"> {{ $errors->first('pic') }} </div>
+							@endif
 							@if($errors->has('name'))
 							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
 							@else             
@@ -33,9 +36,6 @@
 							@endif  
 							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 50 characters ako sum prav de!)','class'=>'form-control')) }}
 							</div>
-							@if($errors->has('pic'))
-								<p style="color: red;"> {{ $errors->first('pic') }} </p>
-							@endif
 							<div class="row">
 									<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>
 								<div class="fileUpload btn btn-primary">

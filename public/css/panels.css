@@ -42,6 +42,8 @@
 }
 .panel.panel-default.actions .list-group .list-group-item {
   border: 0;
+}
+.panel.panel-default.actions .list-group .tutor-list {
   background: none;
 }
 .panel.panel-default.actions .list-group .edit-lesson {
@@ -122,8 +124,7 @@
   margin-bottom: 0;
 }
 .author-card .student-card {
-  margin-bottom: 30px;
-  margin: 0 0 30px;
+  margin: 0 10px 30px;
 }
 .author-card hr {
   margin-top: 0;
@@ -167,19 +168,20 @@
 }
 .student-card span.country {
   margin-left: 0;
-  left: 105px;
-  top: 45px;
+  left: 125px;
+  top: 25px;
   width: 25px;
   height: 25px;
   background-size: 30px!important;
 }
 .student-card .author span.country {
   top: initial;
+  margin-top: 10px;
 }
 .student-card span.age {
   margin-left: 0;
   left: 130px;
-  top: 70px;
+  top: 55px;
   width: 25px;
   height: 25px;
   text-align: center;
@@ -188,7 +190,7 @@
 }
 .student-card .author span.age {
   top: initial;
-  margin-top: 30px;
+  margin-top: 40px;
   left: 120px;
   margin-left: 10px;
 }
@@ -216,6 +218,9 @@
 .tab-content .panel.panel-default.actions:first-child {
   height: 300px;
   overflow: auto;
+}
+.message-list {
+  margin-top: 30px;
 }
 .message-list .btn.btn-default {
   position: absolute;

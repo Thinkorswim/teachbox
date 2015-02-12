@@ -33,13 +33,16 @@
 	</div>
 </div>
 <div class="container"> 
-	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions">
+	<div class="col-xs-12 col-sm-8 follow">
+		<div class="panel panel-default settings-panel actions place">
 		    <div class="panel-heading">
 		    	<h3 class="panel-title">Edit course</h3>
 		    </div>
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('CourseController@postCourseEdit', $course->id), 'files' => true )) }}
+						@if($errors->has('pic'))
+							<div class="alert alert-danger" role="alert"> {{ $errors->first('pic') }} </div>
+						@endif
 						Description: 
 						@if($errors->has('description'))
 						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
@@ -49,10 +52,7 @@
 						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
 						</div>
 
-						@if($errors->has('pic'))
-								<p style="color: red;"> {{ $errors->first('pic') }} </p>
-						@endif
-						
+
 						<div class="row">
 							<img id="profile" class="circle" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 							<div class="fileUpload btn btn-primary">
@@ -68,7 +68,7 @@
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		@if (Auth::user()->id == $course->user_id)
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Actions</h3>
 		  </div>

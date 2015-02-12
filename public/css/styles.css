@@ -8180,12 +8180,14 @@ html .main {
 .container.follow {
   margin: 30px auto;
 }
-.container.follow .row,
-.container.follow .col-lg-8 {
+.container.follow .col-lg-8 .row {
   margin: -30px 0;
 }
+.place {
+  margin: 30px 10px!important;
+}
 .row > h2 {
-  margin: 20px 0 0 20px;
+  margin: 0 0 20px 20px;
 }
 .tab-pane .register-button {
   margin-top: 0;
@@ -8324,7 +8326,7 @@ textarea {
   outline: 0 none;
 }
 .panel {
-  margin: 30px 10px;
+  margin: 0 10px 30px;
 }
 .circle {
   display: block;
@@ -8353,6 +8355,9 @@ textarea {
 .btn-success {
   background: #1abc9c;
   border-color: #1abc9c;
+}
+#chat {
+  margin-top: 30px;
 }
 .full-screen {
   padding: 170px 0 20px;
@@ -8409,23 +8414,23 @@ textarea {
 }
 .full-screen.learn-screen,
 .full-screen.explore {
-  padding: 80px 0 80px;
+  padding: 65px 0 80px;
   display: block;
   min-height: 1px;
 }
 .full-screen.learn-screen div > h1,
 .full-screen.explore div > h1 {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   font-weight: 900;
 }
 .full-screen.testimonials {
   background: #1abc9c;
-  padding: 80px 0 80px;
+  padding: 65px 0 80px;
   min-height: 1px;
   color: #ffffff;
   text-align: center;
 }
-.full-screen.testimonials h2,
+.full-screen.testimonials h1,
 .full-screen.testimonials h3 {
   color: #ffffff;
   text-align: center;
@@ -9200,6 +9205,8 @@ input[type="submit"]:focus {
 }
 .panel.panel-default.actions .list-group .list-group-item {
   border: 0;
+}
+.panel.panel-default.actions .list-group .tutor-list {
   background: none;
 }
 .panel.panel-default.actions .list-group .edit-lesson {
@@ -9281,8 +9288,7 @@ input[type="submit"]:focus {
   margin-bottom: 0;
 }
 .author-card .student-card {
-  margin-bottom: 30px;
-  margin: 0 0 30px;
+  margin: 0 10px 30px;
 }
 .author-card hr {
   margin-top: 0;
@@ -9326,19 +9332,20 @@ input[type="submit"]:focus {
 }
 .student-card span.country {
   margin-left: 0;
-  left: 105px;
-  top: 45px;
+  left: 125px;
+  top: 25px;
   width: 25px;
   height: 25px;
   background-size: 30px!important;
 }
 .student-card .author span.country {
   top: initial;
+  margin-top: 10px;
 }
 .student-card span.age {
   margin-left: 0;
   left: 130px;
-  top: 70px;
+  top: 55px;
   width: 25px;
   height: 25px;
   text-align: center;
@@ -9347,7 +9354,7 @@ input[type="submit"]:focus {
 }
 .student-card .author span.age {
   top: initial;
-  margin-top: 30px;
+  margin-top: 40px;
   left: 120px;
   margin-left: 10px;
 }
@@ -9375,6 +9382,9 @@ input[type="submit"]:focus {
 .tab-content .panel.panel-default.actions:first-child {
   height: 300px;
   overflow: auto;
+}
+.message-list {
+  margin-top: 30px;
 }
 .message-list .btn.btn-default {
   position: absolute;
