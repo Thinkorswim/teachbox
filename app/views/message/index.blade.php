@@ -18,12 +18,16 @@
 	      </div>
 	      <div class="modal-body">
 				<ul class="list-group" role="tablist">
-					@foreach ($newUsers as $nUser)
-						<button class="list-group-item choose-user" onclick="setRecipient({{ $nUser->id }})">
-					    	<img class="small-profile" src="{{ URL::asset('img/'. $nUser->id . '/' . $nUser->pic) }}">
-					    	<strong> {{ $nUser->name }} <span class="badge"></span></strong>
-				    	</button>
-					@endforeach
+					@if(count($newUsers) == 0)
+						<div style="text-align: center;"><h4>Follow new people to chat with them.</h4></div>
+					@else
+						@foreach ($newUsers as $nUser)
+							<button class="list-group-item choose-user" onclick="setRecipient({{ $nUser->id }})">
+						    	<img class="small-profile" src="{{ URL::asset('img/'. $nUser->id . '/' . $nUser->pic) }}">
+						    	<strong> {{ $nUser->name }} <span class="badge"></span></strong>
+					    	</button>
+						@endforeach
+					@endif
 				</ul>
 	      </div>
 	    </div>
@@ -34,7 +38,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-	        <h4 class="modal-title" id="exampleModalLabel">Choose a user </h4>
+	        <h4 class="modal-title" id="exampleModalLabel"> Send the message </h4>
 	      </div>
 	      <div class="modal-body">
 	      <form>

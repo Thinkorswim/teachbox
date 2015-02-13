@@ -5,22 +5,16 @@ class MessagesController extends \BaseController {
 	{
 		if(Auth::check()){
 			$myId = Auth::id();
-			$messagesId = Message::where('sender_id', '=', Auth::id())->orWhere('recipient_id', '=', Auth::id())->get();
-			$users = array();
 
+			$users = DB::select( DB::raw("SELECT DISTINCT users.* FROM users, messages 
+											 WHERE (messages.sender_id = '$myId' AND users.id = messages.recipient_id) OR (messages.recipient_id = '$myId' AND users.id = messages.sender_id) AND users.id <> '$myId'
+											 GROUP BY users.id ORDER BY MAX(messages.created_at) DESC "));
 			$count = array();
 
-			foreach ($messagesId as $message) {	
-				if($message->sender_id == $myId){
-					$users[] = User::find($message->recipient_id);
-				}else{
-					$users[] = User::find($message->sender_id);
-				}
+			foreach ($users as $user) {	
 
-				$count[] = Message::where('sender_id', '=', $message->sender_id)->where('recipient_id', '=', $myId )->where('seen_recipient', '=', 0)->count();
+				$count[] = Message::where('sender_id', '=', $user->id)->where('recipient_id', '=', $myId )->where('seen_recipient', '=', 0)->count();
 			}
-
-			$users = array_unique($users);
 
 
 			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows
