@@ -15,14 +15,18 @@ class CourseController extends \BaseController {
 	{
 
 		if (Auth::check()){
-			$file_max = 4000000;
-			
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
+			
+				$file_max = 4000000;
+				$image = Input::file('image');
+				$size = $image->getSize();
 
-			$image = Input::file('image');
-			$size = $image->getSize();
+				if($size >= $file_max){
+					return Redirect::action('CourseController@create')
+						 ->withErrors(array('pic' => 'The file size is larger than 4mb.'));
 
-			 if($size <= $file_max){	
+				}
+
 				$validator = Validator::make(Input::all(),
 					array(
 							'name' 				 => 'required|min:4|max:128',
@@ -34,8 +38,6 @@ class CourseController extends \BaseController {
 							->withErrors($validator);
 				}else{
 						
-				
-
 					$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
 					$replace = array("", "", "",  "",  "", "", "");
 					$newImage = Image::make($image->getRealPath());
@@ -79,7 +81,7 @@ class CourseController extends \BaseController {
 					
 					}else{
 						return Redirect::route('course-page', array('id' => $course->id))
-												->with('global-negative', 'You could not join this course.');
+												->with('global-negative', 'You could not create this course.');
 						 }
 
 						return View::make('courses.join')
@@ -88,13 +90,9 @@ class CourseController extends \BaseController {
 					}
 
 						return Redirect::action('CourseController@create')
-								->with('global-negative', 'Your profile settings could not be created.');
+								->with('global-negative', 'Your course could not be created.');
 				}
 
-			  	}else{
-					return Redirect::action('CourseController@create')
-							 ->withErrors(array('pic' => 'The size of the selected picture is bigger than allowed.'));
-			}
 			
 			}else{
 					return Redirect::action('CourseController@create')
@@ -229,10 +227,20 @@ class CourseController extends \BaseController {
 				$courseEdit = Course::find($id);
 
 				$description = Input::get('description');
-				if(Input::hasFile('image')){
-					if((Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){	
+					if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){	
+
+						
+						$file_max = 4000000;
 
 						$image = Input::file('image');
+						$size = $image->getSize();
+
+						if($size >= $file_max){
+							return Redirect::action('CourseController@courseEdit',[$id])
+								 ->withErrors(array('pic' => 'The file size is larger than 4mb.'));
+
+						}
+
 						$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
 						$replace = array("", "", "",  "",  "", "", "");
 						$newImage = Image::make($image->getRealPath());
@@ -254,10 +262,8 @@ class CourseController extends \BaseController {
 					    }
 					}else{
 						return Redirect::action('CourseController@courseEdit',[$id])
-								 ->withErrors(array('pic' => 'The selected picture has a wrong extension.'));
+								 ->withErrors(array('pic' => 'You have not selected a picture or it has a wrong extension.'));
 					}
-				}
-
 				
 				$message = nl2br($description);
 				$description = trim($message);
@@ -358,14 +364,18 @@ class CourseController extends \BaseController {
 	public function coursePostAdd($id){
 		$course = Course::find($id);
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
-		 	$file_max = 150000000;
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 
 				
+		 		$file_max = 150000000;
 		 		$file = Input::file('video');
 		 		$size = $file->getSize();
 
-		 		if($size <= $file_max){		
+		 		if($size >= $file_max){
+		 			return Redirect::route('course-add', array('id' => $id))
+						 ->withErrors(array('video' => 'The file size is larger than 150mb.'));
+				}	
+				
 				$validator = Validator::make(Input::all(),
 					array(
 							'name' 				 => 'required|min:4|max:64',
@@ -428,11 +438,6 @@ class CourseController extends \BaseController {
 												->with('global-negative', 'You could not join this course.');
 				}
 			}
-
-				}else{
-						return Redirect::route('course-add', array('id' => $id))
-							 ->withErrors(array('video' => 'You have not selected a video file or it has a wrong extension.'));
-				}
 
 			}else{
 					return Redirect::route('course-add', array('id' => $id))
@@ -536,17 +541,23 @@ class CourseController extends \BaseController {
 	}
 
 
-
 	public function postChangeVideo($id,$lesson){
 
 		$course = Course::find($id);
 
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
+				
+		 		$file_max = 150000000;
+		 		$file = Input::file('video');
+		 		$size = $file->getSize();
 
+		 		if($size >= $file_max){
+		 			return Redirect::route('change-lesson-video', array('id' => $id, 'lesson' => $lesson))
+						 ->withErrors(array('video' => 'The file size is larger than 150mb.'));
+				}
 
 				$course = Course::find($id);
-
 
 				$order = Lesson::where('course_id', '=', $id)->count();	
 

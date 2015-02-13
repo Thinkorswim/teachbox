@@ -62,6 +62,15 @@ class ProfileController extends \BaseController {
 				$replace = array("", "", "",  "",  "", "", "");
 				$image = Input::file('image');
 
+				$file_max = 4000000;
+				$size = $image->getSize();
+
+				if($size >= $file_max){
+					return Redirect::route('change-picture', array('id' => $user->id))
+						   ->withErrors(array('pic' => 'The file size is larger than 4mb.'));
+
+				}
+
 				$newImage = Image::make($image->getRealPath());
 				$newThumb = Image::make($image->getRealPath());
 

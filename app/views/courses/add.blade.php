@@ -63,12 +63,12 @@
 
 				<div class="fileUpload btn btn-primary no-upload">
 				    <span>Choose a video</span>
-			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
+			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
+			    </div>
 			    <div class="row-add">
 							<div class="alert alert-info" role="alert">
-								<p>We support png and jpg and maximum size  4mb.</p>
+								<p>Please upload only mp4 files with maximum size 150mb.</p>
 							</div>
-					</div>
 			    </div> 
 				{{ Form::submit('Upload', array('class'=>'form-control')) }}
 			{{ Form::close() }}
