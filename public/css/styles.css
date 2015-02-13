@@ -8850,6 +8850,9 @@ header .categories .icon-list i {
   left: 30px;
   top: 7px;
 }
+header .categories .icon-list:nth-child(1) i {
+  top: 5px;
+}
 header .categories .icon-list:nth-child(2) i {
   top: 7px;
   left: 33px;

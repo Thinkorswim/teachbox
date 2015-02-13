@@ -74,16 +74,16 @@
 	</div>
 	</section>
 @endif
-<div class="container follow">
+<div class="container">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)
-			<div class="panel panel-default settings-panel actions">
+			<div class="panel panel-default settings-panel actions place">
 				<div class="panel-body padding-panel">
 					<h2><strong>Nothing on the timeline yet.</strong></h2>
 				</div>
 			</div>
 		@endif
-		<div class="scroll">
+		<div class="scroll place">
 		@foreach ($timeline as $post)
 			@if (is_numeric($post->email))
 				  <?php $course = Course::find($post->id); 

@@ -26,8 +26,8 @@ class AuthController extends \BaseController {
 										 ORDER BY created_at DESC
 									 ") );
 
-        $courses = DB::select( DB::raw("SELECT courses.* FROM user_courses, courses 
-        								WHERE courses.user_id <> '$user->id' 
+        $courses = DB::select( DB::raw("SELECT DISTINCT courses.* FROM user_courses, courses 
+        								WHERE  courses.user_id <> '$user->id'
         								AND (courses.id NOT IN (SELECT user_courses.course_id FROM user_courses WHERE user_courses.user_id = '$user->id' ))") );
 
  
