@@ -238,11 +238,10 @@ class AuthController extends \BaseController {
 	}
 
 	public function postCreate(){
-		print_r(Input::all());
 		$validator = Validator::make(Input::all(), 
 			array(
-				'email' => 'required|max:50|email|unique:users',
-				'name' => 'required|max:40|min:4',
+				'email' => 'required|max:128|email|unique:users',
+				'name' => 'required|max:128|min:3',
 				'password' => 'required|max:20|min:6',
 				'password_again' =>'required|same:password'
 				)

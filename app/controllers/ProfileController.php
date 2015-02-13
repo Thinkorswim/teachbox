@@ -354,10 +354,10 @@ class ProfileController extends \BaseController {
 		if(Auth::check()){
 			$validator = Validator::make(Input::all(),
 				array(
-						'name' 				 => 'required|min:4|max:40',
-						'country' 			 => 'min:4|max:35',
-						'city'				 => 'min:4|max:30',
-						'decription'		 => 'min:4|max:300'
+						'name' 				 => 'required|min:3|max:128',
+						'country' 			 => 'max:64',
+						'city'				 => 'min:3|max:128',
+						'decription'		 => 'min:4|max:512'
 					));
 
 			if($validator->fails()){

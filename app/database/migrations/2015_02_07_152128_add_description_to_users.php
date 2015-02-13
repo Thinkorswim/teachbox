@@ -15,7 +15,7 @@ class AddDescriptionToUsers extends Migration {
 
 		Schema::table('users', function($table)
 		{
-		  	$table->string('decription', 200);
+		  	$table->string('decription', 512);
 		});
 	}
 

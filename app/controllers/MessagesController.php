@@ -23,7 +23,7 @@ class MessagesController extends \BaseController {
 			$users = array_unique($users);
 
 
-			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows, messages
+			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows
 											 WHERE follows.follower_id = '$myId' AND follows.following_id = users.id 
 											"));
 

@@ -14,7 +14,7 @@ class AddCoursePicture extends Migration {
 	{
 		Schema::table('courses', function($table)
 		{
-		    $table->string('pic', 200);
+		    $table->string('pic', 256);
 		});
 	}
 

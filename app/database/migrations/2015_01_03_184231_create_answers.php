@@ -17,7 +17,7 @@ class CreateAnswers extends Migration {
 
 			$table->integer('course_id');
 			$table->integer('question_id');
-			$table->string('answer', 300);
+			$table->string('answer', 1024);
 
             $table->timestamps();
 		});

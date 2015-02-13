@@ -14,9 +14,9 @@ class AddInfoUsers extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		  	$table->string('country', 35);
-		    $table->string('city', 30);
-		    $table->string('pic', 200);
+		  	$table->string('country', 64);
+		    $table->string('city', 128);
+		    $table->string('pic', 256);
 		});
 	}
 

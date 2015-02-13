@@ -17,8 +17,8 @@ class CreateQuestions extends Migration {
 
 			$table->integer('course_id');
 			$table->integer('user_id');
-			$table->string('title', 50);
-			$table->string('question', 300);
+			$table->string('title', 64);
+			$table->string('question', 1024);
 
             $table->timestamps();
 		});

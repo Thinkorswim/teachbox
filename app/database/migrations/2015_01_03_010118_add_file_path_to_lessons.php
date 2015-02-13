@@ -14,7 +14,7 @@ class AddFilePathToLessons extends Migration {
 	{
 		Schema::table('lessons', function($table){
 
-		    $table->string('filepath', 200);
+		    $table->string('filepath', 256);
 		    
 		});
 	}

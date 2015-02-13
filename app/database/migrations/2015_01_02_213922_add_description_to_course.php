@@ -14,7 +14,7 @@ class AddDescriptionToCourse extends Migration {
 	{
 		Schema::table('courses', function($table){
 
-		    $table->string('description', 400);
+		    $table->string('description', 4096);
 		    
 		});
 	}

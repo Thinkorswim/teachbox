@@ -25,8 +25,8 @@ class CourseController extends \BaseController {
 			 if($size <= $file_max){	
 				$validator = Validator::make(Input::all(),
 					array(
-							'name' 				 => 'required|min:4|max:40',
-							'description'		 => 'required|min:30|max:400',
+							'name' 				 => 'required|min:4|max:128',
+							'description'		 => 'required|min:30|max:4096',
 					));
 
 				if($validator->fails()){		
@@ -218,7 +218,7 @@ class CourseController extends \BaseController {
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 			$validator = Validator::make(Input::all(),
 				array(
-						'description' 			 => 'min:30|max:400',
+						'description' 			 => 'min:30|max:4096',
 				));
 
 			if($validator->fails()){		
@@ -368,8 +368,8 @@ class CourseController extends \BaseController {
 		 		if($size <= $file_max){		
 				$validator = Validator::make(Input::all(),
 					array(
-							'name' 				 => 'required|min:4|max:50',
-							'description'		 => 'required|min:30|max:400',
+							'name' 				 => 'required|min:4|max:64',
+							'description'		 => 'required|min:10|max:1024',
 					));
 
 				if($validator->fails()){		
@@ -488,8 +488,8 @@ class CourseController extends \BaseController {
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 			$validator = Validator::make(Input::all(),
 				array(
-						'name' 				 => 'required|min:4|max:50',
-						'description' 			 => 'min:30|max:400',
+						'name' 				 => 'required|min:4|max:64',
+						'description' 			 => 'min:10|max:1024',
 				));
 
 			if($validator->fails()){		
@@ -672,8 +672,8 @@ class CourseController extends \BaseController {
 
 			$validator = Validator::make(Input::all(),
 					array(
-							'title' 			 => 'required|min:4|max:50',
-							'question'		 => 'required|min:30|max:400',
+							'title' 			 => 'required|min:4|max:64',
+							'question'		 => 'required|min:10|max:1024',
 					));
 
 				if($validator->fails()){		
@@ -778,7 +778,7 @@ class CourseController extends \BaseController {
 
 			$validator = Validator::make(Input::all(),
 					array(
-							'answer'		 => 'required|min:30|max:400',
+							'answer'		 => 'required|min:10|max:1024',
 					));
 
 				if($validator->fails()){		

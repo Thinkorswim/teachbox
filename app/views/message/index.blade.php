@@ -69,14 +69,14 @@
 				    	@else
 				    		<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
-						    	<strong> {{ $user->name }} 
+						    	<strong> {{ $user->name }}
 						    	@if ($count[$i] > 0 )
 						    		<span id="badge-{{ $user->id }}" class="badge">{{ $count[$i] }}</span>
 						    	@endif
 						    	</strong>
 					    	</a>
 				    	@endif
-				    	<?php $i++; ?>	
+				    	<?php $i++; ?>
 			    @endforeach
 		  </ul>
 		</div>
@@ -85,9 +85,9 @@
 		<div class="tab-content">
 		  <div id="chat" class="panel panel-default actions">
 				  	<div id="chat-window" role="tabpanel" class="tab-pane active">
-				  	  		
+
 				  	</div>
-		  </div>		
+		  </div>
 			<div class="panel panel-default settings-panel actions">
 				<div class="panel-body padding-panel send-message">
 					<input type="text" id="text" class="form-control col-lg-12" autofocus="" placeholder="Compose and press enter">
