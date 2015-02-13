@@ -7,7 +7,7 @@
   	{{ excerpt($user->decription) }}
 @stop
 @section('content')
-<div class="container">
+<div class="container follow">
 	<div class="row">
 		@if(Session::has('global-positive'))
 			<div class="alert alert-success" role="alert">
@@ -21,7 +21,7 @@
 		@endif
 	</div>
 	<div class="col-xs-12 col-sm-4">
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Settings</h3>
 		  </div>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions">
+		<div class="panel panel-default settings-panel actions place">
 			<div class="panel-heading">
 				<h3 class="panel-title">Profile information</h3>
 			</div>
@@ -45,7 +45,7 @@
 				{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
 				<div>Name</div>
 					@if($errors->has('name'))
-					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
+					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">
 					@else
 					<div class="input-group">
 					@endif

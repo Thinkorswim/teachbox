@@ -60,6 +60,11 @@
 								{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
 							</div>	
 						</div>
+						<div class="row-add">
+							<div class="alert alert-info" role="alert">
+								<p>We support png and jpg and maximum size  4mb.</p>
+							</div>
+						</div>
 					{{ Form::token() }}
 					{{ Form::submit('Save settings', array('class'=>'form-control register-button')) }}
 				{{ Form::close() }}	

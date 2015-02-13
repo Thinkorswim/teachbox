@@ -123,10 +123,10 @@
 	<footer class="front-page-footer after-login-footer">
 		<div class="container">
 				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
-				<a href="{{ URL::action('ProfileController@terms')}}">Terms</a>
+				<a href="{{ URL::action('ProfileController@contacts')}}">Contacts</a>
 				<a href="{{ URL::action('ProfileController@advertising')}}">Advertising</a>
 				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
-				<ul>
+				<ul class="social">
 				  <li>
 					<a href="https://www.facebook.com/">
 						<span class="fa-stack fa-lg">
@@ -259,9 +259,14 @@
 	        // them on the server until the user's session ends.
 	    }
 	}
-
 </script>
 	<script>
+		$('.fixed li').click(function(e) {
+		    e.stopPropagation();
+		$('.fixed li').removeClass('active');
+		$(this).addClass('active');
+		});
+
 	$('.choose-user').on('click' , function() { 
     $('#list-modal').modal('hide');
     $('#chat-with').modal('show');
@@ -325,6 +330,10 @@
 		}
 		//bootstrap tooltip conflict
 		$(document).ready(function () {
+		$(".join").click(function() {
+	       $("#ask").show();
+	       $(".join").hide();
+	    });
 		var bootstrapButton = $.fn.button.noConflict() 
 		$.fn.bootstrapBtn = bootstrapButton 
 		$(function () {
@@ -344,8 +353,6 @@
 	$('.playlist-panel .list-group').animate({
     scrollTop: $(".playlist-panel .list-group .active").offset().top
 	}, 0);
-
-
 
 	</script>
   </body>

@@ -24,6 +24,16 @@
   text-align: center;
   margin-bottom: 0;
 }
+.full-screen .course .social {
+  margin-bottom: 20px;
+}
+.full-screen.us {
+  background: url(../img/86.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .full-screen.main-screen {
   background: url(../img/74__2.jpg) no-repeat center center;
   -webkit-background-size: cover;
@@ -73,6 +83,7 @@
 .full-screen.testimonials h3 {
   color: #ffffff;
   text-align: center;
+  font-weight: 900;
 }
 .full-screen.testimonials i {
   display: block;

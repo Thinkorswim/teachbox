@@ -74,7 +74,7 @@
 	</div>
 	</section>
 @endif
-<div class="container">
+<div class="container follow">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)
 			<div class="panel panel-default settings-panel actions">

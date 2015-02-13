@@ -52,11 +52,21 @@
 	    		</div>
 	       </div>
 	    </div>
+	    @else
+			<div class="panel panel-default settings-panel actions no-timeline">
+				<div class="panel-body padding-panel">
+					<h2><strong>No questions yet.</strong></h2>
+					<small>Do not hesitate to ask anything you want to know. </small>
+				</div>
+			</div>
 	    @endif
 		</div>
 		</div>
 	    <div class="col-xs-12 col-sm-4 author-card">
-	    		<div class="panel panel-default settings-panel actions">
+	   	<div class="panel panel-default settings-panel actions join">
+	    		<input type="submit" class="btn btn-default join" value="Ask your question">
+	    </div>
+	    		<div id="ask" class="panel panel-default settings-panel actions">
 					<div class="panel-heading">
 					  	<h3 class="panel-title">Ask your question</h3>
 					</div>

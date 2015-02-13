@@ -8167,6 +8167,7 @@ html {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   background: #efefef;
+  position: relative;
 }
 body .main,
 html .main {
@@ -8182,6 +8183,9 @@ html .main {
 }
 .container.follow .col-lg-8 .row {
   margin: -30px 0;
+}
+.alert-info {
+  margin-top: 20px;
 }
 .place {
   margin: 30px 10px!important;
@@ -8352,12 +8356,21 @@ textarea {
   background: #2c3e50;
   color: #ffffff;
 }
+.fixed {
+  position: fixed!important;
+  top: 52px!important;
+  z-index: 9998;
+}
 .btn-success {
   background: #1abc9c;
   border-color: #1abc9c;
 }
 #chat {
   margin-top: 30px;
+}
+.contacts-page section,
+.contacts-page .full-screen {
+  padding: 0!important;
 }
 .full-screen {
   padding: 170px 0 20px;
@@ -8384,6 +8397,16 @@ textarea {
   padding: 10px 20px;
   text-align: center;
   margin-bottom: 0;
+}
+.full-screen .course .social {
+  margin-bottom: 20px;
+}
+.full-screen.us {
+  background: url(../img/86.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .full-screen.main-screen {
   background: url(../img/74__2.jpg) no-repeat center center;
@@ -8434,6 +8457,7 @@ textarea {
 .full-screen.testimonials h3 {
   color: #ffffff;
   text-align: center;
+  font-weight: 900;
 }
 .full-screen.testimonials i {
   display: block;
@@ -8481,36 +8505,36 @@ textarea {
 .front-page-footer a:hover {
   color: #1abc9c;
 }
-.front-page-footer ul {
+.front-page-footer div > a:hover {
+  text-decoration: underline;
+}
+.social {
   text-align: center;
   margin: 10px auto;
   display: block;
   padding: 0;
 }
-.front-page-footer ul li {
+.social li {
   display: inline-block;
 }
-.front-page-footer ul li a {
+.social li a {
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
 }
-.front-page-footer ul li:first-child a:hover {
+.social li:first-child a:hover {
   color: #3b5998;
 }
-.front-page-footer ul li:nth-child(2) a:hover {
+.social li:nth-child(2) a:hover {
   color: #55acee;
 }
-.front-page-footer ul li:nth-child(3) a:hover {
+.social li:nth-child(3) a:hover {
   color: #0976b4;
 }
-.front-page-footer ul li:nth-child(4) a:hover {
+.social li:nth-child(4) a:hover {
   color: #3f729b;
-}
-.front-page-footer div > a:hover {
-  text-decoration: underline;
 }
 #bs-example-navbar-collapse-1 .btn {
   margin: 0 30px;
@@ -8827,8 +8851,11 @@ header .categories .icon-list i {
   top: 7px;
 }
 header .categories .icon-list:nth-child(2) i {
-  top: 5px;
-  left: 30px;
+  top: 7px;
+  left: 33px;
+}
+#ask {
+  display: none;
 }
 .full-screen h1 {
   margin-top: 0px;
@@ -9176,7 +9203,8 @@ input[type="submit"]:focus {
   border-top-left-radius: 0;
 }
 .panel.panel-default.actions .panel-heading h3 a,
-.panel.panel-default.actions .panel-heading h3 {
+.panel.panel-default.actions .panel-heading h3,
+.panel.panel-default.actions .panel-heading h1 {
   color: #ffffff;
   font-weight: 900;
 }
@@ -9242,9 +9270,16 @@ input[type="submit"]:focus {
   overflow: hidden;
 }
 .panel.panel-default.course-panel .panel-body h4,
+.panel.panel-default.course-panel .panel-body h1,
 .panel.panel-default.course-panel .panel-body h3,
 .panel.panel-default.course-panel .panel-body p {
   padding: 0 20px;
+}
+.panel.panel-default.course-panel .panel-body h1 {
+  margin-top: 40px;
+}
+.panel.panel-default.course-panel .panel-body h1 strong {
+  line-height: 1;
 }
 .panel.panel-default.course-panel .panel-body img {
   width: 100%;
@@ -9707,10 +9742,10 @@ input[type="submit"]:focus {
 .btn.btn-default.join {
   font-weight: 900;
   font-size: 14px;
-  margin: 30px 0;
   border-radius: 0;
-  padding: 10px ;
+  padding: 10px;
   width: 100%;
+  overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 1.1px;
   transition: all 0.5s ease;
@@ -9736,6 +9771,9 @@ input[type="submit"]:focus {
   .student-card .panel-body {
     max-width: 300px;
   }
+}
+#ask {
+  margin-top: 0px!important;
 }
 #course-slider .panel {
   margin: 30px 24px 0;

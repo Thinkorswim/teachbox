@@ -1,3 +1,6 @@
+@import "variables.less";
+@import "mixins.less";
+
 .front-page-footer{
 	background: @grey;
 	text-align: center;
@@ -20,7 +23,13 @@
 			color: @blue;
 		}
 	}
-	ul{
+}
+.front-page-footer div > a{
+	&:hover{
+		text-decoration: underline;
+	}
+}
+	.social{
 		text-align: center;
 		margin:10px auto;
 		display: block;
@@ -44,9 +53,3 @@
 			color: #3f729b;
 		}
 	}
-}
-.front-page-footer div > a{
-	&:hover{
-		text-decoration: underline;
-	}
-}

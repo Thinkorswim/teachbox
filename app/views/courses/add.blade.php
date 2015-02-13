@@ -40,6 +40,9 @@
 		  </div>
 		  <div class="panel-body padding-panel">   
 			{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+				@if($errors->has('video'))
+							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
+				@endif
 				 @if($errors->has('name'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
 				@else
@@ -58,13 +61,14 @@
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
 
-				@if($errors->has('video'))
-							<p style="color: red;"> {{ $errors->first('video') }} </p>
-				@endif
-
 				<div class="fileUpload btn btn-primary no-upload">
 				    <span>Choose a video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
+			    <div class="row-add">
+							<div class="alert alert-info" role="alert">
+								<p>We support png and jpg and maximum size  4mb.</p>
+							</div>
+					</div>
 			    </div> 
 				{{ Form::submit('Upload', array('class'=>'form-control')) }}
 			{{ Form::close() }}

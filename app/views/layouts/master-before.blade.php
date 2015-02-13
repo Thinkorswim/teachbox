@@ -41,11 +41,11 @@
 				<h3>The teachbox</h3>
 				<p> In teachbox we believe in education without any boundaries. No "must", no "have to do"- just learn 
 				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
-				<a href="">Privacy</a>
-				<a href="">Terms</a>
-				<a href="">Cookies</a>
-				<a href="">Advertising</a>
-				<ul>
+				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
+				<a href="{{ URL::action('ProfileController@contacts')}}">Contacts</a>
+				<a href="{{ URL::action('ProfileController@advertising')}}">Advertising</a>
+				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
+				<ul class="social">
 				  <li>
 					<a href="https://www.facebook.com/">
 						<span class="fa-stack fa-lg">

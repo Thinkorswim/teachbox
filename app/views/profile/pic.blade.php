@@ -23,7 +23,7 @@
 		@endif
 	</div>
 	<div class="col-xs-12 col-sm-4">
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Settings</h3>
 		  </div>
@@ -39,7 +39,7 @@
 		</div> 
 	</div>
 	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions">
+		<div class="panel panel-default settings-panel actions place">
 			<div class="panel-heading">
 				<h3 class="panel-title">Change picture</h3>
 			</div>
@@ -50,6 +50,11 @@
 					<div class="fileUpload btn btn-primary">
 					    <span>Choose a picture</span>
 						{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
+					</div>
+					<div class="row-add">
+						<div class="alert alert-info" role="alert">
+							<p>We support png and jpg and maximum size  4mb.</p>
+						</div>
 					</div>
 				</div>
 

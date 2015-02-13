@@ -1,0 +1,54 @@
+.front-page-footer {
+  background: #2c3e50;
+  text-align: center;
+}
+.front-page-footer.after-login-footer {
+  padding-top: 20px;
+}
+.front-page-footer h3 {
+  font-weight: 900;
+  letter-spacing: 1.1px;
+}
+.front-page-footer p,
+.front-page-footer small {
+  color: #ffffff;
+  max-width: 400px;
+  margin: auto;
+}
+.front-page-footer a {
+  color: #1abc9c;
+  margin: 5px;
+}
+.front-page-footer a:hover {
+  color: #1abc9c;
+}
+.front-page-footer div > a:hover {
+  text-decoration: underline;
+}
+.social {
+  text-align: center;
+  margin: 10px auto;
+  display: block;
+  padding: 0;
+}
+.social li {
+  display: inline-block;
+}
+.social li a {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+.social li:first-child a:hover {
+  color: #3b5998;
+}
+.social li:nth-child(2) a:hover {
+  color: #55acee;
+}
+.social li:nth-child(3) a:hover {
+  color: #0976b4;
+}
+.social li:nth-child(4) a:hover {
+  color: #3f729b;
+}

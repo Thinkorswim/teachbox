@@ -43,7 +43,11 @@
 									{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
 								</div>
 							</div>
-							
+							<div class="row-add">
+								<div class="alert alert-info" role="alert">
+									<p>We currently support mp4 and maximum size  120mb.</p>
+								</div>
+							</div>
 							{{ Form::token() }}
 							{{ Form::submit('Create Course', array('class'=>'form-control register-button')) }}
 						{{ Form::close() }}	

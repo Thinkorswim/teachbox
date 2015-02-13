@@ -42,16 +42,20 @@
 			</div>
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('CourseController@postChangeVideo', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
+				@if($errors->has('video'))
+							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
+				@endif
 				<div class="row">
 					<div class="fileUpload btn btn-primary no-upload">
 				    	<span>Change the video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }} 
 			    </div> 
 				</div>
-
-				@if($errors->has('video'))
-					<p style="color: red;"> {{ $errors->first('video') }} </p>
-				@endif
+				<div class="row-add">
+					<div class="alert alert-info" role="alert">
+						<p>We currently support mp4 and maximum size  120mb.</p>
+					</div>
+				</div>
 
 				<div class="row">
 					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}

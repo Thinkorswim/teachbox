@@ -5,6 +5,7 @@ body,html{
 	font-family: "Lato", sans-serif;
 	font-weight: 400;
 	background:@lightGrey;
+	position: relative;
     .main{
 	margin:53px 0 0 0;
 	min-height: 90vh;
@@ -20,6 +21,9 @@ body,html{
 			margin:-30px 0;
 		}
 
+	}
+	.alert-info{
+		margin-top:20px;
 	}
 	.place{
 		margin:30px 10px!important;
@@ -130,10 +134,18 @@ outline: 0 none;
 		color: @white;
 	}
 }
+.fixed{
+	position: fixed!important;
+	top:52px!important;
+	z-index: 9998;
+}
 .btn-success{
 	background: @blue;
 	border-color: @blue;
 }
 #chat{
 	margin-top:30px;
+}
+.contacts-page section,.contacts-page .full-screen{
+	padding: 0!important;
 }
