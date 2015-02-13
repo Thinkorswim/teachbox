@@ -23,8 +23,12 @@ class MessagesController extends \BaseController {
 			$users = array_unique($users);
 
 
-			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows
-											 WHERE follows.follower_id = '$myId' AND follows.following_id = users.id "));
+			$newUsers = DB::select( DB::raw("SELECT users.* FROM users, follows, messages
+											 WHERE follows.follower_id = '$myId' AND follows.following_id = users.id 
+											"));
+
+			// AND (users.id NOT IN (SELECT messages.sender_id FROM messages WHERE messages.recipient_id = '$myId') 
+	        // OR  users.id NOT IN (SELECT messages.recipient_id FROM messages WHERE messages.sender_id = '$myId')) 
 
 			return View::make('message.index', ['users' => $users, 'count' => $count, 'newUsers' => $newUsers]);
 		}else{
