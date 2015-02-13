@@ -45,7 +45,7 @@
 							</div>
 							<div class="row-add">
 								<div class="alert alert-info" role="alert">
-									<p>We currently support mp4 and maximum size  120mb.</p>
+									<p>Please upload only png and jpg files with maximum size 4mb.</p>
 								</div>
 							</div>
 							{{ Form::token() }}
