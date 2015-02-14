@@ -28,10 +28,8 @@ class AuthController extends \BaseController {
 
         $courses = DB::select( DB::raw("SELECT DISTINCT courses.* FROM user_courses, courses 
         								WHERE  courses.user_id <> '$user->id'
+        								AND courses.approved = 1
         								AND (courses.id NOT IN (SELECT user_courses.course_id FROM user_courses WHERE user_courses.user_id = '$user->id' ))") );
-
- 
-		//dd(print_r($timeline));
 
 		if(!(count($timeline) < 5)){
 			$perPage = 5;

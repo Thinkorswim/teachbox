@@ -124,13 +124,19 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->count();
 		}
-		if($course->approved == 1 || $course->user_id == Auth::user()->id){
+		if($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin == 1){
 
-			$lessonList = Lesson::where('course_id', '=', $id)->get();
+			
+			if($course->user_id == Auth::user()->id ){
+				$lessonList = Lesson::where('course_id', '=', $id)->get();
+			}else{
+				$lessonList = Lesson::where('course_id', '=', $id)->where('approved', '=', 1)->get();
+			}
+
 
 			$user = User::find($course->user_id);
 			if(Auth::check()){
-			if($isJoined){
+			if($isJoined || Auth::user()->admin == 1){
 				return View::make('courses.join')
 							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount ));
 			
@@ -142,7 +148,9 @@ class CourseController extends \BaseController {
 				return View::make('courses.not_join')
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
-	}
+		}else{
+			return Redirect::route('home');
+		}
 }
 
 	public function postJoin($id)
@@ -335,23 +343,27 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
-				$lessonList = Lesson::where('course_id', '=', $id)->get();
-				$creator = User::where('id', '=', $course->user_id)->first();
+				if($lesson->approved = 1 || $lesson->user_id = Auth::user()->id){
+						$lessonList = Lesson::where('course_id', '=', $id)->get();
+						$creator = User::where('id', '=', $course->user_id)->first();
 
-				$previousLesson = Lesson::where(function ($query) use ($lesson) {
-				    $query->where('order', '=', $lesson->order-1);
-				})->where(function ($query) use ($id) {
-				    $query->where('course_id', '=', $id);
-				})->first();
+						$previousLesson = Lesson::where(function ($query) use ($lesson) {
+						    $query->where('order', '=', $lesson->order-1);
+						})->where(function ($query) use ($id) {
+						    $query->where('course_id', '=', $id);
+						})->first();
 
-				$nextLesson = Lesson::where(function ($query) use ($lesson) {
-				    $query->where('order', '=', $lesson->order+1);
-				})->where(function ($query) use ($id) {
-				    $query->where('course_id', '=', $id);
-				})->first();
+						$nextLesson = Lesson::where(function ($query) use ($lesson) {
+						    $query->where('order', '=', $lesson->order+1);
+						})->where(function ($query) use ($id) {
+						    $query->where('course_id', '=', $id);
+						})->first();
 
-				return View::make('courses.lesson')
-						->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator));
+						return View::make('courses.lesson')
+								->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator));
+				}else{
+						return Redirect::route('course-page', array('id' => $id));
+				}
 			}else{
 					return View::make('courses.not_join')
 							->with(array('course' => $course, 'studentCount' => $studentCount ));
@@ -599,6 +611,7 @@ class CourseController extends \BaseController {
      		     }
 
 				  $lesson->filepath = $filename;
+				  $lesson->approved = 0;
 
 		   		  if($lesson->save()){
 					return Redirect::route('course-page', array('id' => $id));
