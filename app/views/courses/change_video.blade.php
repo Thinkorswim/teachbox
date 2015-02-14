@@ -53,7 +53,7 @@
 				</div>
 				<div class="row-add">
 					<div class="alert alert-info" role="alert">
-						<p>Please upload only mp4 files with maximum size 150mb.</p>
+						<p>Please upload only *.mp4 files with a maximum size of 150mb.</p>
 					</div>
 				</div>
 

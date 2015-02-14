@@ -26,9 +26,9 @@
 <div class="tabs-profile">
 	<div class="container">
 		<ul class="nav nav-pills">
-		  <li role="presentation"><a href="">About the course</a></li>
+		  <li role="presentation"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 		  <li role="presentation"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-		  <li role="presentation"><a href="#">Students</a></li>
+		  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>
 	</div>
 </div>
@@ -67,7 +67,7 @@
 			    </div>
 			    <div class="row-add">
 							<div class="alert alert-info" role="alert">
-								<p>Please upload only mp4 files with maximum size 150mb.</p>
+								<p>Please upload only *.mp4 files with a maximum size of 150mb.</p>
 							</div>
 			    </div> 
 				{{ Form::submit('Upload', array('class'=>'form-control')) }}

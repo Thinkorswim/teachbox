@@ -45,7 +45,7 @@
 							</div>
 							<div class="row-add">
 								<div class="alert alert-info" role="alert">
-									<p>Please upload only png and jpg files with maximum size 4mb.</p>
+									<p> Upload only *.png and *.jpg files with a max size of 4mb.</p>
 								</div>
 							</div>
 							{{ Form::token() }}
