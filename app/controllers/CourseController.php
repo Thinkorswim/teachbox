@@ -268,25 +268,23 @@ class CourseController extends \BaseController {
 						if($newImage->save('public/courses/' . $courseEdit->id . '/img/' . $filename)&& $newImage1->save('public/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
 							    	$courseEdit->pic    = $filename;
 					    }
-					}else{
-						return Redirect::action('CourseController@courseEdit',[$id])
-								 ->withErrors(array('pic' => 'You have not selected a picture or it has a wrong extension.'));
 					}
-				
-				$message = nl2br($description);
-				$description = trim($message);
 
-				$courseEdit->description = $description;
+					$message = nl2br($description);
+					$description = trim($message);
 
-					if($courseEdit->save()){
-						return Redirect::route('course-page', array('id' => $id));
-					}
+					$courseEdit->description = $description;
+						
+						if($courseEdit->save()){
+							return Redirect::route('course-page', array('id' => $id));
+						}
+				}
+
+				return Redirect::action('CourseController@courseEdit',[$id])
+						->with('global-negative', 'Your course settings could not be changed.');
 			}
-
-			return Redirect::action('CourseController@courseEdit',[$id])
-					->with('global-negative', 'Your course settings could not be changed.');
-		}
 	}
+
 
 
 	public function courseAdd($id)
