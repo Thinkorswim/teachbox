@@ -100,7 +100,7 @@
   -o-transition: all 0.3s ease;
 }
 .panel.panel-default.course-panel .panel-body img:hover {
-  opacity: 0.4;
+  opacity: 0.9;
   -webkit-transform: scale3d(1.1, 1.1, 1);
   transform: scale3d(1.1, 1.1, 1);
 }

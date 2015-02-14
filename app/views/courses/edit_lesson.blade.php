@@ -21,7 +21,7 @@
 		@endif
 	</div>
 	<div class="col-xs-12 col-sm-4">
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions place">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Settings</h3>
 		  </div>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions">
+		<div class="panel panel-default settings-panel actions place">
 			<div class="panel-heading">
 				<h3 class="panel-title">Lesson information</h3>
 			</div>

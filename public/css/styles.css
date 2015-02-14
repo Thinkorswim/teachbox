@@ -8360,6 +8360,7 @@ textarea {
   position: fixed!important;
   top: 52px!important;
   z-index: 9998;
+  left: 0;
 }
 .btn-success {
   background: #1abc9c;
@@ -8371,6 +8372,13 @@ textarea {
 .contacts-page section,
 .contacts-page .full-screen {
   padding: 0!important;
+}
+.pagination .active {
+  border-left: 0!important;
+  padding: 0!important;
+}
+.tutor-list button {
+  margin-top: -33px !important;
 }
 .full-screen {
   padding: 170px 0 20px;
@@ -9294,7 +9302,7 @@ input[type="submit"]:focus {
   -o-transition: all 0.3s ease;
 }
 .panel.panel-default.course-panel .panel-body img:hover {
-  opacity: 0.4;
+  opacity: 0.9;
   -webkit-transform: scale3d(1.1, 1.1, 1);
   transform: scale3d(1.1, 1.1, 1);
 }

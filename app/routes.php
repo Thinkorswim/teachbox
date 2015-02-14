@@ -112,6 +112,11 @@
 				'uses' => 'AdminController@approveCourse'
 		));		
 
+		//Approve lesson
+		Route::post('/admin/users/{id}', array(
+				'as'   => 'post-admin-lesson-approve',
+				'uses' => 'AdminController@approveLesson'
+		));	
 
 	});
 	
@@ -294,6 +299,11 @@
 				'as' => 'admin-courses-approve',
 				'uses' => 'AdminController@coursesApprove'
 
+		));
+
+		Route::get('/admin/courses/lessons-approve', array(
+		'as' => 'admin-lessons-approve',
+		'uses' => 'AdminController@lessonsApprove'
 		));
 
 		Route::get('/admin/users/{id}/edit', array(

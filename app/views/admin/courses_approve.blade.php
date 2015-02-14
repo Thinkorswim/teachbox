@@ -3,8 +3,17 @@
 @section('content')
  
 <div class="container">
-    <div class="row">
-        <h2> Courses for approvement </h2>
+
+  <div class="tabs-profile fixed">
+          <div class="container">
+            <ul class="nav nav-pills">
+              <li class="active"><a href="{{ URL::action('AdminController@coursesApprove') }}">Courses</a></li>
+              <li role="presentation"><a href="{{ URL::action('AdminController@lessonsApprove') }}">Lessons</a></li>
+            </ul>
+          </div>
+        </div>
+    <div class="row place">
+        <h2 class="place"> Courses for approvement </h2>
         <div class="col-xs-12 col-sm-8"> 
             @foreach ($courses as $course)
             <?php $user = User::find($course->user_id); ?>
@@ -26,12 +35,13 @@
                                         {{ Form::token() }}
                                             {{ Form::button('<i class="fa fa-check"></i> Approve course', array('type' => 'submit','class'=>'btn btn default')) }}
                                     @endif
-                                {{ Form::close() }}          
-                            </div>                    
+                                {{ Form::close() }}
+                            </div>
                           </div>
                         </div>
                     </div>
                 @endforeach
+        {{ $courses->links() }}
         </div>
         <div class="col-xs-12 col-sm-4">
     </div>   

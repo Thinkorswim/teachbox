@@ -73,7 +73,7 @@ class AdminController extends \BaseController {
     {
         if(Auth::check() && Auth::user()->admin){
 
-            $courses =  Course::where('approved', '=',  '0')->get();
+            $courses =  Course::where('approved', '=',  '0')->paginate(10);
 
             return View::make('admin.courses_approve')->with(array(
                         'courses' => $courses));
@@ -85,7 +85,30 @@ class AdminController extends \BaseController {
         }
 
 
+    public function lessonsApprove()
+    {
+        if(Auth::check() && Auth::user()->admin){
+            $lessons =  Lesson::where('approved', '=',  '0')->paginate(10);
 
+            if(count($lessons) > 0){
+                foreach ($lessons as $lesson) {
+                    $course = Course::find($lesson->course_id);
+                    $user = User::find($course->user_id);
+                }
+            }
+            else{
+                $course = null;
+                $user = null;
+            }
+
+            return View::make('admin.lessons_approve')->with(array(
+                        'lessons' => $lessons, 'course'=> $course, 'user'=> $user));
+        }else{
+            return Redirect::action('AuthController@index');
+        }
+
+
+        }
 
     public function editUser($id)
     {
@@ -174,4 +197,20 @@ class AdminController extends \BaseController {
         }
         return App::abort(404);
     }
+
+    public function approveLesson($id){
+        if(Auth::check()){
+            $course = Lesson::find($id);
+            $course->approved = 1;
+            $course->save();
+
+            if($course){
+                return Redirect::action('AdminController@lessonsApprove')
+                        ->with('user',$course);
+            }   
+
+        }
+        return App::abort(404);
+    }
+
 }
