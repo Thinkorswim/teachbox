@@ -303,6 +303,6 @@ class AuthController extends \BaseController {
 		} 
 
 		return Redirect::route('home')
-						->with('global-negative', 'We could not activate your account. It may');
+						->with('global-negative', 'We could not activate your account.');
 	}
 }
