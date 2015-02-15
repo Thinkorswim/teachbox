@@ -619,8 +619,7 @@ class CourseController extends \BaseController {
 				}
 
 			}else{
-					return Redirect::route('change-lesson-video', array('id' => $id, 'lesson' => $lesson))
-						 ->withErrors(array('video' => 'You have not selected a video file or it has a wrong extension.'));
+					return Redirect::route('course-page', array('id' => $id));
 			}
 		}else{
 				return View::make('home.before');

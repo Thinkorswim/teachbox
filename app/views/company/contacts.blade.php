@@ -103,7 +103,7 @@
 						<p>Co-founder, Programmer</p>
 						<ul class="social">
 						  <li>
-							<a href="https://www.facebook.com/ivan.lebanov">
+							<a href="https://www.facebook.com/profile.php?id=100004670134982">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -111,7 +111,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://twitter.com/ivansayshi">
+							<a href="https://twitter.com/llluchko">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -119,7 +119,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="#">
+							<a href="https://www.linkedin.com/profile/view?id=232796153">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
