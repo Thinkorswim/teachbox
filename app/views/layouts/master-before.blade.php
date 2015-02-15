@@ -37,17 +37,14 @@
 </header>
 	    @yield('content')
 	<footer class="front-page-footer">
-		<div class="container">
-				<h3>The teachbox</h3>
-				<p> In teachbox we believe in education without any boundaries. No "must", no "have to do"- just learn 
-				what you want, make mistakes, get and give a piece of knowledge from the box. </p>
+		<div style="padding-top: 11px;" class="container">
 				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
 				<a href="{{ URL::action('ProfileController@contacts')}}">Contacts</a>
 				<a href="{{ URL::action('ProfileController@advertising')}}">Advertising</a>
 				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
 				<ul class="social">
 				  <li>
-					<a href="https://www.facebook.com/">
+					<a href="https://www.facebook.com/teachbox1">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>

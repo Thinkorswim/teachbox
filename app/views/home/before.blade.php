@@ -154,18 +154,17 @@
 			</div>
 		</div>
 	</section>
-	<section class="full-screen testimonials">
+	<!--<section class="full-screen testimonials">
 		<div class="container">
 			<h1>People talk about us</h1>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			  <!-- Indicators -->
+			  
 			  <ol class="carousel-indicators">
 			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			  </ol>
 
-			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>Simply the best.</h3>
@@ -179,7 +178,7 @@
 			</div>
 		</div>
 	</div>
-	</section>
+	</section>-->
 	<header class="relative-header">
 		<section class="full-screen explore">
 			<div class="col-xs-3">

@@ -33,7 +33,7 @@
 						<p>Co-founder, Lead programmer</p>
 						<ul class="social">
 						  <li>
-							<a href="https://www.facebook.com/ivan.lebanov">
+							<a href="https://www.facebook.com/thinkorswim1">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -41,7 +41,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://twitter.com/ivansayshi">
+							<a href="https://twitter.com/thinkorswimer">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -49,7 +49,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="#">
+							<a href="https://bg.linkedin.com/in/martingeorgiev1">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>

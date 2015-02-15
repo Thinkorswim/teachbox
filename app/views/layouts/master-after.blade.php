@@ -349,11 +349,15 @@
 				}
 
 		});
-	//scroll to lesson in playlist div
-	$('.playlist-panel .list-group').animate({
-    scrollTop: $(".playlist-panel .list-group .active").offset().top
-	}, 0);
+		</script>
 
-	</script>
+	@if (Route::current()->getName() == 'course-lesson')
+		<script>
+			//scroll to lesson in playlist div
+			$('.playlist-panel .list-group').animate({
+		    scrollTop: $(".playlist-panel .list-group .active").offset().top
+			}, 0);
+		</script>
+	@endif
   </body>
 </html>
