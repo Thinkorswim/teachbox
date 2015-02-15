@@ -107,7 +107,7 @@
 		));
 
 		//Approve course
-		Route::post('/admin/users/{id}', array(
+		Route::post('/admin/{id}/approve-lesson', array(
 				'as'   => 'post-admin-course-approve',
 				'uses' => 'AdminController@approveCourse'
 		));		

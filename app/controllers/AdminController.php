@@ -190,23 +190,20 @@ class AdminController extends \BaseController {
             $course->save();
 
             if($course){
-                return Redirect::action('AdminController@showCourses')
-                        ->with('user',$course);
-            }   
-
+                return Redirect::action('AdminController@showCourses');
+            }
         }
         return App::abort(404);
     }
 
     public function approveLesson($id){
         if(Auth::check()){
-            $course = Lesson::find($id);
-            $course->approved = 1;
-            $course->save();
+            $lesson = Lesson::find($id);
+            $lesson->approved = 1;
+            $lesson->save();
 
-            if($course){
-                return Redirect::action('AdminController@lessonsApprove')
-                        ->with('user',$course);
+            if($lesson){
+                return Redirect::action('AdminController@lessonsApprove');
             }   
 
         }
