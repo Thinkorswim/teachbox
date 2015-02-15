@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'teachbox@theteachbox.com', 'name' => 'Theteachbox'),
+	'from' => array('address' => 'info@teachbox.io', 'name' => 'Teachbox Team'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'martingeorgiev1995@gmail.com',
+	'username' => 'info@teachbox.io',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'Budivelik1',
+	'password' => 'kashkavalliutenica',
 
 	/*
 	|--------------------------------------------------------------------------
