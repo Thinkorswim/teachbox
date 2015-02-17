@@ -7,7 +7,6 @@
 @stop
 @section('content')
 <div class="container follow">
-	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default place">
 			<div class="panel-body">
 				<h1> <strong>Privacy Policy</strong></h1>
@@ -83,6 +82,5 @@
 				<p>Last Edited on 2015-02-11</p>
 			</div>
 		</div>
-	</div>
 </div>
 @endsection

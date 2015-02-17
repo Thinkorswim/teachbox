@@ -33,6 +33,13 @@
 		        <li><a href="#">Explore</a></li>
 			</ul>
 		</div>
+		@else
+		<div class="col-xs-9">
+			<ul class="nav nav-tabs navbar-before-registration pull-right">
+		        <li><a href="{{ URL::route('home') }}">Login</a></li>
+		        <li><a href="{{ URL::route('home') }}">Register</a></li>
+			</ul>
+		</div>
 		@endif
 </header>
 	    @yield('content')

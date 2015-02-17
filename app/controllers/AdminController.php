@@ -177,7 +177,7 @@ class AdminController extends \BaseController {
             if($user){
                 return Redirect::action('AdminController@showUsers')
                         ->with('user',$user);
-            }   
+            }
 
         }
         return App::abort(404);
@@ -204,8 +204,7 @@ class AdminController extends \BaseController {
 
             if($lesson){
                 return Redirect::action('AdminController@lessonsApprove');
-            }   
-
+            }
         }
         return App::abort(404);
     }
