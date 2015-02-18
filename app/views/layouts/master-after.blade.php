@@ -86,23 +86,6 @@
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
         <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge"></span></a></li>
-        <!--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa  fa-bell"></i></a>
-			<ul class="dropdown-menu notification pull-right" role="menu">
-				<li>
-					<a href="#">
-						<img src="{{ URL::asset('img/ivan.jpeg') }}"/>
-						<p>Ivan likes your actievment from today.</p>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="{{ URL::asset('img/ivan.jpeg') }}"/>
-						<p>Ivan likes your actievment from today.</p>
-					</a>
-				</li>
-				<a href="">All notifications</a>
-			</ul>
-		</li>-->
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
 	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
@@ -114,7 +97,12 @@
 			</ul>
 		</li>
       </ul>
-      @endif
+		@else
+			<ul class="nav nav-tabs navbar-before-registration pull-right">
+		        <li><a href="{{ URL::route('home') }}">Login</a></li>
+		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
+			</ul>
+		@endif
 </div>
 </header>
 	<div class="main">

@@ -50,6 +50,7 @@ padding:170px 0 20px;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding-top: 50px;
 }
 &.explore{
  background: url(../img/study.png) no-repeat center center; 
@@ -64,6 +65,14 @@ padding:170px 0 20px;
   	margin-top:70px;
   	color: @white;
   }
+  &.new-here{
+ background-image: url(../img/IMG_1474.jpg)!important; 
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px!important;
+}
 }
 &.learn-screen, &.explore{
 	padding:65px 0 80px;
@@ -73,6 +82,23 @@ padding:170px 0 20px;
 		margin-bottom:60px;
 		font-weight:900;
 	}
+  &.like-it{
+    div > h1{
+      margin-bottom: 20px;
+    }
+    p{
+      display: block;
+      color:@white;
+    }
+    .btn.btn-default{
+      border:3px solid @blue;
+      background: @blue;
+      color:@white;
+      margin-top: 20px;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+  }
 }
 &.testimonials{
 	background:@blue;

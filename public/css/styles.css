@@ -8429,6 +8429,7 @@ textarea {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding-top: 50px;
 }
 .full-screen.explore {
   background: url(../img/study.png) no-repeat center center;
@@ -8443,6 +8444,14 @@ textarea {
   margin-top: 70px;
   color: #ffffff;
 }
+.full-screen.explore.new-here {
+  background-image: url(../img/IMG_1474.jpg) !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 400px!important;
+}
 .full-screen.learn-screen,
 .full-screen.explore {
   padding: 65px 0 80px;
@@ -8453,6 +8462,24 @@ textarea {
 .full-screen.explore div > h1 {
   margin-bottom: 60px;
   font-weight: 900;
+}
+.full-screen.learn-screen.like-it div > h1,
+.full-screen.explore.like-it div > h1 {
+  margin-bottom: 20px;
+}
+.full-screen.learn-screen.like-it p,
+.full-screen.explore.like-it p {
+  display: block;
+  color: #ffffff;
+}
+.full-screen.learn-screen.like-it .btn.btn-default,
+.full-screen.explore.like-it .btn.btn-default {
+  border: 3px solid #1abc9c;
+  background: #1abc9c;
+  color: #ffffff;
+  margin-top: 20px;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 .full-screen.testimonials {
   background: #1abc9c;
@@ -8592,6 +8619,9 @@ header {
   z-index: 9999;
   left: 0;
 }
+header .caret {
+  margin-top: -10px;
+}
 header ::-webkit-scrollbar {
   width: 12px;
 }
@@ -8704,6 +8734,17 @@ header .nav-tabs li a {
 header .nav-tabs li a i {
   font-size: 20px;
   margin-top: 3px;
+}
+header .nav-tabs li .btn.btn-default {
+  background: #1abc9c;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  height: 38px;
+  margin-right: 5px;
+}
+header .nav-tabs li .btn.btn-default:hover {
+  color: #ffffff;
 }
 header .nav-tabs li .navbar-brand img {
   border-radius: 50%;
@@ -9566,8 +9607,12 @@ input[type="submit"]:focus {
   }
 }
 .course-section {
-  background: #1abc9c;
-  padding: 30px 0;
+  background: url('../img/cover-course.jpg') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 140px 0 40px;
   width: 100%;
   height: auto;
 }
@@ -9585,7 +9630,7 @@ input[type="submit"]:focus {
 }
 .course-section h1,
 .course-section h5 {
-  color: #ffffff;
+  color: #1abc9c;
 }
 .course-section a {
   margin-left: 5px;

@@ -42,14 +42,16 @@
 			</div>
 		@if (count($lessonList) > 0)
 			<?php $i = 1; ?>
-		<div class="panel panel-default actions">
+		<div class="panel panel-default actions" >
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">Lessons</h3>
 		  </div>
 		  <div class="panel-body"> 
 			  	<div class="list-group">
 					@foreach ($lessonList as $lesson)
-					 	<div class="list-group-item"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </div>
+					 	<div class="list-group-item" >
+					 		<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+					 	</div>
 					@endforeach
 	    		</div>
 	       </div>
@@ -57,14 +59,15 @@
 	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
+	    @if(Auth::check())
 		    <div class="panel panel-default settings-panel actions">
 			    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
-			    		@if(Auth::check())
 							{{ Form::token() }}
 							{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
-						@endif
+
 				{{ Form::close() }}
 			</div>
+		@endif
 			<div class="panel panel-default student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
@@ -95,5 +98,17 @@
 			</div>
 	    </div>
     </div>
-
+    	@if(!Auth::check())
+		<section class="full-screen explore like-it">
+		<div class="container">
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-12 col-sm-6 text-center">
+				
+					<h1>Do you want to take {{$course->name}} course?</h1>
+					<a href="{{ URL::route('home') }}" class="btn btn-default">Register for free</a>
+			</div>
+		</div>
+		</section>
+		@endif
 @endsection

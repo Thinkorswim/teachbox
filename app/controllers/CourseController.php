@@ -127,7 +127,7 @@ class CourseController extends \BaseController {
 		if($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin == 1){
 
 			
-			if($course->user_id == Auth::user()->id ){
+			if(Auth::check() && $course->user_id == Auth::user()->id ){
 				$lessonList = Lesson::where('course_id', '=', $id)->get();
 			}else{
 				$lessonList = Lesson::where('course_id', '=', $id)->where('approved', '=', 1)->get();
@@ -145,6 +145,7 @@ class CourseController extends \BaseController {
        						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));   
    					}
 			}else{
+				$lessonList = Lesson::where('course_id', '=', $id)->get();
 				return View::make('courses.not_join')
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
@@ -832,7 +833,7 @@ class CourseController extends \BaseController {
 
 	public function courseStudents($id)
 	{
-		if(Auth::check()){
+		
 			$course = Course::find($id);
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 			$studentCount = $studentCount - 1;
@@ -846,13 +847,6 @@ class CourseController extends \BaseController {
 				$thousand = substr($studentCount, 1, 1);
 				$studentCount = $million . '.'. $thousand . 'm';
 			}
-
-			$isJoined = UserCourse::where(function ($query) {
-			    $query->where('user_id', '=', Auth::user()->id);
-			})->where(function ($query) use ($id) {
-			    $query->where('course_id', '=', $id);
-			})->count();
-
 			$user = User::find($course->user_id);
 			$studentId = DB::table('user_courses')
 			        ->join('users', function($join)  use ($id)
@@ -861,7 +855,13 @@ class CourseController extends \BaseController {
 			                 ->where('course_id', '=', $id);
 			        })->orderBy('users.name')->get();
 			$studentList = $studentId;
-
+			
+			if(Auth::check()){
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
 
 			if($course->approved == 1 || $course->user_id == Auth::user()->id){
 			return View::make('courses.students')
@@ -871,7 +871,8 @@ class CourseController extends \BaseController {
 			}
 		
 		}else{
-			return View::make('home.before');
+			return View::make('courses.students')
+					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
 		}
 	}
 

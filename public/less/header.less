@@ -47,6 +47,9 @@ header{
 	top: 0;
 	z-index: 9999;
 	left: 0;
+	.caret{
+		margin-top: -10px;
+	}
         ::-webkit-scrollbar {
 	    width: 12px;
 	}
@@ -151,6 +154,15 @@ header{
 			i{
 			font-size:20px;
 			margin-top:3px;
+			}
+		}
+		.btn.btn-default{
+			background: @blue;
+			.RoundBorders(4px);
+			height: 38px;
+			margin-right: 5px;
+			&:hover{
+				color:@white;
 			}
 		}
 		.navbar-brand{

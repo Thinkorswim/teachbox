@@ -15,7 +15,7 @@
 		<div class="col-xs-12 col-md-3">
 				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}"/>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-				 {{$studentCount}} 			
+				 {{$studentCount}}
 				 </span>
 		</div>
 		<div class="col-xs-12 col-xs-9">
@@ -74,7 +74,8 @@
 					@endif
 			{{ Form::close() }}	
 			@endif
-			@if (Auth::user()->id == $course->user_id)
+
+			@if (Auth::check() && Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Actions</h3>
@@ -116,5 +117,17 @@
 				</div>
     </div>
 </div>
-
+</div>
+@if(!Auth:check())
+<section class="full-screen explore like-it">
+	<div class="container">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-12 col-sm-6 text-center">
+			<h1>Do you want to take this course?</h1>
+			<a href="{{ URL::route('home') }}" class="btn btn-default">Register for free</a>
+		</div>
+	</div>
+</section>
+@endif
 @endsection

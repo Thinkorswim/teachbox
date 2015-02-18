@@ -21,7 +21,7 @@
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
-		@if (!$isFollowing && $user->id != Auth::user()->id)
+		@if (Auth::check() && !$isFollowing && $user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
@@ -30,7 +30,7 @@
 				@endif
 			{{ Form::close() }}
 		@else
-			@if($user->id != Auth::user()->id)
+			@if(Auth::check() && $user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postUnfollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
@@ -40,7 +40,7 @@
 			@endif
 			{{ Form::close() }}
 		@endif
-		@if($user->id != Auth::user()->id)
+		@if(Auth::check() && $user->id != Auth::user()->id)
 		{{ Form::button('<i class="fa fa-comment"></i>', array(
 		'data-toggle'=>'modal', 'data-target'=>'#exampleModal', 'class'=>'message-circle',
 		 'data-placement' =>'left','title' => 'Start conversation with  '. $user->name)) }}
@@ -80,7 +80,7 @@
 			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h2><strong>Doesn't follow anyone yet.</strong></h2>
-					@if ($user->id == Auth::user()->id)
+					@if (Auth::check() && $user->id == Auth::user()->id)
 						<small>Connect with your friends.  </small>
 					@endif
 				</div>
@@ -122,4 +122,14 @@
 			@endif
 		</div>
 	</div>
+	@if(!Auth::check())
+		<section class="full-screen explore like-it new-here">
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-12 col-sm-6 text-center">
+				<h1>Do you know {{$user->name}}?</h1>
+				<a href="{{ URL::route('home') }}" class="btn btn-default">Register and learn together</a>
+			</div>
+		</section>
+	@endif
 @endsection

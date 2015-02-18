@@ -22,7 +22,7 @@
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
 		@endif
-		@if (!$isFollowing && $user->id != Auth::user()->id)
+		@if (Auth::check() && !$isFollowing && $user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
@@ -31,7 +31,7 @@
 				@endif
 			{{ Form::close() }}
 		@else
-			@if($user->id != Auth::user()->id)
+			@if(Auth::check() && $user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postUnfollow', $user->id))) }}
 				@if(Auth::check())
 					{{ Form::token() }}
@@ -41,7 +41,7 @@
 			@endif
 			{{ Form::close() }}
 		@endif
-		@if($user->id != Auth::user()->id)
+		@if(Auth::check() && $user->id != Auth::user()->id)
 		{{ Form::button('<i class="fa fa-comment"></i>', array(
 		'data-toggle'=>'modal', 'data-target'=>'#exampleModal', 'class'=>'message-circle',
 		 'data-placement' =>'left','title' => 'Start conversation with  '. $user->name)) }}
@@ -95,8 +95,8 @@
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						<strong><a href="{{ URL::action('ProfileController@user', Auth::user()->id) }}"> {{  $user->name }} </a></strong> 
-						@if ($userT->id == Auth::user()->id)
+						<strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{  $user->name }} </a></strong> 
+						@if ($userT->id == $user->id)
 						    created
 						@else
 							joined
@@ -133,7 +133,7 @@
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	 <p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						 <strong><a href="{{ URL::action('ProfileController@user', Auth::user()->id) }}"> {{ Auth::user()->name }} </a></strong>
+						 <strong><a href="{{ URL::action('ProfileController@user',$user->id) }}"> {{ $user->name }} </a></strong>
 						 followed
 						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
 						 </p>

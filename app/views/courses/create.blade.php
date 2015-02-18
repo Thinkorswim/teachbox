@@ -5,7 +5,7 @@
 @stop
 
 @section('description')
-	????
+	Create your course in teachbox.
 @stop
 
 @section('content')
@@ -34,7 +34,7 @@
 							@else             
 							<div class="input-group">
 							@endif  
-							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 50 characters ako sum prav de!)','class'=>'form-control')) }}
+							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 30 characters)','class'=>'form-control')) }}
 							</div>
 							<div class="row">
 									<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>
@@ -60,13 +60,22 @@
 						<h3>Revolution in online teaching</h3>
 						<p>Create your course and teach people all over the world!
 						 We give you the freedom to create a great course when you start adding lessons. Our platform is social so when the course is ready start to advertise it by following new people.
-						 If you are a novice watch our lessons: </br> "How to create professional online course". </p>
+						 If you are a novice watch our lessons: </p><p> "How to create professional online course". </p>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-body padding-panel">
+						<h3>Guidelines</h3>
+						<ul>
+							<li>Course name should be between 4 and 128 symbols</li>
+							<li>Course description should be maximum 4096 symbols.</li>
+							<li>Your course will be sent for approvement and it won't be public unless it's approved.</li>
+							<li>Every lesson will be sent for approvement as well.</li>
+							<li>If anything is wrong with your with your course we'll inform you.</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-<section class="full-screen learn-screen">
-
-</section>
 @endsection
