@@ -57,12 +57,10 @@
 			<div class="col-xs-12  col-md-7">
 				<div class="panel panel-default">
 					<div class="panel-body padding-panel">
-						<h3>Some heading</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-						In sed dapibus eros, sed varius tortor. Etiam at pharetra enim, sit amet blandit nisi. Etiam a hendrerit lectus, sed sollicitudin purus.
-						 Nunc aliquet ac sapien a lobortis. Cras tincidunt dapibus finibus. Mauris convallis fermentum leo, ac tempus ligula ultricies eu. 
-						 Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed in ligula accumsan mi commodo pretium.
-						 Mauris sollicitudin ex quis varius finibus. Phasellus in quam id purus lobortis pellentesque sit amet ut ante.</p>
+						<h3>Revolution in online teaching</h3>
+						<p>Create your course and teach people all over the world!
+						 We give you the freedom to create a great course when you start adding lessons. Our platform is social so when the course is ready start to advertise it by following new people.
+						 If you are a novice watch our lessons: </br> "How to create professional online course". </p>
 					</div>
 				</div>
 			</div>
