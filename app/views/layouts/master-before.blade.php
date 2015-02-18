@@ -51,7 +51,7 @@
 				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
 				<ul class="social">
 				  <li>
-					<a href="https://www.facebook.com/teachbox1">
+					<a href="https://www.facebook.com/teachbox1" target="_blank">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -59,7 +59,7 @@
 					</a>
 				  </li>
 				  <li>
-					<a href="https://twitter.com/">
+					<a href="https://twitter.com/teachbox_team" target="_blank">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -67,7 +67,7 @@
 					</a>
 				  </li>
 				  <li>
-					<a href="#">
+					<a href="https://www.linkedin.com/profile/view?id=404189736" target="_blank">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>

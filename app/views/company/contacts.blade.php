@@ -33,7 +33,7 @@
 						<p>Co-founder, Lead programmer</p>
 						<ul class="social">
 						  <li>
-							<a href="https://www.facebook.com/thinkorswim1">
+							<a href="https://www.facebook.com/thinkorswim1" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -41,7 +41,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://twitter.com/thinkorswimer">
+							<a href="https://twitter.com/thinkorswimer" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -49,7 +49,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://bg.linkedin.com/in/martingeorgiev1">
+							<a href="https://bg.linkedin.com/in/martingeorgiev1" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -68,7 +68,7 @@
 						<p>Co-founder, UX designer</p>
 						<ul class="social">
 						  <li>
-							<a href="https://www.facebook.com/ivan.lebanov">
+							<a href="https://www.facebook.com/ivan.lebanov" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -76,7 +76,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://twitter.com/ivansayshi">
+							<a href="https://twitter.com/ivansayshi" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -84,7 +84,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="#">
+							<a href="https://www.linkedin.com/profile/view?id=329864971" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -103,7 +103,7 @@
 						<p>Co-founder, Programmer</p>
 						<ul class="social">
 						  <li>
-							<a href="https://www.facebook.com/profile.php?id=100004670134982">
+							<a href="https://www.facebook.com/profile.php?id=100004670134982" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -111,7 +111,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://twitter.com/llluchko">
+							<a href="https://twitter.com/llluchko" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -119,7 +119,7 @@
 							</a>
 						  </li>
 						  <li>
-							<a href="https://www.linkedin.com/profile/view?id=232796153">
+							<a href="https://www.linkedin.com/profile/view?id=232796153" target="_blank">
 								<span class="fa-stack fa-lg">
 								  <i class="fa fa-circle fa-stack-2x"></i>
 								  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
