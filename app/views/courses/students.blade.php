@@ -118,7 +118,7 @@
     </div>
 </div>
 </div>
-@if(!Auth:check())
+@if(!Auth::check())
 <section class="full-screen explore like-it">
 	<div class="container">
 		<div class="col-xs-3">
