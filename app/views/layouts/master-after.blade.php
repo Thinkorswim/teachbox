@@ -6,8 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') Teachbox</title>
 	<meta name="description" content="@yield('description')">
-    <link rel="stylesheet" href="{{ URL::asset('css/styles.css') }}" >
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet/less" type="text/css" href="{{ URL::asset('less/styles.less') }}" />
+	<script>
+	  less = {
+	    env: "development",
+	    async: false,
+	    fileAsync: false,
+	    poll: 1000,
+	    functions: {},
+	    dumpLineNumbers: "comments",
+	    relativeUrls: false,
+	  };
+	</script>
+	<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -116,7 +130,7 @@
 				<a href="{{ URL::action('ProfileController@feedback')}}"><strong>Give us feedback</strong></a>
 				<ul class="social">
 				  <li>
-					<a href="https://www.facebook.com/teachbox1" target="_blank">
+					<a href="https://www.facebook.com/teachbox1">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -124,7 +138,7 @@
 					</a>
 				  </li>
 				  <li>
-					<a href="https://twitter.com/teachbox_team" target="_blank">
+					<a href="https://twitter.com/teachbox_team">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -132,7 +146,7 @@
 					</a>
 				  </li>
 				  <li>
-					<a href="https://www.linkedin.com/profile/view?id=404189736" target="_blank">
+					<a href="https://www.linkedin.com/profile/view?id=404189736">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -202,8 +216,30 @@
 				</script>		
 		@endif
 	@endif
+  <script>
+	document.getElementById('uploadBtn').onchange = function (evt) {
+	    var tgt = evt.target || window.event.srcElement,
+	        files = tgt.files;
+	    // FileReader support
+	    if (FileReader && files && files.length) {
+	        var fr = new FileReader();
+	        fr.onload = function () {
+	            document.getElementById('profile').src = fr.result;
+	        };
+	        fr.readAsDataURL(files[0]);
+	    }
+	    // Not supported
+	    else {
+	        // fallback -- perhaps submit the input to an iframe and temporarily store
+	        // them on the server until the user's session ends.
+	    }
+	};
+	
 
-    <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+   </script>
+   <script src="{{ URL::asset('js/master-after-js.js') }}"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     @if(Route::current()->getName() != 'messages')
   		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
@@ -229,116 +265,6 @@
 		</script>
 	@endif
 
-<script>
-	document.getElementById('uploadBtn').onchange = function (evt) {
-	    var tgt = evt.target || window.event.srcElement,
-	        files = tgt.files;
-	    // FileReader support
-	    if (FileReader && files && files.length) {
-	        var fr = new FileReader();
-	        fr.onload = function () {
-	            document.getElementById('profile').src = fr.result;
-	        }
-	        fr.readAsDataURL(files[0]);
-	    }
-	    // Not supported
-	    else {
-	        // fallback -- perhaps submit the input to an iframe and temporarily store
-	        // them on the server until the user's session ends.
-	    }
-	}
-</script>
-	<script>
-		$('.fixed li').click(function(e) {
-		    e.stopPropagation();
-		$('.fixed li').removeClass('active');
-		$(this).addClass('active');
-		});
-
-	$('.choose-user').on('click' , function() { 
-    $('#list-modal').modal('hide');
-    $('#chat-with').modal('show');
-});
-		// tooltips
-	$('.shown').tooltip({'trigger':'focus','placement' : 'top'});
-	$('.shown').tooltip('show');
-		//active states for inputs
-		$('.settings-panel .input-group').click(function(e) {
-		    e.stopPropagation();
-		$('.settings-panel .input-group').removeClass('current');
-		$(this).addClass('current');
-		});
-		$('body').click(function(e) {
-		$('.settings-panel .input-group').removeClass('current');
-			});
-
-		$('.message-list .list-group-item').click(function(e) {
-		    e.stopPropagation();
-		$('.message-list .list-group-item').removeClass('active');
-		$(this).addClass('active');
-		});
-		$('.clock').tooltip();
-		//sticky navigation
-	    $(function() {
-		 	var sticky_navigation_offset_top = $('.tabs-profile').offset().top;
-		    var sticky_navigation = function(){
-		    var scroll_top = $(window).scrollTop();
-		        if (scroll_top > sticky_navigation_offset_top) {
-		            $('.tabs-profile').css({ 'position': 'fixed', 'top':53, 'left':0, 'z-index':9995 });
-		        } else {
-		            $('.tabs-profile').css({ 'position': 'relative', 'top':0 }); 
-		        }   
-		    };
-		    sticky_navigation();
-		    $(window).scroll(function() {
-		         sticky_navigation();
-		    });
-		});
-	    // thumbnail fix
-		var $span = $(".course.created");
-		for (var i = 0; i < $span.length; i += 2) {
-		    var $div = $("<div/>", {
-		        class: 'row'
-		    });
-		    $span.slice(i, i + 2).wrapAll($div);
-		}
-		var $span = $(".course.joined");
-		for (var i = 0; i < $span.length; i += 2) {
-		    var $div = $("<div/>", {
-		        class: 'row'
-		    });
-		    $span.slice(i, i + 2).wrapAll($div);
-		}
-		var $span = $(".student");
-		for (var i = 0; i < $span.length; i += 2) {
-		    var $div = $("<div/>", {
-		        class: 'row'
-		    });
-		    $span.slice(i, i + 2).wrapAll($div);
-		}
-		//bootstrap tooltip conflict
-		$(document).ready(function () {
-		$(".join").click(function() {
-	       $("#ask").show();
-	       $(".join").hide();
-	    });
-		var bootstrapButton = $.fn.button.noConflict() 
-		$.fn.bootstrapBtn = bootstrapButton 
-		$(function () {
-		  $('[data-toggle="tooltip"]').tooltip()
-		});
-		});
-		//search suggestion
-		$('#keyword').autocomplete({
-				source: '/getdata',
-				minLength: 1,
-				select:function(e, ui){
-					window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
-				}
-
-		});
-		</script>
-
 	@if (Route::current()->getName() == 'course-lesson')
 		<script>
 			//scroll to lesson in playlist div
@@ -347,5 +273,6 @@
 			}, 0);
 		</script>
 	@endif
+  
   </body>
 </html>

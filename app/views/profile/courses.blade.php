@@ -108,7 +108,7 @@
 			<h2>Enrolled courses</h2>
 			@if(count($joinedList) - count($createdList) > 0)
 			@foreach ($joinedList as $course)
-				@if (Auth::check() && $course->user_id != Auth::user()->id)
+				@if (Auth::check() && $course->user_id != $user->id)
 				<?php $creator = User::find($course->user_id); ?>
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
