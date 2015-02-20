@@ -59,19 +59,21 @@
 					<div class="panel-body padding-panel">
 						<h3>Revolution in online teaching</h3>
 						<p>Create your course and teach people all over the world!
-						 We give you the freedom to create a great course when you start adding lessons. Our platform is social so when the course is ready start to advertise it by following new people.
-						 If you are a novice watch our lessons: </p><p> "How to create professional online course". </p>
+						 We give you the technology and the support needed to create a fun and engaging course. 
+						 Our platform is social so the best thing to do after creating your first course is to grow your community
+						 by following and messaging new people.
+						 If you are new to this watch our series: </p><p> <a href="#">"How to create a professional online course"</a> </p>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body padding-panel">
 						<h3>Guidelines</h3>
 						<ul>
-							<li>Course name should be between 4 and 128 symbols</li>
-							<li>Course description should be maximum 4096 symbols.</li>
-							<li>Your course will be sent for approvement and it won't be public unless it's approved.</li>
-							<li>Every lesson will be sent for approvement as well.</li>
-							<li>If anything is wrong with your with your course we'll inform you.</li>
+							<li>Your course  <strong>name</strong> should be between <strong>4</strong> and <strong>128</strong> characters</li>
+							<li>Your course  <strong>description</strong> should be maximum <strong>4096</strong> characters.</li>
+							<li>Your course will be sent for approvement and it <strong>will not be publicly accessible</strong> until it is approved.</li>
+							<li>Every <strong>lesson</strong> you upload will be sent for <strong>approvement</strong> as well.</li>
+							<li>If anything is <strong>wrong</strong> with your submissions we will <strong>inform</strong> you.</li>
 						</ul>
 					</div>
 				</div>

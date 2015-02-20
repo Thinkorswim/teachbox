@@ -17,7 +17,16 @@
 						</div>
 						<div class="col-xs-12 col-lg-9">
 					  	  <h1><strong>About us</strong></h1>
-						  <p>Teachbox is a education platform which is currently in beta.</p>
+					  	  <br>
+						  <p style="font-size:16px">Teachbox is the only online platform which incorporates a teaching platform with the accessibility 
+						  and usability of a social network and is led by our revolutional vision of contemporary online education.
+						  We are currently in beta and would be glad to have any kind of support from you. The easiest way to do that
+						  is by filling our <a href="{{ URL::action('ProfileController@feedback')}}">quick survey</a>. Our goal is to
+						  make teaching and learning quick, easy and essentially fun. Let's change the education field forever and 
+						  prove everyone is born both a learner and a teacher.
+						  <br>
+							You can always contact us on <a href="mailto:info@teachbox.io">info@teachbox.io</a> !
+						  </p>
 						</div>
 					  </div>
 					</div>

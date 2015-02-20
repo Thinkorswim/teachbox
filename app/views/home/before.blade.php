@@ -138,19 +138,19 @@
 			<h1 class="centered">Teach. Learn. Earn. Socialise.</h2>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-glasses"></i>
-				<p>Everyone has some knowledge to share. Spit it out. Teach the world.</p>
+				<p> Everyone has some knowledge to share. Spit it out. Teach the world. </p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-notebook"></i>
-				<p>Nobody is perfect. Get something out of that knowledge box.</p>
+				<p> Nobody is perfect. Get something out of that knowledge box. </p>
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-cash"></i>
-				<p> Earn while doing something great and having fun. </p>				
+				<p> Earn while having fun and doing something great. </p>				
 			</div>
 			<div class="col-sm-3">
 				<i class="fa-4x pe-7s-chat"></i>
-				<p>Share your experience with your friends. Know what they are up to.</p>				
+				<p> Share your experience with your friends. Know what they are up to.</p>				
 			</div>
 		</div>
 	</section>

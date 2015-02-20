@@ -44,7 +44,7 @@
 		<div class="col-xs-9">
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
 		        <li><a href="#">Vision</a></li>
-		        <li><a href="#">Testimonials</a></li>
+		       <!-- <li><a href="#">Testimonials</a></li> -->
 		        <li><a href="#">Explore</a></li>
 			</ul>
 		</div>
