@@ -108,7 +108,7 @@
 			<h2>Enrolled courses</h2>
 			@if(count($joinedList) - count($createdList) > 0)
 			@foreach ($joinedList as $course)
-				@if (Auth::check() && $course->user_id != $user->id)
+				@if ( $course->user_id != $user->id)
 				<?php $creator = User::find($course->user_id); ?>
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
@@ -149,11 +149,13 @@
 </div>
 	@if(!Auth::check())
 		<section class="full-screen explore like-it new-here">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-12 col-sm-6 text-center">
-				<h1>Do you know {{$user->name}}?</h1>
-				<a href="{{ URL::route('home') }}" class="btn btn-default">Register and learn together</a>
+			<div class="container">
+				<div class="col-xs-3">
+				</div>
+				<div class="col-xs-12 col-sm-6 text-center">
+					<h1>Do you know {{$user->name}}?</h1>
+					<a href="{{ URL::route('home') }}" class="btn btn-default">Register and learn together</a>
+				</div>
 			</div>
 		</section>
 	@endif

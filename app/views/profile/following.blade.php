@@ -124,11 +124,13 @@
 	</div>
 	@if(!Auth::check())
 		<section class="full-screen explore like-it new-here">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-12 col-sm-6 text-center">
-				<h1>Do you know {{$user->name}}?</h1>
-				<a href="{{ URL::route('home') }}" class="btn btn-default">Register and learn together</a>
+			<div class="container">
+				<div class="col-xs-3">
+				</div>
+				<div class="col-xs-12 col-sm-6 text-center">
+					<h1>Do you know {{$user->name}}?</h1>
+					<a href="{{ URL::route('home') }}" class="btn btn-default">Register and learn together</a>
+				</div>
 			</div>
 		</section>
 	@endif
