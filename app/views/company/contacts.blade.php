@@ -18,7 +18,7 @@
 						<div class="col-xs-12 col-lg-9">
 					  	  <h1><strong>About us</strong></h1>
 					  	  <br>
-						  <p style="font-size:16px">Teachbox is the only online platform which incorporates a teaching platform with the accessibility 
+						  <p style="font-size:16px">Teachbox is the only web aplication which incorporates a teaching platform with the accessibility 
 						  and usability of a social network and is led by our revolutional vision of contemporary online education.
 						  We are currently in beta and would be glad to have any kind of support from you. The easiest way to do that
 						  is by filling our <a href="{{ URL::action('ProfileController@feedback')}}">quick survey</a>. Our goal is to
