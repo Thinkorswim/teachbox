@@ -55,10 +55,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '178.62.83.90',
 			'database'  => 'main',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'kashkavalliutenica',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
