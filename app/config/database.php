@@ -55,7 +55,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '178.62.83.90',
+			'host'      => 'localhost',
 			'database'  => 'main',
 			'username'  => 'root',
 			'password'  => 'kashkavalliutenica',
