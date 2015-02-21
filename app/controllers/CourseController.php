@@ -138,7 +138,7 @@ class CourseController extends \BaseController {
 			if(Auth::check()){
 			if($isJoined || Auth::user()->admin == 1){
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount ));
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined ));
 			
 			}else{
     			return View::make('courses.not_join')
@@ -335,7 +335,7 @@ class CourseController extends \BaseController {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
-			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			if(($isJoined || Auth::user()->admin) && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 				$lesson = Lesson::where(function ($query) use ($lesson) {
 				    $query->where('order', '=', $lesson);
 				})->where(function ($query) use ($id) {
@@ -406,6 +406,7 @@ class CourseController extends \BaseController {
 
 
 				 $course = Course::find($id);
+				 $user = User::find($course->user_id);
 				 $order = Lesson::where('course_id', '=', $id)->count() + 1;
 		   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
 
@@ -443,15 +444,15 @@ class CourseController extends \BaseController {
 						));
 
 		   		  if($lesson){
-					return Redirect::route('course-page', array('id' => $id));
+					return Redirect::route('course-page', array('id' => $id, 'user'=> $user));
 				}else{
-					return Redirect::route('course-page', array('id' => $id))
+					return Redirect::route('course-page', array('id' => $id, 'user'=> $user))
 												->with('global-negative', 'You could not join this course.');
 				}
 			}
 
 			}else{
-					return Redirect::route('course-add', array('id' => $id))
+					return Redirect::route('course-add', array('id' => $id, 'user'=> $user))
 						 ->withErrors(array('video' => 'You have not selected a video file or it has a wrong extension.'));
 			}
 		}else{

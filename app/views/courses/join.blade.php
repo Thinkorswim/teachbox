@@ -76,6 +76,15 @@
 			  </div>
 			</div>
 			@endif
+		    @if(!$isJoined)
+			    <div class="panel panel-default settings-panel actions">
+				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+								{{ Form::token() }}
+								{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+
+					{{ Form::close() }}
+				</div>
+			@endif
 			<div class="panel panel-default author-card student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
