@@ -16,9 +16,9 @@
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
-  border: 4px solid #ffffff;
   width: 150px;
-  height: auto;
+  height: 150px;
+  -khtml-border-radius: 50%;
 }
 .course-section h1,
 .course-section h5 {
@@ -181,7 +181,8 @@
   padding: 0;
 }
 .course div.col-lg-3 img {
-  min-height: 100%;
+  height: auto;
+  width: 100%;
 }
 .col-sm-6.course .ribbon {
   right: 25px;

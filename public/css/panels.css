@@ -75,6 +75,9 @@
   width: 100%;
   display: block;
 }
+.panel.panel-default.course-panel {
+  overflow: hidden;
+}
 .panel.panel-default.course-panel .panel-body {
   padding: 0;
   overflow: hidden;
@@ -92,12 +95,25 @@
   line-height: 1;
 }
 .panel.panel-default.course-panel .panel-body img {
-  width: 100%;
-  display: block;
+  margin-bottom: 0;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
+  height: auto;
+  width: 100%;
+}
+.panel.panel-default.course-panel .panel-body .col-xs-12.col-lg-3 {
+  overflow: hidden;
+}
+.panel.panel-default.course-panel .panel-body .col-xs-12.col-lg-3 img {
+  margin-bottom: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  height: auto;
+  width: 100%;
 }
 .panel.panel-default.course-panel .panel-body img:hover {
   opacity: 0.9;
@@ -163,7 +179,7 @@
   margin: 20px 10px 10px 20px;
   display: block;
   float: left;
-  max-width: 70%;
+  max-width: 150px;
 }
 .student-card small {
   margin: 0 10px 0 20px;

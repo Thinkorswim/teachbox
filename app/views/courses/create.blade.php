@@ -50,14 +50,14 @@
 							</div>
 							{{ Form::token() }}
 							{{ Form::submit('Create Course', array('class'=>'form-control register-button')) }}
-						{{ Form::close() }}	
+						{{ Form::close() }}
 					</div>
 				</div>
 			</div>
 			<div class="col-xs-12  col-md-7">
-				<div class="panel panel-default">
+				<div class="panel panel-default actions">
 					<div class="panel-body padding-panel">
-						<h3>Revolution in online teaching</h3>
+						<h2>Revolution in online teaching</h2>
 						<p>Create your course and teach people all over the world!
 						 We give you the technology and the support needed to create a fun and engaging course. 
 						 Our platform is social so the best thing to do after creating your first course is to grow your community
@@ -65,10 +65,10 @@
 						 If you are new to this watch our series: </p><p> <a href="#">"How to create a professional online course"</a> </p>
 					</div>
 				</div>
-				<div class="panel panel-default">
+				<div class="panel panel-default actions">
 					<div class="panel-body padding-panel">
-						<h3>Guidelines</h3>
-						<ul>
+						<h2>Guidelines</h2>
+						<ul style="padding-left: 20px;">
 							<li>Your course  <strong>name</strong> should be between <strong>4</strong> and <strong>128</strong> characters</li>
 							<li>Your course  <strong>description</strong> should be maximum <strong>4096</strong> characters.</li>
 							<li>Your course will be sent for approvement and it <strong>will not be publicly accessible</strong> until it is approved.</li>

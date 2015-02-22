@@ -10,13 +10,15 @@
 
 @section('content')
 	<div class="cover-section">
-		<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile"/>
-		@if ($user->date != '')
+		<div class="activity_rounded">
+			<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
+		</div>
+		@if ($user->date)
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			 {{ ageCalculator( $user->date ) }}
 		</span>
 		@endif
-		@if ($user->country != '')
+		@if ($user->country)
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
 		</span>
@@ -91,13 +93,13 @@
 				<div class="panel panel-default student-card">
 				  <div class="panel-body padding-panel">
 			  		<a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">
-			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						@if ($follower->date != '')
+			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						@if ($follower->date)
 					</a>
 						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $follower->date )}} years old">
 							{{ageCalculator( $follower->date )}}
 						</span>
 						@endif
-					    @if ($follower->country != '')
+					    @if ($follower->country)
 						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center"
 							data-toggle="tooltip" data-placement="left" title="{{ $follower->city }}, {{ $follower->country }}">
 						</span>
@@ -110,7 +112,7 @@
 			@endforeach
 		</div>
 		<div class="col-xs-12 col-sm-4">
-			@if($user->decription != '')
+			@if($user->decription)
 				<div class="panel panel-default actions">
 				  <div class="panel-heading">
 				    <h3 class="panel-title">About</h3>
