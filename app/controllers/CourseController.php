@@ -431,8 +431,6 @@ class CourseController extends \BaseController {
 					$image2->fit(100, 100);
 					$image2->save($path.'/thumb100x100.png');
      		     }
-     		     
-
                  
 		   		
 		   		 $lesson = Lesson::create(array(
