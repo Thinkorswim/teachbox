@@ -266,7 +266,7 @@ class CourseController extends \BaseController {
 						
 						$success = File::cleanDirectory($pathImg);
 
-						if($newImage->save(public_path('/courses/' . $courseEdit->id . '/img/' . $filename)&& $newImage1->save(public_path('/courses/' . $course->id . '/img/'. '/3x2' . $filename)){
+						if($newImage->save(public_path('/courses/' . $courseEdit->id . '/img/' . $filename)) && $newImage1->save(public_path('/courses/' . $course->id . '/img/'. '/3x2' . $filename))){
 							    	$courseEdit->pic    = $filename;
 					    }
 					}
