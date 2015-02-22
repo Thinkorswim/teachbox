@@ -31,7 +31,6 @@
 	    <link href="http://vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
 	@endif
 	<script>
-        var public_path = '{{public_path()}}';
         var base_url = '{{ URL::to('/') }}';
     </script>
   </head>
