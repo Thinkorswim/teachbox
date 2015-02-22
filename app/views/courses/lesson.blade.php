@@ -74,6 +74,7 @@
 			  <div class="list-group">
 			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson)
+				@if(Auth::user()->admin || $lesson->approved)
 					@if ($lesson->order == $currentLesson->order)
 			 		 	<a class="list-group-item active" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
 			 		 	 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
@@ -81,6 +82,7 @@
 			 		@else
 			 			<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }} </a> 
 			 		@endif
+			 	@endif
 			    @endforeach
 			   </div>
 		  </div>

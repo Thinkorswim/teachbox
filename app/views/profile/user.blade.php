@@ -121,7 +121,7 @@
 									<div class="col-xs-12 col-lg-9">
 								  	  <h3><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h3>
 									   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-								  	  <strong><a href=""> {{  $userT->name }} </a></strong></p>
+								  	  <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong></p>
 									  <p> {{ excerpt($course->description) }}</p>
 									</div>
 								  </div>

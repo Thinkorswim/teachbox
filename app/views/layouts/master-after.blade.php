@@ -8,20 +8,8 @@
 	<meta name="description" content="@yield('description')">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet/less" type="text/css" href="{{ URL::asset('less/styles.less') }}" />
-	<script>
-	  less = {
-	    env: "development",
-	    async: false,
-	    fileAsync: false,
-	    poll: 1000,
-	    functions: {},
-	    dumpLineNumbers: "comments",
-	    relativeUrls: false,
-	  };
-	</script>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

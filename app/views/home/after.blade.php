@@ -145,7 +145,7 @@
 					  	<img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
 						 <strong>
 							<a href="{{ URL::action('ProfileController@user', $userF->id) }}">
-						  {{  $userF->name }} 
+						  {{  $userF->name }}
 
 						  </a></strong>
 						 followed
