@@ -30,10 +30,14 @@
 	@if(Route::current()->getName() == 'course-lesson')
 	    <link href="http://vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
 	@endif
-
+	<script>
+        var public_path = {{ public_path() }} + "";
+        var base_url = URL::to('/') + "";
+    </script>
   </head>
   <body>
 <header>
+
 	<div class="col-xs-3">
 		<nav class="navbar navbar-fixed-top categories">
 		   <div class="navbar-header">
