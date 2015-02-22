@@ -93,7 +93,7 @@ class ProfileController extends \BaseController {
 			
 	
 				
-				if(($newImage->save('public/img/' . $id . '/' . $filename)) && ($newThumb->save('public/img/' . $id . '/' . $newThumbName))  ){
+				if(($newImage->save(public_path('/img/' . $id . '/' . $filename))) && ($newThumb->save(public_path('/img/' . $id . '/' . $newThumbName)))  ){
 					$user->pic    = $filename;
 
 					if($user->save()){
