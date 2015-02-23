@@ -16,4 +16,5 @@
 						  If you are interested or have any questions about advertising on our website contact us at <a href="mailto:info@teachbox.io">info@teachbox.io</a> </p>
 			</div>
 		</div>
+</div>
 @endsection
