@@ -95,6 +95,22 @@
 		$('#mistake-pass').tooltip('show');
 		});
 	</script>
+  <script>
+  $(document).ready(function(){
+
+  $(window).on('scroll',function() {
+    var scrolltop = $(this).scrollTop();
+
+    var $nav = $(".tabs-profile");
+    if(scrolltop >= ($nav.offset().top)-20px) {
+      $(".follow").css("margin-top", "80px");
+    }
+    else {
+      $(".follow").css("margin-top", "30px");
+    }
+  });
+});
+  </script>
 	@endif
 	<script src="{{ URL::asset('js/master-before-js.js') }}"></script>
    </body>
