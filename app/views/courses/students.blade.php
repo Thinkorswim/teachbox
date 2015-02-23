@@ -48,13 +48,13 @@
 			  		<img src="{{ URL::asset('img/'. $student->id . '/' . $student->pic) }}"alt="{{ $student->name }}'s profile">
 			  		</a>
 					@if ($student->date != '')
-					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $student->date )}} years old">
+					<span class="age" data-toggle="tooltip" data-placement="right" title="{{ageCalculator( $student->date )}} years old">
 						{{ageCalculator( $student->date )}}
 					</span>
 					@endif 
 				    @if ($student->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $student->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="left" title="{{ $student->city }}, {{ $student->country }}">
+						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}, {{ $student->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$student->id]) }}">{{ $student->name }} </a></h4>

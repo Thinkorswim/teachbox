@@ -95,13 +95,13 @@
 			  		<a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">
 			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						@if ($follower->date)
 					</a>
-						<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $follower->date )}} years old">
+						<span class="age" data-toggle="tooltip" data-placement="right" title="{{ageCalculator( $follower->date )}} years old">
 							{{ageCalculator( $follower->date )}}
 						</span>
 						@endif
 					    @if ($follower->country)
 						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center"
-							data-toggle="tooltip" data-placement="left" title="{{ $follower->city }}, {{ $follower->country }}">
+							data-toggle="tooltip" data-placement="right" title="{{ $follower->city }}, {{ $follower->country }}">
 						</span>
 						@endif
 				  		<h4><a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">{{ $follower-> name }}</a></h4>
