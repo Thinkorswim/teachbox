@@ -23,6 +23,7 @@
     </script>
   </head>
   <body>
+
 <header>
 
 	<div class="col-xs-3">
@@ -110,10 +111,12 @@
 		@endif
 </div>
 </header>
+<div class="page-wrap">
 	<div class="main">
 	    @yield('content')
     </div>
-	<footer class="front-page-footer after-login-footer">
+</div>
+	<footer class="front-page-footer after-login-footer site-footer">
 		<div class="container">
 				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
 				<a href="{{ URL::action('ProfileController@contacts')}}">Contacts</a>
@@ -225,7 +228,6 @@
 	        // them on the server until the user's session ends.
 	    }
 	};
-	
 
    </script>
 

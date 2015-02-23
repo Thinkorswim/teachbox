@@ -1,3 +1,6 @@
+@import "variables.less";
+@import "mixins.less";
+
 .footer{
 a{
 color:@darkGrey;
@@ -6,4 +9,31 @@ margin-right:5px;
 a:hover{
 text-decoration:underline!important;
 }
+}
+
+
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+	margin-bottom: -63px!important; 
+	margin-top: -54px!important;
+	padding-top: 54px!important;
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+	height: 117px; 
 }

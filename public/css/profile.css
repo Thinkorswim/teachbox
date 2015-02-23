@@ -1,0 +1,129 @@
+.cover-section {
+  background: #1abc9c;
+  padding: 30px 0;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.cover-section img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  width: 200px;
+  height: 200px;
+  vertical-align: middle;
+}
+.cover-section h1,
+.cover-section h5 {
+  color: #fff;
+}
+.tabs-profile {
+  text-align: center;
+  background: #fff;
+  padding: 0 10px !important;
+}
+.tabs-profile li {
+  margin: 0;
+}
+.tabs-profile .nav-pills > li.active {
+  background: none !important;
+  border-bottom: 3px solid #1abc9c;
+  color: #1abc9c;
+}
+.tabs-profile .nav-pills > li.active a {
+  border: none !important;
+}
+.tabs-profile .nav-tabs > li,
+.tabs-profile .nav-pills > li {
+  float: none;
+  display: inline-block;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
+.tabs-profile .nav-tabs > li a,
+.tabs-profile .nav-pills > li a {
+  color: #2c3e50;
+  border-radius: 0;
+  padding: 10px;
+  margin: 6px 0;
+}
+.tabs-profile .nav-tabs {
+  text-align: center;
+}
+.age,
+.country,
+.follow-circle,
+.message-circle {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  margin-left: 75px;
+  padding: 9px;
+  height: 40px;
+  width: 40px;
+  background: #fff;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  font-weight: 900;
+  background-size: 53px !important;
+}
+.country {
+  top: 30px;
+  margin-left: 40px;
+}
+.follow-circle,
+.message-circle {
+  margin-left: 79px;
+  top: 121px;
+  color: #1abc9c;
+  font-size: 20px;
+  padding: 0;
+  text-align: center;
+  background: #2c3e50;
+  border-color: #2c3e50;
+  color: #fff;
+}
+.message-circle {
+  top: 172px;
+  margin-left: 65px;
+}
+.settings-nav {
+  margin-top: 30px;
+}
+.your-bubble,
+.their-bubble {
+  float: right;
+  display: block;
+  padding: 10px;
+  margin: 5px;
+  background: #1abc9c;
+  color: #fff;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+.their-bubble {
+  background: #efefef;
+  color: #2c3e50;
+  float: left;
+}
+.send-message .form-control {
+  min-height: 50px;
+  width: 100%;
+}
+.your.row img {
+  float: right;
+  margin-top: 10px;
+}
+.their.row img {
+  margin: 10px 0 0 10px;
+}

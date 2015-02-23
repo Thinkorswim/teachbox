@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('WIN-2PL1M7KA7DQ'),
+	'local' => array('martin-Satellite-L875D'),
 	'production' => array('http://teachbox.io/'),
 
 ));
