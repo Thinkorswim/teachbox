@@ -1,5 +1,4 @@
 /bootstrap/compiled.php
-/bootstrap/start.php
 /vendor
 composer.phar
 composer.lock
@@ -101,3 +100,4 @@ public/img/4/rs_300x300-141110094353-600.nicki-minaj-ema-awards.ls.111014.jpg
 app/config/app.php
 app/config/app.php
 app/config/database.php
+bootstrap/start.php
