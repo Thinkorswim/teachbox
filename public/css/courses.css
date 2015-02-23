@@ -214,7 +214,7 @@
     margin: 0 auto;
   }
   body .course-section span.age {
-    left: initial;
+    left: 50%;
     margin-left: 30px;
   }
   .student-card .panel-body {

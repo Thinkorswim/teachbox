@@ -102,7 +102,7 @@
     var scrolltop = $(this).scrollTop();
 
     var $nav = $(".tabs-profile");
-    if(scrolltop >= ($nav.offset().top)-20px) {
+    if(scrolltop >= ($nav.offset().top)-40px) {
       $(".follow").css("margin-top", "80px");
     }
     else {
