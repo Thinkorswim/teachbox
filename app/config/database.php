@@ -58,7 +58,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'main',
 			'username'  => 'root',
-			'password'  => 'kashkavalluitenica',
+			'password'  => 'kashkavalliutenica',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
