@@ -127,7 +127,7 @@ class CourseController extends \BaseController {
 		if($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin == 1){
 
 			
-			if(Auth::check() && $course->user_id == Auth::user()->id ){
+			if((Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && Auth::user()->admin == 1)){
 				$lessonList = Lesson::where('course_id', '=', $id)->get();
 			}else{
 				$lessonList = Lesson::where('course_id', '=', $id)->where('approved', '=', 1)->get();
@@ -145,7 +145,6 @@ class CourseController extends \BaseController {
        						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));   
    					}
 			}else{
-				$lessonList = Lesson::where('course_id', '=', $id)->get();
 				return View::make('courses.not_join')
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
@@ -342,7 +341,7 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
-				if($lesson->approved = 1 || $lesson->user_id = Auth::user()->id){
+				if($lesson->approved == 1 || $lesson->user_id == Auth::user()->id || Auth::user()->admin){
 						$lessonList = Lesson::where('course_id', '=', $id)->get();
 						$creator = User::where('id', '=', $course->user_id)->first();
 
