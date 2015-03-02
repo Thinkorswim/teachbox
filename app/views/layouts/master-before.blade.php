@@ -18,21 +18,18 @@
     <![endif]-->
   </head>
   <body>
-	<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
+ 	@if(Route::current()->getName() != 'home')
+		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-	        <h4 class="modal-title" id="exampleModalLabel"> Send the message </h4>
+	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
 	      </div>
 	      <div class="modal-body">
-				<ul class="nav nav-tabs" role="tablist">
-				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
-				  <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
-				</ul>
 				<div class="tab-content">	
 				<!-- Login -->
-				    <div role="tabpanel" class="tab-pane in active" id="login">	
+				    <div role="tabpanel" class="tab-pane in active">	
 						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
@@ -52,7 +49,7 @@
 						 @else
 						<div class="input-group">
 						 @endif	
-						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 					
+						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
 						</div>
@@ -87,6 +84,7 @@
 	  </div>
 	</div>
 	</div>
+@endif
 	<header class="header-not-reg">
 		<div class="col-xs-3">
 			<nav class="navbar navbar-fixed-top categories">
@@ -165,23 +163,7 @@
 		$('#mistake-pass').tooltip('show');
 		});
 	</script>
-  <script>
-  $(document).ready(function(){
-
-  $(window).on('scroll',function() {
-    var scrolltop = $(this).scrollTop();
-
-    var $nav = $(".tabs-profile");
-    if(scrolltop >= ($nav.offset().top)-40px) {
-      $(".follow").css("margin-top", "80px");
-    }
-    else {
-      $(".follow").css("margin-top", "30px");
-    }
-  });
-});
-  </script>
-	@endif
+		@endif
 	<script>
 	$(document).ready(function () {
 		$('#keyword').autocomplete({
@@ -247,6 +229,7 @@
     });
 	});
 	});
+
 	</script>
    </body>
 </html>

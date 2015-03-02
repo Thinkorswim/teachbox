@@ -188,8 +188,11 @@ class AdminController extends \BaseController {
             $course = Course::find($id);
             $course->approved = 1;
             $course->save();
-
+            $user = User::find($course->user_id);
             if($course){
+        Mail::send('emails.auth.course-approved', array('user' => $user, 'course' => $course), function($message) use ($user) {
+            $message->to( $user->email , $user->name)->subject('Your course has been approved.');
+            } );
                 return Redirect::action('AdminController@showCourses');
             }
         }

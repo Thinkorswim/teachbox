@@ -72,13 +72,17 @@ class CourseController extends \BaseController {
 						    	$course->save();
 						    }
 							$user_id = Auth::user()->id;
+							$user = User::find($user_id);
 							$userCourse = UserCourse::create(array(
 								'course_id' => $course->id,
 								'user_id'  => $user_id,
 							));
 			    	if($userCourse){
+			Mail::send('emails.auth.course-new', array('course' => $course, 'user' => $user), function($message_new) use ($user) {
+			$message_new->to( $user->email , $user->name)->subject('Your new course in Teachbox');
+			} );
 						return Redirect::route('course-page', array('id' => $course->id));
-					
+
 					}else{
 						return Redirect::route('course-page', array('id' => $course->id))
 												->with('global-negative', 'You could not create this course.');

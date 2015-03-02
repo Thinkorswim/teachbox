@@ -37,7 +37,7 @@
 				</ul>
 				<div class="tab-content">	
 				<!-- Login -->
-				    <div role="tabpanel" class="tab-pane in active" id="login">	
+				    <div role="tabpanel" class="tab-pane active" id="login">	
 						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
@@ -88,7 +88,6 @@
 						{{ Form::close() }}
 					</div>
 
-
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
@@ -116,7 +115,7 @@
 						<div id="password" class="input-group" data-toggle="tooltip" title="Your password needs to be 6-20 characters">
 						@endif 	
 						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-							 {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control')) }}								 
+							 {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control')) }}
 						</div>
 
 						 @if($errors->has('password_again'))
@@ -137,6 +136,8 @@
 					</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 		       <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
 
