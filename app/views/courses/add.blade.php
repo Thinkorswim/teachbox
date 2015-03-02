@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+<i class="fa fa-spinner fa-pulse fa-4x absolute-icon"></i>
 <div class="course-section">
 	<div class="container">
 		<div class="col-xs-12 col-md-3">
@@ -19,7 +20,7 @@
 					{{ $studentCount }}
 				</span>
 		</div>
-		<div class="col-xs-12 col-xs-9">
+		<div class="col-xs-12 col-md-9">
 			<h1>{{ $course->name }}</h1>
 			<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 		</div>
@@ -64,15 +65,15 @@
 				</div>
 
 				<div class="fileUpload btn btn-primary no-upload">
-				    <span>Choose a video</span>
+				    <span id="choosen">Choose a video</span>
 			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
 			    </div>
 			    <div class="row-add">
 							<div class="alert alert-info" role="alert">
-								<p>Please upload only *.mp4 files with a maximum size of 150mb.</p>
+								<p>Please upload only *.mp4 files with a maximum size of 150mb. Do not refresh while loading.</p>
 							</div>
 			    </div> 
-				{{ Form::submit('Upload', array('class'=>'form-control')) }}
+				{{ Form::submit('Upload', array('class'=>'form-control', 'id'=>'upload-video')) }}
 			{{ Form::close() }}
 		  </div>
 		</div>

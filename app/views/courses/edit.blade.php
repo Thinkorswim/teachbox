@@ -19,7 +19,7 @@
 					{{ $studentCount }} 
 				</span>
 		</div>
-		<div class="col-xs-12 col-xs-9">
+		<div class="col-xs-12 col-md-9">
 			<h1>{{ $course->name }}</h1>
 			<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 		</div>

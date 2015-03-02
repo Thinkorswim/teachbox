@@ -23,7 +23,71 @@
     </script>
   </head>
   <body>
-
+	<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
+	      </div>
+	      <div class="modal-body">
+				<div class="tab-content">	
+				<!-- Login -->
+				    <div role="tabpanel" class="tab-pane in active" id="login">	
+						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
+						<i class="fa fa-facebook"></i> Login with Facebook
+						</a>
+						<h6><span  class="line-center">or</span></h6>
+						@if(Session::has('global-positive'))
+						<div class="alert alert-success" role="alert">
+						{{Session::get('global-positive')}}
+						</div>
+						@endif
+						@if(Session::has('global-negative'))
+						<div class="alert alert-danger" role="alert">
+						{{Session::get('global-negative')}}
+						</div>
+						@endif
+						@if($errors->has('email_s'))					
+						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
+						 @else
+						<div class="input-group">
+						 @endif	
+						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+						{{ Form::open(['route' => 'sign-in']) }}
+							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
+						</div>
+						@if($errors->has('password_s'))
+						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
+						  @else
+						<div class="input-group">
+						 @endif	
+						  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="checkbox">
+									<label>
+										 {{ Form::checkbox('remember') }} Remember me
+									 </label>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<a href="{{ URL::route('password-recovery') }}">Forgot Password</a>
+							</div>
+						</div>
+						<div class="input-group submit">
+							 {{ Form::submit('Login', array('class'=>'form-control')) }}
+						</div>
+						{{ Form::token() }}
+						{{ Form::close() }}
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</div>
 <header>
 
 	<div class="col-xs-3">
@@ -105,7 +169,7 @@
       </ul>
 		@else
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><a href="{{ URL::route('home') }}">Login</a></li>
+		        <li><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		@endif
@@ -268,5 +332,14 @@
    <script>
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip(),$(function(){var i=$(".tabs-profile").offset().top,o=function(){var o=$(window).scrollTop();$(".tabs-profile").css(o>i?{position:"fixed",top:53,left:0,"z-index":9995}:{position:"relative",top:0})};o(),$(window).scroll(function(){o()})});for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})}),$("#keyword").autocomplete({source:"/getdata",minLength:1,select:function(i,o){window.location="{{URL::to('course/"+o.item.course_id+"')}}"}});
    </script>
+	<script>
+$("#upload-video").click(function(){
+    $(".absolute-icon").show();
+});
+	$('#uploadBtn').on('change',function(){
+	$('#choosen').html('<i class="fa fa-check"></i> Video choosen.');
+	$('.fileUpload').addClass("btn-success");
+});
+	</script>
   </body>
 </html>

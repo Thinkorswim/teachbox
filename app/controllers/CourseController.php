@@ -72,13 +72,17 @@ class CourseController extends \BaseController {
 						    	$course->save();
 						    }
 							$user_id = Auth::user()->id;
+							$user = User::find($user_id);
 							$userCourse = UserCourse::create(array(
 								'course_id' => $course->id,
 								'user_id'  => $user_id,
 							));
 			    	if($userCourse){
+			Mail::send('emails.auth.course-new', array('course' => $course, 'user' => $user), function($message_new) use ($user) {
+			$message_new->to( $user->email , $user->name)->subject('Your new course in Teachbox');
+			} );
 						return Redirect::route('course-page', array('id' => $course->id));
-					
+
 					}else{
 						return Redirect::route('course-page', array('id' => $course->id))
 												->with('global-negative', 'You could not create this course.');
@@ -127,7 +131,7 @@ class CourseController extends \BaseController {
 		if($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin == 1){
 
 			
-			if(Auth::check() && $course->user_id == Auth::user()->id ){
+			if((Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && Auth::user()->admin == 1)){
 				$lessonList = Lesson::where('course_id', '=', $id)->get();
 			}else{
 				$lessonList = Lesson::where('course_id', '=', $id)->where('approved', '=', 1)->get();
@@ -145,7 +149,6 @@ class CourseController extends \BaseController {
        						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));   
    					}
 			}else{
-				$lessonList = Lesson::where('course_id', '=', $id)->get();
 				return View::make('courses.not_join')
 							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
 			}
@@ -342,7 +345,7 @@ class CourseController extends \BaseController {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
-				if($lesson->approved = 1 || $lesson->user_id = Auth::user()->id){
+				if($lesson->approved == 1 || $lesson->user_id == Auth::user()->id || Auth::user()->admin){
 						$lessonList = Lesson::where('course_id', '=', $id)->get();
 						$creator = User::where('id', '=', $course->user_id)->first();
 

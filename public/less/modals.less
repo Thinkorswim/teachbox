@@ -5,6 +5,8 @@
 	margin: 50px auto 0;
 	.modal-content{
 		box-shadow: none;
+		border-radius: 0;
+		border: 0;
 	}
 	.fa-times{
 		position: absolute;
@@ -24,16 +26,20 @@
 }
 #list-modal .modal-body{
 	padding: 0;
+	border-radius: 0;
 	input{
 		margin: 20px;
 	}
 }
-#list-modal .modal-dialog, #chat-with .modal-dialog, #exampleModal .modal-dialog{
+#list-modal .modal-dialog, #chat-with .modal-dialog, #exampleModal .modal-dialog, #newModal .modal-dialog{
 	width: 320px;
 }
 #list-modal .modal-body, #chat-with .modal-body{
 		max-height: 600px;
 		overflow: auto;
+}
+.modal-body{
+	border-radius: 0;
 }
 #list-modal .list-group{
 		margin-bottom: 0;
