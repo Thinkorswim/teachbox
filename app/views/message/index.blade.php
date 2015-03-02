@@ -65,7 +65,7 @@
 		  		 ?>
 		  		@foreach ($users as $user)
 			  			@if ($active)
-					    	<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item active" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
+					    	<a id="{{ $user->id }}" onclick="setUsername({{ $user->id }})" class="list-group-item firstUser" role="presentation" aria-controls="home" role="tab" data-toggle="tab">
 						    	<img class="small-profile" src="{{ URL::asset('img/'.$user->id . '/' . getThumbName($user->pic)) }}">
 						    	<strong> {{ $user->name }}<span id="badge-{{ $user->id }}" class="badge"></span></strong>
 					    	</a>

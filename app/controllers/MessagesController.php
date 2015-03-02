@@ -51,7 +51,7 @@ class MessagesController extends \BaseController {
 		if(Auth::check()){
 			$id = Input::get('userId');
 			$myId = Auth::id();
-			$offset = Input::get('offset');
+			$offset = (int) Input::get('offset');
 			$twenty = 20;
 
 			$size = DB::select( DB::raw("SELECT COUNT(*) FROM messages WHERE (sender_id = '$myId' AND recipient_id = '$id') OR (sender_id = '$id' AND recipient_id = '$myId')") );
