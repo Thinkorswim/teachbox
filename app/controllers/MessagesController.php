@@ -24,6 +24,7 @@ class MessagesController extends \BaseController {
 			// AND (users.id NOT IN (SELECT messages.sender_id FROM messages WHERE messages.recipient_id = '$myId') 
 	        // OR  users.id NOT IN (SELECT messages.recipient_id FROM messages WHERE messages.sender_id = '$myId')) 
 
+
 			return View::make('message.index', ['users' => $users, 'count' => $count, 'newUsers' => $newUsers]);
 		}else{
 			return Redirect::action('AuthController@index');
@@ -50,8 +51,23 @@ class MessagesController extends \BaseController {
 		if(Auth::check()){
 			$id = Input::get('userId');
 			$myId = Auth::id();
+			$offset = Input::get('offset');
+			$twenty = 20;
 
-			$messagesId = DB::select( DB::raw("SELECT * FROM messages WHERE (sender_id = '$myId' AND recipient_id = '$id') OR (sender_id = '$id' AND recipient_id = '$myId')") );
+			$size = DB::select( DB::raw("SELECT COUNT(*) FROM messages WHERE (sender_id = '$myId' AND recipient_id = '$id') OR (sender_id = '$id' AND recipient_id = '$myId')") );
+			$size = $size[0]->{'COUNT(*)'};
+			$size = $size - $offset - 20;
+
+			if($size<0){
+				if($size>-20){
+					$twenty = $twenty+$size;
+					$size = 0;
+				}else{
+					return [];
+				}
+			}
+
+			$messagesId = DB::select( DB::raw("SELECT * FROM messages WHERE (sender_id = '$myId' AND recipient_id = '$id') OR (sender_id = '$id' AND recipient_id = '$myId') LIMIT $size, $twenty") );
 			$messageList = array();
 
 			$key = 0;
