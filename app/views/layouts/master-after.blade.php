@@ -23,7 +23,71 @@
     </script>
   </head>
   <body>
-
+	<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
+	      </div>
+	      <div class="modal-body">
+				<div class="tab-content">	
+				<!-- Login -->
+				    <div role="tabpanel" class="tab-pane in active" id="login">	
+						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
+						<i class="fa fa-facebook"></i> Login with Facebook
+						</a>
+						<h6><span  class="line-center">or</span></h6>
+						@if(Session::has('global-positive'))
+						<div class="alert alert-success" role="alert">
+						{{Session::get('global-positive')}}
+						</div>
+						@endif
+						@if(Session::has('global-negative'))
+						<div class="alert alert-danger" role="alert">
+						{{Session::get('global-negative')}}
+						</div>
+						@endif
+						@if($errors->has('email_s'))					
+						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
+						 @else
+						<div class="input-group">
+						 @endif	
+						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+						{{ Form::open(['route' => 'sign-in']) }}
+							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
+						</div>
+						@if($errors->has('password_s'))
+						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
+						  @else
+						<div class="input-group">
+						 @endif	
+						  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="checkbox">
+									<label>
+										 {{ Form::checkbox('remember') }} Remember me
+									 </label>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<a href="{{ URL::route('password-recovery') }}">Forgot Password</a>
+							</div>
+						</div>
+						<div class="input-group submit">
+							 {{ Form::submit('Login', array('class'=>'form-control')) }}
+						</div>
+						{{ Form::token() }}
+						{{ Form::close() }}
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</div>
 <header>
 
 	<div class="col-xs-3">
@@ -105,7 +169,7 @@
       </ul>
 		@else
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><a href="{{ URL::route('home') }}">Login</a></li>
+		        <li><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		@endif

@@ -18,10 +18,79 @@
     <![endif]-->
   </head>
   <body>
+	<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel"> Send the message </h4>
+	      </div>
+	      <div class="modal-body">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
+				  <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
+				</ul>
+				<div class="tab-content">	
+				<!-- Login -->
+				    <div role="tabpanel" class="tab-pane in active" id="login">	
+						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
+						<i class="fa fa-facebook"></i> Login with Facebook
+						</a>
+						<h6><span  class="line-center">or</span></h6>
+						@if(Session::has('global-positive'))
+						<div class="alert alert-success" role="alert">
+						{{Session::get('global-positive')}}
+						</div>
+						@endif
+						@if(Session::has('global-negative'))
+						<div class="alert alert-danger" role="alert">
+						{{Session::get('global-negative')}}
+						</div>
+						@endif
+						@if($errors->has('email_s'))					
+						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
+						 @else
+						<div class="input-group">
+						 @endif	
+						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span> 					
+						{{ Form::open(['route' => 'sign-in']) }}
+							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
+						</div>
+						@if($errors->has('password_s'))
+						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
+						  @else
+						<div class="input-group">
+						 @endif	
+						  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="checkbox">
+									<label>
+										 {{ Form::checkbox('remember') }} Remember me
+									 </label>
+								</div>
+							</div>
+							<div class="col-xs-6">
+								<a href="{{ URL::route('password-recovery') }}">Forgot Password</a>
+							</div>
+						</div>
+						<div class="input-group submit">
+							 {{ Form::submit('Login', array('class'=>'form-control')) }}
+						</div>
+						{{ Form::token() }}
+						{{ Form::close() }}
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	</div>
 	<header class="header-not-reg">
 		<div class="col-xs-3">
 			<nav class="navbar navbar-fixed-top categories">
-			   <div class="navbar-header"> 
+			   <div class="navbar-header">
 			    <a class="navbar-brand before-brand" href="{{ URL::route('home') }}" >
 				    <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
 					<small>teachbox</small>
@@ -40,7 +109,7 @@
 		@else
 		<div class="col-xs-9">
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><a href="{{ URL::route('home') }}">Login</a></li>
+		        <li><button type="button" data-toggle="modal" data-target="#newModal">Login</button></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		</div>
@@ -113,6 +182,71 @@
 });
   </script>
 	@endif
-	<script src="{{ URL::asset('js/master-before-js.js') }}"></script>
+	<script>
+	$(document).ready(function () {
+		$('#keyword').autocomplete({
+				source: '/getdata',
+				minLength: 1,
+				select:function(e, ui){
+					window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+				}
+
+		});
+
+		$('#user-error').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#pass-error').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#repeat-error').tooltip({'trigger':'focus', 'placement' : 'top'});
+		$('#mail-error').tooltip({'trigger':'focus', 'placement' : 'top'});
+		$('#user-error').tooltip('show');
+		$('#pass-error').tooltip('show');
+		$('#repeat-error').tooltip('show');
+		$('#mail-error').tooltip('show');
+		$('#mistake-mail').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#mistake-pass').tooltip({'trigger':'focus','placement' : 'top'});
+		$('#mistake-mail').tooltip('show');
+		$('#mistake-pass').tooltip('show');
+		$('.tab-register .input-group').click(function(e) {
+		    e.stopPropagation();
+		$('.tab-register .input-group').removeClass('current');
+		$(this).addClass('current');
+		});
+	$('body').click(function(e) {
+	$('.tab-register .input-group').removeClass('current');
+		});
+	$(".more").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".learn-screen").offset().top},
+        'slow');
+	});
+
+	// Navigation scroll to
+	$(".navbar-before-registration li:first-child").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".learn-screen").offset().top},
+        'slow');
+	});
+	$(".navbar-before-registration li:nth-child(2)").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".testimonials").offset().top},
+        'slow');
+	});
+
+	$(".navbar-before-registration li:nth-child(3)").click(function() {
+		event.preventDefault();
+    $('html,body').animate({
+        scrollTop: $(".explore").offset().top},
+        'slow');
+	});
+
+	$(function(){
+    $('.carousel').carousel({
+      interval: 4000
+    });
+	});
+	});
+	</script>
    </body>
 </html>

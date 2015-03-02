@@ -8,7 +8,6 @@ composer.lock
 Thumbs.db
 public/.htaccess
 public/courses/*
-public/img/*
 public/img/6/profile.png
 public/img/9/1913442_749793428398665_6962907746832890537_o-100x100.jpg
 public/img/9/1913442_749793428398665_6962907746832890537_o.jpg
