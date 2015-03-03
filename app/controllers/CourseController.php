@@ -437,8 +437,10 @@ class CourseController extends \BaseController {
                  
 
 
-				$duration = exec("$ffmpeg -i /path/".$filename." 2>&1 | 
+				$full_duration = exec("$ffmpeg -i $video 2>&1 | 
 				grep Duration | cut -d ' ' -f 4 | sed s/,//");
+
+				$duration = substr($full_duration, 3, -2);
 		   		
 		   		 $lesson = Lesson::create(array(
 						'filepath' => $filename,
