@@ -12,9 +12,9 @@ class AddDurationToLessons extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('lessons', function(Blueprint $table)
+		Schema::table('lessons', function($table)
 		{
-			$table->integer('duration');
+			$table->string('duration', 32);
 		});
 	}
 
