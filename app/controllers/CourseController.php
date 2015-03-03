@@ -435,6 +435,10 @@ class CourseController extends \BaseController {
 					$image2->save($path.'/thumb100x100.png');
      		     }
                  
+
+
+				$duration = exec("$ffmpeg -i /path/".$filename." 2>&1 | 
+				grep Duration | cut -d ' ' -f 4 | sed s/,//");
 		   		
 		   		 $lesson = Lesson::create(array(
 						'filepath' => $filename,
@@ -442,6 +446,7 @@ class CourseController extends \BaseController {
 						'name'       => $name,
 						'description' => $description,
 						'order'       => $order,
+						'duration'	  => $duration,
 						));
 
 		   		  if($lesson){
