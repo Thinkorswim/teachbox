@@ -380,15 +380,7 @@ class CourseController extends \BaseController {
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 
-				
-		 		$file_max = 150000000;
 		 		$file = Input::file('video');
-		 		$size = $file->getSize();
-
-		 		if($size >= $file_max){
-		 			return Redirect::route('course-add', array('id' => $id))
-						 ->withErrors(array('video' => 'The file size is larger than 150mb.'));
-				}	
 				
 				$validator = Validator::make(Input::all(),
 					array(
@@ -404,22 +396,54 @@ class CourseController extends \BaseController {
 				$name 	 = Input::get('name');
 				$description = Input::get('description');
 
+				$course = Course::find($id);
+				$user = User::find($course->user_id);
+				$order = Lesson::where('course_id', '=', $id)->count() + 1;
+
+
+				$path = public_path().'/courses/'. $course->id . '/' . $order;
+				$filename = preg_replace('/\s+/', '', $file->getClientOriginalName());
+				$resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+		   		$file->move($path, $filename);
+
 				$message = nl2br($description);
 				$description = trim($message);
+				
+				$ffmpeg = public_path().'/ffmpeg/ffmpeg';  
+			 	$video = $path.'/'.$filename; 
+
+				$full_duration = exec("$ffmpeg -i $video 2>&1 | 
+				grep Duration | cut -d ' ' -f 4 | sed s/,//");
+
+				$hour = substr($full_duration, 0, 2);
+				$minute = substr($full_duration,3,2 );
+				$second = substr($full_duration,6,2 );
+
+				$duration = $minute . ':' .  $second;
+		   		
+		   		$hour_i = (int) $hour;
+		   		$minute_i = (int) $minute;
+		   		$second_i = (int) $second;
 
 
-				 $course = Course::find($id);
-				 $user = User::find($course->user_id);
-				 $order = Lesson::where('course_id', '=', $id)->count() + 1;
-		   		 $resultMake  = File::makeDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+		   		if($hour_i != 0){
+		   			$deleteMake  = File::deleteDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+		   			return Redirect::route('course-add', array('id' => $id, 'user'=> $user))
+						 ->withErrors(array('video' => 'The video is bigger than 5 minutes.'));
+		   		}else{
+		   			if($minute_i<=4 || ($minute_i==5 && $second_i==0)){
 
-		   		 $filename = preg_replace('/\s+/', '', $file->getClientOriginalName());
-		   		 $path = public_path().'/courses/'. $course->id . '/' . $order;
-		   		 $file->move($path, $filename);
+		   			}else{
+		   				$deleteMake  = File::deleteDirectory(public_path() .'/courses/' . $course->id . '/' . $order);
+		   				return Redirect::route('course-add', array('id' => $id, 'user'=> $user))
+							 ->withErrors(array('video' => 'The video is bigger than 5 minutes.'));
+		   			}
+		   		}
 
-		   		 // Get Thumbnail
-		   		 $ffmpeg = public_path().'/ffmpeg/ffmpeg';  
-			 	 $video = $path.'/'.$filename;   
+
+				 
+
+		   		 // Get Thumbnail  
 				 $image = $path.'/thumb.png';  
 				 $interval = 1;  
 			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
@@ -434,14 +458,8 @@ class CourseController extends \BaseController {
 					$image2->fit(100, 100);
 					$image2->save($path.'/thumb100x100.png');
      		     }
-                 
 
 
-				$full_duration = exec("$ffmpeg -i $video 2>&1 | 
-				grep Duration | cut -d ' ' -f 4 | sed s/,//");
-
-				$duration = substr($full_duration, 3, -2);
-		   		
 		   		 $lesson = Lesson::create(array(
 						'filepath' => $filename,
 						'course_id'  => $id,
