@@ -7,11 +7,11 @@
 </div>
 <div style="background:#efefef; padding-top:20px;padding-bottom:20px">
 <div style="background:#fff;margin-left:40px; margin-right:40px;">
-		<img src="{{ URL::asset('https://lh5.googleusercontent.com/_U2es8b6HFTFW1ChGB7uBM8Bt9HzipzGpJdMSMlo3MFWHCk3Vz6LIuSWy_Yj9tjj45iVgUQKFqQ=w1342-h547') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
-		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px">Congratulations {{  $user->name }},</h1>
+		<img src="{{ URL::asset('img/newcommer.png') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
+		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:left;">Congratulations {{  $user->name }},</h1>
 		<p style="color:#000; padding-left:20px;padding-right:20px">Your course "{{$course->name}}" is sent for approvement. Please be patient, it will be reviewed as soon as possible.</p>
-		<p style="color:#000; padding-left:20px;padding-right:20px">You are already changing the education system. If you need help check our "How to create a professional online course" course.</p>
-		<a style="text-decoration:none;padding: 10px; background:#1abc9c;color:#fff; margin-left:20px;margin-right:20px" href="#">Help is here for you.</a>
+		<p style="color:#000; padding-left:20px;padding-right:20px">You are already changing the education system. If you need help check our "How to create a professional online course" course.</p><br><br>
+		<a style="text-decoration:none;padding: 10px; background:#1abc9c;color:#fff; margin-left:20px;margin-right:20px;margin:top:20px" href="#">Help is here for you.</a>
 		<br><br>
 		<p style="color:#000; padding-left:20px;padding-right:20px">
 		Teachbox Team

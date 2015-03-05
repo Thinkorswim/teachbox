@@ -51,13 +51,22 @@
 			  	<div class="list-group">
 			  @endif
 					@foreach ($lessonList as $lesson)
-					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} </a>
+					 <a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+					 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
 					@if (Auth::user()->id == $course->user_id)
 
 					 <a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
-					  </a>
+					 </a>
+					@else
+							<div class="col-xs-9">
+							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							</div>
+				 			<div class="col-xs-3">
+				 			 	<div class="pull-right">4:20</div> 
+				 			</div>
 					@endif
+				</a>
 					@endforeach
 	    		</div>
 	       </div>
@@ -102,11 +111,11 @@
 					@endif 
 				    @if ($user->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
-			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
+			  		<small>{{ $user->city }}@if($user->country && $user->country), @endif {{ $user-> country }}</small>
 			  	</div>
 				<div class="row">
 				<hr>

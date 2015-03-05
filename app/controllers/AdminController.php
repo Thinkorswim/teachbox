@@ -89,7 +89,7 @@ class AdminController extends \BaseController {
     {
         if(Auth::check() && Auth::user()->admin){
             $lessons =  Lesson::where('approved', '=',  '0')->paginate(10);
-
+            $courses = array();
             if(count($lessons) > 0){
                 foreach ($lessons as $lesson) {
                     $course = Course::find($lesson->course_id);
