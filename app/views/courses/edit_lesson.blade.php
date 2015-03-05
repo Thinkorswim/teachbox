@@ -39,6 +39,7 @@
 				<h3 class="panel-title">Lesson information</h3>
 			</div>
 		  	<div class="panel-body padding-panel">
+
 			{{ Form::open(array('action' => array('CourseController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
 				 @if($errors->has('name'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
@@ -48,14 +49,14 @@
 					<span class="input-group-addon">
 						<i class="fa fa-book"></i>
 					</span> 
-					 {{ Form::text('name', $lesson->name, array('placeholder' => 'Lesson name', 'class'=>'form-control')) }}
+					 {{ Form::text('name', $lesson->name, array('class'=>'form-control')) }}
 				</div>
 				@if($errors->has('description'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
 				@else             
 				<div class="input-group">
 				@endif  
-					 {{ Form::textarea('description', $lesson->description, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
+					 {{ Form::textarea('description', $lesson->description, array('class'=>'form-control')) }}
 				</div>
 
 				{{ Form::token() }}
