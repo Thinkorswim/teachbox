@@ -45,10 +45,11 @@
 				@if($errors->has('video'))
 							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
 				@endif
-				<div class="fileUpload btn btn-primary no-upload">
-				    <span id="choosen">Change the video</span>
-			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
-			    </div> 
+				<div class="row">
+					<div class="fileUpload btn btn-primary no-upload">
+				    	<span id="choosen">Change the video</span>
+			    		{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
+			    	</div> 
 				</div>
 				<div class="row-add">
 					<div class="alert alert-info" role="alert">
