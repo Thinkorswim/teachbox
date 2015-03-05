@@ -14,3 +14,16 @@ body .vjs-default-skin .vjs-big-play-button:focus {
   box-shadow: none;
   opacity: .5;
 }
+body .vjs-default-skin .vjs-play-progress,
+body .vjs-default-skin .vjs-volume-level {
+  background: #1abc9c;
+}
+body .vjs-default-skin .vjs-play-control:hover {
+  color: #1abc9c;
+  text-shadow: 0;
+}
+body .vjs-default-skin .vjs-control:focus:before,
+body .vjs-default-skin .vjs-control:hover:before,
+body .vjs-default-skin .vjs-slider-handle:before {
+  text-shadow: none;
+}
