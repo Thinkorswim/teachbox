@@ -338,14 +338,14 @@ class CourseController extends \BaseController {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
-			if(($isJoined || Auth::user()->admin) && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			if(($isJoined || Auth::user()->admin) && ($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin)){
 				$lesson = Lesson::where(function ($query) use ($lesson) {
 				    $query->where('order', '=', $lesson);
 				})->where(function ($query) use ($id) {
 				    $query->where('course_id', '=', $id);
 				})->first();
 
-				if($lesson->approved == 1 || $lesson->user_id == Auth::user()->id || Auth::user()->admin){
+				if($lesson->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin){
 						$lessonList = Lesson::where('course_id', '=', $id)->get();
 						$creator = User::where('id', '=', $course->user_id)->first();
 
@@ -368,7 +368,7 @@ class CourseController extends \BaseController {
 				}
 			}else{
 					return View::make('courses.not_join')
-							->with(array('course' => $course, 'studentCount' => $studentCount ));
+							->with(array('course' => $course, 'studentCount' => $studentCount));
 			}
 		}else{
 			return View::make('home.before');
