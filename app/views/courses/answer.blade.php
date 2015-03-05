@@ -44,7 +44,7 @@
 	</div>
 	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default settings-panel actions">
+			<div class="panel panel-default settings-panel actions question">
 			<div class="panel-heading">
 			  	<h3 class="panel-title">
 			  	{{ $question->title }}
@@ -60,7 +60,7 @@
 			</div>
 			@if (count($answerList) > 0)
 			  		@foreach ($answerList as $answer)
-					 <div class="panel panel-default settings-panel actions">
+					 <div class="panel panel-default settings-panel actions question">
 					  	<div class="panel-body padding-panel">
 						  	<p>{{ $answer->answer }} </p>
 						  	<?php $user = User::find($answer->user_id) ?>
@@ -70,7 +70,7 @@
 					 </div>
 				   	@endforeach
 			 @endif
-		<div class="col-xs-12 col-sm-8">
+		<div class="col-xs-12 col-sm-8 answer">
 			<div class="panel panel-default settings-panel actions">
 			<div class="panel-heading">
 			  	<h3 class="panel-title">Answer</h3>

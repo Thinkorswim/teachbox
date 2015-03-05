@@ -141,6 +141,10 @@
   height: auto;
   max-height: 250px;
 }
+.playlist-panel .list-group-item {
+  height: auto;
+  overflow: hidden;
+}
 .playlist-panel .active {
   font-weight: 900;
 }
@@ -378,4 +382,10 @@
   body .tabs-profile .nav.nav-pills li {
     font-size: 12px;
   }
+}
+.question strong {
+  line-height: 2;
+}
+.bio p {
+  margin-bottom: 0;
 }

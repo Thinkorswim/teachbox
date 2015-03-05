@@ -54,11 +54,11 @@
 					@endif 
 				    @if ($student->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $student->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}, {{ $student->country }}">
+						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}@if($student->country && $student->country), @endif {{ $student->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$student->id]) }}">{{ $student->name }} </a></h4>
-			  		<small>{{ $student->city }}, {{ $student-> country }}</small>
+			  		<small>{{ $student->city }}@if($student->country && $student->country), @endif {{ $student-> country }}</small>
 			  </div>
 			</div>
 		</div>
@@ -106,11 +106,11 @@
 					@endif 
 				    @if ($user->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
-			  		<small>{{ $user->city }}, {{ $user-> country }}</small>
+			  		<small>{{ $user->city }}@if($user->country && $user->country), @endif {{ $user-> country }}</small>
 			  	</div>
 				<div class="row">
 				@if($user->decription != '')

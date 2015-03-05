@@ -1,0 +1,16 @@
+body .vjs-default-skin .vjs-big-play-button {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #1abc9c;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+body .vjs-default-skin:hover .vjs-big-play-button,
+body .vjs-default-skin .vjs-big-play-button:focus {
+  background: none;
+  box-shadow: none;
+  opacity: .5;
+}

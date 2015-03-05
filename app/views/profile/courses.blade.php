@@ -20,7 +20,7 @@
 		@endif
 		@if ($user->country != '')
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
-			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
 		</span>
 		@endif
 		@if (Auth::check() && !$isFollowing && $user->id != Auth::user()->id)
@@ -138,7 +138,7 @@
 	</div>
 	<div class="col-xs-12 col-sm-4">
 			@if($user->decription != '')
-				<div class="panel panel-default actions no-timeline">
+				<div class="panel panel-default actions no-timeline bio">
 				  <div class="panel-heading">
 				    <h3 class="panel-title">About</h3>
 				  </div>

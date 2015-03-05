@@ -77,10 +77,22 @@
 				@if(Auth::user()->admin || $lesson->approved)
 					@if ($lesson->order == $currentLesson->order)
 			 		 	<a class="list-group-item active" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
-			 		 	 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							<div class="col-xs-9">
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
+				 			</div>
+				 			<div class="col-xs-3">
+				 			 	<div class="pull-right">4:20</div> 
+				 			</div>
 			 		 	 </a>
 			 		@else
-			 			<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}"><strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }} </a> 
+				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+							<div class="col-xs-9">
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
+				 			</div>
+				 			<div class="col-xs-3">
+				 			 	 <div class="pull-right">4:20</div> 
+				 			</div>
+				 		</a>
 			 		@endif
 			 	@endif
 			    @endforeach

@@ -23,6 +23,9 @@
 				  <div class="panel-body">
 				  <div class="list-group tutor-list">
 							@foreach ($lessons as $lesson)
+                    <?php $course = Course::find($lesson->course_id);
+                          $user = User::find($course->user_id); ?>
+                @if($course->approved)
 							 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id, $lesson->order]  ) }}"> {{ $lesson->name; }} from {{$course->name}} by {{$user->name}} </a>
                                 {{ Form::open(array('action' => array('AdminController@approveLesson', $lesson->id))) }}
                                     @if(Auth::check())
@@ -30,6 +33,7 @@
                                             {{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
                                     @endif
                                 {{ Form::close() }}
+              @endif
 							@endforeach
 			    		</div>
 			    	{{ $lessons->links() }}
