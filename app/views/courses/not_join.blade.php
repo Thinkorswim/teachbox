@@ -52,7 +52,12 @@
 			  	<div class="list-group">
 					@foreach ($lessonList as $lesson)
 					 	<div class="list-group-item" >
-					 		<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							<div class="col-xs-9">
+							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							</div>
+				 			<div class="col-xs-3">
+				 			 	<div class="pull-right">4:20</div> 
+				 			</div>
 					 	</div>
 					@endforeach
 	    		</div>
