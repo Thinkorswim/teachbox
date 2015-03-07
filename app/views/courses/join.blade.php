@@ -62,7 +62,7 @@
 							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
 							</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">4:20</div> 
+				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
 				 			</div>
 					@endif
 				</a>
