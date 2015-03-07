@@ -273,7 +273,7 @@
 				'uses' => 'AuthController@activate'
 
 		));
-
+		
 	//Sign out (GET) --------------------------------------------------------------------------------
 
 		Route::get('/sign-out', array(

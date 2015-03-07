@@ -9,6 +9,11 @@ class AuthController extends \BaseController {
 	 */
 	public function index()
 	{
+		$max_users = DB::select(DB::raw("SELECT MAX(id) FROM users"));
+		if ($max_users > 999) {
+				return View::make('home.limit');
+			}
+
 		if(Auth::check()){
 
 		$user = Auth::user();
