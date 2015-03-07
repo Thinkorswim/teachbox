@@ -596,7 +596,7 @@ class CourseController extends \BaseController {
 		   		
 		   		$path = public_path().'/courses/'. $course->id . '/' . $order;
 		   		$success = File::cleanDirectory($path);
-		   		$filename = $filename = "video.mp4";
+		   		$filename = "video.mp4";
 		   		$file->move($path, $filename);
 			    $ffmpeg = public_path().'/ffmpeg/ffmpeg';  
 			 	$video = $path.'/'.$filename;
