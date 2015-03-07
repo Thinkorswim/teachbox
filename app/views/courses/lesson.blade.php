@@ -90,7 +90,7 @@
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	 <div class="pull-right">{{ $lesson->name; }}</div> 
+				 			 	 <div class="pull-right">{{ $lesson->duration; }}</div> 
 				 			</div>
 				 		</a>
 			 		@endif
