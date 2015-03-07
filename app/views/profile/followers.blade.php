@@ -101,11 +101,11 @@
 						@endif 
 					    @if ($follower->country != '')
 						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center" 
-							data-toggle="tooltip" data-placement="right" title="{{ $follower->city }}{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}">
+							data-toggle="tooltip" data-placement="right" title="{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}">
 						</span>
 						@endif
 				  		<h4><a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">{{ $follower-> name }}</a></h4>
-				  		<small>{{ $follower->city }}{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}</small>
+				  		<small>{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}</small>
 				  </div>
 				</div>
 			</div>

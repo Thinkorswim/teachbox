@@ -15,32 +15,32 @@
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
 				<div class="panel panel-default">
-				<div class="panel-body padding-body">
-				<div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-				</div>
-				</div>
-				</div>
-			</div> 
-
-
-		<div role="tabpanel" class="tab-pane register centered" id="register">
-				
-					  {{ Form::open(['route' => 'post-subscribe']) }}	
-
-					  {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
-
-
-						<div class="input-group submit">
-							 {{ Form::submit('Subscribe', array('class'=>'form-control register-button')) }}
+					<div class="panel-body padding-body">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 						</div>
+					</div>
+				</div>
+			</div>
 
-					  {{ Form::close() }}
+			<div class="col-xs-12 col-sm-12 col-md-5">
+				<div class="panel panel-default tab-register">
+					<div class="panel-body padding-body ">
+							<h1>Subscribe</h1>
+							<p></p>
+						  {{ Form::open(['route' => 'post-subscribe']) }}	
+						  {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
+
+							<div class="input-group submit">
+								 {{ Form::submit('Subscribe', array('class'=>'form-control')) }}
+							</div>
+
+						  {{ Form::close() }}
+					  </div>
+				</div>
+			</div>
 		</div>
-		</div>
-			
-		</div>
-		       <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
+		<a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
 
 	</section>
 	<section class="full-screen learn-screen">

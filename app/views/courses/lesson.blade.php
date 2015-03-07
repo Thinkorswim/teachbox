@@ -70,7 +70,7 @@
 		  	</h3>
 		  	<small> by <strong><a href="{{ URL::action('ProfileController@user', $creator->id) }}"> {{ $creator->name; }} </a></strong></small>
 		  </div>
-		  <div class="panel-body"> 
+		  <div class="panel-body">
 			  <div class="list-group">
 			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson)
@@ -81,7 +81,7 @@
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">4:20</div> 
+				 			 	<div class="pull-right">{{ $lesson->name; }}</div> 
 				 			</div>
 			 		 	 </a>
 			 		@else
@@ -90,7 +90,7 @@
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	 <div class="pull-right">4:20</div> 
+				 			 	 <div class="pull-right">{{ $lesson->name; }}</div> 
 				 			</div>
 				 		</a>
 			 		@endif
