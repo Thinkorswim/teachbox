@@ -22,6 +22,22 @@
 				</div>
 				</div>
 			</div> 
+
+
+		<div role="tabpanel" class="tab-pane register centered" id="register">
+				
+					  {{ Form::open(['route' => 'post-subscribe']) }}	
+
+					  {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
+
+
+						<div class="input-group submit">
+							 {{ Form::submit('Subscribe', array('class'=>'form-control register-button')) }}
+						</div>
+
+					  {{ Form::close() }}
+		</div>
+		</div>
 			
 		</div>
 		       <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
@@ -47,31 +63,8 @@
 				<p> Share your experience with your friends. Know what they are up to.</p>				
 			</div>
 		</div>
-	</section>
-	<!--<section class="full-screen testimonials">
-		<div class="container">
-			<h1>People talk about us</h1>
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			  
-			  <ol class="carousel-indicators">
-			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			  </ol>
 
-			  <div class="carousel-inner" role="listbox">
-			    <div class="item active">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>Simply the best.</h3>
-			    </div>
-			    <div class="item">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
-			    </div>
-			    <div class="item">	
-			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is great. </h3>
-			    </div>
-			</div>
-		</div>
-	</div>
-	</section>-->
-	
+	</section>
+
+
 @endsection

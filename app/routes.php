@@ -118,6 +118,13 @@
 				'uses' => 'AdminController@approveLesson'
 		));	
 
+		//Subscribe
+		Route::post('/home/subscribe', array(
+				'as'   => 'post-subscribe',
+				'uses' => 'AuthController@postSubscribe'
+		));	
+
+
 	});
 	
 
@@ -273,7 +280,7 @@
 				'uses' => 'AuthController@activate'
 
 		));
-		
+
 	//Sign out (GET) --------------------------------------------------------------------------------
 
 		Route::get('/sign-out', array(

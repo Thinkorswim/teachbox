@@ -9,8 +9,8 @@ class AuthController extends \BaseController {
 	 */
 	public function index()
 	{
-		$max_users = DB::select(DB::raw("SELECT MAX(id) FROM users"));
-		if ($max_users > 999) {
+		$max_user =  DB::table('users')->max('id');
+		if ($max_user > 999) {
 				return View::make('home.limit');
 			}
 
@@ -47,6 +47,38 @@ class AuthController extends \BaseController {
 							->with(array('timeline' => $timeline, 'courses' => $courses ));
 		}else{
 			return View::make('home.before');
+		}
+	}
+
+	public function postSubscribe()
+	{
+		$validator = Validator::make(Input::all(), 
+		array(
+			'email' => 'required|max:128',
+			)
+		);	
+
+		if($validator->fails()){
+			return Redirect::route('create-account')
+						->withErrors($validator)
+						->withInput();
+		}else{
+
+			$email     = Input::get('email');
+
+			$future_user = FutureUser::create(array(
+					'email' 	=> $email
+				));
+
+			if($future_user){
+
+		/*	Mail::send('emails.auth.activate', array('link' => URL::route('activate', $code), 'name' => $name), function($message) use ($user) {
+				$message->to( $user->email , $user->name)->subject('Teachbox activation');
+			} );*/
+
+				return Redirect::route('home')
+							->with('global-positive', 'You account has been created. We have sent you and email to activate your account');
+			}
 		}
 	}
 
