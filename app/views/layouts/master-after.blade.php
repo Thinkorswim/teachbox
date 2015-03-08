@@ -222,6 +222,7 @@
 				</ul>
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
+		{{count($timeline)}}
 	</footer>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -239,14 +240,14 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
-    	@if((Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home') && count($timeline) >= 5)
+    	@if(Route::current()->getName() == 'user-profile' && $timelineCount > 5 )
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
 					$(function() {
 						$('.pagination').hide();
 
 					    $('.scroll').jscroll({
-					    	 loadingHtml: '<p class="centered"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+					    	 loadingHtml: '<p class="centered" id="loading"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
 					        autoTrigger: true,
 					        nextSelector: '.pagination li.active + li a',
 					        contentSelector: 'div.scroll',
@@ -256,6 +257,7 @@
 					    });
 					});
 				</script>
+
 		@elseif(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' && count($courses) > 5)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
@@ -273,7 +275,7 @@
 					    });
 					});
 				</script>		
-		@elseif(Route::current()->getName() == 'home'  && count($timeline) >= 5)
+		@elseif(Route::current()->getName() == 'home'  &&  $timelineCount > 5)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
 					$(function() {

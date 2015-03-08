@@ -30,7 +30,7 @@ class AuthController extends \BaseController {
 
 										 ORDER BY created_at DESC
 									 ") );
-
+		$timelineCount = count($timeline);
         $courses = DB::select( DB::raw("SELECT DISTINCT courses.* FROM user_courses, courses 
         								WHERE  courses.user_id <> '$user->id'
         								AND courses.approved = 1
@@ -44,7 +44,7 @@ class AuthController extends \BaseController {
 		}
 
 			return View::make('home.after')
-							->with(array('timeline' => $timeline, 'courses' => $courses ));
+							->with(array('timeline' => $timeline, 'courses' => $courses, 'timelineCount' => $timelineCount ));
 		}else{
 			return View::make('home.before');
 		}

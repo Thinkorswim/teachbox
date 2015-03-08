@@ -19,6 +19,7 @@ class ProfileController extends \BaseController {
 										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id' AND courses.approved = 1
 										 ORDER BY created_at DESC
 									 ") );
+		$timelineCount = count($timeline);
 		if(count($timeline) < 5){
 
 		}
@@ -28,11 +29,10 @@ class ProfileController extends \BaseController {
 			$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
 			$timeline = Paginator::make($pagedData, count($timeline), $perPage);
 		}
-
 		if(Auth::check() && $user){
 			return View::make('profile.user')
 					->with(array('user' => $user, 'isFollowing' => $isFollowing, 'followersCount' => $followersCount,
-						'followingCount' => $followingCount, 'timeline' => $timeline));
+						'followingCount' => $followingCount, 'timeline' => $timeline, 'timelineCount' => $timelineCount));
 		}
 		else{
 			return View::make('profile.user')

@@ -6,15 +6,17 @@ class SearchController extends \BaseController {
 
 		$courses = Course::where('approved', '=', '1')
 		->where('name', 'LIKE',  '%' .$keyword. '%' )->paginate(5);
+		$timelineCount = count($timeline);
 			return View::make('search.index')
-					->with(array('courses' => $courses, 'keyword' => $keyword));
+					->with('courses' => $courses, 'keyword' => $keyword, 'timelineCount' => $timelineCount);
 	}
 
 	public function searchFront(){
 		$keyword = ' ';
 		$courses = Course::paginate(5);
+		$timelineCount = count($timeline);
 			return View::make('search.index')
-					->with(array('courses' => $courses, 'keyword' => $keyword));
+					->with('courses' => $courses, 'keyword' => $keyword,'timelineCount' => $timelineCount);
 	}
 
 
