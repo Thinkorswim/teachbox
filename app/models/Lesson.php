@@ -7,4 +7,12 @@ protected $fillable = array('name', 'description', 'order', 'filepath', 'course_
      public function course() {
         return $this->belongsTo('Course');
     }
+
+     public function results() {
+        return $this->hasMany('Result');
+    }
+
+    public function tests() {
+        return $this->hasMany('Test');
+    }
 }
