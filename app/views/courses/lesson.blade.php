@@ -44,7 +44,7 @@
 			<video id="video_main" class="video-js vjs-default-skin vjs-big-play-centered" controls
 			 preload="auto" width="100%" height="500" poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
 			 data-setup="{}">
-				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />  	
+				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
 
@@ -75,12 +75,12 @@
 		  	<small> by <strong><a href="{{ URL::action('ProfileController@user', $creator->id) }}"> {{ $creator->name; }} </a></strong></small>
 		  </div>
 		  <div class="panel-body">
-			  <div class="list-group">
+			  <div class="list-group" id="list-lessons">
 			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson)
 				@if(Auth::user()->admin || $lesson->approved)
 					@if ($lesson->order == $currentLesson->order)
-			 		 	<a class="list-group-item active" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
 							<div class="col-xs-9">
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
 				 			</div>

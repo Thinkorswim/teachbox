@@ -44,6 +44,7 @@
 .panel.panel-default.actions .list-group .list-group-item {
   border: 0;
   overflow: hidden;
+  display: block;
 }
 .panel.panel-default.actions .list-group .tutor-list {
   background: none;
@@ -137,10 +138,11 @@
 .playlist-panel ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(44, 62, 80, 0.5);
 }
-.playlist-panel .list-group {
+.playlist-panel .list-group,
+.playlist-panel #list-lessons {
+  position: relative;
   overflow: auto;
-  height: auto;
-  max-height: 250px;
+  height: 250px;
 }
 .playlist-panel .list-group-item {
   height: auto;

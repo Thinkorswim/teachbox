@@ -222,7 +222,6 @@
 				</ul>
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
-		{{count($timeline)}}
 	</footer>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -239,6 +238,16 @@
 	@endif
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	@if (Route::current()->getName() == 'course-lesson')
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/1.4.14/jquery.scrollTo.min.js"></script>
+
+	<script>
+	$('.list-group').scrollTo( $('.list-group .active') );
+
+
+
+	</script>
+	@endif
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
     	@if(Route::current()->getName() == 'user-profile' && $timelineCount > 5 )
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
@@ -366,14 +375,7 @@
 		</script>
 	@endif
 
-	@if (Route::current()->getName() == 'course-lesson')
-		<script>
-			//scroll to lesson in playlist div
-			$('.playlist-panel .list-group').animate({
-		    scrollTop: $(".playlist-panel .list-group .active").offset().top
-			}, 0);
-		</script>
-	@endif
+
    <script>
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip(),$(function(){var i=$(".tabs-profile").offset().top,o=function(){var o=$(window).scrollTop();$(".tabs-profile").css(o>i?{position:"fixed",top:53,left:0,"z-index":9995}:{position:"relative",top:0})};o(),$(window).scroll(function(){o()})});for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})}),$("#keyword").autocomplete({source:"/getdata",minLength:1,select:function(i,o){window.location="{{URL::to('course/"+o.item.course_id+"')}}"}});
    </script>
