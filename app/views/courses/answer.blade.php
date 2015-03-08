@@ -15,6 +15,11 @@
 	{{ excerpt($question->question) }}
 @stop
 
+@section('fb-image')
+	{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}
+@stop
+
+
 @section('content')
 
 	<div class="course-section">

@@ -8,11 +8,14 @@
 	{{ excerpt($user->decription) }}
 @stop
 
+@section('fb-image')
+	{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}
+@stop
 @section('content')
 
 	<div class="cover-section">
 		<div class="activity_rounded">
-			<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile">
+			<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile" width="200px" height="200px">
 		</div>
 		@if ($user->date != '')
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">

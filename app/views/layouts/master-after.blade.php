@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') Teachbox</title>
 	<meta name="description" content="@yield('description')">
+	<meta name="twitter:card" value="@yield('description')">
+	<meta property="og:image" content="@yield('fb-image')"/>
+	<meta property="og:title" content="@yield('title')  Teachbox"/>
+	<meta property="og:description" content="@yield('description')" />
+	<meta property="og:site_name" content="Teachbox - online education"/>
+	<meta property="og:type"   content="website" />
+
+	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
@@ -215,6 +223,16 @@
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
 	</footer>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-60502699-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
     @if(Route::current()->getName() == 'course-lesson')
 		<script src="//vjs.zencdn.net/4.11/video.js"></script>
 	@endif
@@ -298,7 +316,32 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     @if(Route::current()->getName() != 'messages')
-  		<script src="{{ URL::asset('js/message-notification.min.js') }}"></script>
+		<script>
+		$(document).ready(function()
+		{
+		    pullNotification();
+		});
+
+		function pullNotification()
+		{
+		    getNotification();
+		    setTimeout(pullNotification,10000);
+		}
+
+
+		function getNotification()
+		{
+		    $.post(base_url + '/messages/get-notification', function(data)
+		    {
+		        if(data != 0){
+		            $(".badge").text(data);
+		        }else{
+		 			$(".badge").text("");
+		        }
+
+		    });
+		}
+		</script>
   	@endif
 
 	@if(Route::current()->getName() == 'messages')

@@ -1,10 +1,17 @@
 @extends('layouts.master-after')
+
 @section('title')
 	{{$course->name}} -
 @stop
+
 @section('description')
 	{{ excerpt($course->description) }}
 @stop
+
+@section('fb-image')
+	{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}
+@stop
+
 @section('content')
 	<div class="course-section">
 		<div class="container">

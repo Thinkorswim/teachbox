@@ -7,7 +7,9 @@
 @section('description')
   	{{ excerpt($user->decription) }}
 @stop
-
+@section('fb-image')
+	{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}
+@stop
 @section('content')
 	<div class="cover-section">
 		<div class="activity_rounded">

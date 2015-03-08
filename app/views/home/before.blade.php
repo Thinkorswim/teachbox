@@ -5,7 +5,7 @@
 @stop
 
 @section('description')
-	Teach. Learn. Earn. Socialise.
+	Teachbox is an educational website that helps you find or create online courses. Learn and earn while socializing and having fun.
 @stop
 
 @section('content')

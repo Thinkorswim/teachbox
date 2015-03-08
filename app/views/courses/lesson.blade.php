@@ -8,6 +8,10 @@
 	{{ excerpt($currentLesson->description) }}
 @stop
 
+@section('fb-image')
+	{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}
+@stop
+
 @section('content')
 <section class="video-section">
 	<div class="container">

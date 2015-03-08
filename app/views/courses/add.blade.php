@@ -8,8 +8,14 @@
 	{{ excerpt($course->description) }}
 @stop
 
+@section('fb-image')
+	{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}
+@stop
+
 @section('content')
-<i class="fa fa-spinner fa-pulse fa-4x absolute-icon"></i>
+<div class="absolute-icon">
+	<i class="fa fa-spinner fa-pulse fa-4x"></i>
+</div>
 <div class="course-section">
 	<div class="container">
 		<div class="col-xs-12 col-md-3">

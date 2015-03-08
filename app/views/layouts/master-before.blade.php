@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') Teachbox</title>
     <meta name="description" content="@yield('description')">
+	<meta name="twitter:card" value="@yield('description')">
+	<meta name="twitter:image" content="@yield('fb-image')">
+
+	<meta property="og:image" content="@yield('fb-image')"/>
+	<meta property="og:title" content="@yield('title')  Teachbox"/>
+	<meta property="og:description" content="@yield('description')" />
+	<meta property="og:site_name" content="Teachbox - online education"/>
+	<meta property="og:type"   content="website" />
+
 	<link href="{{ URL::asset('css/pe-icon-7-stroke.css" rel="stylesheet') }}" />
-	 <link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
+	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
@@ -229,6 +238,16 @@
     });
 	});
 	});
+
+	</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-60502699-1', 'auto');
+	  ga('send', 'pageview');
 
 	</script>
    </body>
