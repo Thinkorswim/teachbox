@@ -88,6 +88,7 @@
 						{{ Form::close() }}
 					</div>
 
+					@if($max_users < 1000)
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
@@ -137,7 +138,31 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
+					@else
+					<!-- Subscribe -->
+					<div role="tabpanel" class="tab-pane register centered" id="register">
+						
+						<h1>Subscribe</h1>
+								<p></p>
+						  	{{ Form::open(['route' => 'post-subscribe']) }}
+							@if($errors->has('email'))
+							<div id="mail-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('email')}}">
+							@else
+							<div id="mail" class="input-group" data-toggle="tooltip" title="It will be used for your authenticaion">
+							@endif
+							<span class="input-group-addon"><i class="pe-7s-mail"></i></span>
+						 	{{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
+						  	</div>
+							<div class="input-group submit">
+								 {{ Form::submit('Subscribe', array('class'=>'form-control')) }}
+							</div>
+
+						  {{ Form::close() }}
+					</div>
+				</div>
+					@endif
+		</div>
 	</div>
 		       <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
 

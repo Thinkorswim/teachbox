@@ -9,10 +9,7 @@ class AuthController extends \BaseController {
 	 */
 	public function index()
 	{
-		$max_user =  DB::table('users')->max('id');
-		if ($max_user > 999) {
-				return View::make('home.limit');
-			}
+		$max_users =  DB::table('users')->max('id');
 
 		if(Auth::check()){
 
@@ -46,7 +43,8 @@ class AuthController extends \BaseController {
 			return View::make('home.after')
 							->with(array('timeline' => $timeline, 'courses' => $courses, 'timelineCount' => $timelineCount ));
 		}else{
-			return View::make('home.before');
+			return View::make('home.before')
+							->with(array('max_users' => $max_users));
 		}
 	}
 
@@ -203,12 +201,21 @@ class AuthController extends \BaseController {
 							->with('global-negative', 'Email/password combination wrong or account not activated.');
 				}	
 		}else{
-				$user = User::create(array(
-					'email' 	=> $result['email'] ,
-					'name' 		=> $result['name'] ,
-					'password'  => Hash::make($result['id']),
-					'active'	=> 0,
-				));
+				$max_users = DB::table('users')->count();
+
+				if($max_users < 1000){
+
+					$user = User::create(array(
+						'email' 	=> $result['email'] ,
+						'name' 		=> $result['name'] ,
+						'password'  => Hash::make($result['id']),
+						'active'	=> 0,
+					));
+
+				}else{
+					return Redirect::route('home')
+							->with('global-negative', 'We have reached 1000 registrations. Please subscribe.');
+				}
 
 			if($user){
 				$user->pic = 'user.png';

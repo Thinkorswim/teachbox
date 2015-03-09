@@ -147,7 +147,7 @@
 					</a>
 				  </li>
 				  <li>
-					<a href="https://www.linkedin.com/profile/view?id=404189736" target="_blank">
+					<a href="https://www.linkedin.com/company/9336733?trk=tyah&trkInfo=idx%3A1-1-1%2CtarId%3A1425842662670%2Ctas%3Ateachbox" target="_blank">
 						<span class="fa-stack fa-lg">
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
