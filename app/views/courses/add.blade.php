@@ -43,17 +43,40 @@
 </div>
 <div class="container">
 	<div class="col-xs-12 col-sm-8">
-		<div class="panel panel-default settings-panel actions place">
+		<div class="panel panel-default settings-panel actions place upload-panel">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">Add lesson</h3>
 		  </div>
-		  <div class="panel-body padding-panel">   
-			{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+		  <div class="panel-body padding-panel">
+		  	{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true, 'class'=>'ac-custom ac-radio ac-circle', 'autocomplete'=>'off' )) }}
+			<ul class="nav nav-tabs hidden">
+			    <li class="active"><a href="#upload" data-toggle="tab">Shipping</a></li>
+			    <li><a href="#lesson-info" data-toggle="tab">Quantities</a></li>
+			    <li><a href="#test" data-toggle="tab">Summary</a></li>
+			    <li><a href="#confirm" data-toggle="tab">Summary</a></li>
+			</ul>
+		<div class="tab-content">
+		    <div role="tabpanel" class="tab-pane  active" id="upload">
+				<div class="fileUpload btn btn-primary no-upload">
+				    <span id="choosen">
+				    <i class="fa fa-4x fa-cloud-upload"></i>
+				    <h2 class="info-heading">
+				    Choose a file to upload</h2></span>
+			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload upload-video-input')) }}
+			    </div>
+			    <div class="row-add">
+							<div class="alert alert-info" role="alert">
+								<p>Please upload only *.mp4 files with a maximum size of 150mb. Do not refresh while loading.</p>
+							</div>
+			    </div>
+			    <a class="btn btn-primary btnNext" >Next</a>
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="lesson-info">
 				@if($errors->has('video'))
-							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
+					<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
 				@endif
 				 @if($errors->has('name'))
-				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
+				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
 				@else
 				<div class="input-group">
 				@endif  
@@ -64,23 +87,55 @@
 				</div>
 				@if($errors->has('description'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
-				@else             
+				@else
 				<div class="input-group">
 				@endif  
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
 
-				<div class="fileUpload btn btn-primary no-upload">
-				    <span id="choosen">Choose a video</span>
-			    	{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
+		    	<div class="row">
+			        <a class="btn btn-primary btnPrevious" >Previous</a>
+			        <a class="btn btn-primary btnNext pull-right" >Next</a>
+		        </div>
+		  	</div>
+		    <div role="tabpanel" class="tab-pane" id="test">
+				<section>
+					<div class="alert alert-info" role="alert">
+						<p><strong>Hint:</strong>Click on any of the green circles to mark the right answer.</p>
+					</div>
+				<div class="input-group">
+					<span class="input-group-addon">
+						<i class="fa fa-question"></i>
+					</span>
+						{{ Form::text('name', null, array('placeholder' => 'Your question', 'class'=>'form-control')) }}
+				</div>
+						<ul id="question-1">
+							<li><input id="r5" name="r2" type="radio" selected>
+							<label for="r5">
+								{{ Form::text('name', null, array('placeholder' => 'Option 1', 'class'=>'form-control')) }}
+							</label></li>
+							<li><input id="r6" name="r2" type="radio">
+							<label for="r6">
+								{{ Form::text('name', null, array('placeholder' => 'Option 2', 'class'=>'form-control')) }}
+							</label></li>
+						</ul>
+						<button type="button" class="btn btn-default btn-add-choice">Add choice</button>
+				</section>
+
+			    <div class="row">
+			        <a class="btn btn-primary btnPrevious" >Previous</a>
+			        <a class="btn btn-primary btnNext pull-right" >Next</a>
 			    </div>
-			    <div class="row-add">
-							<div class="alert alert-info" role="alert">
-								<p>Please upload only *.mp4 files with a maximum size of 150mb. Do not refresh while loading.</p>
-							</div>
-			    </div> 
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="confirm">
+        		<a class="btn btn-primary btnPrevious" >Previous</a>
+		    </div>
+		</div>
+
+<!--
+
 				{{ Form::submit('Upload', array('class'=>'form-control', 'id'=>'upload-video')) }}
-			{{ Form::close() }}
+			{{ Form::close() }}-->
 		  </div>
 		</div>
 	</div>

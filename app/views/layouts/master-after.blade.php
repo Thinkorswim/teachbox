@@ -383,10 +383,46 @@ $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass(
 $("#upload-video").click(function(){
     $(".absolute-icon").show();
 });
-	$('#uploadBtn').on('change',function(){
-	$('#choosen').html('<i class="fa fa-check"></i> Video choosen.');
+	$('.upload-video-input').on('change',function(){
+	$('.info-heading').html('Video choosen.');
 	$('.fileUpload').addClass("btn-success");
 });
 	</script>
+	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
+	<script>
+		 $('.btnNext').click(function(){
+		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+		});
+
+		  $('.btnPrevious').click(function(){
+		  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+		});
+
+
+(function () {
+  var clickCount = 0;
+ 	var choise = clickCount + 3;
+
+   
+		$( ".btn-add-choice" ).click(function() {
+  			$("#test ul").append('<li><input name="r2" type="radio"><label><input placeholder="' + 'Option ' +  choise  + '  "' + 'class="form-control" name="name" type="text"></label></li>');
+
+	  	$('#the_script').remove();
+
+	    var script = document.createElement('script');
+	    script.id = 'the_script';
+	    //the script's source here
+	    script.src = 'http://localhost:8000/js/svgcheckbx.js';
+	    script.type ='text/javascript';
+	    clickCount += 1;
+	    choise += 1;
+	    document.getElementsByTagName('head')[0].appendChild(script);
+	  if (clickCount == 2) {
+      	$( ".btn-add-choice" ).hide();
+    }
+  });
+})();
+	</script>
+
   </body>
 </html>
