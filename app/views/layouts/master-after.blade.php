@@ -131,7 +131,7 @@
 			?>
 
 			@if(count($joinedListMenu) - count($createdList) > 0)
-	        <li class="heading-courses"><a href="">Enrolled courses</a></li>
+	        <li class="heading-courses"> Enrolled courses </li>
 
 	        @foreach ($joinedListMenu as $course)
 	        	@if ($course->user_id != Auth::user()->id)
@@ -142,7 +142,22 @@
 	        	@endif
 	        @endforeach
 	        @endif
-	      	<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
+
+	        @if(count($createdList) > 0)
+	        <li class="heading-courses"> Created courses</li>
+
+	        @foreach ($joinedListMenu as $course)
+	        	@if ($course->user_id == Auth::user()->id)
+			        <li class="course-list"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+			        	<img class="small-profile" src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}">
+			        	<span>{{$course->name}}</span>
+			        </a></li>
+	        	@endif
+	        @endforeach
+	        @endif
+	        
+			<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
+	      	
 	      	@endif
 	      </ul>
 

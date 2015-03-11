@@ -34,7 +34,9 @@
 	<div class="container">
 		<ul class="nav nav-pills">
 		  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+		  @if($isJoined)
 		  <li role="presentation" ><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+		  @endif
 		  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>
 	</div>
@@ -68,7 +70,17 @@
 		</div>
 		@endif
 		@endforeach
+
+		  	@if($studentCount == 0)
+   			<div class="panel panel-default settings-panel actions no-timeline">
+				<div class="panel-body padding-panel">
+					<h2><strong>No students yet.</strong></h2>
+					<small>Do not hesitate to take this course. </small>
+				</div>
+			</div>
+			@endif
    </div>
+
 	
 		<div class="col-xs-12 col-sm-4 author-card">
 			@if ((in_array($user->id, $studentIdList)))
@@ -95,6 +107,17 @@
 			  </div>
 			</div>
 		@endif
+
+	    @if(Auth::check() && !$isJoined)
+		    <div class="panel panel-default settings-panel actions">
+			    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+							{{ Form::token() }}
+							{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+
+				{{ Form::close() }}
+			</div>
+		@endif
+
 			<div class="panel panel-default author-card student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
