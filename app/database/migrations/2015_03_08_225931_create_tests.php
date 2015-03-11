@@ -21,7 +21,7 @@ class CreateTests extends Migration {
 			$table->string('choice_2', 256);
 			$table->string('choice_3', 256)->nullable();
 			$table->string('choice_4', 256)->nullable();
-			$table->smallInteger('integer');
+			$table->smallInteger('answer');
 
 
             $table->timestamps();

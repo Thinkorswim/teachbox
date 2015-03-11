@@ -69,7 +69,7 @@
 								<p>Please upload only *.mp4 files with a maximum size of 150mb. Do not refresh while loading.</p>
 							</div>
 			    </div>
-			    <a class="btn btn-primary btnNext" >Next</a>
+			    <a class="btn btn-primary btnNext pull-right" >Next</a>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="lesson-info">
 				@if($errors->has('video'))
@@ -103,32 +103,34 @@
 					<div class="alert alert-info" role="alert">
 						<p><strong>Hint:</strong>Click on any of the green circles to mark the right answer.</p>
 					</div>
-				<div class="input-group">
-					<span class="input-group-addon">
-						<i class="fa fa-question"></i>
-					</span>
-						{{ Form::text('name', null, array('placeholder' => 'Your question', 'class'=>'form-control')) }}
-				</div>
-						<ul id="question-1">
-							<li><input id="r5" name="r2" type="radio" selected>
-							<label for="r5">
-								{{ Form::text('name', null, array('placeholder' => 'Option 1', 'class'=>'form-control')) }}
-							</label></li>
-							<li><input id="r6" name="r2" type="radio">
-							<label for="r6">
-								{{ Form::text('name', null, array('placeholder' => 'Option 2', 'class'=>'form-control')) }}
-							</label></li>
-						</ul>
-						<button type="button" class="btn btn-default btn-add-choice">Add choice</button>
+						<div id="qCollection">	
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-question"></i>
+								</span>
+									<input placeholder="Your question" class="form-control" name="q1" type="text">
+							</div>
+							<ul id="question-1">
+								<li><input name="r1" value="11" type="radio" checked="checked">
+								<label for="r1">
+									<input placeholder="Option 1" class="form-control" name="11" type="text">
+								</label></li>
+								<li><input name="r1" value="12" type="radio">
+								<label for="r1">
+									<input placeholder="Option 2" class="form-control" name="12" type="text">
+								</label></li>
+							</ul>
+							<button type="button" id="1" class="btn btn-default btn-add-choice">Add choice</button>
+
+						</div>
+
+						<button type="button" class="btn btn-default btn-add-question">Add question</button>
 				</section>
 
 			    <div class="row">
 			        <a class="btn btn-primary btnPrevious" >Previous</a>
-			        <a class="btn btn-primary btnNext pull-right" >Next</a>
+			        {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 			    </div>
-		    </div>
-		    <div role="tabpanel" class="tab-pane" id="confirm">
-        		<a class="btn btn-primary btnPrevious" >Previous</a>
 		    </div>
 		</div>
 

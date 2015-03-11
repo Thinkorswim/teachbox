@@ -377,6 +377,7 @@ class CourseController extends \BaseController {
 
 	public function coursePostAdd($id){
 		$course = Course::find($id);
+
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
 
@@ -392,6 +393,7 @@ class CourseController extends \BaseController {
 				return Redirect::route('course-add', array('id' => $id))
 							->withErrors($validator);
 				}else{
+
 
 				$name 	 = Input::get('name');
 				$description = Input::get('description');
@@ -470,6 +472,47 @@ class CourseController extends \BaseController {
 						));
 
 		   		  if($lesson){
+					if(!Input::has("q1") || !Input::has("11") || !Input::has("12")){
+						//redirect
+					}
+					
+					$continue = true;
+					for($i = 1; $i<=5; $i++){
+						if(Input::has("q" . $i) && $continue){
+								$answers = array();
+								for($j = 1; $j<=4; $j++){
+									if($j<=2){
+										if(!Input::has((string) ($i . $j))  ){
+											break;
+											$continue = false;
+										}else{
+											$answers[$j] = Input::get((string) ($i . $j));
+										}
+									}else{
+										if(!Input::has((string) ($i . $j))  ){
+											 break;
+										}else{
+											$answers[$j] = Input::get((string) ($i . $j));
+										}
+									}
+								}
+								if($continue){
+									$test = new Test;
+									$test->lesson_id = 	$lesson->id;
+									$test->question = Input::get("q" . $i);
+									$test->choice_1 = $answers[1];
+									$test->choice_2 = $answers[2];
+									if(array_key_exists(3, $answers)){
+										$test->choice_3 = $answers[3];
+									}
+									if(array_key_exists(4, $answers)){
+										$test->choice_4 = $answers[4];
+									}
+									$test->answer = Input::get("r".$i)%10;
+									$test->save();
+								}				
+						}
+					}
 					return Redirect::route('course-page', array('id' => $id, 'user'=> $user));
 				}else{
 					return Redirect::route('course-page', array('id' => $id, 'user'=> $user))
