@@ -9,7 +9,7 @@ class AuthController extends \BaseController {
 	 */
 	public function index()
 	{
-		$max_users =  DB::table('users')->max('id');
+		$max_users = DB::table('users')->count();
 		$remaining = 1000 - $max_users;
 		if(Auth::check()){
 
