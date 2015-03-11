@@ -10,7 +10,7 @@ class AuthController extends \BaseController {
 	public function index()
 	{
 		$max_users =  DB::table('users')->max('id');
-
+		$remaining = 1000 - $max_users;
 		if(Auth::check()){
 
 		$user = Auth::user();
@@ -44,7 +44,7 @@ class AuthController extends \BaseController {
 							->with(array('timeline' => $timeline, 'courses' => $courses, 'timelineCount' => $timelineCount ));
 		}else{
 			return View::make('home.before')
-							->with(array('max_users' => $max_users));
+							->with(array('max_users' => $max_users, 'remaining' => $remaining));
 		}
 	}
 
