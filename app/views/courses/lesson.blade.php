@@ -45,7 +45,6 @@
 			 preload="auto" width="100%" height="500" poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
 			 data-setup="{}">
 				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />
-			  	<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/video.webm') }}" type="video/webm" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
 
