@@ -724,7 +724,7 @@ class CourseController extends \BaseController {
 			$user = User::find($course->user_id);
 			$questionList = CourseQuestion::where('course_id', '=', $id)->get();
 
-			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			if(($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)) || Auth::user()->admin = 1){
 				return View::make('courses.question')
 						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
 			}else{
@@ -935,7 +935,7 @@ class CourseController extends \BaseController {
 
 			if($course->approved == 1 || $course->user_id == Auth::user()->id){
 			return View::make('courses.students')
-					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
+					->with(array('course' => $course, 'isJoined' => $isJoined, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
