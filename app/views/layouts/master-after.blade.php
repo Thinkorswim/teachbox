@@ -389,7 +389,7 @@ $("#upload-video").click(function(){
 });
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
-	<script>
+	<script id="test">
 		 $('.btnNext').click(function(){
 		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
 		});
@@ -400,27 +400,50 @@ $("#upload-video").click(function(){
 
 
 (function () {
-  var clickCount = 0;
- 	var choise = clickCount + 3;
-
+ 	var clickCount = [0,0,0,0,0];
+ 	var choice = [3,3,3,3,3];
+ 	var question = 1;	
+ 	var qCount = 0;
    
-		$( ".btn-add-choice" ).click(function() {
-  			$("#test ul").append('<li><input name="r2" type="radio"><label><input placeholder="' + 'Option ' +  choise  + '  "' + 'class="form-control" name="name" type="text"></label></li>');
+		 $('#qCollection').on('click','.btn-add-choice', function(){
+  			$("#question-" + event.target.id).append('<li><input name="r'+ event.target.id +'" value="'+ event.target.id + (clickCount[event.target.id-1]+3) +'" type="radio"><label><input placeholder="' + 'Option ' +  choice[event.target.id-1]  + '  "' + 'class="form-control" name="'+ event.target.id +''+ (clickCount[event.target.id-1]+3) +'" type="text"></label></li>');
 
-	  	$('#the_script').remove();
+		  	$('#the_script').remove();
 
-	    var script = document.createElement('script');
-	    script.id = 'the_script';
-	    //the script's source here
-	    script.src = 'http://localhost:8000/js/svgcheckbx.js';
-	    script.type ='text/javascript';
-	    clickCount += 1;
-	    choise += 1;
-	    document.getElementsByTagName('head')[0].appendChild(script);
-	  if (clickCount == 2) {
-      	$( ".btn-add-choice" ).hide();
-    }
-  });
+		    var script = document.createElement('script');
+		    script.id = 'the_script';
+		    //the script's source here
+		    script.src = 'http://localhost:8000/js/svgcheckbx.js';
+		    script.type ='text/javascript';
+		    document.getElementsByTagName('head')[0].appendChild(script);
+
+
+		    clickCount[event.target.id-1] += 1;
+		    choice[event.target.id-1] += 1;
+			if (clickCount[event.target.id-1] == 2) {
+		       $( ".btn-add-choice" ).hide();
+		  	}
+ 		});
+
+		$(".btn-add-question").click(function() {
+			question+=1;
+			qCount+=1;
+			$("#qCollection").append('<div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" selected><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
+
+			$('#the_script').remove();
+		    var script = document.createElement('script');
+		    script.id = 'the_script';
+		    //the script's source here
+		    script.src = 'http://localhost:8000/js/svgcheckbx.js';
+		    script.type ='text/javascript';
+		    document.getElementsByTagName('head')[0].appendChild(script);
+
+
+			if(qCount == 4){
+				 $( ".btn-add-question" ).hide();
+			}
+		});
+
 })();
 	</script>
 
