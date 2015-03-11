@@ -52,7 +52,7 @@ class AuthController extends \BaseController {
 	{
 		$validator = Validator::make(Input::all(), 
 		array(
-			'email' => 'required|max:128',
+			'email' => 'required|max:128|email|unique:future_users',
 			)
 		);	
 
@@ -70,12 +70,12 @@ class AuthController extends \BaseController {
 
 			if($future_user){
 
-		/*	Mail::send('emails.auth.activate', array('link' => URL::route('activate', $code), 'name' => $name), function($message) use ($user) {
-				$message->to( $user->email , $user->name)->subject('Teachbox activation');
-			} );*/
+			Mail::send('emails.auth.subscribe', array('future_user' => $future_user), function($message_new) use ($future_user) {
+				$message_new->to($future_user->email)->subject('Teachbox subscribing');
+			} );
 
 				return Redirect::route('home')
-							->with('global-positive', 'You account has been created. We have sent you and email to activate your account');
+							->with('global-positive', 'Thank you for subscribing! Please check your email.');
 			}
 		}
 	}
