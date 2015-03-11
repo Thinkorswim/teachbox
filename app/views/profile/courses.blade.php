@@ -83,8 +83,8 @@
 	<div class="container follow">
 		<div class="col-xs-12 col-sm-8">
 		<div class="row">
-			<h2>Created courses</h2>
 		@if(count($createdList) > 0)
+			<h2>Created courses</h2>
 
 				@foreach ($createdList as $course)
 					<div class="col-xs-12 col-sm-6 course two-in-line created">
@@ -102,11 +102,6 @@
 					</div>
 				@endforeach
 		@else
-			<div class="panel panel-default settings-panel actions no-timeline">
-				<div class="panel-body padding-panel">
-					<h4><strong>No created courses yet.</strong></h4>
-				</div>
-			</div>
 		@endif
 			</div>
 
