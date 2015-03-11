@@ -451,6 +451,9 @@ class CourseController extends \BaseController {
 			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
      		     shell_exec($cmd);
 
+     		     $cmd2 = "$ffmpeg -i $video -c:v libvpx -qmin 0 -qmax 50 -crf 10 -b:v 2M $path/video.webm";
+     		     shell_exec($cmd2);
+
      		     if (File::exists($path.'/thumb.png')){
      		     	$image = Image::make($path.'/thumb.png');
 					$image->fit(300, 200);
