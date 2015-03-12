@@ -1,6 +1,5 @@
 @import "variables.less";
 @import "mixins.less";
-
 .course-section{
 	background: url('../img/cover-course.jpg') no-repeat top center; 
     -webkit-background-size: cover;
@@ -14,6 +13,8 @@
 		margin-top: 38px;
 		font-weight: 900;
 	}
+
+	
 	img{
 		display:block;
 		.RoundBorders(50%);
@@ -241,4 +242,31 @@ nav a.next {
 }
 #ask{
 	margin-top:0px!important;
+}
+#on-end{
+	position: absolute;
+	top: 34%;
+	left:45%;
+	text-align: center;
+	margin-left: -20px;
+	color: @white;
+	z-index: 200;
+	display: none;
+	i,button{
+		display: block;
+	}
+	i{
+		color: @blue;
+		cursor: pointer;
+	}
+	#repeat{
+		margin:0 auto;
+		background: none;
+		border:none;
+	}
+	.btn.btn-default{
+		margin-top:10px;
+		background: @blue;
+		border-color: @blue;
+	}
 }

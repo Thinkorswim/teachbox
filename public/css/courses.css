@@ -224,3 +224,31 @@
 #ask {
   margin-top: 0px!important;
 }
+#on-end {
+  position: absolute;
+  top: 34%;
+  left: 45%;
+  text-align: center;
+  margin-left: -20px;
+  color: #ffffff;
+  z-index: 200;
+  display: none;
+}
+#on-end i,
+#on-end button {
+  display: block;
+}
+#on-end i {
+  color: #1abc9c;
+  cursor: pointer;
+}
+#on-end #repeat {
+  margin: 0 auto;
+  background: none;
+  border: none;
+}
+#on-end .btn.btn-default {
+  margin-top: 10px;
+  background: #1abc9c;
+  border-color: #1abc9c;
+}

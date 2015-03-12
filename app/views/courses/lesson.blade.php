@@ -13,6 +13,75 @@
 @stop
 
 @section('content')
+<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Test</h4>
+      </div>
+      <div class="modal-body">
+		<ul class="nav nav-tabs hidden">
+			<li class="active"><a href="#first" data-toggle="tab">Shipping</a></li>
+			<li><a href="#second" data-toggle="tab">Quantities</a></li>
+			<li><a href="#third" data-toggle="tab">Summary</a></li>
+			<li><a href="#forth" data-toggle="tab">Summary</a></li>
+			<li><a href="#fifth" data-toggle="tab">Summary</a></li>
+		</ul>
+		<div class="tab-content">
+		    <div role="tabpanel" class="tab-pane  active" id="first">
+		        <h4>First Question</h4>
+					<section>
+						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
+							<ul>
+								<li><input id="r1" name="r2" type="radio"><label for="r1">Objectively integrate emerging core competencies</label></li>
+								<li><input id="r2" name="r2" type="radio"><label for="r2">Progressively maintain extensive infomediaries</label></li>
+								<li><input id="r3" name="r2" type="radio"><label for="r3">Proactively fabricate one-to-one materials</label></li>
+								<li><input id="r4" name="r2" type="radio"><label for="r4">Quickly aggregate B2B users</label></li>
+							</ul>
+						</form>
+					</section>
+					<div class="row">
+					 	<a class="btn btn-primary btnNext pull-right" >Next</a>
+					 </div>
+      		</div>
+		    <div role="tabpanel" class="tab-pane" id="second">
+		        <h4>Second Question</h4>
+					<section>
+						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
+							<ul>
+								<li><input id="r5" name="r2" type="radio"><label for="r5">Objectively integrate emerging core competencies</label></li>
+								<li><input id="r6" name="r2" type="radio"><label for="r6">Progressively maintain extensive infomediaries</label></li>
+								<li><input id="r7" name="r2" type="radio"><label for="r7">Proactively fabricate one-to-one materials</label></li>
+								<li><input id="r8" name="r2" type="radio"><label for="r8">Quickly aggregate B2B users</label></li>
+							</ul>
+						</form>
+					</section>
+					<a class="btn btn-primary btnPrevious" >Previous</a>
+					<a class="btn btn-primary btnNext pull-right" >Next</a>
+      		</div>
+		    <div role="tabpanel" class="tab-pane" id="third">
+		        <h4>Third Question</h4>
+					<section>
+						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
+							<ul>
+								<li><input id="r9" name="r2" type="radio"><label for="r9">Objectively integrate emerging core competencies</label></li>
+								<li><input id="r10" name="r2" type="radio"><label for="r10">Progressively maintain extensive infomediaries</label></li>
+								<li><input id="r11" name="r2" type="radio"><label for="r11">Proactively fabricate one-to-one materials</label></li>
+								<li><input id="r12" name="r2" type="radio"><label for="r12">Quickly aggregate B2B users</label></li>
+							</ul>
+						</form>
+					</section>
+					<div class="row">
+					<a class="btn btn-primary btnNext pull-right submit-test" >Submit</a>
+					</div>
+      		</div>
+      		</div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <section class="video-section">
 	<div class="container">
 		<nav class="nav-reveal">
@@ -42,12 +111,16 @@
 		<div class="col-xs-1"></div>
 		<div class="col-xs-10">
 			<video id="video_main" class="video-js vjs-default-skin vjs-big-play-centered" controls
-			 preload="auto" width="100%" height="500" poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
+			 preload="auto" width="100%" height="500"   poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
 			 data-setup="{}">
 				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
-
+			<div id="on-end">
+				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
+				or
+				<button class="btn btn-default btn-primary btn-lg" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
+			</div>
 		</div>
 		<div class="col-xs-1"></div>
 	</div>

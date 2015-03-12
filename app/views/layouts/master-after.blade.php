@@ -259,6 +259,29 @@
 	<script>
 	$('.list-group').scrollTo( $('.list-group .active') );
 
+	var vid = document.getElementById("video_main"); 
+	$( "#video_main" ).click(function() {
+	  	$('#on-end').hide();
+	    $('#video_main').css('opacity','1');
+	});
+		$( ".submit-test" ).click(function() {
+	  	$('#testModal').modal('hide');
+	});
+	function playVid() {
+	    vid.play(); 
+	    $('#on-end').hide();
+	    $('#video_main').css('opacity','1');
+	}
+
+	var video = videojs('#video_main').ready(function(){
+ 	var player = this;
+	player.on('ended', function() {
+	$('#on-end').show();
+	$('#video_main').css('opacity','.4');
+	});
+
+
+	});
 
 
 	</script>

@@ -1,5 +1,5 @@
 .full-screen {
-  padding: 170px 0 20px;
+  padding: 100px 0 20px;
   min-height: 100vh;
   height: auto;
   width: 100%;
@@ -13,6 +13,10 @@
 }
 .full-screen .more:hover {
   opacity: .7;
+}
+.full-screen .users-left {
+  margin-bottom: 50px;
+  font-weight: 300;
 }
 .full-screen .col-sm-3 i {
   text-align: center;
