@@ -13,16 +13,15 @@
 <!-- After registration -->
 	<section class="full-screen main-screen">
 		<div class="container">
-			<h2 class="centered users-left">Only <strong>{{$remaining}}</strong> registrations remaining.</h2>
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
 				<div class="panel panel-default">
-					<div class="panel-body padding-body">
-						<div class="embed-responsive embed-responsive-16by9">
-							<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
+				<div class="panel-body padding-body">
+				<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 				</div>
-			</div>
+				</div>
+				</div>
+			</div> 
 			<div class="col-xs-12 col-sm-12 col-md-1">
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
@@ -89,7 +88,7 @@
 						{{ Form::close() }}
 					</div>
 
-					@if($max_users < 1000)
+					@if($max_users > 1000)
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
@@ -145,7 +144,7 @@
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						
 						<h1>Subscribe</h1>
-								<p></p>
+						<p>Please subscribe for future registrations.</p>
 						  	{{ Form::open(['route' => 'post-subscribe']) }}
 							@if($errors->has('email'))
 							<div id="mail-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('email')}}">
