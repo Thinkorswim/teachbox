@@ -1,6 +1,6 @@
 <?php
 
-class Test extends Eloquent {
+class Result extends Eloquent {
 	protected $fillable = array('lesson_id', 'user_id', 'total', 'right');
 
 
