@@ -410,3 +410,19 @@
 {
     return Response::view('errors.missing', array('url' => Request::url()), 404);
 });*/
+
+class Convert {
+
+    public function fire($job, $data)
+    {
+    	$ffmpeg = $data["ffmpeg"];
+    	$video = $data["video"];
+    	$path = $data["path"];
+
+		$cmd = "$ffmpeg -i $video -c:v libvpx -qmin 0 -qmax 50 -crf 5 -b:v 1M -c:a libvorbis $path/video.webm";
+		shell_exec($cmd);
+
+        $job->delete();
+    }
+
+}
