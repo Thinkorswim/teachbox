@@ -419,8 +419,7 @@ class Convert {
     	$video = $data["video"];
     	$path = $data["path"];
 
-		//$cmd = "$ffmpeg -i $video -vcodec libvpx -cpu-used -5 -deadline realtime $path/video.webm";
-		$cmd = "$ffmpeg -i $video -acodec libvorbis -aq 5 -ac 2 -qmax 25 -threads 2 $path/video.webm";
+		$cmd = "$ffmpeg -i $video -vcodec libvpx -cpu-used -5 -deadline good $path/video.webm";
 		shell_exec($cmd);
 
         $job->delete();
