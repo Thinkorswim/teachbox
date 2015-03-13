@@ -282,8 +282,15 @@
 
 
 	});
+		 $(' #testModal .btnNext').click(function(){
+		 if($('.answer').is(':checked')) { 
+		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+		}
+		});
 
-
+		  $('#testModal .btnPrevious').click(function(){
+		  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+		});
 	</script>
 	@endif
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
@@ -427,6 +434,7 @@ $("#upload-video").click(function(){
 });
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
+@if(Route::current()->getName() == 'add-lesson')
 	<script id="test">
 		 $('.btnNext').click(function(){
 		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -484,6 +492,6 @@ $("#upload-video").click(function(){
 
 })();
 	</script>
-
+@endif
   </body>
 </html>

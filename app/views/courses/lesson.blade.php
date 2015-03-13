@@ -33,7 +33,7 @@
 		@endforeach
 		</ul>
 		<div class="tab-content">
-			<?php $isActiveTab = True; $id_question= 0; ?>
+		<?php $isActiveTab = True; $id_question = 0; ?>
 		@foreach ($questions as $question)
 	
 		@if($isActiveTab)
@@ -43,61 +43,71 @@
 						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
 							@if($question->choice_1 != NULL)
-								<li><input id="r1{{$question->id}}" name="r2" type="radio"><label for="r1{{$question->id}}">
+								<li><input id="r1{{$question->id}}" name="r2" class="answer" type="radio" ><label for="r1{{$question->id}}">
 									{{$question->choice_1 }}
 								</label></li>
 							@endif
 							@if($question->choice_2 != NULL)
-								<li><input id="r2{{$question->id}}" name="r2" type="radio"><label for="r2{{$question->id}}">
+								<li><input id="r2{{$question->id}}" name="r2" class="answer" type="radio"><label for="r2{{$question->id}}">
 								{{$question->choice_2}}
 								</label></li>
 							@endif
 							@if($question->choice_3 != NULL)
-								<li><input id="r3{{$question->id}}" name="r2" type="radio"><label for="r3{{$question->id}}">
+								<li><input id="r3{{$question->id}}" name="r2" class="answer" type="radio"><label for="r3{{$question->id}}">
 									{{$question->choice_3}}
 								</label></li>
 							@endif
 							@if($question->choice_4 != NULL)
-								<li><input id="r4{{$question->id}}" name="r2" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
+								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
 							@endif
 							</ul>
 						</form>
 					</section>
 					<div class="row">
 					@if(count($questions) == 1)
-						<a class="btn btn-primary btnNext pull-right submit-test" >Submit</a>
+						 {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 					@else
-					 	<a class="btn btn-primary btnNext pull-right" >Next</a>
+					 	<a class="btn btn-primary btnNext pull-right">Next</a>
 					 @endif
 					 </div>
       		</div>
-      		<?php $id++; ?>
+      		<?php $id_question++; ?>
       		<?php $isActiveTab = false; ?>
         @else
-		    <div role="tabpanel" class="tab-pane" id="tab{{$id}}">
-		        <h4>$question->question</h4>
+		    <div role="tabpanel" class="tab-pane" id="tab{{$id_question}}">
+		        <h4>{{$question->question}}</h4>
 					<section>
 						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
-							@if($question->choise1)
-								<li><input id="r1{{$id}}" name="r2" type="radio"><label for="r1{{$id}}">Objectively integrate emerging core competencies</label></li>
+							@if($question->choice_1 != NULL)
+								<li><input id="r1{{$question->id}}" name="r2" class="answer" type="radio"><label for="r1{{$question->id}}">
+									{{$question->choice_1 }}
+								</label></li>
 							@endif
-							@if($question->choise2)
-								<li><input id="r2{{$id}}" name="r2" type="radio"><label for="r2{{$id}}">Progressively maintain extensive infomediaries</label></li>
+							@if($question->choice_2 != NULL)
+								<li><input id="r2{{$question->id}}" name="r2" class="answer" type="radio"><label for="r2{{$question->id}}">
+								{{$question->choice_2}}
+								</label></li>
 							@endif
-							@if($question->choise3)
-								<li><input id="r3{{$id}}" name="r2" type="radio"><label for="r3{{$id}}">Proactively fabricate one-to-one materials</label></li>
+							@if($question->choice_3 != NULL)
+								<li><input id="r3{{$question->id}}" name="r2" class="answer" type="radio"><label for="r3{{$question->id}}">
+									{{$question->choice_3}}
+								</label></li>
 							@endif
-							@if($question->choise4)
-								<li><input id="r4{{$id}}" name="r2" type="radio"><label for="r4{{$id}}">Quickly aggregate B2B users</label></li>
+							@if($question->choice_4 != NULL)
+								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
 							@endif
 							</ul>
 						</form>
 					</section>
 					<div class="row">
-
-						<a class="btn btn-primary btnPrevious" >Previous</a>
-					 	<a class="btn btn-primary btnNext pull-right" >Next</a>
+						@if($id_question + 1 == count($questions))
+							<a class="btn btn-primary btnPrevious" >Previous</a>
+							{{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
+						@else
+							<a class="btn btn-primary btnPrevious" >Previous</a>
+						 	<a class="btn btn-primary btnNext pull-right" >Next</a>
+					 	@endif
 					 </div>
       		</div>
       	@endif
