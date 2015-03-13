@@ -361,6 +361,10 @@ class CourseController extends \BaseController {
 						    $query->where('course_id', '=', $id);
 						})->first();
 
+
+                    	$test = Test::find($id);
+	                 	$questions =  Test::where('lesson_id', '=', $lesson->id)->get();
+
 						return View::make('courses.lesson')
 								->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator));
 				}else{
@@ -451,7 +455,7 @@ class CourseController extends \BaseController {
 			     $cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
      		     shell_exec($cmd);
 
-     		     Queue::push('Convert', array('video' => $video, 'path' => $path, 'ffmpeg' => $ffmpeg));
+     		     //Queue::push('Convert', array('video' => $video, 'path' => $path, 'ffmpeg' => $ffmpeg));
 
      		     if (File::exists($path.'/thumb.png')){
      		     	$image = Image::make($path.'/thumb.png');
