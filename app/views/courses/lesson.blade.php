@@ -22,60 +22,86 @@
       </div>
       <div class="modal-body">
 		<ul class="nav nav-tabs hidden">
-			<li class="active"><a href="#first" data-toggle="tab">Shipping</a></li>
-			<li><a href="#second" data-toggle="tab">Quantities</a></li>
-			<li><a href="#third" data-toggle="tab">Summary</a></li>
-			<li><a href="#forth" data-toggle="tab">Summary</a></li>
-			<li><a href="#fifth" data-toggle="tab">Summary</a></li>
+		<?php $isActive = true; $id= 0; ?>
+		@foreach ($questions as $questionTab)
+		@if($isActive)
+			<li class="active"><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
+			<?php $isActive= false; ?>
+		@endif
+			<?php $id++; ?>
+			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
+		@endforeach
 		</ul>
 		<div class="tab-content">
-		    <div role="tabpanel" class="tab-pane  active" id="first">
-		        <h4>First Question</h4>
+			<?php $isActiveTab = True; $id_question= 0; ?>
+		@foreach ($questions as $question)
+	
+		@if($isActiveTab)
+		    <div role="tabpanel" class="tab-pane  active" id="tab{{$id_question}}">
+		        <h4>{{$question->question}}</h4>
 					<section>
 						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
-								<li><input id="r1" name="r2" type="radio"><label for="r1">Objectively integrate emerging core competencies</label></li>
-								<li><input id="r2" name="r2" type="radio"><label for="r2">Progressively maintain extensive infomediaries</label></li>
-								<li><input id="r3" name="r2" type="radio"><label for="r3">Proactively fabricate one-to-one materials</label></li>
-								<li><input id="r4" name="r2" type="radio"><label for="r4">Quickly aggregate B2B users</label></li>
+							@if($question->choice_1 != NULL)
+								<li><input id="r1{{$question->id}}" name="r2" type="radio"><label for="r1{{$question->id}}">
+									{{$question->choice_1 }}
+								</label></li>
+							@endif
+							@if($question->choice_2 != NULL)
+								<li><input id="r2{{$question->id}}" name="r2" type="radio"><label for="r2{{$question->id}}">
+								{{$question->choice_2}}
+								</label></li>
+							@endif
+							@if($question->choice_3 != NULL)
+								<li><input id="r3{{$question->id}}" name="r2" type="radio"><label for="r3{{$question->id}}">
+									{{$question->choice_3}}
+								</label></li>
+							@endif
+							@if($question->choice_4 != NULL)
+								<li><input id="r4{{$question->id}}" name="r2" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
+							@endif
 							</ul>
 						</form>
 					</section>
 					<div class="row">
+					@if(count($questions) == 1)
+						<a class="btn btn-primary btnNext pull-right submit-test" >Submit</a>
+					@else
+					 	<a class="btn btn-primary btnNext pull-right" >Next</a>
+					 @endif
+					 </div>
+      		</div>
+      		<?php $id++; ?>
+      		<?php $isActiveTab = false; ?>
+        @else
+		    <div role="tabpanel" class="tab-pane" id="tab{{$id}}">
+		        <h4>$question->question</h4>
+					<section>
+						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
+							<ul>
+							@if($question->choise1)
+								<li><input id="r1{{$id}}" name="r2" type="radio"><label for="r1{{$id}}">Objectively integrate emerging core competencies</label></li>
+							@endif
+							@if($question->choise2)
+								<li><input id="r2{{$id}}" name="r2" type="radio"><label for="r2{{$id}}">Progressively maintain extensive infomediaries</label></li>
+							@endif
+							@if($question->choise3)
+								<li><input id="r3{{$id}}" name="r2" type="radio"><label for="r3{{$id}}">Proactively fabricate one-to-one materials</label></li>
+							@endif
+							@if($question->choise4)
+								<li><input id="r4{{$id}}" name="r2" type="radio"><label for="r4{{$id}}">Quickly aggregate B2B users</label></li>
+							@endif
+							</ul>
+						</form>
+					</section>
+					<div class="row">
+
+						<a class="btn btn-primary btnPrevious" >Previous</a>
 					 	<a class="btn btn-primary btnNext pull-right" >Next</a>
 					 </div>
       		</div>
-		    <div role="tabpanel" class="tab-pane" id="second">
-		        <h4>Second Question</h4>
-					<section>
-						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
-							<ul>
-								<li><input id="r5" name="r2" type="radio"><label for="r5">Objectively integrate emerging core competencies</label></li>
-								<li><input id="r6" name="r2" type="radio"><label for="r6">Progressively maintain extensive infomediaries</label></li>
-								<li><input id="r7" name="r2" type="radio"><label for="r7">Proactively fabricate one-to-one materials</label></li>
-								<li><input id="r8" name="r2" type="radio"><label for="r8">Quickly aggregate B2B users</label></li>
-							</ul>
-						</form>
-					</section>
-					<a class="btn btn-primary btnPrevious" >Previous</a>
-					<a class="btn btn-primary btnNext pull-right" >Next</a>
-      		</div>
-		    <div role="tabpanel" class="tab-pane" id="third">
-		        <h4>Third Question</h4>
-					<section>
-						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
-							<ul>
-								<li><input id="r9" name="r2" type="radio"><label for="r9">Objectively integrate emerging core competencies</label></li>
-								<li><input id="r10" name="r2" type="radio"><label for="r10">Progressively maintain extensive infomediaries</label></li>
-								<li><input id="r11" name="r2" type="radio"><label for="r11">Proactively fabricate one-to-one materials</label></li>
-								<li><input id="r12" name="r2" type="radio"><label for="r12">Quickly aggregate B2B users</label></li>
-							</ul>
-						</form>
-					</section>
-					<div class="row">
-					<a class="btn btn-primary btnNext pull-right submit-test" >Submit</a>
-					</div>
-      		</div>
+      	@endif
+      	@endforeach
       		</div>
       </div>
     </div><!-- /.modal-content -->
@@ -152,7 +178,7 @@
 			  <div class="list-group" id="list-lessons">
 			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson)
-				@if(Auth::user()->admin || $lesson->approved)
+				@if(Auth::user()->admin || $lesson->approved || Auth::user()->id == $course->user_id)
 					@if ($lesson->order == $currentLesson->order)
 			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
 							<div class="col-xs-9">

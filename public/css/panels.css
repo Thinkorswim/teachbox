@@ -142,7 +142,7 @@
 .playlist-panel #list-lessons {
   position: relative;
   overflow: auto;
-  height: 250px;
+  max-height: 250px;
 }
 .playlist-panel .list-group-item {
   height: auto;

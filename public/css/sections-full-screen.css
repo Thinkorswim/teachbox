@@ -45,6 +45,9 @@
   -o-background-size: cover;
   background-size: cover;
 }
+.full-screen.main-screen h2 strong {
+  color: #ffffff;
+}
 .full-screen.teach-screen {
   background: url(../img/19.jpg) no-repeat center center;
   -webkit-background-size: cover;

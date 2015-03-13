@@ -7,7 +7,7 @@
 </div>
 <div style="background:#efefef; padding-top:20px;padding-bottom:20px">
 <div style="background:#fff;margin-left:40px; margin-right:40px;">
-		<img src="{{ URL::asset('https://lh5.googleusercontent.com/_U2es8b6HFTFW1ChGB7uBM8Bt9HzipzGpJdMSMlo3MFWHCk3Vz6LIuSWy_Yj9tjj45iVgUQKFqQ=w1342-h547') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
+		<img src="{{ URL::asset('newcomer.jpg') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
 		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:center">Congratulations {{  $user->name }},</h1>
 		<p style="color:#000; padding-left:20px;padding-right:20px">Your course "{{$course->name}}" was officaly approved. It is time to create content.</p>
 		<p style="color:#000; padding-left:20px;padding-right:20px">You are already changing the education system. If you need help check our "How to create a professional online course" course.</p><br><br>

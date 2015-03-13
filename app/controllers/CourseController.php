@@ -366,7 +366,7 @@ class CourseController extends \BaseController {
 	                 	$questions =  Test::where('lesson_id', '=', $lesson->id)->get();
 
 						return View::make('courses.lesson')
-								->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator));
+								->with(array('course' => $course, 'currentLesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions));
 				}else{
 						return Redirect::route('course-page', array('id' => $id));
 				}
