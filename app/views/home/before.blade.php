@@ -88,7 +88,7 @@
 						{{ Form::close() }}
 					</div>
 
-					@if($max_users > 1000)
+					@if($max_users < 1000)
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
