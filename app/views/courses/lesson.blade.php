@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
 		<ul class="nav nav-tabs hidden">
-		<?php $isActive = true; $id= 0; ?>
+		<?php $isActive = true; $id= 0; $user=Auth::User();?>
 		@foreach ($questions as $questionTab)
 		@if($isActive)
 			<li class="active"><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
@@ -33,39 +33,54 @@
 		@endforeach
 		</ul>
 		<div class="tab-content">
-		<?php $isActiveTab = True; $id_question = 0; ?>
+		<?php $isActiveTab = True; $id_question = 1; ?>
 		@foreach ($questions as $question)
-	
 		@if($isActiveTab)
+		{{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		    <div role="tabpanel" class="tab-pane  active" id="tab{{$id_question}}">
 		        <h4>{{$question->question}}</h4>
 					<section>
 						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
+							<?php $questionNum = $id_question; $answer = 1; ?>
+
 							@if($question->choice_1 != NULL)
-								<li><input id="r1{{$question->id}}" name="r2" class="answer" type="radio" ><label for="r1{{$question->id}}">
+								<li>
+								{{Form::radio('r1', $questionNum.$answer ,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								<label for="r1{{$question->id}}">
 									{{$question->choice_1 }}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_2 != NULL)
-								<li><input id="r2{{$question->id}}" name="r2" class="answer" type="radio"><label for="r2{{$question->id}}">
+								<li>
+								{{Form::radio('r1', $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r2'.$question->id))}}
+								<label for="r2{{$question->id}}">
 								{{$question->choice_2}}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_3 != NULL)
-								<li><input id="r3{{$question->id}}" name="r2" class="answer" type="radio"><label for="r3{{$question->id}}">
+								<li>
+								{{Form::radio('r1',  $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r3'.$question->id))}}
+								<label for="r3{{$question->id}}">
 									{{$question->choice_3}}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_4 != NULL)
-								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
+								<li>
+								{{Form::radio('r1', $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r4'.$question->id))}}
+								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
 							@endif
 							</ul>
 						</form>
 					</section>
 					<div class="row">
 					@if(count($questions) == 1)
+					{{ Form::token() }}
 						 {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
+					{{ Form::close() }}
 					@else
 					 	<a class="btn btn-primary btnNext pull-right">Next</a>
 					 @endif
@@ -74,28 +89,37 @@
       		<?php $id_question++; ?>
       		<?php $isActiveTab = false; ?>
         @else
+        <?php $answer = 1; ?>
 		    <div role="tabpanel" class="tab-pane" id="tab{{$id_question}}">
 		        <h4>{{$question->question}}</h4>
 					<section>
 						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
 							@if($question->choice_1 != NULL)
-								<li><input id="r1{{$question->id}}" name="r2" class="answer" type="radio"><label for="r1{{$question->id}}">
+								<li>
+								{{Form::radio('r2', '$questionNum.$answer',false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								<label for="r1{{$question->id}}">
 									{{$question->choice_1 }}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_2 != NULL)
-								<li><input id="r2{{$question->id}}" name="r2" class="answer" type="radio"><label for="r2{{$question->id}}">
+								<li>
+								{{Form::radio('r2', '$questionNum.$answer',false, array('class'=>'answer', 'id'=>'r2'.$question->id))}}
+								<label for="r2{{$question->id}}">
 								{{$question->choice_2}}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_3 != NULL)
 								<li><input id="r3{{$question->id}}" name="r2" class="answer" type="radio"><label for="r3{{$question->id}}">
 									{{$question->choice_3}}
 								</label></li>
+								<?php $answer++; ?>
 							@endif
 							@if($question->choice_4 != NULL)
-								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">Quickly aggregate B2B users</label></li>
+								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
+
 							@endif
 							</ul>
 						</form>
@@ -103,6 +127,7 @@
 					<div class="row">
 						@if($id_question + 1 == count($questions))
 							<a class="btn btn-primary btnPrevious" >Previous</a>
+							{{ Form::token() }}
 							{{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 						@else
 							<a class="btn btn-primary btnPrevious" >Previous</a>
@@ -112,6 +137,8 @@
       		</div>
       	@endif
       	@endforeach
+
+      	
       		</div>
       </div>
     </div><!-- /.modal-content -->

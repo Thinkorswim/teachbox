@@ -12,6 +12,7 @@
 
 <!-- After registration -->
 	<section class="full-screen main-screen">
+		<h2 class="centered users-left">Only <strong>{{$remaining}}</strong> registrations remaining.</h2>
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
 				<div class="panel panel-default">

@@ -516,7 +516,7 @@ class CourseController extends \BaseController {
 									}
 									$test->answer = Input::get("r".$i)%10;
 									$test->save();
-								}				
+								}
 						}
 					}
 					return Redirect::route('course-page', array('id' => $id, 'user'=> $user));
@@ -537,7 +537,7 @@ class CourseController extends \BaseController {
 	}
 
 
-	public function lessonEdit($id,$lesson)
+	public function lessonEdit($id,$lesson,$user)
 	{
 		$course = Course::find($id);
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
@@ -547,12 +547,42 @@ class CourseController extends \BaseController {
 				})->where(function ($query) use ($id) {
 				    $query->where('course_id', '=', $id);
 				})->first();
-			
+
 			return View::make('courses.edit_lesson')->with(array('course' => $course, 'lesson' => $lesson));
 		}else{
 			return View::make('home.before');
 		}
 	}
+	public function postLessonTest($id,$lesson){
+		$course = Course::find($id);
+		if(Auth::check() && ($course->approved == 1)){
+			$user = Auth::user();
+			$course = Course::find($id);
+			$lesson = Lesson::find($lesson);
+			$questions = Test::where('lesson_id', '=', $lesson->id)->get();
+			$scored = 0;
+			$total = count($questions);
+			$answers = array();
+			for($i = 1; $i<=5; $i++){
+				for(  $j = 1;  $j<=4;  $j++){
+					$answers[$j] = Input::get((string) ($i . $j));
+				}
+			}
+
+			
+			$result = new Result;
+			$result->lesson_id = 	$lesson->id;
+			$result->user_id = $user->id;
+			$result->total = $total;
+ 			$result->right = $scored;
+			$result->save();
+			return Redirect::action('ProfileController@user',[$id]);
+		}else{
+			return View::make('home.before');
+		}						
+	}
+
+	
 
 	public function changeVideo($id,$lesson)
 	{

@@ -434,7 +434,7 @@ $("#upload-video").click(function(){
 });
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
-@if(Route::current()->getName() == 'add-lesson')
+@if(Route::current()->getName() == 'course-add')
 	<script id="test">
 		 $('.btnNext').click(function(){
 		  $('.nav-tabs > .active').next('li').find('a').trigger('click');

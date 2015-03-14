@@ -63,6 +63,11 @@
 				  'uses' => 'CourseController@postChangeVideo'
 			));	
 
+		Route::post('/course/{id}/lesson/{order}/test', array(
+			      'as' => 'post-lesson-test',
+			      'uses' => 'CourseController@postLessonTest'
+		));
+
 		Route::post('/search', array(
 			      'as' => 'post-search',
 			      'uses' => 'SearchController@postSearch'
