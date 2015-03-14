@@ -555,28 +555,35 @@ class CourseController extends \BaseController {
 	}
 	public function postLessonTest($id,$lesson){
 		$course = Course::find($id);
-		if(Auth::check() && ($course->approved == 1)){
+		if(Auth::check()){
 			$user = Auth::user();
 			$course = Course::find($id);
 			$lesson = Lesson::find($lesson);
 			$questions = Test::where('lesson_id', '=', $lesson->id)->get();
 			$scored = 0;
 			$total = count($questions);
-			$answers = array();
+			$answer = DB::select(DB::raw("SELECT tests.answer FROM tests"));	
+			$right_answer = (int) $answer;
+
 			for($i = 1; $i<=5; $i++){
-				for(  $j = 1;  $j<=4;  $j++){
-					$answers[$j] = Input::get((string) ($i . $j));
+				if(Input::has("r" . $i)){
+				 $choice = Input::get("r".$i)%10;
 				}
 			}
 
-			
+			if($choice == $right_answer){
+				$scored = 21;
+			}
+
 			$result = new Result;
-			$result->lesson_id = 	$lesson->id;
+			$result->lesson_id = $lesson->id;
 			$result->user_id = $user->id;
 			$result->total = $total;
- 			$result->right = $scored;
+			$result->right = $scored;
 			$result->save();
-			return Redirect::action('ProfileController@user',[$id]);
+			Log::info("Logging one variable: " . $right);
+			
+			return Redirect::route('course-page', array('course' => $course, 'id' => $id));
 		}else{
 			return View::make('home.before');
 		}						
