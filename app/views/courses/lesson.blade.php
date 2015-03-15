@@ -32,15 +32,16 @@
 			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
 		@endforeach
 		</ul>
+			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		<div class="tab-content">
 		<?php $isActiveTab = True; $id_question = 1; ?>
 		@foreach ($questions as $question)
 		@if($isActiveTab)
-		{{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		    <div role="tabpanel" class="tab-pane  active" id="tab{{$id_question}}">
+
 		        <h4>{{$question->question}}</h4>
 					<section>
-						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
+						
 							<ul>
 							<?php $questionNum = $id_question; $answer = 1; ?>
 
@@ -74,13 +75,13 @@
 								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
 							@endif
 							</ul>
-						</form>
+					
 					</section>
 					<div class="row">
 					@if(count($questions) == 1)
-					{{ Form::token() }}
-						 {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
-					{{ Form::close() }}
+					 {{ Form::token() }}
+				     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}					
+						 
 					@else
 					 	<a class="btn btn-primary btnNext pull-right">Next</a>
 					 @endif
@@ -122,13 +123,12 @@
 
 							@endif
 							</ul>
-						</form>
 					</section>
 					<div class="row">
-						@if($id_question + 1 == count($questions))
+						@if($id_question  == count($questions))
 							<a class="btn btn-primary btnPrevious" >Previous</a>
-							{{ Form::token() }}
-							{{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
+					     {{ Form::token() }}
+					     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 						@else
 							<a class="btn btn-primary btnPrevious" >Previous</a>
 						 	<a class="btn btn-primary btnNext pull-right" >Next</a>
@@ -137,6 +137,8 @@
       		</div>
       	@endif
       	@endforeach
+
+	{{ Form::close() }}
 
       	
       		</div>
