@@ -554,6 +554,11 @@ class CourseController extends \BaseController {
 		}
 	}
 	public function postLessonTest($id,$lesson){
+		$db = new PDO('mysql:host=localhost;dbname=main;charset=utf8', 
+                  'root', 
+                  '',
+                  array(PDO::ATTR_EMULATE_PREPARES => false,
+                  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));	
 		$course = Course::find($id);
 		if(Auth::check()){
 			$user = Auth::user();
@@ -561,20 +566,22 @@ class CourseController extends \BaseController {
 			$lesson = Lesson::find($lesson);
 			$questions = Test::where('lesson_id', '=', $lesson->id)->get();
 			$scored = 0;
+			$right_answer = 0;
 			$total = count($questions);
-			$answer = DB::select(DB::raw("SELECT tests.answer FROM tests"));	
-			$right_answer = (int) $answer;
+			$answers = $db->query("SELECT tests.answer FROM tests WHERE tests.lesson_id = '$lesson->id' ORDER BY ID LIMIT 0, 5 ");
 
-			for($i = 1; $i<=5; $i++){
-				if(Input::has("r" . $i)){
-				 $choice = Input::get("r".$i)%10;
-				 	if($choice == $right_answer){
-						$scored++; // number of right answers
-					}
+			while($row = $answers->fetch(PDO::FETCH_ASSOC)) {
+				for($i = 1; $i<=5; $i++){
+					if(Input::has("r" . $i)){
+						$choice = Input::get("r".$i)%10;
+	        			$right_answer = $row['answer'];
+	        			if($right_answer == $choice){
+							$scored++; // number of right answers
+						}
+		    		}
 				}
 			}
-
-			
+					
 			$result = new Result;
 			$result->lesson_id = $lesson->id;
 			$result->user_id = $user->id;
