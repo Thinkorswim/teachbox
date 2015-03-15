@@ -568,21 +568,19 @@ class CourseController extends \BaseController {
 			for($i = 1; $i<=5; $i++){
 				if(Input::has("r" . $i)){
 				 $choice = Input::get("r".$i)%10;
-					if($choice == $right_answer){
-						$test_score = count($scored); // number of right answers
+				 	if($choice == $right_answer){
+						$scored++; // number of right answers
 					}
 				}
 			}
 
 			
-
 			$result = new Result;
 			$result->lesson_id = $lesson->id;
 			$result->user_id = $user->id;
 			$result->total = $total;
-			$result->right = $test_score;
+			$result->right = $scored;
 			$result->save();
-			Log::info("Logging one variable: " . $right);
 			
 			return Redirect::route('course-page', array('course' => $course, 'id' => $id));
 		}else{
