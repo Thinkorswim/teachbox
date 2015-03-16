@@ -30,7 +30,18 @@
 		</div>
 	</div>
 </div>
-<div class="tabs-profile">
+<div id="visible" class="tabs-profile">
+	<div class="container">
+		<ul class="nav nav-pills">
+		  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+		  @if($isJoined)
+		  <li role="presentation" ><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+		  @endif
+		  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+		</ul>
+	</div>
+</div>
+<div id="hidden" class="tabs-profile hidden">
 	<div class="container">
 		<ul class="nav nav-pills">
 		  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>

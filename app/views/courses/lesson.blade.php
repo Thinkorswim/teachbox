@@ -75,13 +75,11 @@
 								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
 							@endif
 							</ul>
-					
 					</section>
 					<div class="row">
 					@if(count($questions) == 1)
 					 {{ Form::token() }}
-				     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}					
-						 
+				     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 					@else
 					 	<a class="btn btn-primary btnNext pull-right">Next</a>
 					 @endif
@@ -138,9 +136,7 @@
       	@endif
       	@endforeach
 
-	{{ Form::close() }}
-
-      	
+			{{ Form::close() }}
       		</div>
       </div>
     </div><!-- /.modal-content -->

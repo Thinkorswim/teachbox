@@ -70,7 +70,17 @@
 		<h5>{{ $user->email }}</h5>
 		<small>{{$followersCount}} followers | {{$followingCount}} following</small>
 	</div>
-	<div class="tabs-profile">
+	<div id="visible" class="tabs-profile">
+		<div class="container">
+			<ul class="nav nav-pills">
+			  <li role="presentation"><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">Timeline</a></li>
+			  <li role="presentation"><a href="{{ URL::action('ProfileController@userCourses', [$user->id]) }}">Courses</a></li>
+			  <li role="presentation"  class="active"><a href="{{ URL::action('ProfileController@userFollowers', [$user->id]) }}">Followers</a></li>
+			  <li role="presentation"><a href="{{ URL::action('ProfileController@userFollowing', [$user->id]) }}">Following</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="hidden" class="tabs-profile hidden">
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation"><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">Timeline</a></li>
