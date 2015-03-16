@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
 		<ul class="nav nav-tabs hidden">
-		<?php $isActive = true; $id= 0; $user=Auth::User();?>
+		<?php $isActive = true; $id= 1; $user=Auth::User();?>
 		@foreach ($questions as $questionTab)
 		@if($isActive)
 			<li class="active"><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
@@ -34,7 +34,7 @@
 		</ul>
 			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		<div class="tab-content">
-		<?php $isActiveTab = True; $id_question = 1; ?>
+		<?php $isActiveTab = True; $id_question = 1; $questionNum = $id_question; ?>
 		@foreach ($questions as $question)
 		@if($isActiveTab)
 		    <div role="tabpanel" class="tab-pane  active" id="tab{{$id_question}}">
@@ -43,11 +43,11 @@
 					<section>
 						
 							<ul>
-							<?php $questionNum = $id_question; $answer = 1; ?>
+							<?php $answer = 1; ?>
 
 							@if($question->choice_1 != NULL)
 								<li>
-								{{Form::radio('r1', $questionNum.$answer ,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								{{Form::radio('r1', $id_question.$answer ,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
 								<label for="r1{{$question->id}}">
 									{{$question->choice_1 }}
 								</label></li>
@@ -55,7 +55,7 @@
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
-								{{Form::radio('r1', $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r2'.$question->id))}}
+								{{Form::radio('r1', $id_question.$answer,false, array('class'=>'answer', 'id'=>'r2'.$question->id))}}
 								<label for="r2{{$question->id}}">
 								{{$question->choice_2}}
 								</label></li>
@@ -63,7 +63,7 @@
 							@endif
 							@if($question->choice_3 != NULL)
 								<li>
-								{{Form::radio('r1',  $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r3'.$question->id))}}
+								{{Form::radio('r1',  $id_question.$answer,false, array('class'=>'answer', 'id'=>'r3'.$question->id))}}
 								<label for="r3{{$question->id}}">
 									{{$question->choice_3}}
 								</label></li>
@@ -71,7 +71,7 @@
 							@endif
 							@if($question->choice_4 != NULL)
 								<li>
-								{{Form::radio('r1', $questionNum.$answer,false, array('class'=>'answer', 'id'=>'r4'.$question->id))}}
+								{{Form::radio('r1', $id_question.$answer,false, array('class'=>'answer', 'id'=>'r4'.$question->id))}}
 								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
 							@endif
 							</ul>
@@ -96,7 +96,7 @@
 							<ul>
 							@if($question->choice_1 != NULL)
 								<li>
-								{{Form::radio('r2', '$questionNum.$answer',false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
 								<label for="r1{{$question->id}}">
 									{{$question->choice_1 }}
 								</label></li>
@@ -104,20 +104,24 @@
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
-								{{Form::radio('r2', '$questionNum.$answer',false, array('class'=>'answer', 'id'=>'r2'.$question->id))}}
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
 								<label for="r2{{$question->id}}">
 								{{$question->choice_2}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_3 != NULL)
-								<li><input id="r3{{$question->id}}" name="r2" class="answer" type="radio"><label for="r3{{$question->id}}">
+								<li>
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								<label for="r3{{$question->id}}">
 									{{$question->choice_3}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_4 != NULL)
-								<li><input id="r4{{$question->id}}" name="r2" class="answer" type="radio"><label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
+								<li>
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
+								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
 
 							@endif
 							</ul>
@@ -133,6 +137,7 @@
 					 	@endif
 					 </div>
       		</div>
+      		<?php $id_question++; ?>
       	@endif
       	@endforeach
 
