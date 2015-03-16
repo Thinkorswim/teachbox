@@ -553,32 +553,28 @@ class CourseController extends \BaseController {
 			return View::make('home.before');
 		}
 	}
-	public function postLessonTest($id,$lesson){	
+	public function postLessonTest($id,$lesson){
 		$course = Course::find($id);
 		if(Auth::check()){
 			$user = Auth::user();
-			$course = Course::find($id);
 			$lesson = Lesson::find($lesson);
 			$questions = Test::where('lesson_id', '=', $lesson->id)->get();
 			$scored = 0;
-			$right_answer = 0;
 			$total = count($questions);
-			$answers = Test::where('lesson_id', '=', $lesson->id)->get();
-			foreach ($answers as $answer){
-				$answers = array($answer);
-			}
-			for($i = 1; $i<=5; $i++){
-				if(Input::has("r" . $i)){
-					$choice = Input::get("r".$i)%10;
-        			if($answers[$i] == $choice[$i]){
-						$scored++; // number of right answers
-					}
-	    		}
-			}
+			$choices = array();
+			foreach ($questions as $question) {
+				for($i=1; $i<=4; $i++){
+					if(Input::has("r" . $i)){
+						$choice[$i] = Input::get("r".$i)%10;
 
-			//Log::info("Logging an array: " . print_r($answers, true));
-			
-					
+						if($choice[$i] == $question->answer){
+							$scored++;
+						}
+					}		
+				}	
+			}
+			Log::info("Mkasjdfkjhasfj:    " . print_r($choice,true));
+						
 			$result = new Result;
 			$result->lesson_id = $lesson->id;
 			$result->user_id = $user->id;
@@ -591,6 +587,7 @@ class CourseController extends \BaseController {
 			return View::make('home.before');
 		}						
 	}
+
 
 	
 
