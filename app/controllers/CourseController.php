@@ -562,19 +562,25 @@ class CourseController extends \BaseController {
 			$scored = 0;
 			$total = count($questions);
 			$choices = array();
+			$i = 0;
 			foreach ($questions as $question) {
-				for($i=1; $i<=4; $i++){
-					if(Input::has("r" . $i)){
-						$choice[$i] = Input::get("r".$i)%10;
-
-						if($choice[$i] == $question->answer){
+				$answer = $question->answer;
+				do{
+					$i++;
+					if(Input::has("r".$i)){
+						$choices[$i] = Input::get("r".$i)%10;	
+						//Log::info("Choice:    " . print_r($choices[$i],true));
+						if($choices[$i] == $answer)
+						{
 							$scored++;
 						}
-					}		
-				}	
+					}
+				}while($i > 5);
+
+				//Log::info("Answer:    " . $answer);
+				//Log::info("Scored:    " . $scored);
 			}
-			Log::info("Mkasjdfkjhasfj:    " . print_r($choice,true));
-						
+
 			$result = new Result;
 			$result->lesson_id = $lesson->id;
 			$result->user_id = $user->id;

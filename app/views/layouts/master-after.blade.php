@@ -497,7 +497,7 @@ $("#upload-video").click(function(){
 		$(".btn-add-question").click(function() {
 			question+=1;
 			qCount+=1;
-			$("#qCollection").append('<div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" selected><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
+			$("#qCollection").append('<div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" checked="checked"><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
 
 			$('#the_script').remove();
 		    var script = document.createElement('script');
