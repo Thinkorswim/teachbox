@@ -75,7 +75,7 @@
 			    </div>
 			    <div class="row-add">
 							<div class="alert alert-info" role="alert">
-								<p>Please upload only *.mp4 files with a maximum size of 150mb. Do not refresh while loading.</p>
+								<p>Please upload only *.mp4 files with a maximum length of 5 minutes. Do not refresh while loading.</p>
 							</div>
 			    </div>
 			    <a class="btn btn-primary btnNext pull-right" >Next</a>
