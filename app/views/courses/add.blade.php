@@ -136,7 +136,7 @@
 						<button type="button" class="btn btn-default btn-add-question">Add question</button>
 				</section>
 
-			    <div class="row">
+			    <div class="row blocked">
 			        <a class="btn btn-primary btnPrevious" >Previous</a>
 			        {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
 			    </div>

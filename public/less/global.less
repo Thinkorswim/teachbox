@@ -27,7 +27,7 @@ body,html{
 		position: fixed;
 		top:54px;
 		left:0;
-		z-index: 9999;
+		z-index: 9995;
 		width: 100%;
 
 	}
@@ -233,13 +233,26 @@ background: rgba(44, 62, 80, .6);
 		left:0;
 	}
 }
-.btn-add-choice{
-	margin: 0px 10px 10px 65px ;
+.btn-add-choice, .btn-add-question{
+	margin-right: 10px;
 	background-color: @blue;
 	border-color: @blue;
+	float: left;
 	color: @white;
 	&:hover,&:focus{
 	background-color: @blue;
 	border-color: @blue;		
+	color:@white;
 	}
+}
+.row.blocked{
+  overflow: hidden;
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-add-choice{
+	background: @grey!important;
+	border-color: @grey!important;
 }
