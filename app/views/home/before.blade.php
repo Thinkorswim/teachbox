@@ -145,7 +145,7 @@
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						
 						<h1>Subscribe</h1>
-						<p>Please subscribe for future registrations.</p>
+						<p>Subscribe now to recieve information about our launch.</p>
 						  	{{ Form::open(['route' => 'post-subscribe']) }}
 							@if($errors->has('email'))
 							<div id="mail-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('email')}}">
