@@ -587,8 +587,13 @@ class CourseController extends \BaseController {
 			$result->total = $total;
 			$result->right = $scored;
 			$result->save();
-			
-			return Redirect::route('course-page', array('course' => $course, 'id' => $id));
+
+			$returner = array();
+			$returner['percentage'] = intval(intval($scored)/intval($total));
+			$returner['total'] = intval($total);
+			$returner['right'] = intval($scored);
+
+			return $returner;
 		}else{
 			return View::make('home.before');
 		}						

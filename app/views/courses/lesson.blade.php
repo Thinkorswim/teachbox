@@ -32,7 +32,7 @@
 			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
 		@endforeach
 		</ul>
-			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'class'=>'ac-custom ac-radio ac-circle') ) }} 
+			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		<div class="tab-content">
 		<?php $isActiveTab = True;?>
 		@foreach ($questions as $question)
@@ -76,8 +76,7 @@
 					</section>
 					<div class="row">
 					@if(count($questions) == 1)
-					 {{ Form::token() }}
-				     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
+					 <button type="button" id="results" class="btn btn-primary btnNext pull-right" > Submit </button>
 					@else
 					 	<a class="btn btn-primary btnNext pull-right">Next</a>
 					 @endif
@@ -127,8 +126,7 @@
 					<div class="row">
 						@if($id_question  == count($questions))
 							<a class="btn btn-primary btnPrevious" >Previous</a>
-					     {{ Form::token() }}
-					     {{ Form::submit('Submit', array('class'=>'btn btn-primary btnNext pull-right')) }}
+					    	<button type="button" id="results" class="btn btn-primary btnNext pull-right" > Submit </button>
 						@else
 							<a class="btn btn-primary btnPrevious" >Previous</a>
 						 	<a class="btn btn-primary btnNext pull-right" >Next</a>
