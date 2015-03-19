@@ -129,6 +129,25 @@
 				'uses' => 'AuthController@postSubscribe'
 		));	
 
+		Route::post('/messages/send', array(
+				'as'   => 'send-message',
+				'uses' => 'MessagesController@sendMessage'
+		));
+
+		Route::post('/messages/get', array(
+				'as'   => 'get-message',
+				'uses' => 'MessagesController@getMessage'
+		));
+
+		Route::post('/messages/get-new', array(
+				'as'   => 'get-new-message',
+				'uses' => 'MessagesController@getNewMessage'
+		));
+
+		Route::post('/messages/get-notification', array(
+				'as'   => 'get-notification',
+				'uses' => 'MessagesController@getNotification'
+		));
 
 	});
 	
@@ -392,25 +411,7 @@
 			'uses' => 'MessagesController@index'
 		));
 
-		Route::post('/messages/send', array(
-				'as'   => 'send-message',
-				'uses' => 'MessagesController@sendMessage'
-		));
 
-		Route::post('/messages/get', array(
-				'as'   => 'get-message',
-				'uses' => 'MessagesController@getMessage'
-		));
-
-		Route::post('/messages/get-new', array(
-				'as'   => 'get-new-message',
-				'uses' => 'MessagesController@getNewMessage'
-		));
-
-		Route::post('/messages/get-notification', array(
-				'as'   => 'get-notification',
-				'uses' => 'MessagesController@getNotification'
-		));
 /*App::missing(function($exception)
 {
     return Response::view('errors.missing', array('url' => Request::url()), 404);

@@ -29,6 +29,7 @@
 	@endif
 	<script>
         var base_url = '{{ URL::to('/') }}';
+        var _token = '{{ csrf_token() }}';
     </script>
   </head>
   <body>
@@ -389,7 +390,7 @@
 
 		function getNotification()
 		{
-		    $.post(base_url + '/messages/get-notification', function(data)
+		    $.post(base_url + '/messages/get-notification', {_token: _token}, function(data)
 		    {
 		        if(data != 0){
 		            $(".badge").text(data);
@@ -413,7 +414,7 @@
 
 		    if (text.length > 0)
 		    {
-		        $.post( '{{ URL::to('/'); }}/messages/send', {message: text, userId: {{ $user->id }}}, function()
+		        $.post( '{{ URL::to('/'); }}/messages/send', {message: text, userId: {{ $user->id }}, _token: _token}, function()
 		        {
 		            window.location = "{{ URL::to('/'); }}/messages";
 		        });
