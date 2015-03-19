@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" />
+
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -458,6 +459,9 @@ $("#upload-video").click(function(){
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
 @if(Route::current()->getName() == 'course-add')
+	<script>
+     $( "#question-1 li:first-child input" ).trigger( "click" );
+	</script>
 	<script id="test">
 		 $('.btnNext').click(function(){
 		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -497,7 +501,7 @@ $("#upload-video").click(function(){
 		$(".btn-add-question").click(function() {
 			question+=1;
 			qCount+=1;
-			$("#qCollection").append('<div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" checked="checked"><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
+			$("#qCollection").append('<div class="row question-row"><div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" checked="checked"><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
 
 			$('#the_script').remove(); 
 		    var script = document.createElement('script');

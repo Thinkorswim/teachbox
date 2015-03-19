@@ -112,15 +112,18 @@
 					<div class="alert alert-info" role="alert">
 						<p><strong>Hint:</strong>Click on any of the green circles to mark the right answer.</p>
 					</div>
-						<div id="qCollection">	
+						<div id="qCollection">
+							<div class="row">
 							<div class="input-group">
 								<span class="input-group-addon">
 									<i class="fa fa-question"></i>
 								</span>
 									<input placeholder="Your question" class="form-control" name="q1" type="text">
 							</div>
+							</div>
 							<ul id="question-1">
-								<li><input name="r1" value="11" type="radio" checked="checked">
+								<div class="row">
+								<li><input name="r1" value="11" type="radio">
 								<label for="r1">
 									<input placeholder="Option 1" class="form-control" name="11" type="text">
 								</label></li>
@@ -128,7 +131,9 @@
 								<label for="r1">
 									<input placeholder="Option 2" class="form-control" name="12" type="text">
 								</label></li>
+								</div>
 							</ul>
+							
 							<button type="button" id="1" class="btn btn-default btn-add-choice">Add choice</button>
 
 						</div>
