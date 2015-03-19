@@ -452,6 +452,8 @@ $(window).scroll(function() {
 			        $.post( base_url + '/course/' + {{ $course->id }} + '/lesson/' + {{ $lesson->order }} + '/test' , $('#results-form').serialize(), function(data)
 			        {
 			            alert(data['percentage']);
+			            alert(data['right']);
+			            alert(data['total']);
 			        });
 			});
 		</script>

@@ -589,7 +589,7 @@ class CourseController extends \BaseController {
 			$result->save();
 
 			$returner = array();
-			$returner['percentage'] = intval(intval($scored)/intval($total));
+			$returner['percentage'] = intval(intval($scored)/intval($total)) * 100;
 			$returner['total'] = intval($total);
 			$returner['right'] = intval($scored);
 
