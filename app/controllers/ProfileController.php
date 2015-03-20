@@ -17,6 +17,7 @@ class ProfileController extends \BaseController {
 										 SELECT courses.id, courses.user_id, user_courses.created_at FROM user_courses, courses WHERE user_courses.user_id = '$user->id' AND user_courses.course_id = courses.id  AND courses.approved = 1 AND courses.user_id <> '$user->id'
 										 UNION 
 										 SELECT courses.id, courses.user_id, courses.created_at FROM courses WHERE courses.user_id = '$user->id' AND courses.approved = 1
+										 
 										 ORDER BY created_at DESC
 									 ") );
 		$timelineCount = count($timeline);
@@ -37,7 +38,7 @@ class ProfileController extends \BaseController {
 		else{
 			return View::make('profile.user')
 					->with(array('user' => $user, 'followersCount' => $followersCount,
-						'followingCount' => $followingCount, 'timeline' => $timeline));			
+						'followingCount' => $followingCount, 'timeline' => $timeline, 'timelineCount' => $timelineCount));
 		}
 
 		return App::abort(404);

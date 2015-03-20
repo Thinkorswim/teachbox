@@ -45,32 +45,34 @@
 							<ul>
 							@if($question->choice_1 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer ,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r1{{$question->id}}">
+								{{Form::radio('r'.$id_question, $id_question.$answer ,false, array('class'=>'answer', 'id'=>'r1'.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_1 }}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r2{{$question->id}}">
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_2}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_3 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question,  $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r3{{$question->id}}">
+								{{Form::radio('r'.$id_question,  $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_3}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_4 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$answer))}}
+								<label for="r{{$id_question.$answer}}">
+								{{$question->choice_4}}
+								</label></li>
 							@endif
 							</ul>
 					</section>
@@ -89,36 +91,37 @@
 		    <div role="tabpanel" class="tab-pane" id="tab{{$id_question}}">
 		        <h4>{{$question->question}}</h4>
 					<section>
-						<form class="ac-custom ac-radio ac-circle" autocomplete="off">
 							<ul>
 							@if($question->choice_1 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r1{{$question->id}}">
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r'.$id_question.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_1 }}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r2{{$question->id}}">
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r'.$id_question.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 								{{$question->choice_2}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_3 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r3{{$question->id}}">
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r'.$id_question.$answer))}}
+								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_3}}
 								</label></li>
 								<?php $answer++; ?>
 							@endif
 							@if($question->choice_4 != NULL)
 								<li>
-								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r1'.$question->id))}}
-								<label for="r4{{$question->id}}">{{$question->choice_4}}</label></li>
+								{{Form::radio('r'.$id_question, $id_question.$answer,false, array('class'=>'answer', 'id'=>'r'.$id_question.$answer))}}
+								<label for="r{{$id_question.$answer}}">
+								{{$question->choice_4}}
+								</label></li>
 
 							@endif
 							</ul>
@@ -181,8 +184,15 @@
 			</video>
 			<div id="on-end">
 				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
-				or
+				<?php $idLesson = $currentLesson->id; $isDone = Result::where(function ($query) {
+				    $query->where('user_id', '=', Auth::user()->id);
+				})->where(function ($query) use ( $idLesson) {
+				    $query->where('lesson_id', '=', $idLesson);
+				})->first(); ?>
+				@if(count($isDone) == 0)
+				<p>or</p>
 				<button class="btn btn-default btn-primary btn-lg" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
+				@endif
 			</div>
 		</div>
 		<div class="col-xs-1"></div>
@@ -203,6 +213,17 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
+		@if(count($isDone) > 0)
+		<div class="panel panel-default place">
+		  <div class="panel-body">
+		    <?php 
+		    $result = $isDone->right;
+		    $maximum = $isDone->total;
+		    $overall = (intval($result)/intval($maximum)) * 100; ?>
+		  	<h2>You scored {{$overall}}%!</h2>
+		  </div>
+		</div>
+		@endif
 		<div class="panel panel-default actions playlist-panel place">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">

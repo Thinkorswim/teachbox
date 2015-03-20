@@ -26,6 +26,7 @@
 
 	@if(Route::current()->getName() == 'course-lesson')
 	    <link href="//vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/sweet-alert.css') }}">
 	@endif
 	<script>
         var base_url = '{{ URL::to('/') }}';
@@ -122,7 +123,7 @@
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
 	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
-	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->take(5)->get();
+	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();
 	        $createdList = Course::where('user_id', '=', Auth::user()->id)->get();
 	        $joinedListMenu= array();
 
@@ -446,18 +447,6 @@ $(window).scroll(function() {
 
 
 </script>
-	@if(Route::current()->getName() == 'course-lesson')
-		<script type="text/javascript">
-			$( "#results" ).click(function() {
-			        $.post( base_url + '/course/' + {{ $course->id }} + '/lesson/' + {{ $lesson->order }} + '/test' , $('#results-form').serialize(), function(data)
-			        {
-			            alert(data['percentage']);
-			            alert(data['right']);
-			            alert(data['total']);
-			        });
-			});
-		</script>
-	@endif
    <script>
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip();for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})}),$("#keyword").autocomplete({source:"/getdata",minLength:1,select:function(i,o){window.location="{{URL::to('course/"+o.item.course_id+"')}}"}});
    </script>
@@ -471,6 +460,30 @@ $("#upload-video").click(function(){
 });
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
+		@if(Route::current()->getName() == 'course-lesson')
+	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
+		<script type="text/javascript">
+		$( "#r11" ).trigger( "click" );
+		$( "#r21" ).trigger( "click" );
+		$( "#r31" ).trigger( "click" );
+		$( "#r41" ).trigger( "click" );
+		$( "#r51" ).trigger( "click" );
+			$( "#results" ).click(function() {
+			        $.post( base_url + '/course/' + {{ $course->id }} + '/lesson/' + {{ $lesson->id }} + '/test' , $('#results-form').serialize(), function(data)
+			        {
+			        	if(data['percentage'] < 50){
+			            swal({   title: "You scored " + data['percentage'] + "%!",   text: data['right'] + "/" + data['total'],   type: "error",   confirmButtonText: "Be better on the next lesson!" });
+			        	}else{
+
+			            swal({   title: "You scored " + data['percentage'] + "%!",   text: data['right'] + "/" + data['total'],   type: "success",   confirmButtonText: "Cool!" });
+			        	}
+			        });
+			        $('#testModal').modal('hide');
+			        $('#on-end p').hide();
+			        $('#on-end button:last-child').hide();
+			});
+		</script>
+	@endif
 @if(Route::current()->getName() == 'course-add')
 	<script>
      $( "#question-1 li:first-child input" ).trigger( "click" );
@@ -488,7 +501,7 @@ $("#upload-video").click(function(){
 (function () {
  	var clickCount = [0,0,0,0,0];
  	var choice = [3,3,3,3,3];
- 	var question = 1;	
+ 	var question = 1;
  	var qCount = 0;
    
 		 $('#qCollection').on('click','.btn-add-choice', function(){
