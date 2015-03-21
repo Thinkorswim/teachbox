@@ -536,7 +536,20 @@ class CourseController extends \BaseController {
 		}
 	}
 
+	public function postComment($lesson_id, $user_id){
+				$comment = Input::get('comment');
+				$message = nl2br($comment);
+				$comment = trim($message);
+				$lesson = Lesson::find($lesson_id);
 
+				$comment_save = new Comment;
+				$comment_save->lesson_id = $lesson->id;
+				$comment_save->user_id = $user_id;
+				$comment_save->text = $comment;
+				$comment_save->save();
+				return View::make('courses.lesson')->with(array('lesson' => $lesson));
+	}
+	
 	public function lessonEdit($id,$lesson,$user)
 	{
 		$course = Course::find($id);

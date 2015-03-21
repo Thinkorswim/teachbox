@@ -188,7 +188,7 @@
 				},
 				open: function() {
 				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
-				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>Users:</strong></li>"); 
+				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>"); 
 			}
 		}).autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li class=" + item.classa +">" )
