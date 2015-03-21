@@ -1,15 +1,15 @@
 @extends('layouts.master-after')
 
 @section('title')
-	{{$currentLesson->name}} -
+	{{$lesson->name}} -
 @stop
 
 @section('description')
-	{{ excerpt($currentLesson->description) }}
+	{{ excerpt($lesson->description) }}
 @stop
 
 @section('fb-image')
-	{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}
+	{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/thumb.png') }}
 @stop
 
 @section('content')
@@ -32,7 +32,7 @@
 			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
 		@endforeach
 		</ul>
-			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $currentLesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $lesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		<div class="tab-content">
 		<?php $isActiveTab = True;?>
 		@foreach ($questions as $question)
@@ -150,7 +150,7 @@
 <section class="video-section">
 	<div class="container">
 		<nav class="nav-reveal">
-			@if ($currentLesson->order != 1)
+			@if ($lesson->order != 1)
 			<a class="prev" href="{{ URL::action('CourseController@courseLesson', [$course->id,($previousLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-left"></i>
@@ -161,7 +161,7 @@
 				</div>
 			</a>
 			@endif
-			@if ($currentLesson->order != $lessonList->count())
+			@if ($lesson->order != $lessonList->count())
 			<a class="next" href="{{ URL::action('CourseController@courseLesson', [$course->id,($nextLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-right"></i>
@@ -176,15 +176,15 @@
 		<div class="col-xs-1"></div>
 		<div class="col-xs-10">
 			<video id="video_main" class="video-js vjs-default-skin vjs-big-play-centered" controls
-			 preload="auto" width="100%" height="500"   poster="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/thumb.png') }}"
+			 preload="auto" width="100%" height="500"   poster="{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/thumb.png') }}"
 			 data-setup="{}">
-				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/' . $currentLesson->filepath) }}" type="video/mp4" />
-				<source src="{{ URL::asset('courses/' . $course->id . '/' . $currentLesson->order . '/video.webm') }}" type="video/webm" />
+				<source src="{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/' . $lesson->filepath) }}" type="video/mp4" />
+				<source src="{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/video.webm') }}" type="video/webm" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
 			<div id="on-end">
 				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
-				<?php $idLesson = $currentLesson->id; $isDone = Result::where(function ($query) {
+				<?php $idLesson = $lesson->id; $isDone = Result::where(function ($query) {
 				    $query->where('user_id', '=', Auth::user()->id);
 				})->where(function ($query) use ( $idLesson) {
 				    $query->where('lesson_id', '=', $idLesson);
@@ -202,10 +202,10 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default place">
 		  <div class="panel-body">
-			<h1>{{ $currentLesson->name }}</h1>
-	        <p>{{ $currentLesson->description }}</p>
+			<h1>{{ $lesson->name }}</h1>
+	        <p>{{ $lesson->description }}</p>
 	        @if (Auth::user()->id == $course->user_id)
-				<a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$currentLesson->order]) }}" >
+				<a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 				</a>
 			@endif
@@ -234,24 +234,24 @@
 		  <div class="panel-body">
 			  <div class="list-group" id="list-lessons">
 			  <?php $i = 1; ?>
-				@foreach ($lessonList as $lesson)
-				@if(Auth::user()->admin || $lesson->approved || Auth::user()->id == $course->user_id)
-					@if ($lesson->order == $currentLesson->order)
-			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+				@foreach ($lessonList as $lesson_temp)
+				@if(Auth::user()->admin || $lesson_temp->approved || Auth::user()->id == $course->user_id)
+					@if ($lesson_temp->order == $lesson->order)
+			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
+				 			 	<div class="pull-right">{{ $lesson_temp->duration; }}</div> 
 				 			</div>
 			 		 	 </a>
 			 		@else
-				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson->name; }}
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	 <div class="pull-right">{{ $lesson->duration; }}</div> 
+				 			 	 <div class="pull-right">{{ $lesson_temp->duration; }}</div> 
 				 			</div>
 				 		</a>
 			 		@endif
