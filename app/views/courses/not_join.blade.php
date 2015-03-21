@@ -78,15 +78,15 @@
 	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
-	    @if(Auth::check())
-		    <div class="panel panel-default settings-panel actions">
-			    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
-							{{ Form::token() }}
-							{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+		    @if(Auth::check() && !$isJoined)
+			    <div class="panel panel-default settings-panel actions">
+				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+								{{ Form::token() }}
+								{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
 
-				{{ Form::close() }}
-			</div>
-		@endif
+					{{ Form::close() }}
+				</div>
+			@endif
 			<div class="panel panel-default student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
