@@ -532,7 +532,7 @@ $("#upload-video").click(function(){
 		    var script = document.createElement('script');
 		    script.id = 'the_script';
 		    //the script's source here
-		    script.src = 'http://localhost:8000/js/svgcheckbx.js';
+		    script.src = base_url + '/js/svgcheckbx.js';
 		    script.type ='text/javascript';
 		    document.getElementsByTagName('head')[0].appendChild(script);
 
@@ -553,7 +553,7 @@ $("#upload-video").click(function(){
 		    var script = document.createElement('script');
 		    script.id = 'the_script';
 		    //the script's source here
-		    script.src = 'http://localhost:8000/js/svgcheckbx.js';
+		    script.src = base_url + '/js/svgcheckbx.js';
 		    script.type ='text/javascript';
 		    document.getElementsByTagName('head')[0].appendChild(script);
 
