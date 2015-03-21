@@ -6,18 +6,12 @@ class SearchController extends \BaseController {
 
 		$courses = Course::where('approved', '=', '1')
 		->where('name', 'LIKE',  '%' .$keyword. '%' )->paginate(5);
-		$timelineCount = count($timeline);
+		
 			return View::make('search.index')
-					->with('courses' => $courses, 'keyword' => $keyword, 'timelineCount' => $timelineCount);
+					->with(array('courses' => $courses, 'keyword' => $keyword));
 	}
 
-	public function searchFront(){
-		$keyword = ' ';
-		$courses = Course::paginate(5);
-		$timelineCount = count($timeline);
-			return View::make('search.index')
-					->with('courses' => $courses, 'keyword' => $keyword,'timelineCount' => $timelineCount);
-	}
+
 
 
 	public function postSearch(){
@@ -37,13 +31,23 @@ class SearchController extends \BaseController {
 			$term = Input::get('term');
 
 			$data = Course::where('approved', '=', '1')
-						->where('name', 'LIKE',  '%' .$term. '%' )->take(10)->get();
+						->where('name', 'LIKE',  '%' .$term. '%' )->take(5)->get();
+			$data_users = User::where('name', 'LIKE',  '%' .$term. '%' )->take(5)->get();
  			$result = [];
 
  			foreach ($data as $course) {
  				if(strpos(Str::lower($course->name), Str::lower($course->name)) !== false)
  				{
- 					$result[] = ['value' => $course->name, 'course_id' => $course->id];
+ 					$iconCourse = ' /courses/'. $course->id . '/img/' . $course->pic;
+ 					$result[] = ['icon' => $iconCourse, 'value' => $course->name, 'course_id' => $course->id, 'isUser' => false,'classa'=>'course-item'];
+ 				}
+ 			}
+
+ 			foreach ($data_users as $user) {
+ 				if(strpos(Str::lower($user->name), Str::lower($user->name)) !== false)
+ 				{
+ 					$iconUser = ' /img/'. $user->id . '/' . $user->pic;
+ 					$result[] = ['icon' => $iconUser,'value' => $user->name, 'user_id' => $user->id, 'isUser' => true, 'classa'=>'user-item'];
  				}
  			}
 

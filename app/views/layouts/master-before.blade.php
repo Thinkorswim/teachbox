@@ -179,10 +179,22 @@
 				source: '/getdata',
 				minLength: 1,
 				select:function(e, ui){
-					window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
-				}
+					if(ui.item.isUser == false){
+						window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+					}else{
+					window.location="{{URL::to('user/" + ui.item.user_id + "')}}";
 
-		});
+					}
+				},
+				open: function() {
+				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
+				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>Users:</strong></li>"); 
+			}
+		}).autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li class=" + item.classa +">" )
+        .append( "<img src='" + item.icon + "'>" + item.label )
+        .appendTo( ul );
+    };
 
 		$('#user-error').tooltip({'trigger':'focus','placement' : 'top'});
 		$('#pass-error').tooltip({'trigger':'focus','placement' : 'top'});
