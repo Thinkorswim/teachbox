@@ -164,8 +164,8 @@
 								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$donePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$donePercent}}%;">
 								  </div>
 								</div>
-								<div class="col-xs-6"><p><strong>{{$donePercent}}%</strong> done</p></div>
-								<div class="col-xs-6"><p><strong>{{$avg}}%</strong> success</p></div>
+								<div class="col-xs-6"><p><strong>Completed <br>{{$donePercent}}%</strong></p></div>
+								<div class="col-xs-6"><p><strong>Grade: {{calculateMark($avg)}} <br>{{$avg}}%</strong></p></div>
 						  </div>
 						</div>
 					</div>

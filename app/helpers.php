@@ -91,7 +91,26 @@
 			}
 
 	}
-
+	function calculateMark($avg){
+		if($avg == 100){
+			return "A+";
+		}
+		elseif ($avg >= 70 && $avg < 100) {
+			return "A";
+		}
+		elseif ($avg >= 60 && $avg < 70) {
+			return "B";
+		}
+		elseif ($avg >= 50 && $avg < 60) {
+			return "C";
+		}
+		elseif ($avg >= 35 && $avg < 50) {
+			return "D";
+		}
+		elseif ($avg < 35) {
+			return "F";
+		}
+	}
 	function generateRandomString($length) {
 	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	    $charactersLength = strlen($characters);
