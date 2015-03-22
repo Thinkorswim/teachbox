@@ -217,7 +217,9 @@
 				@if($errors->has('comment'))
 								<div class="alert alert-danger" role="alert"> {{ $errors->first('comment') }} </div>
 				@endif
-		{{ Form::button('Submit', array('type' => 'submit','class'=>'btn btn-primary')) }}
+		<div class="row"> 
+			{{ Form::button('Submit', array('type' => 'submit','id'=>  'comment-post-button', 'class'=>'btn btn-primary hidden pull-right')) }}
+		</div>
 		{{ Form::close() }}
 		<div class="status comments">
 		@foreach ($comments as $comment)
@@ -227,7 +229,6 @@
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong>
 						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong> 
-						
 						   commented
 						   <strong>{{dateTimeline($comment->created_at)}}</strong>
 						</p>
@@ -236,6 +237,14 @@
 							<p class="comment-text">{{$comment->text}}</p>
 						</div>
 					</div>
+					<!--
+					<div class="panel-footer">
+							<a id="comment{{$comment->id}}" href="">Reply</a>
+							1
+							<a href=""><i class="fa fa-thumbs-up"></i></a>
+							<a href=""><i class="fa fa-thumbs-down"></i></a>
+					</div>
+					-->
 				</div>
 		@endforeach
 		</div>

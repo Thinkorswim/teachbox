@@ -138,7 +138,7 @@
 			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
 			$lessonsCount = Lesson::where('course_id', '=', $course->id)->count();
  			$done = $result[0]->result; $donePercent = $done/$lessonsCount*100; 
-
+ 			$done = round($done, 0);
 			$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
 			FROM results
 			JOIN lessons
@@ -165,7 +165,8 @@
 								  </div>
 								</div>
 								<div class="col-xs-6"><p><strong>Completed <br>{{$donePercent}}%</strong></p></div>
-								<div class="col-xs-6"><p><strong>Grade: {{calculateMark($avg)}} <br>{{$avg}}%</strong></p></div>
+								<div class="col-xs-6"><p><strong>
+								Grade: @if($donePercent != 0){{calculateMark($avg)}} @else N/A @endif <br>@if($donePercent != 0){{$avg}}% @endif</strong></p></div>
 						  </div>
 						</div>
 					</div>

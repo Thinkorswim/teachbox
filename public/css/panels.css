@@ -7,7 +7,7 @@
   margin-top: 0;
 }
 .panel.panel-default.actions .panel-heading {
-  background: #1abc9c;
+  background: #53d289;
   border-bottom: 0;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -163,7 +163,7 @@
   width: 100%;
 }
 .author-card .panel-heading {
-  background: #1abc9c;
+  background: #53d289;
   border-radius: 0;
 }
 .author-card .panel-heading h3 {
@@ -356,7 +356,7 @@
   font-size: 2em;
 }
 .missing-page a:hover {
-  color: #1abc9c;
+  color: #53d289;
   text-decoration: underline;
 }
 @media screen and (max-width: 500px) {
@@ -393,7 +393,7 @@
   margin-bottom: 0;
 }
 .results .list-group-item.active .badge {
-  color: #1abc9c;
+  color: #53d289;
   background: #ffffff;
 }
 .results .list-group-item .badge {

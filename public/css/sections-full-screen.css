@@ -9,7 +9,7 @@
   max-width: 50px;
   margin: 50px auto 0;
   display: block;
-  color: #1abc9c;
+  color: #53d289;
 }
 .full-screen .more:hover {
   opacity: .7;
@@ -99,15 +99,15 @@
 }
 .full-screen.learn-screen.like-it .btn.btn-default,
 .full-screen.explore.like-it .btn.btn-default {
-  border: 3px solid #1abc9c;
-  background: #1abc9c;
+  border: 3px solid #53d289;
+  background: #53d289;
   color: #ffffff;
   margin-top: 20px;
   font-size: 20px;
   letter-spacing: 1px;
 }
 .full-screen.testimonials {
-  background: #1abc9c;
+  background: #53d289;
   padding: 65px 0 80px;
   min-height: 1px;
   color: #ffffff;
@@ -132,7 +132,7 @@
   font-weight: 900;
 }
 .carousel-section {
-  background: #1abc9c;
+  background: #53d289;
 }
 .carousel-section div > h2 {
   color: #ffffff;

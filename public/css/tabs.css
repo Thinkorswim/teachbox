@@ -2,7 +2,7 @@
   margin-top: 0px;
 }
 .tab-register > h2 {
-  color: #1abc9c;
+  color: #53d289;
 }
 .tooltip.top .tooltip-arrow {
   border-top-color: #2c3e50;
@@ -67,7 +67,7 @@ h6:after {
 .tab-register .nav.nav-tabs .active,
 .tab-register .nav.nav-tabs .active a {
   border-radius: 0;
-  color: #1abc9c;
+  color: #53d289;
 }
 .tab-register .nav.nav-tabs li {
   width: 50%;

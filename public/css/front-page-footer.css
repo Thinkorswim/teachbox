@@ -16,11 +16,11 @@
   margin: auto;
 }
 .front-page-footer a {
-  color: #1abc9c;
+  color: #53d289;
   margin: 5px;
 }
 .front-page-footer a:hover {
-  color: #1abc9c;
+  color: #53d289;
 }
 .front-page-footer div > a:hover {
   text-decoration: underline;

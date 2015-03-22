@@ -52,7 +52,7 @@
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
 			
-							</div>					  
+							</div>
 						  </div>
 						</div>
 					</div>

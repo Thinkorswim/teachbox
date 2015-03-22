@@ -485,6 +485,13 @@ $("#upload-video").click(function(){
 		@if(Route::current()->getName() == 'course-lesson')
 	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
 		<script type="text/javascript">
+		
+		$( ".comment-post").click(function() {
+			if($( ".comment-post").is(':focus')){
+			$("#comment-post-button").removeClass("hidden");
+			$("#comment-post-button").addClass("slideRight");
+		}
+		});
 		$( "#r11" ).trigger( "click" );
 		$( "#r21" ).trigger( "click" );
 		$( "#r31" ).trigger( "click" );
