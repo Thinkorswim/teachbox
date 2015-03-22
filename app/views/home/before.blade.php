@@ -189,31 +189,26 @@
 			</div>
 		</div>
 	</section>
-	<!--<section class="full-screen testimonials">
+	<section class="full-screen testimonials">
 		<div class="container">
 			<h1>People talk about us</h1>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			  
-			  <ol class="carousel-indicators">
-			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			  </ol>
-
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>Simply the best.</h3>
+			        <h3><i class="fa fa-2x fa-quote-left"></i>
+						"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"
+						 <small>Koko Donchev, Stepsss</small>
+			        </h3>
+			       
 			    </div>
 			    <div class="item">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
 			    </div>
-			    <div class="item">	
-			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is great. </h3>
-			    </div>
 			</div>
 		</div>
 	</div>
-	</section>-->
+	</section>
 	<header class="relative-header">
 		<section class="full-screen explore">
 			<div class="col-xs-3">

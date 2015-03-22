@@ -267,6 +267,10 @@
 					 'as' => 'search',
 					 'uses' => 'SearchController@search'
 			));	
+		Route::get('/search-user/{keyword}',array(
+					 'as' => 'search-user',
+					 'uses' => 'SearchController@searchUser'
+			));	
 
 		Route::get('/search',array(
 					 'as' => 'search-front',

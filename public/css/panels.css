@@ -392,3 +392,10 @@
 .bio p {
   margin-bottom: 0;
 }
+.results .list-group-item.active .badge {
+  color: #1abc9c;
+  background: #ffffff;
+}
+.results .list-group-item .badge {
+  background: #2c3e50;
+}

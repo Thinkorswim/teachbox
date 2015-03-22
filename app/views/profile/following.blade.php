@@ -113,8 +113,8 @@
 				<div class="panel panel-default student-card">
 				  <div class="panel-body padding-panel">
 			  		<a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">
-			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						@if ($follower->date)
-					</a>
+			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						
+					</a>@if ($follower->date)
 						<span class="age" data-toggle="tooltip" data-placement="right" title="{{ageCalculator( $follower->date )}} years old">
 							{{ageCalculator( $follower->date )}}
 						</span>

@@ -139,6 +139,13 @@
 						  	  <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
+								<div class="progress">
+								  <div class="progress-bar"role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+								  </div>
+								</div>
+								<div class="col-xs-6"><p><strong>60%</strong> done</p></div>
+								<div class="col-xs-6"><p><strong>80%</strong> success</p></div>
+
 						  </div>
 						</div>
 					</div>

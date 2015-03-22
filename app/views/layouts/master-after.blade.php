@@ -181,7 +181,7 @@
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge"></span></a></li>
+        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message"></span></a></li>
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
 	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
@@ -394,9 +394,9 @@
 		    $.post(base_url + '/messages/get-notification', {_token: _token}, function(data)
 		    {
 		        if(data != 0){
-		            $(".badge").text(data);
+		            $(".badge-message").text(data);
 		        }else{
-		 			$(".badge").text("");
+		 			$(".badge-message").text("");
 		        }
 
 		    });
@@ -444,8 +444,10 @@ $(window).scroll(function() {
 	stickyNav();
 });
 });
-
-
+    $(".navbar-toggle").click(function(){
+        $(".navbar-collapse").toggle();
+        $(".navbar-collapse").addClass( "slideRight" );
+    });
 </script>
    <script>
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip();for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})});
