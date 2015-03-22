@@ -115,16 +115,28 @@
 		));
 
 		//Approve course
-		Route::post('/admin/{id}/approve-lesson', array(
+		Route::post('/admin/courses/approve/{id}', array(
 				'as'   => 'post-admin-course-approve',
 				'uses' => 'AdminController@approveCourse'
 		));		
 
+		//Delete course
+		Route::post('/admin/courses/delete/{id}', array(
+				'as'   => 'post-admin-course-delete',
+				'uses' => 'AdminController@deleteCourse'
+		));	
+
 		//Approve lesson
-		Route::post('/admin/users/{id}', array(
+		Route::post('/admin/courses/lessons-approve/{id}', array(
 				'as'   => 'post-admin-lesson-approve',
 				'uses' => 'AdminController@approveLesson'
 		));	
+
+		//Delete lesson
+		Route::post('/admin/courses/lessons-delete/{id}', array(
+				'as'   => 'post-admin-lesson-delete',
+				'uses' => 'AdminController@deleteLesson'
+		));
 
 		//Subscribe
 		Route::post('/home/subscribe', array(

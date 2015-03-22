@@ -35,6 +35,13 @@
                                             {{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
                                     @endif
                                 {{ Form::close() }}
+                                <br>
+                                {{ Form::open(array('action' => array('AdminController@deleteLesson', $lesson->id))) }}
+                                    @if(Auth::check())
+                                        {{ Form::token() }}
+                                            {{ Form::button('<i class="fa fa-times"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
+                                    @endif
+                                {{ Form::close() }}
                       </div>
 							@endforeach
 			    		</div>

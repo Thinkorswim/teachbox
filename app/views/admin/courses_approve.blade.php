@@ -36,6 +36,12 @@
                                             {{ Form::button('<i class="fa fa-check"></i> Approve course', array('type' => 'submit','class'=>'btn btn default')) }}
                                     @endif
                                 {{ Form::close() }}
+                                {{ Form::open(array('action' => array('AdminController@deleteCourse', $course->id))) }}
+                                    @if(Auth::check())
+                                        {{ Form::token() }}
+                                            {{ Form::button('<i class="fa fa-times"></i> Delete course', array('type' => 'submit','class'=>'btn btn default')) }}
+                                    @endif
+                                {{ Form::close() }}
                             </div>
                           </div>
                         </div>

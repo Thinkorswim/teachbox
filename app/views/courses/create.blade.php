@@ -71,7 +71,7 @@
 						<ul style="padding-left: 20px;">
 							<li>Your course  <strong>name</strong> should be between <strong>4</strong> and <strong>128</strong> characters</li>
 							<li>Your course  <strong>description</strong> should be a maximum of <strong>4096</strong> characters.</li>
-							<li>Your course will be sent for approval and it <strong>will not be publicly accessible</strong> until it is approved.</li>
+							<li>Your course will be sent for approval and it <strong>will not be accessible</strong> by other users until it is approved.</li>
 							<li>Every <strong>lesson</strong> you upload will be sent for <strong>approval</strong> as well.</li>
 							<li>If anything is <strong>wrong</strong> with your submissions we will <strong>inform</strong> you.</li>
 						</ul>

@@ -189,7 +189,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="full-screen testimonials">
+	<!--<section class="full-screen testimonials">
 		<div class="container">
 			<h1>People talk about us</h1>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -208,7 +208,7 @@
 			</div>
 		</div>
 	</div>
-	</section>
+	</section> -->
 	<header class="relative-header">
 		<section class="full-screen explore">
 			<div class="col-xs-3">

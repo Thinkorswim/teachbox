@@ -387,4 +387,44 @@ class AdminController extends \BaseController {
         return App::abort(404);
     }
 
+    public function deleteCourse($id){
+        if(Auth::check()){
+            $course = Course::find($id);
+            $isDB = Course::find($id)->delete();
+            $isDBLessons = Lesson::where('course_id', '=', $id)->delete();
+            $isDBUser = UserCourse::where('course_id', '=', $id)->delete();
+
+            $isFile = File::deleteDirectory(public_path() .'/courses/' . $id);
+
+
+            if($isDB && $isDBLessons && $isFile){
+                $user = User::find($course->user_id);
+                Mail::send('emails.auth.course-deleted', array('user' => $user, 'course' => $course), function($message) use ($user) {
+                   $message->to( $user->email , $user->name)->subject('Unfortunately your course has not been approved.');
+                } );
+                 return Redirect::action('AdminController@showCourses');
+            }
+        }
+        return App::abort(404);
+    }
+
+    public function deleteLesson($id){
+        if(Auth::check()){
+            $lesson = Lesson::find($id);
+            $course = Course::find($lesson->course_id);
+            $user = User::find($course->user_id);
+            $isDB = Lesson::find($id)->delete();
+
+            $isFile = File::deleteDirectory(public_path() .'/courses/' . $lesson->course_id . '/' . $lesson->order);
+
+            if($isDB && $isFile){
+                Mail::send('emails.auth.lesson-deleted', array('user' => $user, 'course' => $course, 'lesson' => $lesson), function($message) use ($user) {
+                   $message->to( $user->email , $user->name)->subject('Unfortunately your lesson has not been approved.');
+                } );
+                return Redirect::action('AdminController@lessonsApprove');
+            }
+        }
+        return App::abort(404);
+    }
+
 }
