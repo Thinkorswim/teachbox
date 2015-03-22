@@ -11,8 +11,8 @@
   height: 30px;
   font-size: 18px;
   border: none;
-  color: #53d289;
-  border-right: 1px solid #53d289;
+  color: #1abc9c;
+  border-right: 1px solid #1abc9c;
   border-radius-right: 0;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -21,7 +21,7 @@
 }
 .navbar-form .input-group button:hover {
   background: #ffffff;
-  color: #53d289;
+  color: #1abc9c;
 }
 .navbar-form .input-group .input-group-btn {
   max-width: 12px;
@@ -41,13 +41,13 @@
   border: 1px solid #ccc;
 }
 .input-group.current {
-  border: 1px solid #53d289;
+  border: 1px solid #1abc9c;
 }
 .input-group.current input {
-  color: #53d289;
+  color: #1abc9c;
 }
 .input-group.current i {
-  color: #53d289;
+  color: #1abc9c;
 }
 .input-group.submit {
   margin: 8px 0 0;
@@ -73,10 +73,10 @@
   border: 0px;
 }
 .input-group:hover {
-  border: 1px solid #53d289;
+  border: 1px solid #1abc9c;
 }
 .form-control:focus .input-group {
-  border: 1px solid #53d289;
+  border: 1px solid #1abc9c;
 }
 input[type="submit"] {
   -webkit-transition: all 0.3s ease;
@@ -89,6 +89,6 @@ input[type="submit"] {
 }
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-  background: #53d289;
+  background: #1abc9c;
   color: #ffffff;
 }

@@ -125,7 +125,7 @@
 
 			<div class="row">
 			<h2>Enrolled courses</h2>
-			<?php $myId =  Auth::user()->id; ?>
+			<?php $myId =  $user->id; ?>
 			@if(count($joinedList) - count($createdList) > 0)
 			@foreach ($joinedList as $course)
 				@if ( $course->user_id != $user->id)
@@ -138,7 +138,7 @@
 			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
 			$lessonsCount = Lesson::where('course_id', '=', $course->id)->count();
  			$done = $result[0]->result; $donePercent = $done/$lessonsCount*100; 
- 			$done = round($done, 0);
+ 			$done = intval($done);
 			$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
 			FROM results
 			JOIN lessons
@@ -147,7 +147,7 @@
 			ON lessons.course_id = courses.id
 			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
 			$avg = $avg[0]->avg;
-			$avg = round($avg, 0);
+			$avg = intval($avg);
  			?>
 				<?php $creator = User::find($course->user_id);?>
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">

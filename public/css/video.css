@@ -2,7 +2,7 @@ body .vjs-default-skin .vjs-big-play-button {
   background: none;
   border: none;
   box-shadow: none;
-  color: #53d289;
+  color: #1abc9c;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -16,10 +16,10 @@ body .vjs-default-skin .vjs-big-play-button:focus {
 }
 body .vjs-default-skin .vjs-play-progress,
 body .vjs-default-skin .vjs-volume-level {
-  background: #53d289;
+  background: #1abc9c;
 }
 body .vjs-default-skin .vjs-play-control:hover {
-  color: #53d289;
+  color: #1abc9c;
   text-shadow: 0;
 }
 body .vjs-default-skin .vjs-control:focus:before,
