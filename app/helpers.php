@@ -64,9 +64,13 @@
 		$dateTimeline = new DateTime($date);
 		$now = new DateTime();
 		$difference = $dateTimeline->diff($now);
+		$months = $difference->m;
 		$days = $difference->d;
 		$hours = $difference->h;
 		$min = $difference->i;
+		if($months >= 1){
+				return $dateTimeline->diff($now)->format("more than a month ago");
+			}
 			if($days != 0 && $days != 1){
 				return $dateTimeline->diff($now)->format("%d days ago");
 			}

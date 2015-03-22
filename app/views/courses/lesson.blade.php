@@ -212,17 +212,30 @@
 		 </div>
 		</div>
 		{{ Form::open(array('action' => array('CourseController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
-			{{ Form::text('comment', null, array('class'=>'form-control')) }}
+			{{ Form::textarea('comment', null, array('class'=>'form-control comment-post', 'rows'=>'3','placeholder'=>'Add your comment')) }}
 		{{ Form::token() }}
-		{{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
+		{{ Form::button('Submit', array('type' => 'submit','class'=>'btn btn-primary')) }}
 		{{ Form::close() }}
+		<div class="status comments">
 		@foreach ($comments as $comment)
-		<div class="panel panel-default place">
-		  <div class="panel-body">
-			<p>{{$comment->text}}</p>
-		  </div>
-		</div>
+		 <?php $userT = User::find($comment->user_id); ?>
+				<div class="panel panel-default settings-panel actions">
+					<div class="panel-body">
+					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
+						<strong>
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong> 
+						
+						   commented
+						   <strong>{{dateTimeline($comment->created_at)}}</strong>
+						</p>
+						<hr>
+						<div class="content-status">
+							<p class="comment-text">{{$comment->text}}</p>
+						</div>
+					</div>
+				</div>
 		@endforeach
+		</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		@if(count($isDone) > 0)
