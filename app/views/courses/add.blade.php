@@ -66,6 +66,9 @@
 			</ul>
 		<div class="tab-content">
 		    <div role="tabpanel" class="tab-pane  active" id="upload">
+		    	@if($errors->has('video'))
+					<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
+				@endif
 				<div class="fileUpload btn btn-primary no-upload">
 				    <span id="choosen">
 				    <i class="fa fa-4x fa-cloud-upload"></i>
@@ -81,11 +84,8 @@
 			    <a class="btn btn-primary btnNext pull-right" >Next</a>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="lesson-info">
-				@if($errors->has('video'))
-					<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
-				@endif
-				 @if($errors->has('name'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
+				@if($errors->has('name'))
+				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
 				@else
 				<div class="input-group">
 				@endif  
@@ -108,6 +108,9 @@
 		        </div>
 		  	</div>
 		    <div role="tabpanel" class="tab-pane" id="test">
+		    	@if($errors->has('test'))
+					<div class="alert alert-danger" role="alert"> {{ $errors->first('test') }} </div>
+				@endif
 				<section>
 					<div class="alert alert-info" role="alert">
 						<p><strong>Hint:</strong>Click on any of the green circles to mark the right answer.</p>

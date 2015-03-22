@@ -381,6 +381,7 @@ class CourseController extends \BaseController {
 
 	public function coursePostAdd($id){
 		$course = Course::find($id);
+		$user = User::find($course->user_id);
 
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){
 		 	if(Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")){
@@ -393,7 +394,7 @@ class CourseController extends \BaseController {
 							'description'		 => 'required|min:10|max:1024',
 					));
 
-				if($validator->fails()){		
+				if($validator->fails()){							
 				return Redirect::route('course-add', array('id' => $id))
 							->withErrors($validator);
 				}else{
@@ -403,7 +404,6 @@ class CourseController extends \BaseController {
 				$description = Input::get('description');
 
 				$course = Course::find($id);
-				$user = User::find($course->user_id);
 				$order = Lesson::where('course_id', '=', $id)->count() + 1;
 
 
@@ -479,7 +479,8 @@ class CourseController extends \BaseController {
 
 		   		  if($lesson){
 					if(!Input::has("q1") || !Input::has("11") || !Input::has("12")){
-						//redirect
+						return Redirect::route('course-add', array('id' => $id, 'user'=> $user))
+						 ->withErrors(array('test' => 'You have to create at least 1 question with 2 options.'));
 					}
 					
 					$continue = true;
