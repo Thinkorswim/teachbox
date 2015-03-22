@@ -537,17 +537,22 @@ class CourseController extends \BaseController {
 	}
 
 	public function postComment($lesson_id, $user_id){
+		$lesson = Lesson::find($lesson_id);
+		$course = Course::find($lesson->course_id);
+		if(Input::has('comment')){
 				$comment = Input::get('comment');
 				$message = nl2br($comment);
 				$comment = trim($message);
-				$lesson = Lesson::find($lesson_id);
-				$course = Course::find($lesson->course_id);
 				$comment_save = new Comment;
 				$comment_save->lesson_id = $lesson->id;
 				$comment_save->user_id = $user_id;
 				$comment_save->text = $comment;
 				$comment_save->save();
 				return Redirect::route('course-lesson', array('id' => $course->id, 'order'=>$lesson->order));
+		}else{
+				return Redirect::route('course-lesson', array('id' => $course->id, 'order'=>$lesson->order))
+							->withErrors(array('comment' => 'You have to write at least one character in the input field.'));
+		}
 	}
 	
 	public function lessonEdit($id,$lesson,$user)

@@ -213,7 +213,10 @@
 		</div>
 		{{ Form::open(array('action' => array('CourseController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 			{{ Form::textarea('comment', null, array('class'=>'form-control comment-post', 'rows'=>'3','placeholder'=>'Add your comment')) }}
-		{{ Form::token() }}
+			{{ Form::token() }}
+				@if($errors->has('comment'))
+								<div class="alert alert-danger" role="alert"> {{ $errors->first('comment') }} </div>
+				@endif
 		{{ Form::button('Submit', array('type' => 'submit','class'=>'btn btn-primary')) }}
 		{{ Form::close() }}
 		<div class="status comments">
