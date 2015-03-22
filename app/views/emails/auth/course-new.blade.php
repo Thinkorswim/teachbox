@@ -11,7 +11,7 @@
 		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:left;">Congratulations {{  $user->name }},</h1>
 		<p style="color:#000; padding-left:20px;padding-right:20px">Your course "{{$course->name}}" is sent for approvement. Please be patient, it will be reviewed as soon as possible.</p>
 		<p style="color:#000; padding-left:20px;padding-right:20px">You are already changing the education system. If you need help check our "How to create a professional online course" course.</p><br><br>
-		<a style="text-decoration:none;padding: 10px; background:#1abc9c;color:#fff; margin-left:20px;margin-right:20px;margin:top:20px" href="#">Help is here for you.</a>
+		<a style="padding-left:20px;" href="https://teachbox.io/course/16">Help is here for you.</a>
 		<br><br>
 		<p style="color:#000; padding-left:20px;padding-right:20px">
 		Teachbox Team

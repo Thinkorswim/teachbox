@@ -7,11 +7,11 @@
 </div>
 <div style="background:#efefef; padding-top:20px;padding-bottom:20px">
 <div style="background:#fff;margin-left:40px; margin-right:40px;">
-		<img src="{{ URL::asset('newcomer.jpg') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
+		<img src="{{ URL::asset('img/newcomer.jpg') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
 		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:center">Congratulations {{  $user->name }},</h1>
 		<p style="color:#000; padding-left:20px;padding-right:20px">Your course "{{$course->name}}" was officaly approved. It is time to create content.</p>
 		<p style="color:#000; padding-left:20px;padding-right:20px">You are already changing the education system. If you need help check our "How to create a professional online course" course.</p><br><br>
-		<a style="text-decoration:none;padding: 10px; background:#1abc9c;color:#fff; margin-left:20px;margin-right:20px" href="URL::action('CourseController@course', [$course->id]) }}">See it live. Share it with your friends.</a>
+		<a style="padding-left:20px;" href="URL::action('CourseController@course', [$course->id]) }}">See it live.</a>
 		<br><br>
 		<p style="color:#000; padding-left:20px;padding-right:20px">
 		Teachbox Team

@@ -7,7 +7,7 @@
 </div>
 <div style="background:#efefef; padding-top:20px;padding-bottom:20px">
 <div style="background:#fff;margin-left:40px; margin-right:40px;">
-		<img src="{{ URL::asset('img/ready.png') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
+		<img src="{{ URL::asset('img/ready.jpg') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
 		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:left;">Congratulations!</h1>
 		<p style="color:#000; padding-left:20px;padding-right:20px">We have received your request for a subscription to our mailing list.</p>
 		<p style="color:#000; padding-left:20px;padding-right:20px">We are working hard before our second launch which is going to be open to everyone.</p>
