@@ -21,7 +21,7 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			<?php echo ageCalculator( $user->date ) ?>
 		</span>
-		@else
+		@elseif($user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="age" data-toggle="tooltip" data-placement="left" title="Add your age">
 			<i class="fa fa-plus"></i>
 		</a>
@@ -30,7 +30,7 @@
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
 		</span>
-		@else
+		@elseif($user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="country" data-toggle="tooltip" data-placement="left" title="Add your country">
 			<i class="fa fa-plus"></i>
 		</a>
@@ -125,10 +125,31 @@
 
 			<div class="row">
 			<h2>Enrolled courses</h2>
+			<?php $myId =  Auth::user()->id; ?>
 			@if(count($joinedList) - count($createdList) > 0)
 			@foreach ($joinedList as $course)
 				@if ( $course->user_id != $user->id)
-				<?php $creator = User::find($course->user_id); ?>
+			<?php $result = DB::select( DB::raw("SELECT COUNT(results.id) AS result
+			FROM results
+			JOIN lessons
+			ON results.lesson_id = lessons.id
+			JOIN courses
+			ON lessons.course_id = courses.id
+			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
+			$lessonsCount = Lesson::where('course_id', '=', $course->id)->count();
+ 			$done = $result[0]->result; $donePercent = $done/$lessonsCount*100; 
+
+			$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+			FROM results
+			JOIN lessons
+			ON results.lesson_id = lessons.id
+			JOIN courses
+			ON lessons.course_id = courses.id
+			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
+			$avg = $avg[0]->avg;
+			$avg = round($avg, 0);
+ 			?>
+				<?php $creator = User::find($course->user_id);?>
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
@@ -140,12 +161,12 @@
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
 								<div class="progress">
-								  <div class="progress-bar"role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$donePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$donePercent}}%;">
 								  </div>
 								</div>
-								<div class="col-xs-6"><p><strong>60%</strong> done</p></div>
-								<div class="col-xs-6"><p><strong>80%</strong> success</p></div>
-
+								<div class="col-xs-6"><p><strong>{{$donePercent}}%</strong> done</p></div>
+								<div class="col-xs-6"><p><strong>{{$avg}}%</strong> success</p></div>
+								
 						  </div>
 						</div>
 					</div>
@@ -154,7 +175,7 @@
 		@else
 			<div class="panel panel-default settings-panel actions">
 				<div class="panel-body padding-panel">
-					<h4><strong>No joined courses yet.</strong></h4>
+					<h4><strong>No enrolled courses yet.</strong></h4>
 				</div>
 			</div>
 		@endif

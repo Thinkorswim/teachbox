@@ -408,6 +408,7 @@ class ProfileController extends \BaseController {
 			$createdList = Course::where('user_id', '=', $id)->get();
 			$courseListId = UserCourse::where('user_id', '=', $id)->get();
 			$joinedList = array();
+			
 			$followersCount = Follow::where('following_id', '=', $id)->count();
 			$followingCount = Follow::where('follower_id', '=', $id)->count();
 			if(Auth::check()){
@@ -421,9 +422,12 @@ class ProfileController extends \BaseController {
 			}
 			foreach ($courseListId as $userCourse)
 			{
-				$joinedList[] = Course::find($userCourse->course_id);
+
+
+
+			$joinedList[] = Course::find($userCourse->course_id);
 			}
-			
+
 				return View::make('profile.courses')
 						->with(array('joinedList' => $joinedList,'user' => $user,'isFollowing' => $isFollowing,
 						 'createdList' => $createdList, 'followersCount' => $followersCount,'followingCount' => $followingCount ));
