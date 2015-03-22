@@ -58,7 +58,7 @@
 				<div class="panel panel-default actions">
 					<div class="panel-body padding-panel">
 						<h2>Revolution in online teaching</h2>
-						<p>Create your course and teach people all over the world!
+						<p>Create your course and share your knowledge with people all over the world!
 						 We give you the technology and the support needed to create a fun and engaging course. 
 						 Our platform is social so the best thing to do after creating your first course is to grow your community
 						 by following and messaging new people.
@@ -70,9 +70,9 @@
 						<h2>Guidelines</h2>
 						<ul style="padding-left: 20px;">
 							<li>Your course  <strong>name</strong> should be between <strong>4</strong> and <strong>128</strong> characters</li>
-							<li>Your course  <strong>description</strong> should be maximum <strong>4096</strong> characters.</li>
-							<li>Your course will be sent for approvement and it <strong>will not be publicly accessible</strong> until it is approved.</li>
-							<li>Every <strong>lesson</strong> you upload will be sent for <strong>approvement</strong> as well.</li>
+							<li>Your course  <strong>description</strong> should be a maximum of <strong>4096</strong> characters.</li>
+							<li>Your course will be sent for approval and it <strong>will not be publicly accessible</strong> until it is approved.</li>
+							<li>Every <strong>lesson</strong> you upload will be sent for <strong>approval</strong> as well.</li>
 							<li>If anything is <strong>wrong</strong> with your submissions we will <strong>inform</strong> you.</li>
 						</ul>
 					</div>
