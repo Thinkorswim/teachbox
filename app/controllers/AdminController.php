@@ -8,37 +8,17 @@ class AdminController extends \BaseController {
             $users = User::all();
             $courses = Course::all();
             $admins = User::where('admin', '=',  '1')->get();
-            $users_this_month = array();
-            $users_last_month = array();
-            $courses_this_month = array();
-            $courses_last_month = array();
+            $count_users = array();
+            $count_courses = array();
 
-            foreach ($users as $user) {
-                if (strpos($user->created_at,'2015-02') !== false) {
-                    $users_this_month[] = $user;
-                }
-                else{
-                    $users_last_month[] = $user;
-                }
+            for ($i=1; $i <= 12; $i++) { 
+                $count_users[$i] = User::where( DB::raw('MONTH(created_at)'), '=', $i)->count();
+                $count_courses[$i] =  Course::where( DB::raw('MONTH(created_at)'), '=', $i )->count();
             }
 
-            foreach ($courses as $course) {
-                if (strpos($course->created_at,'2015-02') !== false) {
-                    $courses_this_month[] = $course;
-                }
-                else{
-                    $courses_last_month[] = $course;
-                }
-            }
-
-            $users_this_month = count($users_this_month); 
-            $users_last_month = count($users_last_month);
-            $courses_last_month = count($courses_last_month);
-            $courses_this_month = count($courses_this_month);
             return View::make('admin.home')->with(array(
-                        'admins' => $admins, 'users_this_month' => $users_this_month,
-                        'users_last_month' => $users_last_month, 'courses_last_month'=>$courses_last_month,
-                        'courses_this_month'=>$courses_this_month ));
+                        'admins' => $admins, 'count_users' =>  $count_users,
+                        'count_courses' => $count_courses ));
         }else{
             return Redirect::action('AuthController@index');
         }

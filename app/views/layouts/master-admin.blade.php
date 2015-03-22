@@ -62,15 +62,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>
          google.setOnLoadCallback(drawChart);
-                var users_last_month = <?php echo json_encode($users_last_month);?>;
-                var users_this_month = <?php echo json_encode($users_this_month); ?>;
-                var courses_this_month = <?php echo json_encode($courses_this_month); ?>;
-                var courses_last_month = <?php echo json_encode($courses_last_month); ?>;
+                var count_users = <?php echo json_encode($count_users);?>;
+                var count_courses = <?php echo json_encode($count_courses); ?>;
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Year', 'Users', 'Courses'],
-                  ['January',  users_last_month, courses_last_month],
-                  ['February',  users_this_month, courses_this_month]
+                  ['Month', 'Users', 'Courses'],
+                  ['January',  count_users[1], count_courses[1]],
+                  ['February',  count_users[2], count_courses[2]],
+                  ['March',  count_users[3], count_courses[3]],
+                  ['April',  count_users[4], count_courses[4]],
+                  ['May',  count_users[5], count_courses[5]],
+                  ['June',  count_users[6], count_courses[6]],
+                  ['July',  count_users[7], count_courses[7]],
+                  ['August',  count_users[8], count_courses[8]],
+                  ['September',  count_users[9], count_courses[9]],
+                  ['October',  count_users[10], count_courses[10]],
+                  ['November',  count_users[11], count_courses[11]],
+                  ['December',  count_users[12], count_courses[12]],
                 ]);
 
                 var options = {
