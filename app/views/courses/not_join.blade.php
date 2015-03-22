@@ -69,7 +69,7 @@
 							</div>
 				 			<div class="col-xs-3">
 				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
-				 			</div>					 	
+				 			</div>
 				 		</div>
 					@endforeach
 	    		</div>

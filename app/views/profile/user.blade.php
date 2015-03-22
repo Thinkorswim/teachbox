@@ -17,15 +17,23 @@
 		<div class="activity_rounded">
 			<img src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"alt="{{ $user->name }}'s profile" width="200px" height="200px">
 		</div>
-		@if ($user->date != '')
+		@if ($user->date)
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			{{ ageCalculator( $user->date ) }}
 		</span>
+		@else
+		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="age" data-toggle="tooltip" data-placement="left" title="Add your age">
+			<i class="fa fa-plus"></i>
+		</a>
 		@endif
 		@if ($user->country != '')
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }} @if($user->country && $user->country), @endif{{ $user->country }}">
 		</span>
+		@else
+		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="country" data-toggle="tooltip" data-placement="left" title="Add your country">
+			<i class="fa fa-plus"></i>
+		</a>
 		@endif
 		@if (Auth::check() && !$isFollowing && $user->id != Auth::user()->id)
 			{{ Form::open(array('action' => array('ProfileController@postFollow', $user->id))) }}

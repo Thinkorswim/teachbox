@@ -25,13 +25,17 @@
 							@foreach ($lessons as $lesson)
                     <?php $course = Course::find($lesson->course_id);
                           $user = User::find($course->user_id); ?>
-							 	<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id, $lesson->order]  ) }}"> {{ $lesson->name; }} from {{$course->name}} by {{$user->name}} </a>
+                <div class="list-group-item">
+							 	<a href="{{ URL::action('CourseController@courseLesson', [$course->id, $lesson->order]  ) }}"> {{ $lesson->name; }}</a>
+                from <a href="{{ URL::action('CourseController@course', [$course->id]) }}">{{$course->name}}</a>
+                by <a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{$user->name}}</a> 
                                 {{ Form::open(array('action' => array('AdminController@approveLesson', $lesson->id))) }}
                                     @if(Auth::check())
                                         {{ Form::token() }}
                                             {{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
                                     @endif
                                 {{ Form::close() }}
+                      </div>
 							@endforeach
 			    		</div>
 			    	{{ $lessons->links() }}
