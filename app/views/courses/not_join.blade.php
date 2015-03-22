@@ -78,7 +78,7 @@
 	    @endif
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
-		    @if(Auth::check() && !$isJoined)
+		    @if(Auth::check())
 			    <div class="panel panel-default settings-panel actions">
 				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 								{{ Form::token() }}

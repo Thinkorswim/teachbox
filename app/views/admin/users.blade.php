@@ -17,7 +17,7 @@
         <tbody>
             @foreach ($users as $user)
             <tr>
-                <td>{{ $user->name }}</td>
+                <td><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }}</a></td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->city }}, {{ $user->country }}</td>
                 <td>
