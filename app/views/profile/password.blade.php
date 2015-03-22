@@ -40,9 +40,9 @@
 			@if(Session::has('global-negative'))
 				<div class="alert alert-danger" role="alert">
 				{{Session::get('global-negative')}}
-				</div>
+				</div> 
 			@endif
-			{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
+			{{ Form::open(array('action' => array('ProfileController@postChangePassword', $user->id))) }}
 				@if($errors->has('password'))
 				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('password') }}">
 				@else

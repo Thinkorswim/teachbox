@@ -62,7 +62,7 @@
 						 We give you the technology and the support needed to create a fun and engaging course. 
 						 Our platform is social so the best thing to do after creating your first course is to grow your community
 						 by following and messaging new people.
-						 If you are new to this watch our series: </p><p> <a href="#">"How to create a professional online course"</a> </p>
+						 If you are new to this watch our series: </p><p> <a href="https://teachbox.io/course/16">"How to create a professional online course"</a> </p>
 					</div>
 				</div>
 				<div class="panel panel-default actions">
