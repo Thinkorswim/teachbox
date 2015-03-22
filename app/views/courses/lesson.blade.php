@@ -211,6 +211,18 @@
 			@endif
 		 </div>
 		</div>
+		{{ Form::open(array('action' => array('CourseController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+			{{ Form::text('comment', null, array('class'=>'form-control')) }}
+		{{ Form::token() }}
+		{{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
+		{{ Form::close() }}
+		@foreach ($comments as $comment)
+		<div class="panel panel-default place">
+		  <div class="panel-body">
+			<p>{{$comment->text}}</p>
+		  </div>
+		</div>
+		@endforeach
 	</div>
 	<div class="col-xs-12 col-sm-4">
 		@if(count($isDone) > 0)

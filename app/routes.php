@@ -67,7 +67,11 @@
 			      'as' => 'post-lesson-test',
 			      'uses' => 'CourseController@postLessonTest'
 		));
-
+  		//Comment
+		Route::post('/course/{id}/lesson/{order}/comment', array(
+     			'as'   => 'post-comment',
+     			'uses' => 'CourseController@postComment'
+  		));
 		Route::post('/search', array(
 			      'as' => 'post-search',
 			      'uses' => 'SearchController@postSearch'
@@ -104,7 +108,6 @@
      			'as'   => 'post-unfollow',
      			'uses' => 'ProfileController@postUnfollow'
   		));
-
 		//Making admin
 		Route::post('/admin/users/{id}/make-admin', array(
 				'as'   => 'admin-make',

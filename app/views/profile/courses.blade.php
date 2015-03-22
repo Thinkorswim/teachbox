@@ -166,7 +166,6 @@
 								</div>
 								<div class="col-xs-6"><p><strong>{{$donePercent}}%</strong> done</p></div>
 								<div class="col-xs-6"><p><strong>{{$avg}}%</strong> success</p></div>
-								
 						  </div>
 						</div>
 					</div>

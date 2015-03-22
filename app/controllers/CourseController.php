@@ -361,12 +361,12 @@ class CourseController extends \BaseController {
 						    $query->where('course_id', '=', $id);
 						})->first();
 
-
+						$comments =  Comment::where('lesson_id', '=', $lesson->id)->get();
                     	$test = Test::find($id);
 	                 	$questions =  Test::where('lesson_id', '=', $lesson->id)->get();
 
 						return View::make('courses.lesson')
-								->with(array('course' => $course, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions));
+								->with(array('course' => $course, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions,'comments'=>$comments));
 				}else{
 						return Redirect::route('course-page', array('id' => $id));
 				}
@@ -541,13 +541,13 @@ class CourseController extends \BaseController {
 				$message = nl2br($comment);
 				$comment = trim($message);
 				$lesson = Lesson::find($lesson_id);
-
+				$course = Course::find($lesson->course_id);
 				$comment_save = new Comment;
 				$comment_save->lesson_id = $lesson->id;
 				$comment_save->user_id = $user_id;
 				$comment_save->text = $comment;
 				$comment_save->save();
-				return View::make('courses.lesson')->with(array('lesson' => $lesson));
+				return Redirect::route('course-lesson', array('id' => $course->id, 'order'=>$lesson->order));
 	}
 	
 	public function lessonEdit($id,$lesson,$user)
