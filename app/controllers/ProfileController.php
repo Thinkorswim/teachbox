@@ -405,7 +405,7 @@ class ProfileController extends \BaseController {
 	public function userCourses($id){
 			$user = User::find($id);
 
-			$createdList = Course::where('user_id', '=', $id)->get();
+			$createdList = Course::where('user_id', '=', $id)->where('approved', '=', 1)->get();
 			$courseListId = UserCourse::where('user_id', '=', $id)->get();
 			$joinedList = array();
 			
