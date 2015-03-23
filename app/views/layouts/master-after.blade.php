@@ -492,6 +492,7 @@ $("#upload-video").click(function(){
 			$("#comment-post-button").addClass("slideRight");
 		}
 		});
+		
 		$( "#r11" ).trigger( "click" );
 		$( "#r21" ).trigger( "click" );
 		$( "#r31" ).trigger( "click" );

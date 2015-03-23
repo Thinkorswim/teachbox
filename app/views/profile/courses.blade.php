@@ -137,8 +137,7 @@
 			ON lessons.course_id = courses.id
 			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
 			$lessonsCount = Lesson::where('course_id', '=', $course->id)->count();
- 			$done = $result[0]->result; $donePercent = $done/$lessonsCount*100; 
- 			$done = intval($done);
+ 			$done = $result[0]->result; $donePercent = intval($done/$lessonsCount*100); 
 			$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
 			FROM results
 			JOIN lessons

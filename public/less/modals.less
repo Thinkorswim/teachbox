@@ -35,14 +35,8 @@
 	width: 320px;
 }
 #list-modal .modal-body, #chat-with .modal-body{
-		max-height: 600px;
+		max-height: 300px;
 		overflow: auto;
-}
-.modal-body{
-	border-radius: 0;
-}
-#list-modal .list-group{
-		margin-bottom: 0;
 		::-webkit-scrollbar {
 		    width: 12px;
 		}
@@ -52,6 +46,12 @@
 		::-webkit-scrollbar-thumb:window-inactive {
 			background: rgba(44, 62, 80,.5); 
 		}
+}
+.modal-body{
+	border-radius: 0;
+}
+#list-modal .list-group{
+		margin-bottom: 0;
 		button{
 			cursor: pointer;
 			border-radius: none;

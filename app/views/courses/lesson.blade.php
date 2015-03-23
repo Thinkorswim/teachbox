@@ -237,14 +237,12 @@
 							<p class="comment-text">{{$comment->text}}</p>
 						</div>
 					</div>
-					<!--
-					<div class="panel-footer">
-							<a id="comment{{$comment->id}}" href="">Reply</a>
+					<!--<div class="panel-footer">
+							<a id="comment{{$comment->id}}" class="reply" href="">Reply</a>
 							1
 							<a href=""><i class="fa fa-thumbs-up"></i></a>
 							<a href=""><i class="fa fa-thumbs-down"></i></a>
-					</div>
-					-->
+					</div>-->
 				</div>
 		@endforeach
 		</div>
