@@ -188,9 +188,6 @@ class AuthController extends \BaseController {
 			$pic = json_decode( $fb->request( '/me/picture?redirect=0&height=200&width=200&type=normal' ), true );
 			$picSmall = json_decode( $fb->request( '/me/picture?redirect=0&height=100&width=100&type=normal' ), true );
 
-			print_r($result);
-			print_r($pic);
-
 		$signed = User::where('email','=',$result['email']);
 
 		if($signed->count()){
@@ -227,8 +224,8 @@ class AuthController extends \BaseController {
 				$user->save();
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
 
-				$image = Image::make($pic['url'])->save(public_path() .'/img/' . $user->id . '/user.png');
-				$image2 = Image::make($picSmall['url'])->save(public_path() .'/img/' . $user->id . '/user-100x100.png');
+				$image = Image::make($pic['data']['url'])->save(public_path() .'/img/' . $user->id . '/user.png');
+				$image2 = Image::make($picSmall['data']['url'])->save(public_path() .'/img/' . $user->id . '/user-100x100.png');
 
 //				$resultCopy  = File::copy(public_path() .'/img/user.png' , public_path() .'/img/' . $user->id . '/user.png');
 	//			$resultCopyThumb  = File::copy(public_path() .'/img/user-100x100.png' , public_path() .'/img/' . $user->id . '/user-100x100.png');
