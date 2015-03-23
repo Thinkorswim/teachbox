@@ -221,8 +221,12 @@ class AuthController extends \BaseController {
 				$user->pic = 'user.png';
 				$user->save();
 				$resultMake  = File::makeDirectory(public_path() .'/img/' . $user->id );
-				$resultCopy  = File::copy(public_path() .'/img/user.png' , public_path() .'/img/' . $user->id . '/user.png');
-				$resultCopyThumb  = File::copy(public_path() .'/img/user-100x100.png' , public_path() .'/img/' . $user->id . '/user-100x100.png');
+
+				$image = Image::make('http://graph.facebook.com/' + $result['id'] + '/picture?&height=200&width=200&type=normal&_rdr')->save(public_path() .'/img/' . $user->id . '/user.png');
+				$image2 = Image::make('http://graph.facebook.com/' + $result['id'] + '/picture?&height=100&width=100&type=normal&_rdr')->save(public_path() .'/img/' . $user->id . '/user-100x100.png');
+
+//				$resultCopy  = File::copy(public_path() .'/img/user.png' , public_path() .'/img/' . $user->id . '/user.png');
+	//			$resultCopyThumb  = File::copy(public_path() .'/img/user-100x100.png' , public_path() .'/img/' . $user->id . '/user-100x100.png');
 
 	        	$auth = Auth::attempt(array(
 					'email' => $result['email'],
