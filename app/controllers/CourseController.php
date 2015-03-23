@@ -11,6 +11,19 @@ class CourseController extends \BaseController {
 		}
 	}
 
+	public function explore ()
+	{
+		if(Auth::check()){
+		$countCourse = Course::where('approved', '=', '1')->count();
+		$courses = Course::where('approved', '=', '1')->paginate(5);
+		
+			return View::make('courses.explore')
+					->with(array('courses' => $courses, 'countCourse' => $countCourse));
+		}else{
+			return View::make('home.before');
+		}
+	}
+
 	public function postCreate()
 	{
 

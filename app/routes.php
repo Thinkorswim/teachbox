@@ -72,12 +72,6 @@
      			'as'   => 'post-comment',
      			'uses' => 'CourseController@postComment'
   		));
-
-		Route::post('/course/{id}/lesson/{order}/comment/{reply}', array(
-     			'as'   => 'post-reply',
-     			'uses' => 'CourseController@postReply'
-  		));
-
 		Route::post('/search', array(
 			      'as' => 'post-search',
 			      'uses' => 'SearchController@postSearch'
@@ -228,6 +222,12 @@
 					 'as' => 'create_course',
 					 'uses' => 'CourseController@create'
 			));
+
+		// EXPLORE COURSES
+			Route::get('/explore',array(
+					 'as' => 'explore',
+					 'uses' => 'CourseController@explore'
+			));	
 
 		// COURSE PAGE
 			Route::get('/course/{id}',array(
@@ -437,11 +437,6 @@
 		));
 
 
-/*App::missing(function($exception)
-{
-    return Response::view('errors.missing', array('url' => Request::url()), 404);
-});*/
-
 class Convert {
 
     public function fire($job, $data)
@@ -457,3 +452,8 @@ class Convert {
     }
 
 }
+
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array('url' => Request::url()), 404);
+});
