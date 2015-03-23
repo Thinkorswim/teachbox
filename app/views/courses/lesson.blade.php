@@ -223,7 +223,8 @@
 		{{ Form::close() }}
 		<div class="status comments">
 		@foreach ($comments as $comment)
-		 <?php $userT = User::find($comment->user_id); ?>
+		 <?php $userT = User::find($comment->user_id);
+		 		$replies = CommentReply::where('comment_id', '=', $comment->id)->get(); ?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
@@ -237,12 +238,15 @@
 							<p class="comment-text">{{$comment->text}}</p>
 						</div>
 					</div>
-					<!--<div class="panel-footer">
-							<a id="comment{{$comment->id}}" class="reply" href="">Reply</a>
+					<div class="panel-footer {{$comment->id}}">
+							<a id="{{$comment->id}}" class="reply" href="javascript:void(0)">Reply</a>
 							1
 							<a href=""><i class="fa fa-thumbs-up"></i></a>
 							<a href=""><i class="fa fa-thumbs-down"></i></a>
-					</div>-->
+					</div>
+					@foreach ($replies as $reply)
+						<div> {{ $reply->text }} </div>
+					@endforeach
 				</div>
 		@endforeach
 		</div>
