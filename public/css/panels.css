@@ -49,14 +49,19 @@
 .panel.panel-default.actions .list-group .tutor-list {
   background: none;
 }
-.panel.panel-default.actions .list-group .edit-lesson {
+.panel.panel-default.actions .list-group .edit-lesson,
+.panel.panel-default.actions .list-group .delete-lesson {
   color: #2c3e50;
   position: absolute;
-  right: 30px;
+  right: 60px;
   margin-top: -30px;
 }
-.panel.panel-default.actions .list-group .edit-lesson i {
+.panel.panel-default.actions .list-group .edit-lesson i,
+.panel.panel-default.actions .list-group .delete-lesson i {
   padding: 5px;
+}
+.panel.panel-default.actions .list-group .delete-lesson {
+  right: 20px;
 }
 .panel.panel-default.actions .list-group .list-group-item:first-child {
   border-top-right-radius: 0;

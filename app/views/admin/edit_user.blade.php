@@ -25,7 +25,11 @@
         {{ Form::label('city', 'City') }}
         {{ Form::text('city', $user->city, array('class'=>'form-control')) }}
     </div>
-         
+
+    <div class='form-group'>
+        {{ Form::label('decription', 'Description') }}
+        {{ Form::text('decription', $user->decription, array('class'=>'form-control')) }}
+    </div>
         <div class="input-group">
                     <span class="input-group-addon">
                         <i class="fa fa-globe"></i>

@@ -11,7 +11,7 @@ class AdminController extends \BaseController {
             $count_users = array();
             $count_courses = array();
 
-            for ($i=1; $i <= 12; $i++) { 
+            for ($i=1; $i <= 12; $i++) {
                 $count_users[$i] = User::where( DB::raw('MONTH(created_at)'), '=', $i)->count();
                 $count_courses[$i] =  Course::where( DB::raw('MONTH(created_at)'), '=', $i )->count();
             }
@@ -29,7 +29,7 @@ class AdminController extends \BaseController {
 	{
 		if(Auth::check() && Auth::user()->admin){
 
-			$users = User::all();
+			$users = User::orderBy('created_at', 'DESC')->paginate(10);
 
 			return View::make('admin.users', ['users' => $users]);
 		}else{
@@ -41,7 +41,7 @@ class AdminController extends \BaseController {
     {
         if(Auth::check() && Auth::user()->admin){
 
-            $courses = Course::all();
+            $courses = Course::orderBy('created_at', 'DESC')->paginate(10);
 
             return View::make('admin.courses', ['courses' => $courses]);
         }else{

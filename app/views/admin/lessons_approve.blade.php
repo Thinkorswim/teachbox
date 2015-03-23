@@ -14,7 +14,7 @@
         </div>
     <div class="row place">
         <h2 class="place"> Lessons for approvement </h2>
-        <div class="col-xs-12 col-sm-8"> 
+        <div class="col-xs-12"> 
 				@if(count($lessons) > 0)
 				<div class="panel panel-default actions">
 				  <div class="panel-heading">
@@ -35,11 +35,10 @@
                                             {{ Form::button('<i class="fa fa-check"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
                                     @endif
                                 {{ Form::close() }}
-                                <br>
                                 {{ Form::open(array('action' => array('AdminController@deleteLesson', $lesson->id))) }}
                                     @if(Auth::check())
                                         {{ Form::token() }}
-                                            {{ Form::button('<i class="fa fa-times"></i>', array('type' => 'submit','class'=>'edit-lesson')) }}
+                                            {{ Form::button('<i class="fa fa-times"></i>', array('type' => 'submit','class'=>'delete-lesson')) }}
                                     @endif
                                 {{ Form::close() }}
                       </div>
