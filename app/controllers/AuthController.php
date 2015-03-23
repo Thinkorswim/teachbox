@@ -188,6 +188,8 @@ class AuthController extends \BaseController {
 			$pic = json_decode( $fb->request( '/me/picture?redirect=0&height=200&width=200&type=normal' ), true );
 			$picSmall = json_decode( $fb->request( '/me/picture?redirect=0&height=100&width=100&type=normal' ), true );
 
+			print_r($pic);
+
 		$signed = User::where('email','=',$result['email']);
 
 		if($signed->count()){
