@@ -121,7 +121,7 @@
 	      	<li class="icon-list"><a href="{{ URL::action('ProfileController@feedback')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	@if(Auth::check())
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
-	      	<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-plus"></i><span> Explore</span></a></li>
+	      	<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>
 	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();
@@ -297,6 +297,43 @@
 		  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
 		});
 	</script>
+	@endif
+	
+	@if(Route::current()->getName() == 'search-user' && count($comments) > 15 )
+   <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+	    <script type="text/javascript">
+			$(function() {
+				$('.pagination').hide();
+
+			    $('.scroll').jscroll({
+			    	 loadingHtml: '<p class="centered" id="loading"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+			        autoTrigger: true,
+			        nextSelector: '.pagination li.active + li a',
+			        contentSelector: 'div.scroll',
+			        callback: function() {
+			            $('ul.pagination:visible:first').hide();
+			        }
+			    });
+			});
+		</script>
+	@endif
+	@if(Route::current()->getName() == 'course-lesson' && count($comments) > 15 )
+    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
+	    <script type="text/javascript">
+			$(function() {
+				$('.pagination').hide();
+
+			    $('.scroll').jscroll({
+			    	 loadingHtml: '<p class="centered" id="loading"><a class="btn btn-success"href="#"><i class="fa fa-2x fa-spinner fa-pulse"></i> Loading...</a>',
+			        autoTrigger: true,
+			        nextSelector: '.pagination li.active + li a',
+			        contentSelector: 'div.scroll',
+			        callback: function() {
+			            $('ul.pagination:visible:first').hide();
+			        }
+			    });
+			});
+		</script>
 	@endif
     @if(Route::current()->getName() == 'search' || Route::current()->getName() == 'search-front' || Route::current()->getName() == 'user-profile' || Route::current()->getName() == 'home')
     	@if(Route::current()->getName() == 'user-profile' && $timelineCount > 5 )

@@ -399,7 +399,7 @@ class AdminController extends \BaseController {
 
             if($isDB && $isDBLessons && $isFile){
                 $user = User::find($course->user_id);
-                Mail::send('emails.auth.course-deleted', array('user' => $user, 'course' => $course), function($message) use ($user) {
+                Mail::send('emails.auth.course-delete', array('user' => $user, 'course' => $course), function($message) use ($user) {
                    $message->to( $user->email , $user->name)->subject('Unfortunately your course has not been approved.');
                 } );
                  return Redirect::action('AdminController@showCourses');

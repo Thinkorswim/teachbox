@@ -11,7 +11,7 @@
 
 <div class="container follow">
 	<div class="col-xs-12 col-sm-8">
-		<div class="scroll">
+		<div class="scroll place">
 			@foreach ($courses as $course)
 			<?php $user = User::find($course->user_id); ?>
 					<div class="course">

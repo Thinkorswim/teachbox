@@ -221,7 +221,7 @@
 			{{ Form::button('Submit', array('type' => 'submit','id'=>  'comment-post-button', 'class'=>'btn btn-primary hidden pull-right')) }}
 		</div>
 		{{ Form::close() }}
-		<div class="status comments">
+		<div class="scroll status comments">
 		@foreach ($comments as $comment)
 		 <?php $userT = User::find($comment->user_id);
 		 		$replies = CommentReply::where('comment_id', '=', $comment->id)->get(); ?>
@@ -269,6 +269,7 @@
 						@endforeach
 			</div>
 		@endforeach
+		{{$comments->links()}}
 	
 	</div>
 	</div>

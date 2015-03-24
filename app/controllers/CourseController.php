@@ -374,7 +374,7 @@ class CourseController extends \BaseController {
 						    $query->where('course_id', '=', $id);
 						})->first();
 
-						$comments =  Comment::where('lesson_id', '=', $lesson->id)->get();
+						$comments =  Comment::where('lesson_id', '=', $lesson->id)->orderBy('created_at', 'DESC')->paginate(15);
                     	$test = Test::find($id);
 	                 	$questions =  Test::where('lesson_id', '=', $lesson->id)->get();
 
