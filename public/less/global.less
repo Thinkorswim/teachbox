@@ -168,6 +168,9 @@ outline: 0 none;
     -khtml-border-radius: 50%;
     border: 4px solid #fff;
 }
+.reply-form .comment-post{
+	margin-top: 15px;
+}
 .status.comments{
 	hr{
 		margin-top: 8px;
@@ -175,13 +178,25 @@ outline: 0 none;
 	}
 	.panel{
 		margin: 15px 0;
+		background: none;
+		box-shadow: none;
+		.panel-body{
+			background: @white;
+		}
 		.panel-footer{
 			a{margin: 0 15px; color: #333;}
 			a:hover{color:@blue}
-			a:last-child{margin-left: 0;}
+			a:nth-child(3){margin-left: 0;}
 			a:first-child{color:@blue;}
+
 		}
 	}
+}
+			.replied{
+				margin: 20px 0px 20px 40px!important;
+			}
+.join.btn-primary{
+	margin-bottom: 0px!important;
 }
 .status .comment-text{
 	padding: 10px 8px;

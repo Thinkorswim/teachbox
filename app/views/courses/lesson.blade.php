@@ -245,24 +245,47 @@
 							<a href=""><i class="fa fa-thumbs-down"></i></a>
 					</div>
 					@foreach ($replies as $reply)
-						<div> {{ $reply->text }} </div>
-					@endforeach
-				</div>
+		 <?php $userR = User::find($reply->user_id);?>
+				<div class="panel panel-default settings-panel actions replied">
+					<div class="panel-body">
+					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
+						<strong>
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userR->name }} </a></strong> 
+						   replied
+						   <strong>{{dateTimeline($reply->created_at)}}</strong>
+						</p>
+						<hr>
+						<div class="content-status">
+							<p class="comment-text">{{$reply->text}}</p>
+						</div>
+					</div>
+					<div class="panel-footer">
+							<a href="" class="hidden"></a>
+							1
+							<a href=""><i class="fa fa-thumbs-up"></i></a>
+							<a href=""><i class="fa fa-thumbs-down"></i></a>
+					</div>	
+			</div>			
+						@endforeach
+			</div>
 		@endforeach
-		</div>
+	
+	</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
-		@if(count($isDone) > 0)
-		<div class="panel panel-default place">
+	 @if(count($isDone) > 0)
+		<div class="panel panel-default settings-panel actions place">
 		  <div class="panel-body">
 		    <?php 
 		    $result = $isDone->right;
 		    $maximum = $isDone->total;
 		    $overall = (intval($result)/intval($maximum)) * 100; ?>
-		  	<h2>You scored {{$overall}}%!</h2>
+		  		<h2>You scored {{$overall}}%!</h2>
 		  </div>
 		</div>
-		@endif
+			@endif
+				<button class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
+			
 		<div class="panel panel-default actions playlist-panel place">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">

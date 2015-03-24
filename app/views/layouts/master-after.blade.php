@@ -517,8 +517,8 @@ $("#upload-video").click(function(){
 	@endif
 	@if(Route::current()->getName() == 'course-lesson')
 		<script type="text/javascript">
-			$(".reply").click(function() {
-				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio ac-circle"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit" id="comment-post-button" class="btn btn-primary pull-right slideRight">Submit</button></div></form>');
+			$(".reply").one("click",function() {
+				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio reply-form"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit" id="comment-post-button" class="btn btn-primary ">Submit</button></div></form>');
 			});
 		</script>	
 	@endif
