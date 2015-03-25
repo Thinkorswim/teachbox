@@ -70,7 +70,7 @@
 					 <a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
 					@if (Auth::user()->id == $course->user_id)
 					 <strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
-					 <a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$lesson->order]) }}" >
+					 <a class="edit-lesson" href ="{{ URL::action('CourseController@postLessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 					 </a>
 					@else

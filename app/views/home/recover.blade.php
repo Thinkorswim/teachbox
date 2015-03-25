@@ -5,15 +5,17 @@
 @stop
 
 @section('description')
-  Recover your password in case you've forgotten it.
+  Recover your password in teachbox in case you've forgotten it.
 @stop
 
 @section('content')
    <section class="full-screen main-screen">
+    <img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="100px">
+    <h2 class="centered">Find and create interactive courses.</h2>
       <div class="container">
          <div class="col-xs-1 col-sm-3 col-md-4">
          </div>
-         <div class="col-xs-10 col-sm-6 col-md-4 tab-register">   
+         <div class="col-xs-10 col-sm-6 col-md-4 tab-register">
             <div class="tab-pane">
                <h4>Recover your password</h4>
                <form action="{{ URL::route('password-send') }}" method="post">
@@ -22,16 +24,16 @@
                      {{Session::get('global-negative')}}
                      </div>
                      @endif
-               		<div class="input-group">
-                    @if($errors->has('email'))
-                    <span id="mistake-mail" class="input-group-addon" data-toggle="tooltip" title="{{$errors->first('email')}}">
-                     <i class="pe-7s-mail"></i>
-                    </span>   
+                  @if($errors->has('email'))
+               		 <span id="mistake-mail"  class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('email')}}">
                     @else
-                    <span class="input-group-addon"><i class="pe-7s-mail"></i></span>
+                    <span class="input input--hoshi">
                     @endif
-                        <input id="mail" type="text" name="email" class="form-control" placeholder="E-mail" {{Input::old('email') ? ' value="'. e(Input::old('email')) .'"' : ''}} >
-               		</div>
+                        <input id="input-4" type="text" name="email" class="input__field input__field--hoshi" placeholder="E-mail" {{Input::old('email') ? ' value="'. e(Input::old('email')) .'"' : ''}} >
+                        <label class="input__label input__label--hoshi" for="input-4">
+                          <span class="input__label-content input__label-content--hoshi">Email</span>
+                        </label>
+               		</span>
                      <div class="input-group submit">
                   		<input type="submit" value="Recover" class="form-control">
                      </div>

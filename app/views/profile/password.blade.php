@@ -43,35 +43,41 @@
 				</div> 
 			@endif
 			{{ Form::open(array('action' => array('ProfileController@postChangePassword', $user->id))) }}
+			<div>
 				@if($errors->has('password'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('password') }}">
+				<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('password') }}">
 				@else
-				<div class="input-group">
+				<span class="input input--hoshi">
 				@endif
-				<span class="input-group-addon">
-					<i class="fa fa-lock"></i>
+				{{ Form::password('password', array('placeholder'=>'Password','id'=>'input-6', 'class'=>'input__field input__field--hoshi')) }}
+				<label class="input__label input__label--hoshi" for="input-6">
+					<span class="input__label-content input__label-content--hoshi">Password</span>
+				</label>
 				</span>
-				{{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control')) }}
 				</div>
+				<div>
 				@if($errors->has('new_password'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('new_password') }}">
+				<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('new_password') }}">
 				@else
-				<div class="input-group">
+				<span class="input input--hoshi">
 				@endif
-				<span class="input-group-addon">
-					<i class="fa fa-lock"></i>
+				{{ Form::password('new_password', array('placeholder'=>'New Password', 'id'=>'input-7', 'class'=>'input__field input__field--hoshi')) }}
+				<label class="input__label input__label--hoshi" for="input-7">
+					<span class="input__label-content input__label-content--hoshi">New Password</span>
+				</label>
 				</span>
-				{{ Form::password('new_password', array('placeholder'=>'New Password', 'class'=>'form-control')) }}
 				</div>
+				<div>
 				@if($errors->has('new_password_again'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('new_password_again') }}">
+				<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('new_password_again') }}">
 				@else
-				<div class="input-group">
+				<span class="input input--hoshi">
 				@endif
-				<span class="input-group-addon">
-					<i class="fa fa-lock"></i>
+				{{ Form::password('new_password_again', array('placeholder'=>'New Password Again','id'=>'input-8', 'class'=>'input__field input__field--hoshi')) }}
+				<label class="input__label input__label--hoshi" for="input-8">
+					<span class="input__label-content input__label-content--hoshi">Repeat new password</span>
+				</label>
 				</span>
-				{{ Form::password('new_password_again', array('placeholder'=>'New Password Again', 'class'=>'form-control')) }}
 				</div>
 				{{ Form::submit('Change password', array('class'=>'form-control')) }}
 				{{ Form::token() }}

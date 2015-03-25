@@ -43,16 +43,29 @@
 			</div>
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
-				<div>Name</div>
+				<div>
 					@if($errors->has('name'))
-					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">
+					<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">
 					@else
-					<div class="input-group">
+					<span class="input input--hoshi">
 					@endif
-					<span class="input-group-addon">
-						<i class="fa fa-user"></i>
-					</span>
-					 {{ Form::text('name', $user->name, array('class'=>'form-control')) }}
+					 {{ Form::text('name', $user->name, array('id'=>'input-8', 'class'=>'input__field input__field--hoshi')) }}
+					<label class="input__label input__label--hoshi" for="input-9">
+						<span class="input__label-content input__label-content--hoshi">Name</span>
+					</label>
+				</span>
+				</div>
+				<div>
+				@if($errors->has('city'))
+					<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
+					@else
+					<span class="input input--hoshi">
+					@endif
+				 {{ Form::text('city', $user->city, array('id'=>'input-9', 'class'=>'input__field input__field--hoshi')) }}
+				<label class="input__label input__label--hoshi" for="input-9">
+					<span class="input__label-content input__label-content--hoshi">City</span>
+				</label>
+				</span>
 				</div>
 				Country:
 					@if($errors->has('country'))
@@ -65,38 +78,27 @@
 					</span>
 				 {{ Form::select('country', $country_array, $user->country, array('class'=>'form-control')) }}
 				 </div>
-				City:
-					@if($errors->has('city'))
-					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
-					@else
-					<div class="input-group">
-					@endif
-					<span class="input-group-addon">
-						<i class="fa fa-map-marker"></i>
-					</span>
-				 {{ Form::text('city', $user->city, array('class'=>'form-control')) }}
-				</div>
+				 <div>
 				Describe yourself in a few words:
 					@if($errors->has('decription'))
 					<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('decription') }}">  
 					@else
 					<div class="input-group">
 					@endif
-					<span class="input-group-addon">
-						<i class="fa fa-quote-left"></i>
-					</span>
 				 {{ Form::textarea('decription', $user->decription, array('class'=>'form-control','rows' => '5')) }}
 				 </div>
 
-				<div>Date of birth:</div>
+				<div>Date of birth:
 				{{ Form::selectRange('day', 1, 31, getDay($user->date)) }}
 			    {{ Form::selectMonth('month',getMonth($user->date)) }}
 				{{ Form::selectRange('year', 2014, 1914, getYear($user->date)) }}
-
+				</div>
+				<div>
 				{{ Form::token() }}
 				{{ Form::submit('Save Changes', array('class'=>'form-control')) }}
+				</div>
 			{{ Form::close() }}
-
+	
 		  </div>
 		</div>
 	</div>

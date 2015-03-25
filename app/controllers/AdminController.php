@@ -418,7 +418,7 @@ class AdminController extends \BaseController {
             $isFile = File::deleteDirectory(public_path() .'/courses/' . $lesson->course_id . '/' . $lesson->order);
 
             if($isDB && $isFile){
-                Mail::send('emails.auth.lesson-deleted', array('user' => $user, 'course' => $course, 'lesson' => $lesson), function($message) use ($user) {
+                Mail::send('emails.auth.lesson-delete', array('user' => $user, 'course' => $course, 'lesson' => $lesson), function($message) use ($user) {
                    $message->to( $user->email , $user->name)->subject('Unfortunately your lesson has not been approved.');
                 } );
                 return Redirect::action('AdminController@lessonsApprove');

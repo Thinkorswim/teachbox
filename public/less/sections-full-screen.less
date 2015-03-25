@@ -1,7 +1,32 @@
 @import "variables.less";
 @import "mixins.less";
+.absolute-screen{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  width: 100%;
+  background: @grey;
+  color:@white;
+  position: fixed;
+  overflow-y: hidden;
+  z-index: 9999;
+    h2{
+      margin-top: 23%;
+      color:@white;
+      font-size: 2em;
+      font-weight: 900;
+        -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 1s; /* Firefox < 16 */
+        -ms-animation: fadein 1s; /* Internet Explorer */
+         -o-animation: fadein 1s; /* Opera < 12.1 */
+            animation: fadein 1s;
+    }
+
+}
 .full-screen{
-  padding:100px 0 20px;
+  padding:30px 0 0px;
   min-height:100vh;
   height:auto;
   width:100%;
@@ -16,7 +41,7 @@
   	}
   }
   .users-left{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     font-weight: 300;
   }
   	.col-sm-3{
@@ -42,13 +67,18 @@
   background-size: cover;
 }
 &.main-screen{
-  background: url(../img/74__2.jpg) no-repeat center center; 
+  background: url(../img/DSC.jpg) no-repeat center center; 
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  h2 strong{
-    color:@white;
+  & > img{
+    display: block;
+    margin: 0 auto;
+  }
+  h2{
+    color:@grey;
+    margin-bottom: 40px;
   }
 }
 &.teach-screen{
@@ -66,7 +96,6 @@
   -o-background-size: cover;
   background-size: cover;
   min-height: 400px!important;
-  
   h1{
   	text-align: center;
   	margin-top:70px;
@@ -80,6 +109,13 @@
   background-size: cover;
   min-height: 400px!important;
 }
+}
+&.learn-screen{
+    background: @white;
+    img{
+      display: block;
+      margin: 0 auto;
+    }
 }
 &.learn-screen, &.explore{
 	padding:65px 0 80px;

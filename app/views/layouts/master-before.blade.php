@@ -15,7 +15,6 @@
 	<meta property="og:site_name" content="Teachbox - online education"/>
 	<meta property="og:type"   content="website" />
 
-	<link href="{{ URL::asset('css/pe-icon-7-stroke.css" rel="stylesheet') }}" />
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -27,7 +26,13 @@
     <![endif]-->
   </head>
   <body>
- 	@if(Route::current()->getName() != 'home')
+  @if(Route::current()->getName() == 'home')
+  <div class="absolute-screen">
+	<h2 class="centered">Only <strong>{{$remaining}}</strong> registrations remaining. <br><br>Be from the first in Teachbox!</h2>
+
+</div>
+@endif
+ 	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery')
 		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -38,7 +43,7 @@
 	      <div class="modal-body">
 				<div class="tab-content">	
 				<!-- Login -->
-				    <div role="tabpanel" class="tab-pane in active">	
+				    <div role="tabpanel" class="tab-pane in fade active">	
 						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
@@ -93,7 +98,7 @@
 	  </div>
 	</div>
 	</div>
-@endif
+
 	<header class="header-not-reg">
 		<div class="col-xs-3">
 			<nav class="navbar navbar-fixed-top categories">
@@ -105,23 +110,14 @@
 			    </div>
 			</nav>
 		</div>
-		@if(Request::path() == '/')
 		<div class="col-xs-9">
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><a href="#">Vision</a></li>
-		       <!-- <li><a href="#">Testimonials</a></li> -->
-		        <li><a href="#">Explore</a></li>
-			</ul>
-		</div>
-		@else
-		<div class="col-xs-9">
-			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><button type="button" data-toggle="modal" data-target="#newModal">Login</button></li>
+		        <li><a href="#" data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		</div>
-		@endif
-</header>
+		
+</header>@endif
 	    @yield('content')
 	<footer class="front-page-footer">
 		<div style="padding-top: 11px;" class="container">
@@ -159,8 +155,12 @@
 		</div>
 	</footer>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     @if(Route::current()->getName() == 'home')
+	<script type="text/javascript">
+		$(".absolute-screen").delay(1000).fadeOut("slow");
+	</script>
+	@endif
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     	@if(($errors->has('email')) || $errors->has('name') || $errors->has('password') || $errors->has('password_again'))
 	<script>
@@ -251,7 +251,64 @@
 	});
 	});
 
+   		$(".input__field").one("change keyup",function(){
+    //Do something, probably with $(this).val()
+    	if($(this).val() != ' '){
+       		$(this).parent().addClass("input--filled");	
+       	}
+   		
+});
+
+var ua = navigator.userAgent.toLowerCase(); 
+  if (ua.indexOf('safari') != -1) { 
+    if (ua.indexOf('chrome') > -1) {
+      $(".input__field").removeAttr('placeholder');
+    } else {
+    	$(".input__field").addClass("form-control");
+    	$(".input__field").css('border', '1px solid #333');
+    }
+  }else{
+
+  	$(".input__field").removeAttr('placeholder');
+  }
 	</script>
+
+<script src="{{ URL::asset('js/classie.js')}}"></script>
+		<script>
+
+			(function() {
+				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+				if (!String.prototype.trim) {
+					(function() {
+						// Make sure we trim BOM and NBSP
+						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+						String.prototype.trim = function() {
+							return this.replace(rtrim, '');
+						};
+					})();
+				}
+
+				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+					// in case the input is already filled..
+					if( inputEl.value.trim() !== '' ) {
+						classie.add( inputEl.parentNode, 'input--filled' );
+					}
+					// events:
+					inputEl.addEventListener( 'focus', onInputFocus );
+					inputEl.addEventListener( 'blur', onInputBlur );
+				} );
+
+				function onInputFocus( ev ) {
+					classie.add( ev.target.parentNode, 'input--filled' );
+				}
+
+				function onInputBlur( ev ) {
+					if( ev.target.value.trim() === '' ) {
+						classie.remove( ev.target.parentNode, 'input--filled' );
+					}
+				}
+			})();
+		</script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

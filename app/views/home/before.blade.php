@@ -12,7 +12,8 @@
 
 <!-- After registration -->
 	<section class="full-screen main-screen">
-		<h2 class="centered users-left">Only <strong>{{$remaining}}</strong> registrations remaining.</h2>
+	<img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="100px">
+		<h2 class="centered">Find and create interactive courses.</h2>
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
 				<div class="panel panel-default">
@@ -38,11 +39,13 @@
 				</ul>
 				<div class="tab-content">	
 				<!-- Login -->
-				    <div role="tabpanel" class="tab-pane active" id="login">	
+				    <div role="tabpanel" class="tab-pane active" id="login">
+
 						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
 						<h6><span  class="line-center">or</span></h6>
+
 						@if(Session::has('global-positive'))
 						<div class="alert alert-success" role="alert">
 						{{Session::get('global-positive')}}
@@ -53,22 +56,30 @@
 						{{Session::get('global-negative')}}
 						</div>
 						@endif
-						@if($errors->has('email_s'))					
-						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
+						<div>
+						@if($errors->has('email_s'))
+						<span id="mistake-mail" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
 						 @else
-						<div class="input-group">
+						<span class="input input--hoshi">
 						 @endif	
-						 <span class="input-group-addon"><i class="pe-7s-mail"></i></span> 					
-						{{ Form::open(['route' => 'sign-in']) }}
-							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
+						{{ Form::open(array('route' => 'sign-in', 'autocomplete'=>'off')) }}
+							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','id'=>'input-4', 'class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-4">
+								<span class="input__label-content input__label-content--hoshi">E-mail</span>
+							</label>
+						</span>
 						</div>
+						<div>
 						@if($errors->has('password_s'))
-						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
+						<span id="mistake-pass" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
 						  @else
-						<div class="input-group">
+						<span class="input input--hoshi">
 						 @endif	
-						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
+						 	{{ Form::password('password_s', array('placeholder'=>'Password','id'=>'input-5','class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-5">
+								<span class="input__label-content input__label-content--hoshi">Password</span>
+							</label>
+						</span>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">
@@ -94,40 +105,48 @@
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}	 
 						@if($errors->has('name'))
-						<div id="user-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('name')}}">
+						<span id="user-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('name')}}">
 						@else
-						<div class="input-group">
+						<span class="input input--hoshi">
 						@endif
-						  <span class="input-group-addon"><i class="pe-7s-user"></i></span>
-							 {{ Form::text('name', null,  array('placeholder'=>'Full name', 'class'=>'form-control')) }}
-						</div>
+							 {{ Form::text('name', null,  array('placeholder'=>'Full name', 'id'=>'input-6','class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-6">
+								<span class="input__label-content input__label-content--hoshi">Full name</span>
+							</label>
+						</span>
 
 						@if($errors->has('email'))
-						<div id="mail-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('email')}}">
+						<span id="mail-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('email')}}">
 						@else
-						<div id="mail" class="input-group" data-toggle="tooltip" title="It will be used for your authenticaion">
+						<span id="mail" class="input input--hoshi" data-toggle="tooltip" title="It will be used for your authenticaion">
 						@endif
-						  <span class="input-group-addon"><i class="pe-7s-mail"></i></span>
-							 {{ Form::text('email', null , array('placeholder'=>'E-mail', 'class'=>'form-control')) }}
-						</div>
+							 {{ Form::text('email', null , array('placeholder'=>'E-mail','id'=>'input-7', 'class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-7">
+								<span class="input__label-content input__label-content--hoshi">E-mail</span>
+							</label>
+						</span>
 
 						 @if($errors->has('password'))
-						 <div id="pass-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('password')}}">
+						 <span id="pass-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('password')}}">
 						 @else
-						<div id="password" class="input-group" data-toggle="tooltip" title="Your password needs to be 6-20 characters">
+						<span id="password" class="input input--hoshi" data-toggle="tooltip" title="Your password needs to be 6-20 characters">
 						@endif 	
-						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-							 {{ Form::password('password', array('placeholder'=>'Password', 'class'=>'form-control')) }}
-						</div>
+							 {{ Form::password('password', array('placeholder'=>'Password','id'=>'input-8', 'class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-8">
+								<span class="input__label-content input__label-content--hoshi">Password</span>
+							</label>
+						</span>
 
 						 @if($errors->has('password_again'))
-						<div id="repeat-error" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_again')}}">
+						<span id="repeat-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('password_again')}}">
 						@else
-						<div id="repeat" class="input-group">
+						<span id="repeat" class="input input--hoshi">
 						@endif
-						  <span class="input-group-addon"><i class="pe-7s-lock"></i></span>
-							 {{ Form::password('password_again', array('placeholder'=>'Repeat Password', 'class'=>'form-control')) }}		 
-						</div>
+							 {{ Form::password('password_again', array('placeholder'=>'Repeat Password','id'=>'input-9', 'class'=>'input__field input__field--hoshi')) }}
+							<label class="input__label input__label--hoshi" for="input-9">
+								<span class="input__label-content input__label-content--hoshi">Repeat password</span>
+							</label>
+						</span>
 
 						<div class="input-group submit">
 							 {{ Form::submit('Register', array('class'=>'form-control register-button')) }}
@@ -165,50 +184,30 @@
 					@endif
 		</div>
 	</div>
-		       <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a>
+		      <!-- <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a> -->
 
 	</section>
 	<section class="full-screen learn-screen">
 		<div class="container">
 			<h1 class="centered">Teach. Learn. Earn. Socialise.</h2>
 			<div class="col-sm-3">
-				<i class="fa-4x pe-7s-glasses"></i>
+				<img src="{{ URL::asset('img/Browserpen.png') }}" alt="broswer pen">
 				<p> Everyone has some knowledge to share. Spit it out. Teach the world. </p>
 			</div>
 			<div class="col-sm-3">
-				<i class="fa-4x pe-7s-notebook"></i>
+				<img src="{{ URL::asset('img/Education.png') }}" alt="edcation hat">
 				<p> Nobody is perfect. Get something out of that knowledge box. </p>
 			</div>
 			<div class="col-sm-3">
-				<i class="fa-4x pe-7s-cash"></i>
-				<p> Earn while having fun and doing something great. </p>				
+				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
+				<p> Earn while having fun and doing something great. </p>
 			</div>
 			<div class="col-sm-3">
-				<i class="fa-4x pe-7s-chat"></i>
-				<p> Share your experience with your friends. Know what they are up to.</p>				
+				<img src="{{ URL::asset('img/Hearts.png') }}" alt="hearts">
+				<p> Share your experience with your friends. Know what they are up to.</p>
 			</div>
 		</div>
 	</section>
-	<!--<section class="full-screen testimonials">
-		<div class="container">
-			<h1>People talk about us</h1>
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			  
-			  <div class="carousel-inner" role="listbox">
-			    <div class="item active">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>
-						"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"
-						 <small>Koko Donchev, Stepsss</small>
-			        </h3>
-			       
-			    </div>
-			    <div class="item">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
-			    </div>
-			</div>
-		</div>
-	</div>
-	</section> -->
 	<header class="relative-header">
 		<section class="full-screen explore">
 			<div class="col-xs-3">
@@ -226,4 +225,27 @@
 			</div>
 		</section>
 	</header>
+	<section class="full-screen responsive">
+		<h2 class="centered">Learn on the go or in the comfort of your home!</h2>
+	</section>
+	<section class="full-screen testimonials">
+		<div class="container">
+			<h1>People talk about us</h1>
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			  
+			  <div class="carousel-inner" role="listbox">
+			    <div class="item active">
+			        <h3><i class="fa fa-2x fa-quote-left"></i>
+						"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"
+						 <small>Koko Donchev, Stepsss</small>
+			        </h3>
+			       
+			    </div>
+			    <!--<div class="item">
+			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
+			    </div>-->
+			</div>
+		</div>
+	</div>
+	</section>
 @endsection
