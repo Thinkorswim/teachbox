@@ -72,6 +72,8 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height: 1px!important;
+  padding-bottom: 30px;
 }
 .full-screen.main-screen > img {
   display: block;

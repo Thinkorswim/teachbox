@@ -159,7 +159,7 @@ input[type="submit"]:focus {
   padding: 0.85em 0.15em;
   width: 100%;
   background: transparent;
-  color: #595F6E;
+  color: #1abc9c;
 }
 .settings-panel input {
   float: left;

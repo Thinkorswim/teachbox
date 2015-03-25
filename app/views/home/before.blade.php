@@ -62,7 +62,7 @@
 						 @else
 						<span class="input input--hoshi">
 						 @endif	
-						{{ Form::open(array('route' => 'sign-in', 'autocomplete'=>'off')) }}
+						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','id'=>'input-4', 'class'=>'input__field input__field--hoshi')) }}
 							<label class="input__label input__label--hoshi" for="input-4">
 								<span class="input__label-content input__label-content--hoshi">E-mail</span>
@@ -94,9 +94,10 @@
 							</div>
 						</div>
 						<div class="input-group submit">
+						{{ Form::token() }}
 							 {{ Form::submit('Login', array('class'=>'form-control')) }}
 						</div>
-						{{ Form::token() }}
+						
 						{{ Form::close() }}
 					</div>
 
