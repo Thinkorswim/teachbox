@@ -23,15 +23,13 @@
 							@endif
 							<div>
 							@if($errors->has('name'))
-							<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
 							@else             
-							<span class="input input--hoshi">
+							<div class="input-group">
 							@endif  
-							 {{ Form::text('name', null, array('placeholder'=>'Course name','id'=>'input-7', 'class'=>'input__field input__field--hoshi')) }}
-							<label class="input__label input__label--hoshi" for="input-7">
-								<span class="input__label-content input__label-content--hoshi">Course name</span>
-							</label>
-							 </span>
+							<span class="input-group-addon"><i class="fa fa-university"></i></span>
+							 {{ Form::text('name', null, array('placeholder'=>'Name of course','class'=>'form-control')) }}
+	
 							 </div>
 							@if($errors->has('description'))
 							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
@@ -57,6 +55,7 @@
 						{{ Form::close() }}
 					</div>
 				</div>
+			</div>
 			</div>
 			<div class="col-xs-12  col-md-7">
 				<div class="panel panel-default actions">

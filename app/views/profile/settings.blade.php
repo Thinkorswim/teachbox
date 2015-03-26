@@ -43,29 +43,26 @@
 			</div>
 		  	<div class="panel-body padding-panel">
 				{{ Form::open(array('action' => array('ProfileController@postUserSettings', $user->id))) }}
-				<div>
+					<div>Name</div>
 					@if($errors->has('name'))
-					<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">
+					<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">
 					@else
-					<span class="input input--hoshi">
+					<div class="input-group">
 					@endif
-					 {{ Form::text('name', $user->name, array('id'=>'input-8', 'class'=>'input__field input__field--hoshi')) }}
-					<label class="input__label input__label--hoshi" for="input-9">
-						<span class="input__label-content input__label-content--hoshi">Name</span>
-					</label>
-				</span>
+					<span class="input-group-addon">
+						<i class="fa fa-user"></i>
+					</span>
+					 {{ Form::text('name', $user->name, array('id'=>'input-8', 'class'=>'form-control')) }}
 				</div>
-				<div>
 				@if($errors->has('city'))
-					<span class="input input--hoshi shown" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
+					<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
 					@else
-					<span class="input input--hoshi">
+					<div class="input-group">
 					@endif
-				 {{ Form::text('city', $user->city, array('id'=>'input-9', 'class'=>'input__field input__field--hoshi')) }}
-				<label class="input__label input__label--hoshi" for="input-9">
-					<span class="input__label-content input__label-content--hoshi">City</span>
-				</label>
-				</span>
+					<span class="input-group-addon">
+						<i class="fa fa-map-marker"></i>
+					</span>
+				 {{ Form::text('city', $user->city, array('id'=>'input-9', 'class'=>'form-control')) }}
 				</div>
 				Country:
 					@if($errors->has('country'))

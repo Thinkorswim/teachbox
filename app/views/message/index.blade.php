@@ -94,12 +94,7 @@
 		  </div>
 			<div class="panel panel-default settings-panel actions">
 				<div class="panel-body padding-panel send-message">
-				<span class="input input--hoshi">
-					<input type="text" id="text" class="input__field input__field--hoshi col-lg-12" autofocus="" placeholder="Compose and press enter">
-					<label class="input__label input__label--hoshi" for="text">
-						<span class="input__label-content input__label-content--hoshi">Compose and press enter</span>
-					</label>
-				</span>
+					<input type="text" id="text" class="form-control col-lg-12" autofocus="" placeholder="Compose and press enter">
 				</div>
 			</div>
 		</div>

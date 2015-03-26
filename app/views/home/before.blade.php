@@ -149,7 +149,7 @@
 							</label>
 						</span>
 
-						<div class="input-group submit">
+						<div class="input-group submit sub-reg">
 							 {{ Form::submit('Register', array('class'=>'form-control register-button')) }}
 						</div>
 						<small>By clicking register you agree with our <strong><a href=""> Terms and conditions</a></strong></small>
@@ -190,21 +190,28 @@
 	</section>
 	<section class="full-screen learn-screen">
 		<div class="container">
-			<h1 class="centered">Teach. Learn. Earn. Socialise.</h2>
 			<div class="col-sm-3">
+				
 				<img src="{{ URL::asset('img/Browserpen.png') }}" alt="broswer pen">
+				<h2 class="centered">Teach</h2>
 				<p> Everyone has some knowledge to share. Spit it out. Teach the world. </p>
 			</div>
 			<div class="col-sm-3">
+				
 				<img src="{{ URL::asset('img/Education.png') }}" alt="edcation hat">
+				<h2 class="centered">Learn</h2>
 				<p> Nobody is perfect. Get something out of that knowledge box. </p>
 			</div>
 			<div class="col-sm-3">
+				
 				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
+				<h2 class="centered">Earn</h2>
 				<p> Earn while having fun and doing something great. </p>
 			</div>
 			<div class="col-sm-3">
+				
 				<img src="{{ URL::asset('img/Hearts.png') }}" alt="hearts">
+				<h2 class="centered">Socialise</h2>
 				<p> Share your experience with your friends. Know what they are up to.</p>
 			</div>
 		</div>
