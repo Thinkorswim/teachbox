@@ -275,8 +275,8 @@
 	</div>
 	<div class="col-xs-12 col-sm-4">
 	 @if(count($isDone) > 0)
-		<div class="panel panel-default settings-panel actions place">
-		  <div class="panel-body">
+		<div class="panel panel-default settings-panel actions place result">
+		  <div class="panel-body padding-panel">
 		    <?php 
 		    $result = $isDone->right;
 		    $maximum = $isDone->total;
@@ -285,8 +285,9 @@
 		  </div>
 		</div>
 			@endif
+			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id)
 				<button class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
-			
+			@endif
 		<div class="panel panel-default actions playlist-panel place">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">

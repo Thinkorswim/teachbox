@@ -6,6 +6,15 @@
 .panel h2 {
   margin-top: 0;
 }
+.result {
+  margin-bottom: 0;
+  background: #1abc9c;
+}
+.result h2 {
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
 .panel.panel-default.actions .panel-heading {
   background: #1abc9c;
   border-bottom: 0;
