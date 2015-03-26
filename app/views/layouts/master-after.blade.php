@@ -521,9 +521,36 @@ $("#upload-video").click(function(){
 	</script>
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
 		@if(Route::current()->getName() == 'course-lesson')
+
 	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
 		<script type="text/javascript">
-		
+				$(".vote").one("click",function() {
+				var vote, isReply;
+				var classNames = $("#" + event.target.id).attr("class").toString().split(' ');
+		        $.each(classNames, function (i, className) {
+		            if(String(className) == "upvote"){
+		            	vote = 0;
+		            }else if(String(className) == "downvote"){
+		            	vote = 1;
+		            }else if(String(className) == "yes"){
+		            	isReply = 1;
+		            }else if(String(className) == "no"){
+		            	isReply = 0;
+		            }
+		        });
+
+
+				$.post( base_url + '/comment/vote', {commentId: event.target.id.substring(1), isReply: isReply, vote: vote, userId: {{ Auth::id() }}, _token: _token}, function()
+	            {
+	               if(isReply){
+	               		$("#thumbs-reply"+event.target.id).remove();
+	               }else{
+	               		$("#thumbs-comment"+event.target.id).remove();
+	               }
+	            });
+			
+			});
+
 		$( ".comment-post").click(function() {
 			if($( ".comment-post").is(':focus')){
 			$("#comment-post-button").removeClass("hidden");

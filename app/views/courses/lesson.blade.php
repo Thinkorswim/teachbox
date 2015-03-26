@@ -224,7 +224,8 @@
 		<div class="scroll status comments">
 		@foreach ($comments as $comment)
 		 <?php $userT = User::find($comment->user_id);
-		 		$replies = CommentReply::where('comment_id', '=', $comment->id)->get(); ?>
+		 		$replies = CommentReply::where('comment_id', '=', $comment->id)->get(); 
+		 		$shownComment = (CommentVote::where('comment_id', '=', $comment->id)->where('isReply', '=', '0')->count() > 0)?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
@@ -240,12 +241,17 @@
 					</div>
 					<div class="panel-footer {{$comment->id}}">
 							<a id="{{$comment->id}}" class="reply" href="javascript:void(0)">Reply</a>
-							1
-							<a href=""><i class="fa fa-thumbs-up"></i></a>
-							<a href=""><i class="fa fa-thumbs-down"></i></a>
+							{{ $comment->liked }}
+							@if(!$shownComment)
+								<span id="thumbs-comment-{{$comment->id}}">
+									<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote no" id="c{{ $comment->id }}"></i></a>
+									<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote no" id="c{{ $comment->id }}"></i></a>
+								</span>
+							@endif
 					</div>
 					@foreach ($replies as $reply)
-		 <?php $userR = User::find($reply->user_id);?>
+		 <?php $userR = User::find($reply->user_id);
+		 	   $shownReply = (CommentVote::where('comment_id', '=', $reply->id)->where('isReply', '=', '1')->count() > 0)?>
 				<div class="panel panel-default settings-panel actions replied">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
@@ -261,9 +267,13 @@
 					</div>
 					<div class="panel-footer">
 							<a href="" class="hidden"></a>
-							1
-							<a href=""><i class="fa fa-thumbs-up"></i></a>
-							<a href=""><i class="fa fa-thumbs-down"></i></a>
+							{{ $reply->liked }}
+							@if(!$shownReply)
+							<span id="thumbs-reply-{{$reply->id}}">
+								<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote yes"  id="c{{ $reply->id }}"></i></a>
+								<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote yes" id="c{{ $reply->id }}"></i></a>
+							</span>
+							@endif
 					</div>	
 			</div>			
 						@endforeach

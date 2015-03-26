@@ -77,6 +77,13 @@
      			'as'   => 'post-reply',
      			'uses' => 'CourseController@postReply'
   		));
+
+  		Route::post('/comment/vote', array(
+				'as'   => 'comment-vote',
+				'uses' => 'CourseController@commentVote'
+		));
+
+
 		Route::post('/search', array(
 			      'as' => 'post-search',
 			      'uses' => 'SearchController@postSearch'

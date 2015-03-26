@@ -587,6 +587,43 @@ class CourseController extends \BaseController {
 							->withErrors(array('comment' => 'You have to write at least one character in the input field.'));
 		}
 	} 
+
+	public function commentVote()
+	{
+		if(Auth::check()){
+			$id = intval(Input::get('commentId'));
+			$isReply = intval(Input::get('isReply'));
+			$vote = Input::get('vote');
+			$user_id = Input::get('userId');
+
+			if($isReply){
+				$reply = CommentReply::find($id);
+				if($vote){
+					$reply->liked = intval($reply->liked) -1;
+				}else{
+					$reply->liked = intval($reply->liked) +1;
+				}
+				
+				$reply->save();
+			}else{
+				$comment = Comment::find($id);
+				if($vote){
+					$comment->liked = intval($comment->liked) -1;
+				}else{
+					$comment->liked = intval($comment->liked) +1;
+				}
+				
+				$comment->save();
+			}
+
+			$message = CommentVote::create(array(
+				'comment_id' => $id,
+				'user_id'  => $user_id,
+				'isReply' => $isReply
+			));
+			
+		}
+	}
 	
 	public function lessonEdit($id,$lesson,$user)
 	{
