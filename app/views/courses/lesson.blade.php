@@ -242,12 +242,15 @@
 					<div class="panel-footer {{$comment->id}}">
 							<a id="{{$comment->id}}" class="reply" href="javascript:void(0)">Reply</a>
 							{{ $comment->liked }}
+							<!--
 							@if(!$shownComment)
+
 								<span id="thumbs-comment-{{$comment->id}}">
 									<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote no" id="c{{ $comment->id }}"></i></a>
 									<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote no" id="c{{ $comment->id }}"></i></a>
 								</span>
 							@endif
+							-->
 					</div>
 					@foreach ($replies as $reply)
 		 <?php $userR = User::find($reply->user_id);
@@ -268,12 +271,14 @@
 					<div class="panel-footer">
 							<a href="" class="hidden"></a>
 							{{ $reply->liked }}
+							<!--
 							@if(!$shownReply)
 							<span id="thumbs-reply-{{$reply->id}}">
 								<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote yes"  id="c{{ $reply->id }}"></i></a>
 								<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote yes" id="c{{ $reply->id }}"></i></a>
 							</span>
 							@endif
+							-->
 					</div>	
 			</div>			
 						@endforeach

@@ -14,9 +14,7 @@
 	<meta property="og:type"   content="website" />
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv1.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" />
 
     <!--[if lt IE 9]>
@@ -121,7 +119,7 @@
 	      	<li class="icon-list"><a href="{{ URL::action('ProfileController@feedback')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	@if(Auth::check())
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
-	      	<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>
+	      	<!--<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>-->
 	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();
@@ -299,7 +297,7 @@
 	</script>
 	@endif
 	
-	@if(Route::current()->getName() == 'search-user' && count($comments) > 15 )
+	@if(Route::current()->getName() == 'search-user' && count($users) > 10 )
    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 	    <script type="text/javascript">
 			$(function() {

@@ -16,9 +16,7 @@
 	<meta property="og:type"   content="website" />
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv1.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/jquery-ui.min.css') }}" />
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -157,7 +155,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
      @if(Route::current()->getName() == 'home')
 	<script type="text/javascript">
-		$(".absolute-screen").delay(1000).fadeOut("slow");
+		$(".absolute-screen").delay(2500).fadeOut("slow");
 	</script>
 	@endif
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>

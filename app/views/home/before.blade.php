@@ -234,8 +234,12 @@
 		</section>
 	</header>
 	<section class="full-screen responsive">
+		<div class="container">
 		<h2 class="centered">Learn on the go or in the comfort of your home!</h2>
+		<img src="{{ URL::asset('img/devices.png') }}">
+		</div>
 	</section>
+	<!--
 	<section class="full-screen testimonials">
 		<div class="container">
 			<h1>People talk about us</h1>
@@ -249,11 +253,11 @@
 			        </h3>
 			       
 			    </div>
-			    <!--<div class="item">
+			    <div class="item">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
-			    </div>-->
+			    </div
 			</div>
 		</div>
 	</div>
-	</section>
+	</section>-->
 @endsection

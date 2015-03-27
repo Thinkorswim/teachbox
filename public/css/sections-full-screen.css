@@ -67,7 +67,7 @@
   background-size: cover;
 }
 .full-screen.main-screen {
-  background: url(../img/dsc.jpg) no-repeat center center;
+  background: url(../img/desc.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -182,4 +182,18 @@
   font-weight: 900;
   margin-bottom: 0;
   padding-top: 5px;
+}
+.responsive img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.responsive h2 {
+  margin-bottom: 10px!important;
+}
+.main-screen > img {
+  max-width: 100%;
+  height: auto;
+  max-height: 100px;
 }
