@@ -117,7 +117,11 @@
 		
 </header>@endif
 	    @yield('content')
+ @if(Route::current()->getName() == 'home')
+	<footer class="front-page-footer footer-front">
+@else
 	<footer class="front-page-footer">
+@endif
 		<div style="padding-top: 11px;" class="container">
 				<a href="{{ URL::action('ProfileController@privacy')}}">Privacy</a>
 				<a href="{{ URL::action('ProfileController@contacts')}}">Contacts</a>
@@ -152,6 +156,11 @@
 				<small>All rights reserved Teachbox beta 2014</small>
 		</div>
 	</footer>
+	<style>
+	.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
+		position: absolute!important;
+	}
+	</style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
      @if(Route::current()->getName() == 'home')
 	<script type="text/javascript">
@@ -248,12 +257,11 @@
     });
 	});
 	});
-
-   		$(".input__field").one("change keyup",function(){
+   		$(".input__field").bind(" change keyup",function(){
     //Do something, probably with $(this).val()
-    	if($(this).val() != ' '){
+    if ($(this).val() != ''){
        		$(this).parent().addClass("input--filled");	
-       	}
+}
    		
 });
 
@@ -270,7 +278,24 @@ var ua = navigator.userAgent.toLowerCase();
   	$(".input__field").removeAttr('placeholder');
   }
 	</script>
-
+	<script>
+		$('#keyword-two').autocomplete({
+				source: '/get-data',
+				minLength: 1,
+				select:function(e, ui){
+					if(ui.item.isUser == false){
+						window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+					}
+				},
+				open: function() {
+				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
+			}
+		}).autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li class=" + item.classa +">" )
+        .append( "<img src='" + item.icon + "'>" + item.label )
+        .appendTo( ul );
+    };
+	</script>
 <script src="{{ URL::asset('js/classie.js')}}"></script>
 		<script>
 

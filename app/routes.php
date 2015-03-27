@@ -312,7 +312,7 @@
 
 		Route::get('getdata', 'SearchController@autoComplete');
 
-
+		Route::get('get-data', 'SearchController@autoCompleteFrontPage');
 	//Facebook Login (GET) ----------------------------------------------------------------------
 		Route::get('/fb-login', array(
 				 'as' => 'fb-login',

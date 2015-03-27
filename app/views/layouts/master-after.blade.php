@@ -485,6 +485,7 @@ $(window).scroll(function() {
         $(".navbar-collapse").addClass( "slideRight" );
     });
 </script>
+
    <script>
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip();for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})});
    </script>
@@ -517,6 +518,8 @@ $("#upload-video").click(function(){
 	$('.fileUpload').addClass("btn-success");
 });
 	</script>
+
+
 	<script id="the_script" src="{{ URL::asset('js/svgcheckbx.js') }}"></script>
 		@if(Route::current()->getName() == 'course-lesson')
 

@@ -70,4 +70,23 @@ class SearchController extends \BaseController {
  			return Response::json($result);
 
 		}
+
+	public function autoCompleteFrontPage(){
+
+			$term = Input::get('term');
+
+			$data = Course::where('approved', '=', '1')
+						->where('name', 'LIKE',  '%' .$term. '%' )->take(5)->get();
+ 			$result = [];
+
+ 			foreach ($data as $course) {
+ 				if(strpos(Str::lower($course->name), Str::lower($course->name)) !== false)
+ 				{
+ 					$iconCourse = ' /courses/'. $course->id . '/img/' . $course->pic;
+ 					$result[] = ['icon' => $iconCourse, 'value' => $course->name, 'course_id' => $course->id, 'isUser' => false,'classa'=>'course-item'];
+ 				}
+ 			}
+ 			return Response::json($result);
+
+		}
 }

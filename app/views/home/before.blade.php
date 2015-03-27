@@ -16,12 +16,8 @@
 		<h2 class="centered">Find and create interactive courses.</h2>
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
-				<div class="panel panel-default">
-				<div class="panel-body padding-body">
 				<div class="embed-responsive embed-responsive-16by9">
 				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-				</div>
-				</div>
 				</div>
 			</div> 
 			<div class="col-xs-12 col-sm-12 col-md-1">
@@ -224,7 +220,7 @@
 				<h1>Search from hundreds of courses!</h1>
 				{{ Form::open(array('url' => '/search')) }}
 				    <div class="input-group">
-				      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword' ))}}
+				      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword-two' ))}}
 				      <span class="input-group-btn">
 				        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
 				      </span>

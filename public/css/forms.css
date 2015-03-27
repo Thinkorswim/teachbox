@@ -96,7 +96,6 @@ input[type="submit"]:focus {
   position: relative;
   z-index: 1;
   display: inline-block;
-  max-width: 350px;
   width: 100%;
   vertical-align: top;
 }
@@ -105,7 +104,7 @@ input[type="submit"]:focus {
   display: block;
   float: right;
   padding: 0.8em;
-  width: 60%;
+  width: 100%;
   border: none;
   border-radius: 0;
   background: #f0f0f0;

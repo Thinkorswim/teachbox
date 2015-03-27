@@ -419,3 +419,11 @@
 .results .list-group-item .badge {
   background: #2c3e50;
 }
+.front-video .embed-responsive {
+  min-height: 385px;
+}
+@media screen and (max-width: 739px) {
+  html .front-video .embed-responsive {
+    min-height: 1px;
+  }
+}
