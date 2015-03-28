@@ -82,7 +82,7 @@
 			    <div class="panel panel-default settings-panel actions">
 				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 								{{ Form::token() }}
-								{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+								{{ Form::submit('Take this course', array('class'=>'btn btn-default join ask')) }}
 
 					{{ Form::close() }}
 				</div>
