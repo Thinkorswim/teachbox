@@ -99,7 +99,7 @@
 		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 		    		@if(Auth::check())
 						{{ Form::token() }}
-						{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
+						{{ Form::submit('Take this course', array('class'=>'btn btn-default join ask')) }}
 					@endif
 			{{ Form::close() }}	
 			@endif
