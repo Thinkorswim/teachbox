@@ -78,7 +78,7 @@
 		</div>
 		</div>
 	    <div class="col-xs-12 col-sm-4 author-card">
-	   	<div class="panel panel-default settings-panel actions join">
+	   	<div class="panel panel-default settings-panel actions join ask">
 	    		<input type="submit" class="btn btn-default join" value="Ask your question">
 	    </div>
 	    		<div id="ask" class="panel panel-default settings-panel actions">

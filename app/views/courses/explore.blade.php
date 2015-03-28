@@ -1,6 +1,6 @@
 @extends('layouts.master-after')
 @section('title')
-	 explore -
+	 Explore -
 @stop
 
 @section('description')
