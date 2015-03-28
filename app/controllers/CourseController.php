@@ -5,8 +5,8 @@ class CourseController extends \BaseController {
 	public function create ()
 	{
 		if(Auth::check()){
-			$categories = array("Business", "Computer Science", "Art",  "Marketing",  "Design",
-					 "Sports", "Languages","Office Training");
+			$categories = array("Business", "IT & Software", "Personal Development", "Art",  "Marketing",  "Design", "Lifestyle",
+					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Acadameics", "Photography");
 			return View::make('courses.create')->with(array('categories' => $categories));
 		}else{
 			return View::make('home.before');
@@ -22,13 +22,14 @@ class CourseController extends \BaseController {
 			return View::make('courses.explore')
 					->with(array('courses' => $courses, 'countCourse' => $countCourse));
 
-			}
+	}
+
 	public function postCreate()
 	{
 
 		if (Auth::check()){
-			$categories = array("Business", "Computer Science", "Art",  "Marketing",  "Design",
-					 "Sports", "Languages","Office Training");
+			$categories = array("Business", "IT & Software", "Personal Development", "Art",  "Marketing",  "Design", "Lifestyle",
+					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Acadameics", "Photography");
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
 			
 				$file_max = 4000000;
