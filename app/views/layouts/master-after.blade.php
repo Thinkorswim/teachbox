@@ -119,7 +119,7 @@
 	      	<li class="icon-list"><a href="{{ URL::action('ProfileController@feedback')}}"><i class="fa fa-2x fa-exchange"></i><span> Help us improve!</span></a></li>
 	      	@if(Auth::check())
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@create')}}"><i class="fa fa-2x fa-plus"></i><span> Create Course</span></a></li>
-	      	<!--<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>-->
+	      	<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>
 	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
 	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();

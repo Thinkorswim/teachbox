@@ -2,7 +2,7 @@
 
 class Course extends Eloquent {
 
-protected $fillable = array('name', 'user_id', 'description');
+protected $fillable = array('name', 'user_id', 'description', 'category');
 	 public function user() {
         return $this->belongsTo('User');
     }

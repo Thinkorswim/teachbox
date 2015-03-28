@@ -38,6 +38,8 @@
 							@endif  
 							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 30 characters)','class'=>'form-control')) }}
 							</div>
+							<div>Category:</div>
+							{{ Form::select('category',$categories, array('class'=>'categories-select')) }}
 							<div class="row">
 									<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>
 								<div class="fileUpload btn btn-primary">

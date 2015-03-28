@@ -5,29 +5,30 @@ class CourseController extends \BaseController {
 	public function create ()
 	{
 		if(Auth::check()){
-			return View::make('courses.create');
+			$categories = array("Business", "Computer Science", "Art",  "Marketing",  "Design",
+					 "Sports", "Languages","Office Training");
+			return View::make('courses.create')->with(array('categories' => $categories));
 		}else{
 			return View::make('home.before');
 		}
 	}
 
-	public function explore ()
+	public function explore()
 	{
-		if(Auth::check()){
+
 		$countCourse = Course::where('approved', '=', '1')->count();
 		$courses = Course::where('approved', '=', '1')->paginate(5);
-		
+
 			return View::make('courses.explore')
 					->with(array('courses' => $courses, 'countCourse' => $countCourse));
-		}else{
-			return View::make('home.before');
-		}
-	}
 
+			}
 	public function postCreate()
 	{
 
 		if (Auth::check()){
+			$categories = array("Business", "Computer Science", "Art",  "Marketing",  "Design",
+					 "Sports", "Languages","Office Training");
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
 			
 				$file_max = 4000000;
@@ -50,7 +51,6 @@ class CourseController extends \BaseController {
 					return Redirect::action('CourseController@create')
 							->withErrors($validator);
 				}else{
-						
 					$symbols = array("+", "!", "@",  "$",  "^", "&", "*");
 					$replace = array("", "", "",  "",  "", "", "");
 					$newImage = Image::make($image->getRealPath());
@@ -70,11 +70,14 @@ class CourseController extends \BaseController {
 					$message = nl2br($description);
 					$description = trim($message);
 
+					$category_id =  Input::get('category');
+					$category = $categories[$category_id];
 					$user_id = Auth::user()->id;
 					$course = Course::create(array(
 							'name' 		=> $name,
 							'user_id'  => $user_id,
 							'description' => $description,
+							'category' => $category
 						));
 
 					if($course){

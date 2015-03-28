@@ -101,7 +101,7 @@
 				@endif  
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
-
+				
 		    	<div class="row">
 			        <a class="btn btn-primary btnPrevious" >Previous</a>
 			        <a class="btn btn-primary btnNext pull-right" >Next</a>
