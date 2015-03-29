@@ -1,12 +1,13 @@
 @extends('layouts.master-after')
 
 @section('description')
-	???
+	
 @stop
 
 @section('content')
 
 @if(count($courses) > 0)
+<!--
 	<section class="carousel-section">
 	<div class="container">
 		<h2>Featured courses</h2>
@@ -62,7 +63,7 @@
 		</div>  
 
 		</div>
-		  <!-- Controls -->
+		  Controls 
 		  <a class="left carousel-control" href="#course-slider" role="button" data-slide="prev">
 		    <span class="fa fa-chevron-left" aria-hidden="true"></span>
 		    <span class="sr-only">Previous</span>
@@ -74,6 +75,7 @@
 	</div>
 	</section>
 @endif
+-->
 <div class="container">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)

@@ -71,11 +71,11 @@
 					@endif 
 				    @if ($student->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $student->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}@if($student->country && $student->country), @endif {{ $student->country }}">
+						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}@if($student->country != '' && $student->city != ''), @endif {{ $student->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$student->id]) }}">{{ $student->name }} </a></h4>
-			  		<small>{{ $student->city }}@if($student->country && $student->country), @endif {{ $student-> country }}</small>
+			  		<small>{{ $student->city }}@if($student->country != '' && $student->city != ''), @endif {{ $student-> country }}</small>
 			  </div>
 			</div>
 		</div>
