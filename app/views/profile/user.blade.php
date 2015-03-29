@@ -21,7 +21,7 @@
 		<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 			{{ ageCalculator( $user->date ) }}
 		</span>
-		@elseif($user->id == Auth::user()->id)
+		@elseif( Auth::check() && $user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="age" data-toggle="tooltip" data-placement="left" title="Add your age">
 			<i class="fa fa-plus"></i>
 		</a>
@@ -30,7 +30,7 @@
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 			data-toggle="tooltip" data-placement="left" title="{{ $user->city }} @if($user->country != '' && $user->city != ''), @endif{{ $user->country }}">
 		</span>
-		@elseif($user->id == Auth::user()->id)
+		@elseif(Auth::check() && $user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="country" data-toggle="tooltip" data-placement="left" title="Add your country">
 			<i class="fa fa-plus"></i>
 		</a>
@@ -106,7 +106,7 @@
 			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h2><strong>Nothing on the timeline yet.</strong></h2>
-					@if ($user->id == Auth::user()->id)
+					@if (Auth::check() && $user->id == Auth::user()->id)
 						<small>Follow somebody, join or create a course. </small>
 					@endif
 				</div>

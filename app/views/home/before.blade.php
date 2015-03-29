@@ -16,7 +16,6 @@
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
 				<div class="embed-responsive embed-responsive-16by9">
-				<div onclick="thevid=document.getElementById('thevideo'); thevid.style.display='block'; this.style.display='none'"><img src="IMAGE_PATH_URL" style="cursor:pointer" /></div>
 				<iframe id="thevideo" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div> 
