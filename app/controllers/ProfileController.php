@@ -40,8 +40,9 @@ class ProfileController extends \BaseController {
 					->with(array('user' => $user, 'followersCount' => $followersCount,
 						'followingCount' => $followingCount, 'timeline' => $timeline, 'timelineCount' => $timelineCount));
 		}
-
+		if(!Auth::check() && !$user){
 		return App::abort(404);
+		}
 	}
 
 	public function changePic($id){
@@ -422,10 +423,7 @@ class ProfileController extends \BaseController {
 			}
 			foreach ($courseListId as $userCourse)
 			{
-
-
-
-			$joinedList[] = Course::find($userCourse->course_id);
+				$joinedList[] = Course::find($userCourse->course_id);
 			}
 
 				return View::make('profile.courses')

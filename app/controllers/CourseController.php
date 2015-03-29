@@ -629,7 +629,7 @@ class CourseController extends \BaseController {
 		}
 	}
 	
-	public function lessonEdit($id,$lesson,$user)
+	public function lessonEdit($id,$lesson)
 	{
 		$course = Course::find($id);
 		if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id){

@@ -26,7 +26,7 @@
 		@endif
 		@if ($user->country)
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
-			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}, {{ $user->country }}">
+			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country != '' && $user->city != ''), @endif {{ $user->country }}">
 		</span>
 		@elseif($user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="country" data-toggle="tooltip" data-placement="left" title="Add your country">
@@ -66,7 +66,9 @@
 		      <div class="modal-body padding-panel">
 					{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
 					'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}
-					{{ Form::submit('Send message', array('class'=>'form-control', 'id' => 'send-message')) }}
+					<div class="row"> 
+					{{ Form::submit('Send message', array('class'=>'form-control pull-right', 'id' => 'send-message')) }}
+					</div>
 		      </div>
 		    </div>
 		  </div>
@@ -113,7 +115,7 @@
 				<div class="panel panel-default student-card">
 				  <div class="panel-body padding-panel">
 			  		<a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">
-			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">						
+			  			<img src="{{ URL::asset('img/'. $follower->id . '/' . $follower->pic) }}"alt="{{ $follower->name }}'s profile">
 					</a>@if ($follower->date)
 						<span class="age" data-toggle="tooltip" data-placement="right" title="{{ageCalculator( $follower->date )}} years old">
 							{{ageCalculator( $follower->date )}}
@@ -121,11 +123,11 @@
 						@endif
 					    @if ($follower->country)
 						<span class="country" style="background:url('{{ URL::asset(countryFlag( $follower->country ))}}') center center"
-							data-toggle="tooltip" data-placement="right" title="{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}">
+							data-toggle="tooltip" data-placement="right" title="{{ $follower->city }}@if($follower->country != '' && $follower->city != ''), @endif {{ $follower->country }}">
 						</span>
 						@endif
 				  		<h4><a href="{{ URL::action('ProfileController@user', [$follower->id]) }}">{{ $follower-> name }}</a></h4>
-				  		<small>{{ $follower->city }}@if($follower->country && $follower->country), @endif {{ $follower->country }}</small>
+				  		<small>{{ $follower->city }}@if($follower->country != '' && $follower->city != ''), @endif{{ $follower->country }}</small>
 				  </div>
 				</div>
 			</div>

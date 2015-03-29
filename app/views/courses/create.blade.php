@@ -31,17 +31,17 @@
 							 {{ Form::text('name', null, array('placeholder'=>'Name of course','class'=>'form-control')) }}
 	
 							 </div>
+							<div>Category:</div>
+							<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
+							{{ Form::select('category',$categories, null, array('class'=>'form-control')) }}
+							</div>
 							@if($errors->has('description'))
 							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
 							@else             
 							<div class="input-group">
 							@endif  
 							{{ Form::textarea('description', null, array('placeholder'=>'Description (min 30 characters)','class'=>'form-control')) }}
-							</div>
-							<div>Category:</div>
-							<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
-							{{ Form::select('category',$categories, null, array('class'=>'form-control')) }}
 							</div>
 							<div class="row">
 									<img id="profile" src="{{ URL::asset('img/no.jpg')}}" class="circle"/>

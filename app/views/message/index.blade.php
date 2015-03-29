@@ -44,9 +44,11 @@
 	      <form>
 				{{ Form::textarea('', null, array('placeholder' => 'Say hi!',
 				'rows' => '5', 'class'=>'form-control', 'id' => 'text-new')) }}
+				<div class="row"> 
 				{{ Form::button('Send', array(
-				'data-toggle'=>'modal', 'data-target'=>'#chat-with', 'class'=>'btn btn-default form-control',
+				'data-toggle'=>'modal', 'data-target'=>'#chat-with', 'class'=>'btn btn-default form-control pull-right',
 				'id' => 'send-message')) }}
+				</div>
 			</form>
 	      </div>
 	    </div>

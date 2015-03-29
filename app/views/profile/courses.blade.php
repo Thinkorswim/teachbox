@@ -28,7 +28,7 @@
 		@endif
 		@if ($user->country != '')
 		<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
-			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
+			data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country != '' && $user->city != ''), @endif {{ $user->country }}">
 		</span>
 		@elseif($user->id == Auth::user()->id)
 		<a href="{{ URL::action('ProfileController@userSettings', [Auth::user()->id]) }}"  class="country" data-toggle="tooltip" data-placement="left" title="Add your country">
@@ -68,7 +68,9 @@
 		      <div class="modal-body padding-panel">
 					{{ Form::textarea('description', null, array('placeholder' => 'Say hi!',
 					'rows' => '5', 'class'=>'form-control', 'id' => 'text')) }}
-					{{ Form::submit('Send message', array('class'=>'form-control', 'id' => 'send-message')) }}
+					<div class="row"> 
+					{{ Form::submit('Send message', array('class'=>'form-control pull-right', 'id' => 'send-message')) }}
+					</div>
 		      </div>
 		    </div>
 		  </div>

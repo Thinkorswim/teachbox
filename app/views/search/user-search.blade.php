@@ -62,11 +62,11 @@
 						@endif 
 					    @if ($result->country != '')
 						<span class="country" style="background:url('{{ URL::asset(countryFlag( $result->country ))}}') center center" 
-							data-toggle="tooltip" data-placement="right" title="{{ $result->city }}@if($result->country != ''&& $result->country != ''), @endif {{ $result->country }}">
+							data-toggle="tooltip" data-placement="right" title="{{ $result->city }}@if($result->country != '' && $result->city != ''), @endif {{ $result->country }}">
 						</span>
 						@endif
 				  		<h4><a href="{{ URL::action('ProfileController@user', [$result->id]) }}">{{ $result-> name }}</a></h4>
-				  		<small>{{ $result->city }}@if($result->country != '' && $result->country != ''), @endif {{ $result->country }}</small>
+				  		<small>{{ $result->city }}@if($result->country != '' && $result->city != ''), @endif {{ $result->country }}</small>
 				  </div>
 				</div>
 			</div>

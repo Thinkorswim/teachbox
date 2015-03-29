@@ -183,7 +183,7 @@
         <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message"></span></a></li>
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
-	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" />
+	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" /><span class="caret"></span> 
 	        </a>
 			<ul class="dropdown-menu pull-right" role="menu">
 				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="fa fa-user"></i> My profile</a></li>
@@ -583,7 +583,7 @@ $("#upload-video").click(function(){
 	@if(Route::current()->getName() == 'course-lesson')
 		<script type="text/javascript">
 			$(".reply").one("click",function() {
-				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio reply-form"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit" id="comment-post-button" class="btn btn-primary ">Submit</button></div></form>');
+				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio reply-form"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit pull right" id="comment-post-button" class="btn btn-primary ">Submit</button></div></form>');
 			});
 		</script>	
 	@endif
