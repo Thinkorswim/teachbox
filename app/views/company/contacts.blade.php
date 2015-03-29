@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				</div>
-	<section id="team" class="full-screen us text-center">
+	<section id="team" class=" us text-center">
 		<div class="container">
 			<div class="col-xs-12 col-sm-4 course">
 				<div class="panel panel-default course-panel">

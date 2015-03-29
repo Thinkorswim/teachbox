@@ -106,7 +106,7 @@
 			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<h2><strong>Nothing on the timeline yet.</strong></h2>
-					@if ($user->id == Auth::user()->id)
+					@if (Auth::check() && $user->id == Auth::user()->id)
 						<small>Follow somebody, join or create a course. </small>
 					@endif
 				</div>

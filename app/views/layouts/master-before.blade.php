@@ -153,7 +153,7 @@
 					</a>
 				  </li>
 				</ul>
-				<small>All rights reserved Teachbox beta 2014</small>
+				<small>All rights reserved Teachbox beta 2015</small>
 		</div>
 	</footer>
 	<style>
