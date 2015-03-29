@@ -73,9 +73,9 @@
 		    <span class="sr-only">Next</span>
 		  </a>
 	</div>
-	</section>
+	</section>-->
 @endif
--->
+
 <div class="container">
 		<div class="col-xs-12 col-sm-8 status">
 		@if(count($timeline) == 0)
