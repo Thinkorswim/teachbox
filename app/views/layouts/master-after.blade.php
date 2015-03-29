@@ -237,7 +237,7 @@
 					</a>
 				  </li>
 				</ul>
-				<small>All rights reserved Teachbox beta 2014</small>
+				<small>All rights reserved Teachbox beta 2015</small>
 		</div>
 	</footer>
 	<script>
@@ -540,15 +540,31 @@ $("#upload-video").click(function(){
 		            }
 		        });
 
+ 
+				$.post( base_url + '/comment/vote', {commentId: event.target.id.substring(2), isReply: isReply, vote: vote, userId: {{ Auth::id() }}, _token: _token}, function()
+	            {});
 
-				$.post( base_url + '/comment/vote', {commentId: event.target.id.substring(1), isReply: isReply, vote: vote, userId: {{ Auth::id() }}, _token: _token}, function()
-	            {
-	               if(isReply){
-	               		$("#thumbs-reply"+event.target.id).remove();
-	               }else{
-	               		$("#thumbs-comment"+event.target.id).remove();
-	               }
-	            });
+	            if(isReply){
+	            		var currentValue = parseInt($("#lr"  + event.target.id.substring(2)).text(),10);
+	               		$("#thumbs-reply-" + event.target.id.substring(2)).remove();
+	               		if(vote){
+	               			currentValue -= 1;
+	               		}else{
+	               			currentValue += 1;
+	               		}
+	               		$("#lr" + event.target.id.substring(2)).text(currentValue); 
+                }else{
+                		var currentValue = parseInt($("#lc"  + event.target.id.substring(2)).text(),10);
+	               		$("#thumbs-comment-" + event.target.id.substring(2)).remove();
+	               		if(vote){
+	               			currentValue -= 1;
+	               		}else{
+	               			currentValue += 1;
+	               		}
+                		$("#lc" + event.target.id.substring(2)).text(currentValue); 
+                }
+
+
 			
 			});
 

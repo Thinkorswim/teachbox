@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
 		<ul class="nav nav-tabs hidden">
-		<?php $isActive = true; $id= 1; $user=Auth::User();?>
+		<?php $isActive = true; $id= 1; $user=Auth::User();?> 
 		@foreach ($questions as $questionTab)
 		@if($isActive)
 			<li class="active"><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
@@ -241,16 +241,14 @@
 					</div>
 					<div class="panel-footer {{$comment->id}}">
 							<a id="{{$comment->id}}" class="reply" href="javascript:void(0)">Reply</a>
-							{{ $comment->liked }}
-							<!--
+							<span id="lc{{$comment->id}}"> {{ $comment->liked }} </span>
 							@if(!$shownComment)
 
 								<span id="thumbs-comment-{{$comment->id}}">
-									<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote no" id="c{{ $comment->id }}"></i></a>
-									<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote no" id="c{{ $comment->id }}"></i></a>
+									<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote no" id="cu{{ $comment->id }}"></i></a>
+									<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote no" id="cd{{ $comment->id }}"></i></a>
 								</span>
 							@endif
-							-->
 					</div>
 					@foreach ($replies as $reply)
 		 <?php $userR = User::find($reply->user_id);
@@ -270,15 +268,13 @@
 					</div>
 					<div class="panel-footer">
 							<a href="" class="hidden"></a>
-							{{ $reply->liked }}
-							<!--
+							<span id="lr{{$comment->id}}"> {{ $reply->liked }} </span>
 							@if(!$shownReply)
 							<span id="thumbs-reply-{{$reply->id}}">
-								<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote yes"  id="c{{ $reply->id }}"></i></a>
-								<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote yes" id="c{{ $reply->id }}"></i></a>
+								<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote yes"  id="cu{{ $reply->id }}"></i></a>
+								<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote yes" id="cd{{ $reply->id }}"></i></a>
 							</span>
 							@endif
-							-->
 					</div>	
 			</div>			
 						@endforeach
