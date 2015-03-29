@@ -6,7 +6,7 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$categories = array("Business", "IT & Software", "Personal Development", "Art",  "Marketing",  "Design", "Lifestyle",
-					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Acadameics", "Photography");
+					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Academics", "Photography");
 			return View::make('courses.create')->with(array('categories' => $categories));
 		}else{
 			return View::make('home.before');
@@ -29,7 +29,7 @@ class CourseController extends \BaseController {
 
 		if (Auth::check()){
 			$categories = array("Business", "IT & Software", "Personal Development", "Art",  "Marketing",  "Design", "Lifestyle",
-					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Acadameics", "Photography");
+					 "Health & Fitness", "Languages", "Teacher Training", "Music", "Academics", "Photography");
 			if(Input::hasFile('image') && (Input::file('image')->getClientOriginalExtension() == "jpg" || Input::file('image')->getClientOriginalExtension() == "png")){
 			
 				$file_max = 4000000;
@@ -157,17 +157,17 @@ class CourseController extends \BaseController {
 
 			$user = User::find($course->user_id);
 			if(Auth::check()){
-			if($isJoined || Auth::user()->admin == 1){
+			if(Auth::user()->admin == 1){
 				return View::make('courses.join')
 							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined ));
 			
 			}else{
-    			return View::make('courses.not_join')
-       						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));   
+    			return View::make('courses.join')
+       						->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined  ));   
    					}
 			}else{
-				return View::make('courses.not_join')
-							->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'lessonList' => $lessonList ));
+				return View::make('courses.join')
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined  ));
 			}
 		}else{
 			return Redirect::route('home');
@@ -345,17 +345,18 @@ class CourseController extends \BaseController {
 	public function courseLesson($id,$lesson)
 	{
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
-		$studentCount = $studentCount - 1;	
-		if(Auth::check()){
-			$course = Course::find($id);
+		$studentCount = $studentCount - 1;
+		$course = Course::find($id);
 
+		if(Auth::check()){
 			$isJoined = UserCourse::where(function ($query) {
 			    $query->where('user_id', '=', Auth::user()->id);
 			})->where(function ($query) use ($id) {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
-			if(($isJoined || Auth::user()->admin) && ($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin)){
+
+			if($course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin){
 				$lesson = Lesson::where(function ($query) use ($lesson) {
 				    $query->where('order', '=', $lesson);
 				})->where(function ($query) use ($id) {
@@ -383,7 +384,7 @@ class CourseController extends \BaseController {
 	                 	$questions =  Test::where('lesson_id', '=', $lesson->id)->get();
 
 						return View::make('courses.lesson')
-								->with(array('course' => $course, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions,'comments'=>$comments));
+								->with(array('course' => $course, 'isJoined' => $isJoined, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions,'comments'=>$comments));
 				}else{
 						return Redirect::route('course-page', array('id' => $id));
 				}
@@ -392,7 +393,7 @@ class CourseController extends \BaseController {
 							->with(array('course' => $course, 'studentCount' => $studentCount));
 			}
 		}else{
-			return View::make('home.before');
+			   return View::make('home.before');
 		}
 	}
 

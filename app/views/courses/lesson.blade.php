@@ -189,7 +189,7 @@
 				})->where(function ($query) use ( $idLesson) {
 				    $query->where('lesson_id', '=', $idLesson);
 				})->first(); ?>
-				@if(count($isDone) == 0 && Auth::user()->id != $course->user_id)
+				@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
 				<p>or</p>
 				<button class="btn btn-default btn-primary btn-lg" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
 				@endif
@@ -296,7 +296,7 @@
 		  </div>
 		</div>
 			@endif
-			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id)
+			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
 				<button class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
 			@endif
 		<div class="panel panel-default actions playlist-panel place">
