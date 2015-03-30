@@ -165,7 +165,48 @@
 		@endif
 		</div>
 		</div>
+		<div class="col-xs-12 col-sm-4 place">
+			
+			<?php $i = 0; ?>
+			<div class="panel panel-default actions results">
+				<div class="panel-heading">
+					<h3 class="panel-title">Your results</h3>
+				</div>
+			  <div class="panel-body">
+			<div class="list-group"> 
+	        @foreach ($joinedList as $course)
+	        @if($course->user_id != Auth::user()->id)
+		        	<a class="list-group-item" href="{{ URL::action('CourseController@course', $course->id) }}">
+		        			   {{$course->name}}
+								<div class="progress">
+								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$doneArray[$i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$doneArray[$i]}}%;">
+								  </div>
+								</div>
+								<div class="col-xs-6"><p><strong>Completed <br>{{$doneArray[$i]}}%</strong></p></div>
+								<div class="col-xs-6"><p><strong>
+								Grade: @if($doneArray[$i] != 0){{calculateMark($avgArray[$i])}} @else N/A @endif <br>@if($doneArray[$i] != 0){{$avgArray[$i]}}% @endif</strong></p></div></a>
+								<?php $i++; ?>
+				@endif
+	        @endforeach
+	        </div>
 		</div>
-
-
+		</div>
+		@foreach($randomCourses as $random)
+		<?php $creator = User::find($random->user_id);?>
+					<div class="course">
+						<div class="panel panel-default course-panel">
+						  <div class="panel-body">
+							  <a href="{{ URL::action('CourseController@course', [$random->id]) }}">
+								<img src="{{ URL::asset('courses/'. $random->id . '/img/'. '/3x2' . $random->pic) }}">
+							  </a>
+						  	  <h4><a href="{{ URL::action('CourseController@course', [$random->id]) }}"> {{ $random->name; }} </a></h4>
+							   <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
+						  	  <strong><a href="{{ URL::action('ProfileController@user', $random->user_id) }}"> {{  $creator->name }} </a></strong></p>
+							  <p>{{ excerpt($random->description) }}</p>
+						  </div>
+						</div>
+					</div>
+		@endforeach
+	</div>
+	</div>
 @endsection

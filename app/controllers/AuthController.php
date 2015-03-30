@@ -39,9 +39,54 @@ class AuthController extends \BaseController {
 			$pagedData = array_slice($timeline, $currentPage * $perPage, $perPage);
 			$timeline = Paginator::make($pagedData, count($timeline), $perPage);
 		}
+			$createdAll = Course::where('user_id', '=', $user->id)->count();
+			$i = 0;
+			$avgArray = array();
+			$doneArray = array();
+			$m = 0;
+			$courseListId = UserCourse::where('user_id', '=', Auth::user()->id)->get();
+			foreach ($courseListId as $userCourse)
+			{
+                $joinedList[] = Course::find($userCourse->course_id);
+				if($user->id != $joinedList[$i]->user_id && $joinedList[$i]->approved){
+				
+				$joinUser = $joinedList[$i]->user_id;
+				$myId = $user->id;
+				$result = DB::select( DB::raw("SELECT COUNT(results.id) AS result
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$myId' AND courses.id =   '$userCourse->course_id' "));
+				$lessonsCount = Lesson::where('course_id', '=', $userCourse->course_id)->count();
+ 				$done = $result[0]->result; 
+				if($done != 0){
+ 				$donePercent = intval($done/$lessonsCount*100);
+ 				}else{
+ 					$donePercent = 0;
+ 				}
 
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$myId' AND courses.id =  '$userCourse->course_id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$doneArray[$m] = $donePercent;
+				$m++;
+			}
+			$i++;
+			}
+
+			$randomCourses = Course::orderByRaw("RAND()")->take(3)->get();
 			return View::make('home.after')
-							->with(array('timeline' => $timeline, 'courses' => $courses, 'timelineCount' => $timelineCount ));
+							->with(array('timeline' => $timeline,'joinedList' => $joinedList, 'courses' => $courses, 'timelineCount' => $timelineCount,  'avgArray' => $avgArray, 'doneArray' => $doneArray,
+							'randomCourses'=>$randomCourses ));
 		}else{
 			return View::make('home.before')
 							->with(array('max_users' => $max_users, 'remaining' => $remaining));

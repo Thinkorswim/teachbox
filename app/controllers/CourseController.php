@@ -125,7 +125,39 @@ class CourseController extends \BaseController {
 
 	public function course($id)
 	{
+  function orderBy($data, $field)
+  {
+    $code = "return strnatcmp(\$a['$field'], \$b['$field']);";
+    usort($data, create_function('$a,$b', $code));
+    return $data;
+  }
+
 		$course = Course::find($id);
+		$students = UserCourse::where('course_id', '=', $id)->get();
+		$avgArray = array();
+		$studentList = array();
+		$wholeArrays = array();
+		$m = 0;
+		foreach ($students as $student) {
+				$studentList[] = User::find($student->user_id);
+				//if($student->user_id != $course->user_id){
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$studentList[$m]->avg = $avg;
+				$m++;
+
+			//}
+		}
+  			$sorted_data = orderBy($studentList, 'avg');
+  			array_multisort($sorted_data,SORT_DESC);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
 		if ($studentCount > 999){
@@ -159,15 +191,15 @@ class CourseController extends \BaseController {
 			if(Auth::check()){
 			if(Auth::user()->admin == 1){
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined ));
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
 			
 			}else{
     			return View::make('courses.join')
-       						->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined  ));   
+       						->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
    					}
 			}else{
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined  ));
+							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));
 			}
 		}else{
 			return Redirect::route('home');

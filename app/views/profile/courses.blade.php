@@ -127,29 +127,10 @@
 
 			<div class="row">
 			<h2>Enrolled courses</h2>
-			<?php $myId =  $user->id; ?>
-			@if(count($joinedList) - count($createdList) > 0)
+			<?php $i = 0; $myId =  $user->id; ?>
+			@if(count($joinedList) - $createdAll > 0)
 			@foreach ($joinedList as $course)
 				@if ( $course->user_id != $user->id)
-			<?php $result = DB::select( DB::raw("SELECT COUNT(results.id) AS result
-			FROM results
-			JOIN lessons
-			ON results.lesson_id = lessons.id
-			JOIN courses
-			ON lessons.course_id = courses.id
-			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
-			$lessonsCount = Lesson::where('course_id', '=', $course->id)->count();
- 			$done = $result[0]->result; $donePercent = intval($done/$lessonsCount*100); 
-			$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
-			FROM results
-			JOIN lessons
-			ON results.lesson_id = lessons.id
-			JOIN courses
-			ON lessons.course_id = courses.id
-			WHERE results.user_id = '$myId' AND courses.id =  '$course->id'"));
-			$avg = $avg[0]->avg;
-			$avg = intval($avg);
- 			?>
 				<?php $creator = User::find($course->user_id);?>
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
@@ -162,16 +143,18 @@
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
 								<div class="progress">
-								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$donePercent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$donePercent}}%;">
+								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$doneArray[$i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$doneArray[$i]}}%;">
 								  </div>
 								</div>
-								<div class="col-xs-6"><p><strong>Completed <br>{{$donePercent}}%</strong></p></div>
+								<div class="col-xs-6"><p><strong>Completed <br>{{$doneArray[$i]}}%</strong></p></div>
 								<div class="col-xs-6"><p><strong>
-								Grade: @if($donePercent != 0){{calculateMark($avg)}} @else N/A @endif <br>@if($donePercent != 0){{$avg}}% @endif</strong></p></div>
+								Grade: @if($doneArray[$i] != 0){{calculateMark($avgArray[$i])}} @else N/A @endif <br>@if($doneArray[$i] != 0){{$avgArray[$i]}}% @endif</strong></p></div>
 						  </div>
 						</div>
 					</div>
+					<?php $i++; ?>
 				@endif
+				
 			@endforeach
 		@else
 			<div class="panel panel-default settings-panel actions">

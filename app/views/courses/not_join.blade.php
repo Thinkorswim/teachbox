@@ -25,6 +25,7 @@
 			</div>
 			<div class="col-xs-12 col-md-9">
 					<h1>{{ $course->name }}</h1>
+					<h5> in <strong><a href="#"> {{ $course->category; }} </a></strong></h5>
 				    <h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			</div>
 		</div>
@@ -79,10 +80,10 @@
 	    </div>
 	    <div class="col-xs-12 col-sm-4 student author-card">
 		    @if(Auth::check())
-			    <div class="panel panel-default settings-panel actions">
+			    <div class="panel panel-default settings-panel  join ask">
 				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 								{{ Form::token() }}
-								{{ Form::submit('Take this course', array('class'=>'btn btn-default join ask')) }}
+								{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
 
 					{{ Form::close() }}
 				</div>

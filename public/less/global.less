@@ -29,7 +29,16 @@ body,html{
 		left:0;
 		z-index: 9995;
 		width: 100%;
-
+	}
+	.results{
+		//position: fixed;
+		//min-width: 300px;
+	}
+	.results .list-group a {
+		padding: 10px 20px;
+	}
+	.results .list-group .progress{
+		margin: 10px 0;
 	}
 	.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content {
 		position: fixed;
@@ -352,4 +361,22 @@ background: rgba(44, 62, 80, .6);
 }
 footer{
 	padding-bottom: 10px!important;
+}
+.rankings .list-group{
+	img{
+		float: left;
+		display: block;
+		width:70px;
+		height: 70px;
+		.RoundBorders (50%);
+	}
+	h4{
+		line-height: 2;
+		margin-left: 5px;
+		display: block;
+		float: left;
+	}
+	.pull-right{
+		color: @blue;
+	}
 }

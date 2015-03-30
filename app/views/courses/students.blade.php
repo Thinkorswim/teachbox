@@ -96,12 +96,14 @@
 		<div class="col-xs-12 col-sm-4 author-card">
 			@if ((in_array($user->id, $studentIdList)))
 			@else
+			<div class="panel panel-default settings-panel actions join ask">
 		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 		    		@if(Auth::check())
 						{{ Form::token() }}
 						{{ Form::submit('Take this course', array('class'=>'btn btn-default join ask')) }}
 					@endif
 			{{ Form::close() }}	
+			</div>
 			@endif
 
 			@if (Auth::check() && Auth::user()->id == $course->user_id)
@@ -120,7 +122,7 @@
 		@endif
 
 	    @if(Auth::check() && !$isJoined)
-		    <div class="panel panel-default settings-panel actions">
+		    <div class="panel panel-default settings-panel actions join ask">
 			    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 							{{ Form::token() }}
 							{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}

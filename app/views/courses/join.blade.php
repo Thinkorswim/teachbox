@@ -25,6 +25,7 @@
 			</div>
 			<div class="col-xs-12 col-md-9">
 				<h1>{{ $course->name }}</h1>
+				<h4> in <strong><a href="#"> {{ $course->category; }} </a></strong></h4>
 				<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			</div>
 		</div>
@@ -103,7 +104,7 @@
 			</div>
 			@endif
 		    @if(!$isJoined)
-			    <div class="panel panel-default settings-panel actions">
+			    <div class="panel panel-default settings-panel actions join ask">
 				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
 								{{ Form::token() }}
 								{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
@@ -133,11 +134,28 @@
 			  		<small>{{ $user->city }}@if($user->country && $user->country), @endif {{ $user-> country }}</small>
 			  	</div>
 				<div class="row">
-				<hr>
 				@if($user->decription != '')
+				<hr>
+				
 					<p>{{$user->decription}}</p>
 				@endif
 				</div>
+			</div>
+			<?php $num = 1; ?>
+			<div class="panel panel-default actions rankings">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ranking</h3>
+				</div>
+			  <div class="panel-body">
+			<div class="list-group">
+			@foreach($sorted_data as $ranking)
+			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
+			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+			 </a>
+			 <?php $num++; ?>
+			@endforeach
+			</div>
+			</div>
 			</div>
 	    </div>
 	</div>

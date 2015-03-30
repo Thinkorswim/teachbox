@@ -407,6 +407,7 @@ class ProfileController extends \BaseController {
 			$user = User::find($id);
 
 			$createdList = Course::where('user_id', '=', $id)->where('approved', '=', 1)->get();
+			$createdAll = Course::where('user_id', '=', $id)->count();
 			$courseListId = UserCourse::where('user_id', '=', $id)->get();
 			$joinedList = array();
 			
@@ -421,14 +422,48 @@ class ProfileController extends \BaseController {
 			}else{
 				$isFollowing = 0;
 			}
+			$i = 0;
+			$m = 0;
+			$avgArray = array();
+			$doneArray = array();
 			foreach ($courseListId as $userCourse)
 			{
 				$joinedList[] = Course::find($userCourse->course_id);
+				$joinUser = $joinedList[$i]->user_id;
+				if($user->id != $joinedList[$i]->user_id && $joinedList[$i]->approved){
+				$myId = $user->id;
+				$result = DB::select( DB::raw("SELECT COUNT(results.id) AS result
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$myId' AND courses.id =   '$userCourse->course_id' "));
+				$lessonsCount = Lesson::where('course_id', '=', $userCourse->course_id)->count();
+ 				$done = $result[0]->result;
+				if($done != 0){
+ 				$donePercent = intval($done/$lessonsCount*100);
+ 				}else{
+ 					$donePercent = 0;
+ 				}
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$myId' AND courses.id =  '$userCourse->course_id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$doneArray[$m] = $donePercent;
+				$m++;
 			}
-
+			$i++;
+			}
 				return View::make('profile.courses')
 						->with(array('joinedList' => $joinedList,'user' => $user,'isFollowing' => $isFollowing,
-						 'createdList' => $createdList, 'followersCount' => $followersCount,'followingCount' => $followingCount ));
+						 'createdList' => $createdList, 'followersCount' => $followersCount,'followingCount' => $followingCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray,'createdAll'=> $createdAll ));
 	}
 
 	public function userFollowers($id){
