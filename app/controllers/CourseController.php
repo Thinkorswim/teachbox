@@ -1092,7 +1092,15 @@ class CourseController extends \BaseController {
 					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
 		}
 	}
+ 
+	public function courseReview($id)
+	{
 
+	}
 
+	public function postCourseReview($id)
+	{
+
+	}
 }
 

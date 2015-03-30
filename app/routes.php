@@ -176,6 +176,12 @@
 				'uses' => 'MessagesController@getNotification'
 		));
 
+		//Review
+		Route::post('/course/{id}/review',array(
+				 'as' => 'post-course-review',
+				 'uses' => 'CourseController@postCourseReview'
+		));
+
 	});
 	
 
