@@ -44,6 +44,7 @@ class AuthController extends \BaseController {
 			$avgArray = array();
 			$doneArray = array();
 			$m = 0;
+			$joinedList = array();
 			$courseListId = UserCourse::where('user_id', '=', Auth::user()->id)->get();
 			foreach ($courseListId as $userCourse)
 			{
@@ -83,7 +84,7 @@ class AuthController extends \BaseController {
 			$i++;
 			}
 
-			$randomCourses = Course::orderByRaw("RAND()")->take(3)->get();
+			$randomCourses = Course::where('approved', '=', 1)->orderByRaw("RAND()")->take(3)->get();
 			return View::make('home.after')
 							->with(array('timeline' => $timeline,'joinedList' => $joinedList, 'courses' => $courses, 'timelineCount' => $timelineCount,  'avgArray' => $avgArray, 'doneArray' => $doneArray,
 							'randomCourses'=>$randomCourses ));
