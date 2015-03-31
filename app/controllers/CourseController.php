@@ -1125,14 +1125,51 @@ class CourseController extends \BaseController {
 		}
 	}
  
-	public function courseReview($id)
+	/*public function reviewRating($id)
+	{
+		$reviews = $this->reviews();
+	    $avgRating = $reviews->avg('rating');
+	    $this->rating_cache = round($avgRating,1);
+	    $this->rating_count = $reviews->count();
+	    $this->save();
+  }*/
+
+  	public function courseReview($id)
 	{
 
 	}
 
 	public function postCourseReview($id)
 	{
+		  if (Auth::check()){
+			$course = Course::find($id);
+			$user = User::find($id);
 
-	}
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+
+			// Must create validator
+			  if(Input::has('comment') && Input::has('rating')){
+				$comment = Input::get('comment');
+				$rating = Input::get('rating');
+
+
+				$courseReview = Review::create(array(
+						'text' => $comment,
+						'rating'  => $rating,
+						'course_id' => $id,
+						'user_id' => Auth::user()->id,
+						));
+		  	  //$course->recalculateRating(); 
+	  	  		if($courseReview && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+					 return Redirect::route('course-page', array('id' => $id));
+				}
+			  }
+			}else{
+				return View::make('home.before');
+			}
+		}
 }
-
