@@ -104,7 +104,7 @@
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
         
                         <div class="text-right">
-                            <div class="stars starrr" data-rating="0"></div>
+                            <div class="stars starrr" data-rating="1"></div>
                             <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
                             <span class="glyphicon glyphicon-remove"></span>Cancel</a>
 								{{ Form::token() }}

@@ -1125,15 +1125,14 @@ class CourseController extends \BaseController {
 		}
 	}
  
-	/*public function reviewRating($id)
+/*	public function reviewRating($id)
 	{
 		$reviews = $this->reviews();
 	    $avgRating = $reviews->avg('rating');
-	    $this->rating_cache = round($avgRating,1);
-	    $this->rating_count = $reviews->count();
-	    $this->save();
-  }*/
+	    Log::info("Answer:    " . $avgRating);
 
+  	}
+*/
   	public function courseReview($id)
 	{
 
@@ -1151,11 +1150,19 @@ class CourseController extends \BaseController {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
-			// Must create validator
-			  if(Input::has('comment') && Input::has('rating')){
+			$validator = Validator::make(Input::all(),
+					array(
+							'comment'		 => 'required|min:10|max:2048',
+					));
+
+			if($validator->fails()){		
+				return Redirect::route('course-page', array('id' => $id ))
+							->withErrors(array('comment' => 'You have to write at least one character in the input field.'));
+			}
+			  
+			 if(Input::has('comment') && Input::has('rating')){
 				$comment = Input::get('comment');
 				$rating = Input::get('rating');
-
 
 				$courseReview = Review::create(array(
 						'text' => $comment,
@@ -1168,8 +1175,12 @@ class CourseController extends \BaseController {
 					 return Redirect::route('course-page', array('id' => $id));
 				}
 			  }
+
 			}else{
 				return View::make('home.before');
 			}
 		}
 }
+
+
+	 
