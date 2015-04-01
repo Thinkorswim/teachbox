@@ -29,6 +29,7 @@
 				<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			</div>
 		</div>
+
 	</div>
 	<div id="visible" class="tabs-profile">
 		<div class="container">
@@ -89,6 +90,22 @@
 	    </div>
 	    @endif
 	   </div>
+<!-- Print all reviews		@foreach($reviews as $review)
+		  <hr>
+		  <div class="row">
+		    <div class="col-md-12">
+		    @for ($i=1; $i <= 5 ; $i++)
+		      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+		    @endfor
+
+		    {{ $review->user_id }} <span class="pull-right"></span> 
+
+		    <p>{{{$review->text}}}</p>
+		    </div>
+		  </div>
+		@endforeach -->
+
+
 	   <div class="container">
 	<div class="row" style="margin-top:40px;">
 		<div class="col-md-6">

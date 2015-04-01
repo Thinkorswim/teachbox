@@ -125,12 +125,12 @@ class CourseController extends \BaseController {
 
 	public function course($id)
 	{
-  function orderBy($data, $field)
-  {
-    $code = "return strnatcmp(\$a['$field'], \$b['$field']);";
-    usort($data, create_function('$a,$b', $code));
-    return $data;
-  }
+	  function orderBy($data, $field)
+	  {
+	    $code = "return strnatcmp(\$a['$field'], \$b['$field']);";
+	    usort($data, create_function('$a,$b', $code));
+	    return $data;
+	  }
 
 		$course = Course::find($id);
 		$students = UserCourse::where('course_id', '=', $id)->get();
@@ -156,8 +156,12 @@ class CourseController extends \BaseController {
 
 			//}
 		}
-  			$sorted_data = orderBy($studentList, 'avg');
-  			array_multisort($sorted_data,SORT_DESC);
+
+		$sorted_data = orderBy($studentList, 'avg');
+		array_multisort($sorted_data,SORT_DESC);
+		
+		$reviews = Review::where('course_id', '=', $course->id)->get();
+
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
 		if ($studentCount > 999){
@@ -186,20 +190,20 @@ class CourseController extends \BaseController {
 				$lessonList = Lesson::where('course_id', '=', $id)->where('approved', '=', 1)->get();
 			}
 
-
 			$user = User::find($course->user_id);
+
 			if(Auth::check()){
 			if(Auth::user()->admin == 1){
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
 			
 			}else{
     			return View::make('courses.join')
-       						->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
+       						->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
    					}
 			}else{
 				return View::make('courses.join')
-							->with(array('course' => $course, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));
 			}
 		}else{
 			return Redirect::route('home');
@@ -1125,17 +1129,18 @@ class CourseController extends \BaseController {
 		}
 	}
  
-/*	public function reviewRating($id)
-	{
-		$reviews = $this->reviews();
-	    $avgRating = $reviews->avg('rating');
-	    Log::info("Answer:    " . $avgRating);
-
-  	}
-*/
   	public function courseReview($id)
 	{
 
+	}
+
+  public function recalculateRating()
+	{
+		$reviews = $this->reviews();
+		$avgRating = $reviews->avg('rating');
+		$this->rating_cache = round($avgRating,1);
+		$this->rating_count = $reviews->count();
+		$this->save();
 	}
 
 	public function postCourseReview($id)
@@ -1150,6 +1155,7 @@ class CourseController extends \BaseController {
 			    $query->where('course_id', '=', $id);
 			})->count();
 
+			$reviews = Review::where('course_id', '=', $course->id)->get();
 			$validator = Validator::make(Input::all(),
 					array(
 							'comment'		 => 'required|min:10|max:2048',
@@ -1159,7 +1165,7 @@ class CourseController extends \BaseController {
 				return Redirect::route('course-page', array('id' => $id ))
 							->withErrors(array('comment' => 'You have to write at least one character in the input field.'));
 			}
-			  
+			
 			 if(Input::has('comment') && Input::has('rating')){
 				$comment = Input::get('comment');
 				$rating = Input::get('rating');
@@ -1170,9 +1176,10 @@ class CourseController extends \BaseController {
 						'course_id' => $id,
 						'user_id' => Auth::user()->id,
 						));
-		  	  //$course->recalculateRating(); 
+				recalculateRating();
+
 	  	  		if($courseReview && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
-					 return Redirect::route('course-page', array('id' => $id));
+			    	 return Redirect::route('course-page', array('id' => $id, 'reviews' => $reviews));
 				}
 			  }
 
@@ -1181,6 +1188,3 @@ class CourseController extends \BaseController {
 			}
 		}
 }
-
-
-	 
