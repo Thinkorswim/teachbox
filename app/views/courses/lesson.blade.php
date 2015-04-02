@@ -297,7 +297,7 @@
 		</div>
 			@endif
 			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
-				<button class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
+				<button id="testBtn" class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
 			@endif
 		<div class="panel panel-default actions playlist-panel place">
 		  <div class="panel-heading">

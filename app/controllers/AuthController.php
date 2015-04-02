@@ -83,7 +83,6 @@ class AuthController extends \BaseController {
 			}
 			$i++;
 			}
-
 			$randomCourses = Course::where('approved', '=', 1)->orderByRaw("RAND()")->take(3)->get();
 			return View::make('home.after')
 							->with(array('timeline' => $timeline,'joinedList' => $joinedList, 'courses' => $courses, 'timelineCount' => $timelineCount,  'avgArray' => $avgArray, 'doneArray' => $doneArray,

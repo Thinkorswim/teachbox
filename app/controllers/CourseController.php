@@ -160,7 +160,7 @@ class CourseController extends \BaseController {
 		$sorted_data = orderBy($studentList, 'avg');
 		array_multisort($sorted_data,SORT_DESC);
 		
-		$reviews = Review::where('course_id', '=', $course->id)->get();
+		$reviews = Review::where('course_id', '=', $course->id)->orderBy('created_at', 'DESC')->take(3)->get();
 
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
@@ -1165,7 +1165,7 @@ class CourseController extends \BaseController {
 				return Redirect::route('course-page', array('id' => $id ))
 							->withErrors(array('comment' => 'You have to write at least one character in the input field.'));
 			}
-			
+
 			 if(Input::has('comment') && Input::has('rating')){
 				$comment = Input::get('comment');
 				$rating = Input::get('rating');
@@ -1176,7 +1176,7 @@ class CourseController extends \BaseController {
 						'course_id' => $id,
 						'user_id' => Auth::user()->id,
 						));
-				recalculateRating();
+				//recalculateRating();
 
 	  	  		if($courseReview && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			    	 return Redirect::route('course-page', array('id' => $id, 'reviews' => $reviews));
