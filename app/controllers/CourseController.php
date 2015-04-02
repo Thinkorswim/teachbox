@@ -160,7 +160,18 @@ class CourseController extends \BaseController {
 		$sorted_data = orderBy($studentList, 'avg');
 		array_multisort($sorted_data,SORT_DESC);
 		
+		$n = 0;
+		$avgArray1 = array();
 		$reviews = Review::where('course_id', '=', $course->id)->orderBy('created_at', 'DESC')->take(3)->get();
+		foreach ($reviews as $review) {
+			$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+			FROM reviews
+			WHERE reviews.user_id = '$course->id'"));
+			$avg = $avgReview[0]->avgReview;
+			$avg = intval($avg);
+			$avgArray1[$n] = $avg;
+			$n++;
+		}
 
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
@@ -1134,15 +1145,6 @@ class CourseController extends \BaseController {
 
 	}
 
-  public function recalculateRating()
-	{
-		$reviews = $this->reviews();
-		$avgRating = $reviews->avg('rating');
-		$this->rating_cache = round($avgRating,1);
-		$this->rating_count = $reviews->count();
-		$this->save();
-	}
-
 	public function postCourseReview($id)
 	{
 		  if (Auth::check()){
@@ -1176,7 +1178,6 @@ class CourseController extends \BaseController {
 						'course_id' => $id,
 						'user_id' => Auth::user()->id,
 						));
-				//recalculateRating();
 
 	  	  		if($courseReview && $isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 			    	 return Redirect::route('course-page', array('id' => $id, 'reviews' => $reviews));
