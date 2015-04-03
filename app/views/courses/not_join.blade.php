@@ -118,6 +118,59 @@
 			</div>
 	    </div>
     </div>
+<section class="reviews status">
+	<div class="container">
+		<h2>Reviews by students</h2>
+		@foreach($reviews as $review)
+			<div class="col-xs-12 col-sm-4">
+				<div class="panel panel-default settings-panel actions">
+					<div class="panel-body">
+						<?php $userT = User::find($review->user_id); ?>
+					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
+						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong> 
+						rated
+					    @for ($i=1; $i <= 5 ; $i++)
+					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+					    @endfor
+						</p>
+						<hr>
+						<div class="content-status">
+							<p>{{{$review->text}}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		@endforeach
+          <a class="btn btn-primary" href="#reviews-anchor" data-toggle="modal" data-target="#reviews">Leave a Review</a>
+          <a class="btn btn-primary" href="#">All reviews</a>
+	<div class="modal fade settings-panel actions" id="reviews" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
+	      </div>
+	      <div class="modal-body">
+            <div id="post-review-box" >
+                  {{ Form::open(array('action' => array('CourseController@postCourseReview', $course->id))) }}
+                        <input id="ratings-hidden" name="rating" type="hidden"> 
+                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
+        
+                        <div class="text-right">
+                            <div class="stars starrr" data-rating="1"></div>
+                            <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                            <span class="fa fa-times"></span>Cancel</a>
+								{{ Form::token() }}
+								<div class="row"> 
+								{{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
+								</div>
+                        </div>
+				 {{ Form::close() }}
+        </div>
+        </div>
+        </div>
+        </div>
+</section>
     	@if(!Auth::check())
 		<section class="full-screen explore like-it">
 		<div class="container">

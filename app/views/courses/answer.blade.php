@@ -28,6 +28,7 @@
 			</div>
 			<div class="col-xs-12 col-xs-9">
 				<h1>{{ $course->name }}</h1>
+				<h4> in <strong><a href="#"> {{ $course->category; }} </a></strong></h4>
 				<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			</div>
 		</div>

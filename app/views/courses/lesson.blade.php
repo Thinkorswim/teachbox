@@ -182,13 +182,17 @@
 				<source src="{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/video.webm') }}" type="video/webm" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
-			<div id="on-end">
-				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
 				<?php $idLesson = $lesson->id; $isDone = Result::where(function ($query) {
 				    $query->where('user_id', '=', Auth::user()->id);
 				})->where(function ($query) use ( $idLesson) {
 				    $query->where('lesson_id', '=', $idLesson);
 				})->first(); ?>
+			@if(count($isDone) > 0)
+			<div id="on-end" class="on-end-no-vid">
+			@else
+			<div id="on-end">
+			@endif
+				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
 				@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
 				<p>or</p>
 				<button class="btn btn-default btn-primary btn-lg" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
@@ -257,7 +261,7 @@
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong>
-						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userR->name }} </a></strong> 
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userR->name }} </a></strong>
 						   replied
 						   <strong>{{dateTimeline($reply->created_at)}}</strong>
 						</p>
@@ -275,13 +279,12 @@
 								<a href="javascript:void(0)" ><i class="fa fa-thumbs-down vote downvote yes" id="cd{{ $reply->id }}"></i></a>
 							</span>
 							@endif
-					</div>	
-			</div>			
+					</div>
+			</div>
 						@endforeach
 			</div>
 		@endforeach
 		{{$comments->links()}}
-	
 	</div>
 	</div>
 	<div class="col-xs-12 col-sm-4">
@@ -292,7 +295,7 @@
 		    $result = $isDone->right;
 		    $maximum = $isDone->total;
 		    $overall = (intval($result)/intval($maximum)) * 100; ?>
-		  		<h2>You scored {{$overall}}%!</h2>
+		  		<h2>You scored <?php echo intval($overall); ?>%!</h2>
 		  </div>
 		</div>
 			@endif

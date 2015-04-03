@@ -160,19 +160,11 @@ class CourseController extends \BaseController {
 		$sorted_data = orderBy($studentList, 'avg');
 		array_multisort($sorted_data,SORT_DESC);
 		
-		$n = 0;
-		$avgArray1 = array();
 		$reviews = Review::where('course_id', '=', $course->id)->orderBy('created_at', 'DESC')->take(3)->get();
-		foreach ($reviews as $review) {
-			$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
-			FROM reviews
-			WHERE reviews.user_id = '$course->id'"));
-			$avg = $avgReview[0]->avgReview;
-			$avg = intval($avg);
-			$avgArray1[$n] = $avg;
-			$n++;
-		}
-
+		$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+		FROM reviews
+		WHERE reviews.user_id = '$course->id'"));
+		$avgReview = round($avgReview[0]->avgReview);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
 		if ($studentCount > 999){
@@ -206,15 +198,15 @@ class CourseController extends \BaseController {
 			if(Auth::check()){
 			if(Auth::user()->admin == 1){
 				return View::make('courses.join')
-							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
 			
 			}else{
     			return View::make('courses.join')
-       						->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
+       						->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
    					}
 			}else{
-				return View::make('courses.join')
-							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));
+				return View::make('courses.not_join')
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'sorted_data'=>$sorted_data  ));
 			}
 		}else{
 			return Redirect::route('home');
