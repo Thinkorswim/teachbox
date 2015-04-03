@@ -131,7 +131,6 @@ class CourseController extends \BaseController {
 	    usort($data, create_function('$a,$b', $code));
 	    return $data;
 	  }
-
 		$course = Course::find($id);
 		$students = UserCourse::where('course_id', '=', $id)->get();
 		$avgArray = array();
@@ -156,14 +155,12 @@ class CourseController extends \BaseController {
 
 			//}
 		}
-
 		$sorted_data = orderBy($studentList, 'avg');
 		array_multisort($sorted_data,SORT_DESC);
-		
 		$reviews = Review::where('course_id', '=', $course->id)->orderBy('created_at', 'DESC')->take(3)->get();
 		$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
 		FROM reviews
-		WHERE reviews.user_id = '$course->id'"));
+		WHERE reviews.course_id = '$course->id'"));
 		$avgReview = round($avgReview[0]->avgReview);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
@@ -1163,7 +1160,6 @@ class CourseController extends \BaseController {
 			 if(Input::has('comment') && Input::has('rating')){
 				$comment = Input::get('comment');
 				$rating = Input::get('rating');
-
 				$courseReview = Review::create(array(
 						'text' => $comment,
 						'rating'  => $rating,
