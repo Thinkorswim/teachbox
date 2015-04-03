@@ -141,8 +141,7 @@
 				</div>
 			</div>
 		@endforeach
-          <a class="btn btn-primary" href="#reviews-anchor" data-toggle="modal" data-target="#reviews">Leave a Review</a>
-          <a class="btn btn-primary" href="#">All reviews</a>
+          <a class="btn btn-primary" href="{{ URL::action('CourseController@courseReviews', [$course->id]) }}">All reviews</a>
 	<div class="modal fade settings-panel actions" id="reviews" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">

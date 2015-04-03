@@ -246,6 +246,11 @@
 					 'as' => 'explore',
 					 'uses' => 'CourseController@explore'
 			));	
+		// ALL REVIEWS
+			Route::get('/course/{id}/reviews',array(
+					 'as' => 'reviews',
+					 'uses' => 'CourseController@courseReviews'
+			));	
 
 		// COURSE PAGE
 			Route::get('/course/{id}',array(

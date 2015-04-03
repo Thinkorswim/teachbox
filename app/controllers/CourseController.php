@@ -1129,9 +1129,16 @@ class CourseController extends \BaseController {
 		}
 	}
  
-  	public function courseReview($id)
-	{
+  	public function courseReviews($id)
+	{	
+		$course = Course::find($id);
+		$user = User::find($id);
 
+		$reviews = Review::where('course_id', '=', $course->id)->get();
+
+			return View::make('courses.reviews')
+					->with(array('id' => $id, 'reviews' => $reviews));
+	
 	}
 
 	public function postCourseReview($id)
