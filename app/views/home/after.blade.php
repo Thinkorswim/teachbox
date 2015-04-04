@@ -1,7 +1,7 @@
 @extends('layouts.master-after')
 
 @section('description')
-	
+
 @stop
 
 @section('content')
@@ -13,9 +13,9 @@
 		<h2>Featured courses</h2>
 		<div id="course-slider" class="carousel slide carousel-fade" data-ride="carousel">
 		  <div class="carousel-inner" role="listbox">
-		    <?php $isActive = true; ?>
+		    <?php $isActive = true;?>
 		    @foreach($courses as $course)
-		    <?php $user = User::find($course->user_id); ?>
+		    <?php $user = User::find($course->user_id);?>
 			    @if($isActive)
 			    <div class="item active">
 					<div class="course">
@@ -36,7 +36,7 @@
 						</div>
 					</div>
 			    </div>
-			    <?php $isActive = false; ?>
+			    <?php $isActive = false;?>
 			    @else
 			    <div class="item">
 					<div class="course">
@@ -52,7 +52,7 @@
 							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
-			
+
 							</div>
 						  </div>
 						</div>
@@ -60,10 +60,10 @@
 				</div>
 			    @endif
 		    @endforeach
-		</div>  
+		</div>
 
 		</div>
-		  Controls 
+		  Controls
 		  <a class="left carousel-control" href="#course-slider" role="button" data-slide="prev">
 		    <span class="fa fa-chevron-left" aria-hidden="true"></span>
 		    <span class="sr-only">Previous</span>
@@ -88,15 +88,15 @@
 		<div class="scroll place">
 		@foreach ($timeline as $post)
 			@if (is_numeric($post->email))
-				  <?php $course = Course::find($post->id); 
-				  $userT = User::find($post->email);
-				  ?>
+				  <?php $course = Course::find($post->id);
+$userT = User::find($post->email);
+?>
 
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong>
-						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong> 
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
 						@if (is_numeric($post->follower_id))
 						    joined
 						@else
@@ -120,7 +120,7 @@
 									<div class="col-xs-12 col-lg-9">
 								  	  <h3><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h3>
 									  @if (is_numeric($post->follower_id))
-									   	   <?php  $userF = User::find($post->follower_id); ?>
+									   	   <?php $userF = User::find($post->follower_id);?>
 										   <p><a href="{{ URL::action('ProfileController@user', $userF->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
 									  	   <strong><a href="{{ URL::action('ProfileController@user', $userF->id) }}"> {{  $userF->name }} </a></strong></p>
 										   <p> {{ excerpt($course->description) }}</p>
@@ -138,8 +138,8 @@
 				</div>
 			@else
 				<?php $userT = User::find($post->id);
-					  $userF = User::find($post->follower_id);
-				?>
+$userF = User::find($post->follower_id);
+?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	 <p class="heading">
@@ -166,14 +166,21 @@
 		</div>
 		</div>
 		<div class="col-xs-12 col-sm-4 place">
-			
-			<?php $i = 0; ?>
+		<?php $results_count = 0?>
+		@foreach ($joinedList as $course)
+	        @if($course->user_id != Auth::user()->id)
+	        	<?php $results_count++?>
+	  	 @endif
+	   	@endforeach
+			@if ($results_count)
+			<?php $i = 0;?>
 			<div class="panel panel-default actions results">
 				<div class="panel-heading">
 					<h3 class="panel-title">Your results</h3>
 				</div>
 			  <div class="panel-body">
-			<div class="list-group"> 
+			<div class="list-group">
+			@endif
 	        @foreach ($joinedList as $course)
 	        @if($course->user_id != Auth::user()->id)
 		        	<a class="list-group-item" href="{{ URL::action('CourseController@course', $course->id) }}">
@@ -185,7 +192,7 @@
 								<div class="col-xs-6"><p><strong>Completed <br>{{$doneArray[$i]}}%</strong></p></div>
 								<div class="col-xs-6"><p><strong>
 								Grade: @if($doneArray[$i] != 0){{calculateMark($avgArray[$i])}} @else N/A @endif <br>@if($doneArray[$i] != 0){{$avgArray[$i]}}% @endif</strong></p></div></a>
-								<?php $i++; ?>
+								<?php $i++;?>
 				@endif
 	        @endforeach
 	        </div>

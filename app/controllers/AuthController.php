@@ -51,12 +51,12 @@ class AuthController extends \BaseController {
 					$joinUser = $joinedList[$i]->user_id;
 					$myId = $user->id;
 					$result = DB::select(DB::raw("SELECT COUNT(results.id) AS result
-				FROM results
-				JOIN lessons
-				ON results.lesson_id = lessons.id
-				JOIN courses
-				ON lessons.course_id = courses.id
-				WHERE results.user_id = '$myId' AND courses.id =   '$userCourse->course_id' "));
+						FROM results
+						JOIN lessons
+						ON results.lesson_id = lessons.id
+						JOIN courses
+						ON lessons.course_id = courses.id
+						WHERE results.user_id = '$myId' AND courses.id =   '$userCourse->course_id' "));
 					$lessonsCount = Lesson::where('course_id', '=', $userCourse->course_id)->count();
 					$done = $result[0]->result;
 					if ($done != 0) {
@@ -66,12 +66,12 @@ class AuthController extends \BaseController {
 					}
 
 					$avg = DB::select(DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
-				FROM results
-				JOIN lessons
-				ON results.lesson_id = lessons.id
-				JOIN courses
-				ON lessons.course_id = courses.id
-				WHERE results.user_id = '$myId' AND courses.id =  '$userCourse->course_id'"));
+						FROM results
+						JOIN lessons
+						ON results.lesson_id = lessons.id
+						JOIN courses
+						ON lessons.course_id = courses.id
+						WHERE results.user_id = '$myId' AND courses.id =  '$userCourse->course_id'"));
 					$avg = $avg[0]->avg;
 					$avg = intval($avg);
 					$avgArray[$m] = $avg;
@@ -359,9 +359,13 @@ class AuthController extends \BaseController {
 				'password' => Hash::make($password),
 				'code' => $code,
 				'active' => 0,
+				'pic' => 'user.png',
 			));
 
 			if ($user) {
+				$resultMake = File::makeDirectory(public_path() . '/img/' . $user->id);
+				$resultCopy = File::copy(public_path() . '/img/user.png', public_path() . '/img/' . $user->id . '/user.png');
+				$resultCopyThumb = File::copy(public_path() . '/img/user-100x100.png', public_path() . '/img/' . $user->id . '/user-100x100.png');
 
 				Mail::send('emails.auth.activate', array('link' => URL::route('activate', $code), 'name' => $name), function ($message) use ($user) {
 					$message->to($user->email, $user->name)->subject('Teachbox activation');
@@ -381,20 +385,13 @@ class AuthController extends \BaseController {
 
 			$user->active = 1;
 			$user->code = '';
-			$user->pic = 'user.png';
 
 			if ($user->save()) {
-				$resultMake = File::makeDirectory(public_path() . '/img/' . $user->id);
-				$resultCopy = File::copy(public_path() . '/img/user.png', public_path() . '/img/' . $user->id . '/user.png');
-				$resultCopyThumb = File::copy(public_path() . '/img/user-100x100.png', public_path() . '/img/' . $user->id . '/user-100x100.png');
-
-				if ($resultMake && $resultCopy && $resultCopyThumb) {
-					return Redirect::route('home')
-						->with('global-positive', 'Your account was activated.');
-				} else {
-					return Redirect::route('home')
-						->with('global-negative', 'Something terrible happen. We are sorry for the inconvenience. You may need to create a new account or contact our support.');
-				}
+				return Redirect::route('home')
+					->with('global-positive', 'Your account was activated.');
+			} else {
+				return Redirect::route('home')
+					->with('global-negative', 'Something terrible happen. We are sorry for the inconvenience. You may need to create a new account or contact our support.');
 			}
 		}
 
