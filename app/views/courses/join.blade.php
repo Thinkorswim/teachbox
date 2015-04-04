@@ -40,7 +40,7 @@
 			<ul class="nav nav-pills">
 			  <li role="presentation" class="active"><a href="">About the course</a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 			<ul class="nav nav-pills">
 			  <li role="presentation" class="active"><a href="">About the course</a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
 	</div>
@@ -207,7 +207,7 @@
 	          <a class="btn btn-primary" href="#reviews-anchor" data-toggle="modal" data-target="#reviews">Leave a Review</a>
         @endif
         @if(count($reviews) > 0)
-          <a class="btn btn-primary" href= "{{ URL::action('CourseController@courseReviews', [$course->id]) }}">All reviews</a>
+          <a class="btn btn-primary" href= "{{ URL::action('StudentController@courseReviews', [$course->id]) }}">All reviews</a>
           @endif
         </div>
 	<div class="modal fade settings-panel actions" id="reviews" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
@@ -219,7 +219,7 @@
 	      </div>
 	      <div class="modal-body">
             <div id="post-review-box" >
-                  {{ Form::open(array('action' => array('CourseController@postCourseReview', $course->id))) }}
+                  {{ Form::open(array('action' => array('StudentController@postCourseReview', $course->id))) }}
                         <input id="ratings-hidden" name="rating" type="hidden"> 
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
         

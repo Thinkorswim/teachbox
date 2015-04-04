@@ -40,7 +40,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
 	</div>
@@ -169,7 +169,7 @@
 			</div>
 		@endforeach
 		<div class="centered"> 
-          <a class="btn btn-primary" href="{{ URL::action('CourseController@courseReviews', [$course->id]) }}">All reviews</a>
+          <a class="btn btn-primary" href="{{ URL::action('StudentController@courseReviews', [$course->id]) }}">All reviews</a>
          </div>
 	</div>
 </section>

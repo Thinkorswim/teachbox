@@ -70,19 +70,24 @@
   		//Comment
 		Route::post('/course/{id}/lesson/{order}/comment', array(
      			'as'   => 'post-comment',
-     			'uses' => 'CourseController@postComment'
+     			'uses' => 'StudentController@postComment'
   		));
   		
   		Route::post('/course/{id}/lesson/{order}/comment/{reply}', array(
      			'as'   => 'post-reply',
-     			'uses' => 'CourseController@postReply'
+     			'uses' => 'StudentController@postReply'
   		));
 
   		Route::post('/comment/vote', array(
 				'as'   => 'comment-vote',
-				'uses' => 'CourseController@commentVote'
+				'uses' => 'StudentController@commentVote'
 		));
 
+  		//Review
+		Route::post('/course/{id}/review',array(
+				 'as' => 'post-course-review',
+				 'uses' => 'StudentController@postCourseReview'
+		));
 
 		Route::post('/search', array(
 			      'as' => 'post-search',
@@ -176,12 +181,6 @@
 				'uses' => 'MessagesController@getNotification'
 		));
 
-		//Review
-		Route::post('/course/{id}/review',array(
-				 'as' => 'post-course-review',
-				 'uses' => 'CourseController@postCourseReview'
-		));
-
 	});
 	
 
@@ -249,7 +248,7 @@
 		// ALL REVIEWS
 			Route::get('/course/{id}/reviews',array(
 					 'as' => 'reviews',
-					 'uses' => 'CourseController@courseReviews'
+					 'uses' => 'StudentController@courseReviews'
 			));	
 
 		// COURSE PAGE
@@ -303,7 +302,7 @@
 		// Course Students
 			Route::get('/course/{id}/students',array(
 					 'as' => 'course-students',
-					 'uses' => 'CourseController@courseStudents'
+					 'uses' => 'StudentController@courseStudents'
 			));
 
 	//Search ----------------------------------------------------------------------------------

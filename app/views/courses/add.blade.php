@@ -43,7 +43,7 @@
 		<ul class="nav nav-pills">
 		  <li role="presentation"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 		  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-		  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+		  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>
 	</div>
 </div>
@@ -52,7 +52,7 @@
 		<ul class="nav nav-pills">
 		  <li role="presentation"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 		  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
-		  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
+		  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>
 	</div>
 </div>

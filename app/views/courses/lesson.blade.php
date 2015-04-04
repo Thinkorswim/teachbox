@@ -276,7 +276,7 @@
 			@endif
 		 </div>
 		</div>
-		{{ Form::open(array('action' => array('CourseController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+		{{ Form::open(array('action' => array('StudentController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 			{{ Form::textarea('comment', null, array('class'=>'form-control comment-post', 'rows'=>'3','placeholder'=>'Add your comment')) }}
 			{{ Form::token() }}
 				@if($errors->has('comment'))
