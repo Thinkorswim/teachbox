@@ -11,6 +11,7 @@
 @section('content')
 
 	<section class="full-screen main-screen">
+
 	<img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="100px">
 		<h2 class="centered">Find and create interactive courses.</h2>
 		<div class="container">
@@ -18,21 +19,21 @@
 				<div class="embed-responsive embed-responsive-16by9">
 				<iframe id="thevideo" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 				</div>
-			</div> 
+			</div>
 			<div class="col-xs-12 col-sm-12 col-md-1">
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
 				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
 				|| $errors->has('password_again'))
-			<div class="col-xs-12 col-sm-12 col-md-4 tab-register shake">	
+			<div class="col-xs-12 col-sm-12 col-md-4 tab-register shake">
 			@else
-			<div class="col-xs-12 col-sm-12 col-md-4 tab-register">	
+			<div class="col-xs-12 col-sm-12 col-md-4 tab-register">
             @endif
 				<ul class="nav nav-tabs" role="tablist">
 				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
 				  <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
 				</ul>
-				<div class="tab-content">	
+				<div class="tab-content">
 				<!-- Login -->
 				    <div role="tabpanel" class="tab-pane active" id="login">
 
@@ -56,7 +57,7 @@
 						<span id="mistake-mail" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
 						 @else
 						<span class="input input--hoshi">
-						 @endif	
+						 @endif
 						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','id'=>'input-4', 'class'=>'input__field input__field--hoshi')) }}
 							<label class="input__label input__label--hoshi" for="input-4">
@@ -68,8 +69,8 @@
 						@if($errors->has('password_s'))
 						<span id="mistake-pass" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
 						  @else
-						<span class="input input--hoshi">
-						 @endif	
+						<span id="hooshi-start" class="input input--hoshi">
+						 @endif
 						 	{{ Form::password('password_s', array('placeholder'=>'Password','id'=>'input-5','class'=>'input__field input__field--hoshi')) }}
 							<label class="input__label input__label--hoshi" for="input-5">
 								<span class="input__label-content input__label-content--hoshi">Password</span>
@@ -92,14 +93,14 @@
 						{{ Form::token() }}
 							 {{ Form::submit('Login', array('class'=>'form-control')) }}
 						</div>
-						
+
 						{{ Form::close() }}
 					</div>
 
 					@if($max_users < 1000)
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
-						{{ Form::open(['route' => 'create-account']) }}	 
+						{{ Form::open(['route' => 'create-account']) }}
 						@if($errors->has('name'))
 						<span id="user-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('name')}}">
 						@else
@@ -126,7 +127,7 @@
 						 <span id="pass-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('password')}}">
 						 @else
 						<span id="password" class="input input--hoshi" data-toggle="tooltip" title="Your password needs to be 6-20 characters">
-						@endif 	
+						@endif
 							 {{ Form::password('password', array('placeholder'=>'Password','id'=>'input-8', 'class'=>'input__field input__field--hoshi')) }}
 							<label class="input__label input__label--hoshi" for="input-8">
 								<span class="input__label-content input__label-content--hoshi">Password</span>
@@ -158,7 +159,7 @@
 					@else
 					<!-- Subscribe -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
-						
+
 						<h1>Subscribe</h1>
 						<p>Subscribe now to recieve information about our launch.</p>
 						  	{{ Form::open(['route' => 'post-subscribe']) }}
@@ -186,25 +187,25 @@
 	<section class="full-screen learn-screen">
 		<div class="container">
 			<div class="col-sm-3">
-				
+
 				<img src="{{ URL::asset('img/Browserpen.png') }}" alt="broswer pen">
 				<h2 class="centered">Teach</h2>
-				<p> Everyone has some knowledge to share. Spit it out. Teach the world. </p>
+				<p> We want to give everyone the right to share their knowledge. You can lead the education revolution and change the lifes of millions. </p>
 			</div>
 			<div class="col-sm-3">
-				
+
 				<img src="{{ URL::asset('img/Education.png') }}" alt="edcation hat">
 				<h2 class="centered">Learn</h2>
-				<p> Nobody is perfect. Get something out of that knowledge box. </p>
+				<p> Learning has not been esier before. With our 5 minutes long lessons and quick tests you will become a master in any field in no time.  </p>
 			</div>
 			<div class="col-sm-3">
-				
+
 				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
 				<h2 class="centered">Earn</h2>
-				<p> Earn by creating something and doing something great. </p>
+				<p> Earn by creating interactive courses and doing something valuable.   </p>
 			</div>
 			<div class="col-sm-3">
-				
+
 				<img src="{{ URL::asset('img/Hearts.png') }}" alt="hearts">
 				<h2 class="centered">Socialise</h2>
 				<p> Share your experience with your friends. Know what they are up to.</p>
@@ -239,14 +240,14 @@
 		<div class="container">
 			<h1>People talk about us</h1>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			  
+
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>
 						"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"
 						 <small>Koko Donchev, Stepsss</small>
 			        </h3>
-			       
+
 			    </div>
 			    <div class="item">
 			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>

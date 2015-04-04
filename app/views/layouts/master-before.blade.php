@@ -24,12 +24,14 @@
     <![endif]-->
   </head>
   <body>
-  @if(Route::current()->getName() == 'home')
-  <div class="absolute-screen">
-	<h2 class="centered">Only <strong>{{$remaining}}</strong> registrations remaining. <br><br>Be from the first in Teachbox!</h2>
+  @if(!Cookie::get('registrations-remaining'))
+	  @if(Route::current()->getName() == 'home')
+		  <div class="absolute-screen">
+			<h2 class="centered">Only <strong>{{$remaining}}</strong> registrations remaining. <br><br>Don't miss the chance to be one of the first users on Teachbox !</h2>
 
-</div>
-@endif
+		</div>
+	  @endif
+   @endif
  	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery')
 		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -39,9 +41,9 @@
 	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
 	      </div>
 	      <div class="modal-body">
-				<div class="tab-content">	
+				<div class="tab-content">
 				<!-- Login -->
-				    <div role="tabpanel" class="tab-pane in fade active">	
+				    <div role="tabpanel" class="tab-pane in fade active">
 						<a class="btn btn-lg btn-fb" href="{{ URL::route('fb-login') }}">
 						<i class="fa fa-facebook"></i> Login with Facebook
 						</a>
@@ -56,11 +58,11 @@
 						{{Session::get('global-negative')}}
 						</div>
 						@endif
-						@if($errors->has('email_s'))					
+						@if($errors->has('email_s'))
 						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
 						 @else
 						<div class="input-group">
-						 @endif	
+						 @endif
 						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
@@ -69,7 +71,7 @@
 						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
 						  @else
 						<div class="input-group">
-						 @endif	
+						 @endif
 						  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
 						</div>
@@ -114,7 +116,7 @@
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		</div>
-		
+
 </header>@endif
 	    @yield('content')
  @if(Route::current()->getName() == 'home')
@@ -195,7 +197,7 @@
 				},
 				open: function() {
 				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
-				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>"); 
+				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>");
 			}
 		}).autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li class=" + item.classa +">" )
@@ -260,13 +262,13 @@
    		$(".input__field").bind(" change keyup",function(){
     //Do something, probably with $(this).val()
     if ($(this).val() != ''){
-       		$(this).parent().addClass("input--filled");	
+       		$(this).parent().addClass("input--filled");
 }
-   		
+
 });
 
-var ua = navigator.userAgent.toLowerCase(); 
-  if (ua.indexOf('safari') != -1) { 
+var ua = navigator.userAgent.toLowerCase();
+  if (ua.indexOf('safari') != -1) {
     if (ua.indexOf('chrome') > -1) {
       $(".input__field").removeAttr('placeholder');
     } else {
@@ -298,7 +300,16 @@ var ua = navigator.userAgent.toLowerCase();
 	</script>
 <script src="{{ URL::asset('js/classie.js')}}"></script>
 		<script>
-
+		$(document).ready(function () {
+			setTimeout(
+			  function()
+			  {
+						  if($("#input-4").val().length > 0)
+							{
+								$("#hooshi-start").addClass("input--filled");
+							}
+			  }, 500);
+		});
 			(function() {
 				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
 				if (!String.prototype.trim) {
