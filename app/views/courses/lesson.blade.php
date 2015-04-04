@@ -203,7 +203,68 @@
 	</div>
 </section>
 <div class="container">
-	<div class="col-xs-12 col-sm-8">
+	<div class="col-xs-12 col-sm-4 col-sm-push-8">
+	 @if(count($isDone) > 0)
+		<div class="panel panel-default settings-panel actions place result">
+		  <div class="panel-body padding-panel">
+		    <?php 
+		    $result = $isDone->right;
+		    $maximum = $isDone->total;
+		    $overall = (intval($result)/intval($maximum)) * 100; ?>
+		  		<h2>You scored <?php echo intval($overall); ?>%!</h2>
+		  </div>
+		</div>
+			@endif
+			@if(Auth::check() && !$isJoined)
+			    <div class="panel panel-default settings-panel place actions join ask">
+				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
+								{{ Form::token() }}
+								{{ Form::submit('Take the course of this lesson', array('class'=>'btn btn-default join')) }}
+
+					{{ Form::close() }}
+				</div>
+			@endif
+			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
+				<button id="testBtn" class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
+			@endif
+		<div class="panel panel-default actions playlist-panel place">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">
+		  		<a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a>
+		  	</h3>
+		  	<small> by <strong><a href="{{ URL::action('ProfileController@user', $creator->id) }}"> {{ $creator->name; }} </a></strong></small>
+		  </div>
+		  <div class="panel-body">
+			  <div class="list-group" id="list-lessons">
+			  <?php $i = 1; ?>
+				@foreach ($lessonList as $lesson_temp)
+				@if(Auth::user()->admin || $lesson_temp->approved || Auth::user()->id == $course->user_id)
+					@if ($lesson_temp->order == $lesson->order)
+			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
+							<div class="col-xs-9">
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
+				 			</div>
+				 			<div class="col-xs-3">
+				 			 	<div class="pull-right">{{ $lesson_temp->duration; }}</div> 
+				 			</div>
+			 		 	 </a>
+			 		@else
+				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
+							<div class="col-xs-9">
+				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
+				 			</div>
+				 			<div class="col-xs-3">
+				 			 	 <div class="pull-right">{{ $lesson_temp->duration; }}</div> 
+				 			</div>
+				 		</a>
+			 		@endif
+			 	@endif
+			    @endforeach
+			   </div>
+		  </div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 		<div class="panel panel-default place">
 		  <div class="panel-body">
 			<h1>{{ $lesson->name }}</h1>
@@ -286,58 +347,6 @@
 		@endforeach
 		{{$comments->links()}}
 	</div>
-	</div>
-	<div class="col-xs-12 col-sm-4">
-	 @if(count($isDone) > 0)
-		<div class="panel panel-default settings-panel actions place result">
-		  <div class="panel-body padding-panel">
-		    <?php 
-		    $result = $isDone->right;
-		    $maximum = $isDone->total;
-		    $overall = (intval($result)/intval($maximum)) * 100; ?>
-		  		<h2>You scored <?php echo intval($overall); ?>%!</h2>
-		  </div>
-		</div>
-			@endif
-			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
-				<button id="testBtn" class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
-			@endif
-		<div class="panel panel-default actions playlist-panel place">
-		  <div class="panel-heading">
-		  	<h3 class="panel-title">
-		  		<a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a>
-		  	</h3>
-		  	<small> by <strong><a href="{{ URL::action('ProfileController@user', $creator->id) }}"> {{ $creator->name; }} </a></strong></small>
-		  </div>
-		  <div class="panel-body">
-			  <div class="list-group" id="list-lessons">
-			  <?php $i = 1; ?>
-				@foreach ($lessonList as $lesson_temp)
-				@if(Auth::user()->admin || $lesson_temp->approved || Auth::user()->id == $course->user_id)
-					@if ($lesson_temp->order == $lesson->order)
-			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
-							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
-				 			</div>
-				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson_temp->duration; }}</div> 
-				 			</div>
-			 		 	 </a>
-			 		@else
-				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
-							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
-				 			</div>
-				 			<div class="col-xs-3">
-				 			 	 <div class="pull-right">{{ $lesson_temp->duration; }}</div> 
-				 			</div>
-				 		</a>
-			 		@endif
-			 	@endif
-			    @endforeach
-			   </div>
-		  </div>
-		</div>
 	</div>
 </div>
 

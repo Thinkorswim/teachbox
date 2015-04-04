@@ -26,6 +26,11 @@
 				<h1>{{ $course->name }}</h1>
 				<h4> in <strong><a href="#"> {{ $course->category; }} </a></strong></h4>
 				<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
+				<h5>
+					 <strong>@for ($i=1; $i <= 5 ; $i++)
+						<span class="fa fa-star{{ ($i <= $avgReview) ? '' : '-o'}}"></span>
+					@endfor</strong>
+				</h5>
 			</div>
 		</div>
 	</div>
@@ -48,37 +53,7 @@
 		</div>
 	</div>
 	<div class="container follow">
-
-		<div class="col-xs-12 col-sm-8">
-			<div class="col-lg-8">
-				</div>
-		<div class="col-lg-12">
-		@if (count($questionList) > 0)
-		<div class="panel panel-default actions">
-		  <div class="panel-heading">
-		  	<h3 class="panel-title">Questions</h3>
-		  </div>
-		  <div class="panel-body"> 
-			  	<div class="list-group">
-					@foreach ($questionList as $question)
-					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
-					 		 {{ $question->title; }} 
-					 	</a>
-					@endforeach
-	    		</div>
-	       </div>
-	    </div>
-	    @else
-			<div class="panel panel-default settings-panel actions no-timeline">
-				<div class="panel-body padding-panel">
-					<h2><strong>No questions yet.</strong></h2>
-					<small>Do not hesitate to ask anything you want to know. </small>
-				</div>
-			</div>
-	    @endif
-		</div>
-		</div>
-	    <div class="col-xs-12 col-sm-4 author-card">
+	    <div class="col-xs-12 col-sm-4 author-card col-sm-push-8">
 	   	<div class="panel panel-default settings-panel actions join ask">
 	    		<input type="submit" class="btn btn-default join" value="Ask your question">
 	    </div>
@@ -151,6 +126,56 @@
 				@endif
 				</div>
 			</div>
+					<?php $num = 1; ?>
+
+			<div class="panel panel-default actions rankings">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ranking</h3>
+				</div>
+			  <div class="panel-body">
+			<div class="list-group">
+			@foreach($rankingList as $ranking)
+			@if ($ranking->id != $course->user_id)
+			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
+			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+			 </a>
+			 <?php $num++; ?>
+			 @endif
+
+			@endforeach
+</div>
+</div>
+</div>
+</div>
+		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
+			<div class="col-lg-8">
+				</div>
+		<div class="col-lg-12">
+		@if (count($questionList) > 0)
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Questions</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($questionList as $question)
+					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
+					 		 {{ $question->title; }} 
+					 	</a>
+					@endforeach
+	    		</div>
+	       </div>
+	    </div>
+	    @else
+			<div class="panel panel-default settings-panel actions no-timeline">
+				<div class="panel-body padding-panel">
+					<h2><strong>No questions yet.</strong></h2>
+					<small>Do not hesitate to ask anything you want to know. </small>
+				</div>
+			</div>
+	    @endif
+		</div>
+		</div>
 
 </div>
 </div>

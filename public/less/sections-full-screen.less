@@ -129,6 +129,7 @@
 		font-weight:900;
 	}
   &.like-it{
+      margin-top: 54px;
     div > h1{
       margin-bottom: 20px;
     }
@@ -169,23 +170,36 @@
 		font-weight:900;
 	}
 }
+.reviews div >h2{
+  text-align: center;
+  color:@blue;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.reviews div > a{
+  margin: 0 auto;
+}
 .reviews{
  background: url(../img/lights.jpg) no-repeat center center; 
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 40px;
+  padding: 40px 0;
   margin-bottom: -54px;
+  .panel{
+    overflow: hidden!important;
+  }
   .content-status p{
-    margin:0 0px 10px 0;
-    padding:0;
+    margin:0 0px 15px 0;
+    padding:0 0 15px 0;
   }
   &.status .heading{
-    padding:10px!important;
+    padding:15px!important;
   }
   hr{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 }
 

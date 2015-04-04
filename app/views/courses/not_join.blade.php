@@ -27,6 +27,11 @@
 					<h1>{{ $course->name }}</h1>
 					<h5> in <strong><a href="#"> {{ $course->category; }} </a></strong></h5>
 				    <h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
+					<h5>
+					 <strong>@for ($i=1; $i <= 5 ; $i++)
+						<span class="fa fa-star{{ ($i <= $avgReview) ? '' : '-o'}}"></span>
+					@endfor</strong>
+					</h5>
 			</div>
 		</div>
 	</div>
@@ -49,36 +54,8 @@
 		</div>
 	</div>
 	<div class="container follow">
-		<div class="col-xs-12 col-sm-8">
-			<div class="panel panel-default description">
-			  <div class="panel-body">
-				<p>{{ $course->description }}</p>
-			  </div>
-			</div>
-		@if (count($lessonList) > 0)
-			<?php $i = 1; ?>
-		<div class="panel panel-default actions" >
-		  <div class="panel-heading">
-		  	<h3 class="panel-title">Lessons</h3>
-		  </div>
-		  <div class="panel-body"> 
-			  	<div class="list-group">
-					@foreach ($lessonList as $lesson)
-					 	<div class="list-group-item" >
-							<div class="col-xs-9">
-							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
-							</div>
-				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
-				 			</div>
-				 		</div>
-					@endforeach
-	    		</div>
-	       </div>
-	    </div>
-	    @endif
-	    </div>
-	    <div class="col-xs-12 col-sm-4 student author-card">
+	<div class="row">
+	    <div class="col-xs-12 col-sm-4 col-sm-push-8">
 		    @if(Auth::check())
 			    <div class="panel panel-default settings-panel  join ask">
 				    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}
@@ -88,7 +65,7 @@
 					{{ Form::close() }}
 				</div>
 			@endif
-			<div class="panel panel-default student-card">
+			<div class="panel panel-default author-card student-card">
 				<div class="panel-heading">
 					<h3 class="panel-title">About the tutor</h3>
 				</div>
@@ -109,20 +86,70 @@
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
 			  		<small>{{ $user->city }}@if($user->country && $user->country), @endif {{ $user-> country }}</small>
 			  	</div>
+			  	@if($user->decription != '')
 				<div class="row">
 				<hr>
-				@if($user->decription != '')
 					<p>{{$user->decription}}</p>
-				@endif
 				</div>
+				@endif
 			</div>
+			<?php $num = 1; ?>
+
+			<div class="panel panel-default actions rankings">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ranking</h3>
+				</div>
+			  <div class="panel-body">
+			<div class="list-group">
+			@foreach($rankingList as $ranking)
+			@if ($ranking->id != $course->user_id)
+			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
+			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+			 </a>
+			 <?php $num++; ?>
+			 @endif
+
+			@endforeach
+			</div>
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
+			<div class="panel panel-default description">
+			  <div class="panel-body">
+				<p>{{ $course->description }}</p>
+			  </div>
+			</div>
+		@if (count($lessonList) > 0)
+			<?php $i = 1; ?>
+		<div class="panel panel-default actions">
+		  <div class="panel-heading">
+		  	<h3 class="panel-title">Lessons</h3>
+		  </div>
+		  <div class="panel-body"> 
+			  	<div class="list-group">
+					@foreach ($lessonList as $lesson)
+					 	<div class="list-group-item">
+							<div class="col-xs-9">
+							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							</div>
+				 			<div class="col-xs-3">
+				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
+				 			</div>
+				 		</div>
+					@endforeach
+	    		</div>
+	       </div>
 	    </div>
-    </div>
+	    @endif
+	    </div>
+	    </div>
+   		</div>
+@if(count($reviews) != 0)
 <section class="reviews status">
 	<div class="container">
-		<h2>Reviews by students</h2>
 		@foreach($reviews as $review)
-			<div class="col-xs-12 col-sm-4">
+			<div class="col-xs-12 col-sm-4 ">
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 						<?php $userT = User::find($review->user_id); ?>
@@ -130,7 +157,7 @@
 						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong> 
 						rated
 					    @for ($i=1; $i <= 5 ; $i++)
-					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-o'}}"></span>
 					    @endfor
 						</p>
 						<hr>
@@ -141,35 +168,13 @@
 				</div>
 			</div>
 		@endforeach
+		<div class="centered"> 
           <a class="btn btn-primary" href="{{ URL::action('CourseController@courseReviews', [$course->id]) }}">All reviews</a>
-	<div class="modal fade settings-panel actions" id="reviews" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-	        <h4 class="modal-title" id="exampleModalLabel"> Login</h4>
-	      </div>
-	      <div class="modal-body">
-            <div id="post-review-box" >
-                  {{ Form::open(array('action' => array('CourseController@postCourseReview', $course->id))) }}
-                        <input id="ratings-hidden" name="rating" type="hidden"> 
-                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-        
-                        <div class="text-right">
-                            <div class="stars starrr" data-rating="1"></div>
-                            <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                            <span class="fa fa-times"></span>Cancel</a>
-								{{ Form::token() }}
-								<div class="row"> 
-								{{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
-								</div>
-                        </div>
-				 {{ Form::close() }}
-        </div>
-        </div>
-        </div>
-        </div>
+         </div>
+	</div>
 </section>
+@endif
+
     	@if(!Auth::check())
 		<section class="full-screen explore like-it">
 		<div class="container">

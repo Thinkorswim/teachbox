@@ -101,7 +101,19 @@
 		</div>
 	</div>
 	<div class="container follow">
-		<div class="col-xs-12 col-sm-8">
+	<div class="col-xs-12 col-sm-4 col-sm-push-8">
+			@if($user->decription != '')
+				<div class="panel panel-default actions no-timeline bio">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
+    </div>
+		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 		<div class="row">
 		@if(count($createdList) > 0)
 			<h2>Created courses</h2>
@@ -142,6 +154,7 @@
 						  	  <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
 							  <p>{{ excerpt($course->description) }}</p>
+							  @if($doneArray[$i] != 100)
 								<div class="progress">
 								  <div class="progress-bar"role="progressbar" aria-valuenow="{{$doneArray[$i]}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$doneArray[$i]}}%;">
 								  </div>
@@ -149,6 +162,12 @@
 								<div class="col-xs-6"><p><strong>Completed <br>{{$doneArray[$i]}}%</strong></p></div>
 								<div class="col-xs-6"><p><strong>
 								Grade: @if($doneArray[$i] != 0){{calculateMark($avgArray[$i])}} @else N/A @endif <br>@if($doneArray[$i] != 0){{$avgArray[$i]}}% @endif</strong></p></div>
+							@else
+								<div class="row completed">
+									<h5>Completed!</h5>
+									<p>You got <strong>{{calculateMark($avgArray[$i])}}</strong> ({{$avgArray[$i]}}%)</p>
+								</div>
+							@endif
 						  </div>
 						</div>
 					</div>
@@ -165,18 +184,7 @@
 		@endif
 	    </div>
 	</div>
-	<div class="col-xs-12 col-sm-4">
-			@if($user->decription != '')
-				<div class="panel panel-default actions no-timeline bio">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">About</h3>
-				  </div>
-				  <div class="panel-body padding-panel">
-					<p>{{$user->decription}}</p>
-					</div>
-				  </div>
-			@endif
-    </div>
+
 </div>
 	@if(!Auth::check())
 		<section class="full-screen explore like-it new-here">

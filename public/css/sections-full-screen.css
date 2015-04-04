@@ -131,6 +131,10 @@
   margin-bottom: 60px;
   font-weight: 900;
 }
+.full-screen.learn-screen.like-it,
+.full-screen.explore.like-it {
+  margin-top: 54px;
+}
 .full-screen.learn-screen.like-it div > h1,
 .full-screen.explore.like-it div > h1 {
   margin-bottom: 20px;
@@ -174,24 +178,37 @@
 .full-screen h2 {
   font-weight: 900;
 }
+.reviews div > h2 {
+  text-align: center;
+  color: #1abc9c;
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.reviews div > a {
+  margin: 0 auto;
+}
 .reviews {
   background: url(../img/lights.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 40px;
+  padding: 40px 0;
   margin-bottom: -54px;
 }
+.reviews .panel {
+  overflow: hidden!important;
+}
 .reviews .content-status p {
-  margin: 0 0px 10px 0;
-  padding: 0;
+  margin: 0 0px 15px 0;
+  padding: 0 0 15px 0;
 }
 .reviews.status .heading {
-  padding: 10px!important;
+  padding: 15px!important;
 }
 .reviews hr {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .carousel-section {
   background: #1abc9c;

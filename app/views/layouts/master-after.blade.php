@@ -194,7 +194,7 @@
       </ul>
 		@else
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
+		        <li id="login"><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		@endif

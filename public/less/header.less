@@ -228,7 +228,9 @@ body .navbar-brand{
 body header .input-group{
 	padding: 0;
 }
-
+	body header .nav-tabs li a{
+		padding: 10px 4px;
+	}
 }
 @media screen and (max-width: 500px){
 	.navbar-header i{
@@ -238,14 +240,15 @@ body header .input-group{
 	header .caret{
 	display: none;
 	}
-	body header .nav-tabs li a{
-		padding: 10px 4px;
-	}
+
 	body .navbar-header i{
 		position: absolute;
 	}
 }
+@media screen and (max-width: 450px){
+#login{display: none;}
 
+}
 .ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content{
 	z-index: 9999;
 }

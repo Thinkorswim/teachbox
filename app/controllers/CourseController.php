@@ -125,7 +125,7 @@ class CourseController extends \BaseController {
 
 	public function course($id)
 	{
-	  function orderBy($data, $field)
+	function orderBy($data, $field)
 	  {
 	    $code = "return strnatcmp(\$a['$field'], \$b['$field']);";
 	    usort($data, create_function('$a,$b', $code));
@@ -134,12 +134,10 @@ class CourseController extends \BaseController {
 		$course = Course::find($id);
 		$students = UserCourse::where('course_id', '=', $id)->get();
 		$avgArray = array();
-		$studentList = array();
-		$wholeArrays = array();
+		$rankingList = array();
 		$m = 0;
 		foreach ($students as $student) {
-				$studentList[] = User::find($student->user_id);
-				//if($student->user_id != $course->user_id){
+				$rankingList[] = User::find($student->user_id);
 				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -150,17 +148,18 @@ class CourseController extends \BaseController {
 				$avg = $avg[0]->avg;
 				$avg = intval($avg);
 				$avgArray[$m] = $avg;
-				$studentList[$m]->avg = $avg;
+				$rankingList[$m]->avg = $avg;
 				$m++;
-
-			//}
 		}
-		$sorted_data = orderBy($studentList, 'avg');
-		array_multisort($sorted_data,SORT_DESC);
+		$rankingList = array_values(array_sort($rankingList, function($value)
+		{
+		    return $value['avg'];
+		}));
+		$rankingList = array_reverse($rankingList);
+		$rankingList = array_slice($rankingList, 0, 10);
 		$reviews = Review::where('course_id', '=', $course->id)->orderBy('created_at', 'DESC')->take(3)->get();
 		$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
-		FROM reviews
-		WHERE reviews.course_id = '$course->id'"));
+		FROM reviews WHERE reviews.course_id = '$course->id'"));
 		$avgReview = round($avgReview[0]->avgReview);
 		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 		$studentCount = $studentCount - 1;
@@ -195,15 +194,15 @@ class CourseController extends \BaseController {
 			if(Auth::check()){
 			if(Auth::user()->admin == 1){
 				return View::make('courses.join')
-							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data ));
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList ));
 			
 			}else{
     			return View::make('courses.join')
-       						->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'sorted_data'=>$sorted_data  ));   
+       						->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList  ));   
    					}
 			}else{
 				return View::make('courses.not_join')
-							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'sorted_data'=>$sorted_data  ));
+							->with(array('course' => $course,'reviews' => $reviews,'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'avgReview'=>$avgReview, 'rankingList'=>$rankingList  ));
 			}
 		}else{
 			return Redirect::route('home');
@@ -885,6 +884,11 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 			$studentCount = $studentCount - 1;	
 			if ($studentCount > 999){
@@ -897,19 +901,45 @@ class CourseController extends \BaseController {
 				$thousand = substr($studentCount, 1, 1);
 				$studentCount = $million . '.'. $thousand . 'm';
 			}
-
+			$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+			FROM reviews WHERE reviews.course_id = '$course->id'"));
+			$avgReview = round($avgReview[0]->avgReview);
 			$isJoined = UserCourse::where(function ($query) {
 			    $query->where('user_id', '=', Auth::user()->id);
 			})->where(function ($query) use ($id) {
 			    $query->where('course_id', '=', $id);
 			})->count();
-
+		$students = UserCourse::where('course_id', '=', $id)->get();
+		$avgArray = array();
+		$rankingList = array();
+		$m = 0;
+		foreach ($students as $student) {
+				$rankingList[] = User::find($student->user_id);
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$rankingList[$m]->avg = $avg;
+				$m++;
+		}
+		$rankingList = array_values(array_sort($rankingList, function($value)
+		{
+		    return $value['avg'];
+		}));
+		$rankingList = array_reverse($rankingList);
+		$rankingList = array_slice($rankingList, 0, 10);
 			$user = User::find($course->user_id);
 			$questionList = CourseQuestion::where('course_id', '=', $id)->get();
 
 			if(($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)) || Auth::user()->admin = 1){
 				return View::make('courses.question')
-						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList ));
+						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'rankingList'=>$rankingList, 'isJoined' => $isJoined  ));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
@@ -990,6 +1020,14 @@ class CourseController extends \BaseController {
 	{
 		if(Auth::check()){
 			$course = Course::find($id);
+			$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+			FROM reviews WHERE reviews.course_id = '$course->id'"));
+			$avgReview = round($avgReview[0]->avgReview);
+			$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 			$studentCount = $studentCount - 1;	
 			if ($studentCount > 999){
@@ -1002,6 +1040,31 @@ class CourseController extends \BaseController {
 				$thousand = substr($studentCount, 1, 1);
 				$studentCount = $million . '.'. $thousand . 'm';
 			}
+		$students = UserCourse::where('course_id', '=', $id)->get();
+		$avgArray = array();
+		$rankingList = array();
+		$m = 0;
+		foreach ($students as $student) {
+				$rankingList[] = User::find($student->user_id);
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$rankingList[$m]->avg = $avg;
+				$m++;
+		}
+		$rankingList = array_values(array_sort($rankingList, function($value)
+		{
+		    return $value['avg'];
+		}));
+		$rankingList = array_reverse($rankingList);
+		$rankingList = array_slice($rankingList, 0, 10);
 
 			$isJoined = UserCourse::where(function ($query) {
 			    $query->where('user_id', '=', Auth::user()->id);
@@ -1014,9 +1077,9 @@ class CourseController extends \BaseController {
 			$answerList = CourseAnswer::where('question_id', '=', $question->id)->get();
 
 
-			if($isJoined && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
+			if(Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id)){
 				return View::make('courses.answer')
-						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList ));
+						->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList, 'avgReview' => $avgReview,'rankingList'=>$rankingList, 'isJoined' => $isJoined ));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
@@ -1048,6 +1111,7 @@ class CourseController extends \BaseController {
 			})->where(function ($query) use ($id) {
 			    $query->where('course_id', '=', $id);
 			})->count();
+
 
 			$user = User::find($course->user_id);
 
@@ -1088,6 +1152,9 @@ class CourseController extends \BaseController {
 	{
 		
 			$course = Course::find($id);
+			$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+			FROM reviews WHERE reviews.course_id = '$course->id'"));
+			$avgReview = round($avgReview[0]->avgReview);
 			$studentCount = UserCourse::where('course_id', '=', $id)->count();	
 			$studentCount = $studentCount - 1;
 			if ($studentCount > 999){
@@ -1100,6 +1167,32 @@ class CourseController extends \BaseController {
 				$thousand = substr($studentCount, 1, 1);
 				$studentCount = $million . '.'. $thousand . 'm';
 			}
+	$students = UserCourse::where('course_id', '=', $id)->get();
+		$avgArray = array();
+		$rankingList = array();
+		$m = 0;
+		foreach ($students as $student) {
+				$rankingList[] = User::find($student->user_id);
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$rankingList[$m]->avg = $avg;
+				$m++;
+		}
+		$rankingList = array_values(array_sort($rankingList, function($value)
+		{
+		    return $value['avg'];
+		}));
+		$rankingList = array_reverse($rankingList);
+		$rankingList = array_slice($rankingList, 0, 10);
+
 			$user = User::find($course->user_id);
 			$studentId = DB::table('user_courses')
 			        ->join('users', function($join)  use ($id)
@@ -1118,26 +1211,71 @@ class CourseController extends \BaseController {
 
 			if($course->approved == 1 || $course->user_id == Auth::user()->id){
 			return View::make('courses.students')
-					->with(array('course' => $course, 'isJoined' => $isJoined, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
+					->with(array('course' => $course, 'isJoined' => $isJoined, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList, 'avgReview' => $avgReview, 
+						'rankingList' => $rankingList));
 			}else{
 				return Redirect::route('course-page', array('id' => $id));
 			}
 		
 		}else{
 			return View::make('courses.students')
-					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList));
+					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount,'studentList' => $studentList, 'avgReview' => $avgReview, 'rankingList' => $rankingList));
 		}
 	}
  
   	public function courseReviews($id)
 	{	
 		$course = Course::find($id);
-		$user = User::find($id);
-
+		$user = User::find($course->user_id);
+		$studentCount = UserCourse::where('course_id', '=', $id)->count();	
+			$studentCount = $studentCount - 1;
+			if ($studentCount > 999){
+				$thousand = substr($studentCount, 0, 1);
+				$hundred = substr($studentCount, 1, 1);
+				$studentCount = $thousand . '.'. $hundred . 'k';
+			}
+			elseif ($studentCount > 999999) {
+				$million = substr($studentCount, 0, 1);
+				$thousand = substr($studentCount, 1, 1);
+				$studentCount = $million . '.'. $thousand . 'm';
+			}
+		$isJoined = UserCourse::where(function ($query) {
+			    $query->where('user_id', '=', Auth::user()->id);
+			})->where(function ($query) use ($id) {
+			    $query->where('course_id', '=', $id);
+			})->count();
+		$students = UserCourse::where('course_id', '=', $id)->get();
+		$avgArray = array();
+		$rankingList = array();
+		$m = 0;
+		foreach ($students as $student) {
+				$rankingList[] = User::find($student->user_id);
+				$avg = DB::select( DB::raw("SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'"));
+				$avg = $avg[0]->avg;
+				$avg = intval($avg);
+				$avgArray[$m] = $avg;
+				$rankingList[$m]->avg = $avg;
+				$m++;
+		}
+		$rankingList = array_values(array_sort($rankingList, function($value)
+		{
+		    return $value['avg'];
+		}));
+		$rankingList = array_reverse($rankingList);
+		$rankingList = array_slice($rankingList, 0, 10);
+		$avgReview = DB::select( DB::raw("SELECT AVG(reviews.rating) AS avgReview 
+		FROM reviews WHERE reviews.course_id = '$course->id'"));
+		$avgReview = round($avgReview[0]->avgReview);
 		$reviews = Review::where('course_id', '=', $course->id)->get();
 
 			return View::make('courses.reviews')
-					->with(array('id' => $id, 'reviews' => $reviews));
+					->with(array('course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview,  'isJoined' => $isJoined, 'rankingList' => $rankingList));
 	
 	}
 

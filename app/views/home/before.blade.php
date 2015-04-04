@@ -201,7 +201,7 @@
 				
 				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
 				<h2 class="centered">Earn</h2>
-				<p> Earn while having fun and doing something great. </p>
+				<p> Earn by creating something and doing something great. </p>
 			</div>
 			<div class="col-sm-3">
 				

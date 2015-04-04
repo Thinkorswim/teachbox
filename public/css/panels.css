@@ -427,3 +427,11 @@
 .submit .form-control {
   border-radius: 0;
 }
+@media screen and (max-width: 767px) {
+  #showsecond {
+    float: right;
+  }
+  #showfirst {
+    float: left;
+  }
+}

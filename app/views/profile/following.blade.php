@@ -99,7 +99,19 @@
 		</div>
 	</div>
 	<div class="container follow">
-		<div class="col-xs-12 col-sm-8">
+		<div class="col-xs-12 col-sm-4 col-sm-push-8">
+			@if($user->decription != '')
+				<div class="panel panel-default actions bio">
+				  <div class="panel-heading">
+				    <h3 class="panel-title">About</h3>
+				  </div>
+				  <div class="panel-body padding-panel">
+					<p>{{$user->decription}}</p>
+					</div>
+				  </div>
+			@endif
+		</div>
+		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 			@if(count($followingList) == 0)
 			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
@@ -132,18 +144,6 @@
 				</div>
 			</div>
 			@endforeach
-		</div>
-		<div class="col-xs-12 col-sm-4">
-			@if($user->decription)
-				<div class="panel panel-default actions bio">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">About</h3>
-				  </div>
-				  <div class="panel-body padding-panel">
-					<p>{{$user->decription}}</p>
-					</div>
-				  </div>
-			@endif
 		</div>
 	</div>
 	@if(!Auth::check())
