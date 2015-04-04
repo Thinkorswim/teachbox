@@ -202,13 +202,13 @@
 
 				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
 				<h2 class="centered">Earn</h2>
-				<p> Earn by creating interactive courses and doing something valuable.   </p>
+				<p> Earn by creating interactive paid courses and doing something valuable. Your time and effort will be greatly appriciated.  </p>
 			</div>
 			<div class="col-sm-3">
 
 				<img src="{{ URL::asset('img/Hearts.png') }}" alt="hearts">
 				<h2 class="centered">Socialise</h2>
-				<p> Share your experience with your friends. Know what they are up to.</p>
+				<p> Learning is a social experiance. Study with your friends or meet new people. Follow your favourite creators and see their activities. </p>
 			</div>
 		</div>
 	</section>
