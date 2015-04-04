@@ -535,18 +535,24 @@ $(window).scroll(function() {
 $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass("active"),$(this).addClass("active")}),$(".choose-user").on("click",function(){$("#list-modal").modal("hide"),$("#chat-with").modal("show")}),$(".shown").tooltip({trigger:"focus",placement:"top"}),$(".shown").tooltip("show"),$(".settings-panel .input-group").click(function(i){i.stopPropagation(),$(".settings-panel .input-group").removeClass("current"),$(this).addClass("current")}),$("body").click(function(){$(".settings-panel .input-group").removeClass("current")}),$(".message-list .list-group-item").click(function(i){i.stopPropagation(),$(".message-list .list-group-item").removeClass("active"),$(this).addClass("active")}),$(".clock").tooltip();for(var $span=$(".course.created"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".course.joined"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}for(var $span=$(".student"),i=0;i<$span.length;i+=2){var $div=$("<div/>",{"class":"row"});$span.slice(i,i+2).wrapAll($div)}$(document).ready(function(){$(".join").click(function(){$("#ask").show(),$(".join").hide()});var i=$.fn.button.noConflict();$.fn.bootstrapBtn=i,$(function(){$('[data-toggle="tooltip"]').tooltip()})});
    </script>
 	<script>
+	var less = '/lesson/';
 		$('#keyword').autocomplete({
 				source: '/getdata',
 				minLength: 1,
 				select:function(e, ui){
-					if(ui.item.isUser == false){
+					if(ui.item.isUser == false && ui.item.isLesson == false){
 						window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
+					}
+					if(ui.item.isUser == false && ui.item.isLesson == true){
+						var lesson = ui.item.course_id + "/lesson/" +ui.item.lesson_order;
+						window.location="{{URL::to('course/" + lesson + "')}}";
 					}else{
 					window.location="{{URL::to('user/" + ui.item.user_id + "')}}";
 
 					}
 				},
 				open: function() {
+				$('.lesson-item').first().before( "<li class='pre-menu-item'><strong>Lessons:</strong></li>" );
 				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
 				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>"); 
 			}

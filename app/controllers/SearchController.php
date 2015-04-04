@@ -47,15 +47,28 @@ class SearchController extends \BaseController {
 			$term = Input::get('term');
 
 			$data = Course::where('approved', '=', '1')
-						->where('name', 'LIKE',  '%' .$term. '%' )->take(5)->get();
-			$data_users = User::where('name', 'LIKE',  '%' .$term. '%' )->take(5)->get();
+						->where('name', 'LIKE',  '%' .$term. '%' )->take(3)->get();
+			$data_users = User::where('name', 'LIKE',  '%' .$term. '%' )->take(3)->get();
+			$data_lesson = Lesson::where('approved', '=', '1')
+						->where('name', 'LIKE',  '%' .$term. '%' )->take(3)->get();
  			$result = [];
+
+ 			foreach ($data_lesson as $lesson) {
+ 				if(strpos(Str::lower($lesson->name), Str::lower($lesson->name)) !== false)
+ 				{
+ 					$iconCourse = 'courses/' . $lesson->course_id . '/' . $lesson->order . '/thumb100x100.png';
+ 					$course = Course::find($lesson->course_id);
+ 					$result[] = ['icon' => $iconCourse, 'value' => $lesson->name, 'lesson_order' => $lesson->order,'course_id' => $lesson->course_id,
+ 					'isUser' => false, 'isLesson' => true,'classa'=>'lesson-item'];
+ 				
+ 				}
+ 			}
 
  			foreach ($data as $course) {
  				if(strpos(Str::lower($course->name), Str::lower($course->name)) !== false)
  				{
  					$iconCourse = ' /courses/'. $course->id . '/img/' . $course->pic;
- 					$result[] = ['icon' => $iconCourse, 'value' => $course->name, 'course_id' => $course->id, 'isUser' => false,'classa'=>'course-item'];
+ 					$result[] = ['icon' => $iconCourse, 'value' => $course->name, 'course_id' => $course->id, 'isUser' => false,'classa'=>'course-item','isLesson' => false];
  				}
  			}
 
@@ -63,7 +76,7 @@ class SearchController extends \BaseController {
  				if(strpos(Str::lower($user->name), Str::lower($user->name)) !== false)
  				{
  					$iconUser = ' /img/'. $user->id . '/' . $user->pic;
- 					$result[] = ['icon' => $iconUser,'value' => $user->name, 'user_id' => $user->id, 'isUser' => true, 'classa'=>'user-item'];
+ 					$result[] = ['icon' => $iconUser,'value' => $user->name, 'user_id' => $user->id, 'isUser' => true, 'classa'=>'user-item','isLesson' => false];
  				}
  			}
 
