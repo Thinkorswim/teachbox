@@ -32,7 +32,7 @@
 			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
 		@endforeach
 		</ul>
-			  {{ Form::open(array('action' => array('CourseController@postLessonTest', $course->id, $lesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+			  {{ Form::open(array('action' => array('LessonController@postLessonTest', $course->id, $lesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 		<div class="tab-content">
 		<?php $isActiveTab = True;?>
 		@foreach ($questions as $question)
@@ -151,7 +151,7 @@
 	<div class="container">
 		<nav class="nav-reveal">
 			@if ($lesson->order != 1)
-			<a class="prev" href="{{ URL::action('CourseController@courseLesson', [$course->id,($previousLesson->order)]) }}">
+			<a class="prev" href="{{ URL::action('LessonController@courseLesson', [$course->id,($previousLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-left"></i>
 				</span>
@@ -162,7 +162,7 @@
 			</a>
 			@endif
 			@if ($lesson->order != $lessonList->count())
-			<a class="next" href="{{ URL::action('CourseController@courseLesson', [$course->id,($nextLesson->order)]) }}">
+			<a class="next" href="{{ URL::action('LessonController@courseLesson', [$course->id,($nextLesson->order)]) }}">
 				<span class="icon-wrap">
 					<i class="fa fa-2x fa-chevron-right"></i>
 				</span>
@@ -240,7 +240,7 @@
 				@foreach ($lessonList as $lesson_temp)
 				@if(Auth::user()->admin || $lesson_temp->approved || Auth::user()->id == $course->user_id)
 					@if ($lesson_temp->order == $lesson->order)
-			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
+			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
@@ -249,7 +249,7 @@
 				 			</div>
 			 		 	 </a>
 			 		@else
-				 		<a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson_temp->order]) }}">
+				 		<a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
 				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
@@ -270,7 +270,7 @@
 			<h1>{{ $lesson->name }}</h1>
 	        <p>{{ $lesson->description }}</p>
 	        @if (Auth::user()->id == $course->user_id)
-				<a class="edit-lesson" href ="{{ URL::action('CourseController@lessonEdit', [$course->id,$lesson->order]) }}" >
+				<a class="edit-lesson" href ="{{ URL::action('LessonController@lessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 				</a>
 			@endif

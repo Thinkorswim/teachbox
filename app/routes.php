@@ -45,7 +45,7 @@
 
 		Route::post('/course/{id}/add',array(
 					 'as' => 'course-post-add',
-					 'uses' => 'CourseController@coursePostAdd'
+					 'uses' => 'LessonController@coursePostAdd'
 		));
 
 		Route::post('/course/{id}/edit', array(
@@ -55,17 +55,17 @@
 
 		Route::post('/course/{id}/lesson/{order}/settings', array(
 			      'as' => 'post-edit-lesson',
-			      'uses' => 'CourseController@postLessonEdit'
+			      'uses' => 'LessonController@postLessonEdit'
 		));
 
 		Route::post('/course/{id}/lesson/{order}/video-change',array(
 				  'as' => 'post-change-video',
-				  'uses' => 'CourseController@postChangeVideo'
+				  'uses' => 'LessonController@postChangeVideo'
 			));	
 
 		Route::post('/course/{id}/lesson/{order}/test', array(
 			      'as' => 'post-lesson-test',
-			      'uses' => 'CourseController@postLessonTest'
+			      'uses' => 'LessonController@postLessonTest'
 		));
   		//Comment
 		Route::post('/course/{id}/lesson/{order}/comment', array(
@@ -267,25 +267,25 @@
 		//Add lesson
 			Route::get('/course/{id}/add',array(
 					 'as' => 'course-add',
-					 'uses' => 'CourseController@courseAdd'
+					 'uses' => 'LessonController@courseAdd'
 			));
 
 		//View lesson 
 			Route::get('/course/{id}/lesson/{order}',array(
 					 'as' => 'course-lesson',
-					 'uses' => 'CourseController@courseLesson'
+					 'uses' => 'LessonController@courseLesson'
 			));
 
 		//Edit lesson 
 			Route::get('/course/{id}/lesson/{order}/settings',array(
 					 'as' => 'edit-lesson',
-					 'uses' => 'CourseController@lessonEdit'
+					 'uses' => 'LessonController@lessonEdit'
 			));
 
 		//Change lesson video 
 			Route::get('/course/{id}/lesson/{order}/video-change',array(
 					 'as' => 'change-lesson-video',
-					 'uses' => 'CourseController@changeVideo'
+					 'uses' => 'LessonController@changeVideo'
 			));		
 
 		//Course Questions

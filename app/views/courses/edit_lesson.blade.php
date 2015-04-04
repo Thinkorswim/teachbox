@@ -27,8 +27,8 @@
 		  </div>
 		<div class="panel-body">
 			<div class="list-group">
-				<a class="list-group-item active" href="{{ URL::action('CourseController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
-				<a class="list-group-item" href="{{ URL::action('CourseController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
+				<a class="list-group-item active" href="{{ URL::action('LessonController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
+				<a class="list-group-item" href="{{ URL::action('LessonController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
 			</div>
 		</div>
 		</div>
@@ -40,7 +40,7 @@
 			</div>
 		  	<div class="panel-body padding-panel">
 
-			{{ Form::open(array('action' => array('CourseController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+			{{ Form::open(array('action' => array('LessonController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
 				 @if($errors->has('name'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
 				@else             

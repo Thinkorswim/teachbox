@@ -29,8 +29,8 @@
 		  </div>
 		<div class="panel-body">
 			<div class="list-group">
-				<a class="list-group-item" href="{{ URL::action('CourseController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
-				<a class="list-group-item active" href="{{ URL::action('CourseController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
+				<a class="list-group-item" href="{{ URL::action('LessonController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
+				<a class="list-group-item active" href="{{ URL::action('LessonController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
 			</div>
 		 </div>
 		</div> 
@@ -41,7 +41,7 @@
 				<h3 class="panel-title">Change the video</h3>
 			</div>
 		  	<div class="panel-body padding-panel">
-				{{ Form::open(array('action' => array('CourseController@postChangeVideo', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
+				{{ Form::open(array('action' => array('LessonController@postChangeVideo', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
 				@if($errors->has('video'))
 							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
 				@endif

@@ -63,7 +63,7 @@
 		    <h3 class="panel-title">Add lesson</h3>
 		  </div>
 		  <div class="panel-body padding-panel">
-		  	{{ Form::open(array('action' => array('CourseController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true, 'class'=>'ac-custom ac-radio ac-circle', 'autocomplete'=>'off' )) }}
+		  	{{ Form::open(array('action' => array('LessonController@coursePostAdd', $course->id), 'enctype' => 'multipart/form-data', 'files' => true, 'class'=>'ac-custom ac-radio ac-circle', 'autocomplete'=>'off' )) }}
 			<ul class="nav nav-tabs hidden">
 			    <li class="active"><a href="#upload" data-toggle="tab">Shipping</a></li>
 			    <li><a href="#lesson-info" data-toggle="tab">Quantities</a></li>
@@ -172,7 +172,7 @@
 		  </div>
 		  <div class="panel-body">
 			<div class="list-group">
-			  <a class="list-group-item active" href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
+			  <a class="list-group-item active" href="{{ URL::action('LessonController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
 			  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
 			</div>
 		  </div>

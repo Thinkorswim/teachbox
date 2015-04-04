@@ -63,7 +63,7 @@
 			  </div>
 			  <div class="panel-body">
 				<div class="list-group">
-				  <a class="list-group-item" href="{{ URL::action('CourseController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
+				  <a class="list-group-item" href="{{ URL::action('LessonController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
 				  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
 				</div>
 			  </div>
@@ -147,10 +147,10 @@
 			  	<div class="list-group">
 			  @endif
 					@foreach ($lessonList as $lesson)
-					 <a class="list-group-item" href="{{ URL::action('CourseController@courseLesson', [$course->id,$lesson->order]) }}">
+					 <a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson->order]) }}">
 					@if (Auth::user()->id == $course->user_id)
 					 <strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
-					 <a class="edit-lesson" href ="{{ URL::action('CourseController@postLessonEdit', [$course->id,$lesson->order]) }}" >
+					 <a class="edit-lesson" href ="{{ URL::action('LessonController@postLessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 					 </a>
 					@else
