@@ -75,7 +75,9 @@
 		</div>
 		@endif
 		<h1>{{ $user->name }}</h1>
+		@if($user->hide_email == 0)
 		<h5>{{ $user->email }}</h5>
+		@endif
 		<small>{{$followersCount}} followers | {{count($followingList)}} following</small>
 	</div>
 	<div id="visible" class="tabs-profile">

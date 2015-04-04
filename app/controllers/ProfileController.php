@@ -384,6 +384,7 @@ class ProfileController extends \BaseController {
 				$city 	 = Input::get('city');
 				$date 	 = Input::get('day') . '/' . Input::get('month') . '/' . Input::get('year');
 				$description 	 = Input::get('decription');
+				$mail 	 = Input::get('hideMail');
 				$user = User::find($id);
 
 				$user->name    = $name;
@@ -391,6 +392,7 @@ class ProfileController extends \BaseController {
 				$user->city    = $city;
 				$user->date    = $date;
 				$user->decription = $description;
+				$user->hide_email = $mail;
 					if($user->save()){
 						return Redirect::action('ProfileController@user',[$id]);
 					}

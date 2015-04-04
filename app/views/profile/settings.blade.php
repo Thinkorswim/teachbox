@@ -54,6 +54,7 @@
 					</span>
 					 {{ Form::text('name', $user->name, array('id'=>'input-8', 'class'=>'form-control')) }}
 				</div>
+				<div>City</div>
 				@if($errors->has('city'))
 					<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('city') }}">  
 					@else
@@ -85,11 +86,18 @@
 				 {{ Form::textarea('decription', $user->decription, array('class'=>'form-control','rows' => '5')) }}
 				 </div>
 
-				<div>Date of birth:
+				<div>Date of birth:</div>
+				<div>
 				{{ Form::selectRange('day', 1, 31, getDay($user->date)) }}
 			    {{ Form::selectMonth('month',getMonth($user->date)) }}
 				{{ Form::selectRange('year', 2014, 1914, getYear($user->date)) }}
 				</div>
+				@if ($user->hide_email == 1)
+				{{ Form::checkbox('hideMail', null , true) }}
+				@else
+				{{ Form::checkbox('hideMail') }}
+				@endif
+				{{ Form::label('hideMail', "Don't show my e-mail") }}
 				<div>
 				{{ Form::token() }}
 				{{ Form::submit('Save Changes', array('class'=>'form-control')) }}

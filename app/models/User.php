@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	protected $fillable = array('email', 'name', 'password', 'password_temp', 'code', 'active');
+	protected $fillable = array('email', 'name', 'password', 'password_temp', 'code', 'active', 'hide_email');
 
 	use UserTrait, RemindableTrait;
 
