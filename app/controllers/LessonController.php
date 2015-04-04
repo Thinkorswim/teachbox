@@ -70,11 +70,11 @@ class LessonController extends \BaseController {
 			$thousand = substr( $studentCount, 1, 1 );
 			$studentCount = $million . '.'. $thousand . 'm';
 		}
-		
+
 		$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 		$avgReview = round( $avgReview[0]->avgReview );
-		
+
 		if ( Auth::check() && ( $course->approved == 1 || $course->user_id == Auth::user()->id ) && $course->user_id == Auth::user()->id ) {
 			$course = Course::find( $id );
 

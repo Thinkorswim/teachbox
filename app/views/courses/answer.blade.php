@@ -42,7 +42,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
@@ -51,7 +51,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
@@ -164,7 +164,7 @@
 			  	<h3 class="panel-title">Answer</h3>
 			</div>
 			  <div class="panel-body padding-panel">
-				{{ Form::open(array('action' => array('CourseController@postCourseAnswer', $course->id, $question->id), 'enctype' => 'multipart/form-data')) }}                          
+				{{ Form::open(array('action' => array('DiscussionController@postCourseAnswer', $course->id, $question->id), 'enctype' => 'multipart/form-data')) }}                          
 				@if($errors->has('answer'))
 				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('answer') }}">  
 				@else             

@@ -91,12 +91,12 @@
 
 		Route::post('/course/{id}/question',array(
 				 'as' => 'post-course-question',
-				 'uses' => 'CourseController@postCourseQuestion'
+				 'uses' => 'DiscussionController@postCourseQuestion'
 		));
 
 		Route::post('/course/{id}/question/{question}',array(
 				 'as' => 'post-course-answer',
-				 'uses' => 'CourseController@postCourseAnswer'
+				 'uses' => 'DiscussionController@postCourseAnswer'
 		));
 
 		Route::post('/user/{id}/follow', array(
@@ -291,13 +291,13 @@
 		//Course Questions
 			Route::get('/course/{id}/question',array(
 					 'as' => 'course-question',
-					 'uses' => 'CourseController@courseQuestion'
+					 'uses' => 'DiscussionController@courseQuestion'
 			));
 
 		// Course Answers
 			Route::get('/course/{id}/question/{question}',array(
 					 'as' => 'course-answers',
-					 'uses' => 'CourseController@courseAnswer'
+					 'uses' => 'DiscussionController@courseAnswer'
 			));
 
 		// Course Students

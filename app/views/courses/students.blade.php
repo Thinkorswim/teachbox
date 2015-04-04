@@ -41,7 +41,7 @@
 		<ul class="nav nav-pills">
 		  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 		  @if(Auth::check() && $isJoined)
-		  <li role="presentation" ><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+		  <li role="presentation" ><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 		  @endif
 		  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>
@@ -52,7 +52,7 @@
 		<ul class="nav nav-pills">
 		  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
 		  @if(Auth::check() && $isJoined)
-		  <li role="presentation" ><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+		  <li role="presentation" ><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 		  @endif
 		  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 		</ul>

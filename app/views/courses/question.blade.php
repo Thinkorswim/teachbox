@@ -38,7 +38,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
@@ -47,7 +47,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
-			  <li role="presentation" class="active"><a href="{{ URL::action('CourseController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('CourseController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
 		</div>
@@ -62,7 +62,7 @@
 					  	<h3 class="panel-title">Ask your question</h3>
 					</div>
 				  	<div class="panel-body padding-panel">   
-					{{ Form::open(array('action' => array('CourseController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}
+					{{ Form::open(array('action' => array('DiscussionController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}
 							 @if($errors->has('title'))
 							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">     
 							@else
@@ -159,7 +159,7 @@
 		  <div class="panel-body"> 
 			  	<div class="list-group">
 					@foreach ($questionList as $question)
-					 	<a class="list-group-item" href="{{ URL::action('CourseController@courseAnswer', [$course->id, $question->id]) }}">
+					 	<a class="list-group-item" href="{{ URL::action('DiscussionController@courseAnswer', [$course->id, $question->id]) }}">
 					 		 {{ $question->title; }} 
 					 	</a>
 					@endforeach
