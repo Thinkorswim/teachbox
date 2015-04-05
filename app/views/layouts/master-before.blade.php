@@ -14,7 +14,7 @@
 	<meta property="og:description" content="@yield('description')" />
 	<meta property="og:site_name" content="Teachbox - online education"/>
 	<meta property="og:type"   content="website" />
-	<meta name="google-site-verification" content="zgK0Csjj9VKbtv4nylpA8wGfiDw5BaBE69J_UYjKBXg" />
+	<meta name="google-site-verification" content="_npkPq6Oypg3K_Z-AUJkW_9pvxGtTAly8asiWtDMQNI" />
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv1.css') }}">

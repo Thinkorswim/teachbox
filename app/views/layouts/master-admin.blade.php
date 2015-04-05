@@ -24,7 +24,7 @@
     <header class="header-not-reg">
         <div class="col-xs-3">
             <nav class="navbar navbar-fixed-top categories">
-               <div class="navbar-header"> 
+               <div class="navbar-header">
                 <a class="navbar-brand before-brand" href="{{ URL::route('home') }}" >
                     <img alt="Brand" src="{{ URL::asset('img/logo.png') }}"/>
                     <small>teachbox</small>
@@ -49,7 +49,7 @@
         <script>
          google.setOnLoadCallback(drawChart);
                 var count_users = <?php echo json_encode($count_users);?>;
-                var count_courses = <?php echo json_encode($count_courses); ?>;
+                var count_courses = <?php echo json_encode($count_courses);?>;
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                   ['Month', 'Users', 'Courses'],
