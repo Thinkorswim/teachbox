@@ -55,7 +55,7 @@
 	</div>
 </div>
 <div class="container follow">
-	<?php $studentIdList = array(); ?> 
+	<?php $studentIdList = array();?>
 		<div class="col-xs-12 col-sm-4 col-sm-push-8">
 			@if ((in_array($user->id, $studentIdList)))
 			@else
@@ -65,7 +65,7 @@
 						{{ Form::token() }}
 						{{ Form::submit('Take this course', array('class'=>'btn btn-default join')) }}
 					@endif
-			{{ Form::close() }}	
+			{{ Form::close() }}
 			</div>
 			@endif
 
@@ -79,7 +79,7 @@
 				  <a class="list-group-item" href="{{ URL::action('LessonController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
 				  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
 				</div>
-				
+
 			  </div>
 			</div>
 		@endif
@@ -98,9 +98,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -113,30 +113,40 @@
 				@endif
 				</div>
     </div>
-    <?php $num = 1; ?>
-<div class="panel panel-default actions rankings">
+			<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
+
+			@if(!$isMore)
+
+			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			 @endif
-
-			@endforeach
+				<div class="panel-body">
+					<div class="list-group">
+						@foreach($rankingList as $ranking)
+							@if ($ranking->id != $course->user_id)
+							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+							</a>
+							<?php $num++;?>
+							@endif
+						@endforeach
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+			@endif
 </div>
 
 	<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 		@foreach ($studentList as $student)
-		<?php $studentId = $student->id; $studentIdList[] = $studentId;?>
+		<?php $studentId = $student->id;
+$studentIdList[] = $studentId;?>
 		@if ($student->id != $user->id)
 		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
@@ -148,9 +158,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="right" title="{{ageCalculator( $student->date )}} years old">
 						{{ageCalculator( $student->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($student->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $student->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $student->country ))}}') center center"
 						data-toggle="tooltip" data-placement="right" title="{{ $student->city }}@if($student->country != '' && $student->city != ''), @endif {{ $student->country }}">
 					</span>
 					@endif

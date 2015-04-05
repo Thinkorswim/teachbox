@@ -63,10 +63,10 @@
 					<div class="panel-heading">
 					  	<h3 class="panel-title">Ask your question</h3>
 					</div>
-				  	<div class="panel-body padding-panel">   
+				  	<div class="panel-body padding-panel">
 					{{ Form::open(array('action' => array('DiscussionController@postCourseQuestion', $course->id), 'enctype' => 'multipart/form-data')) }}
 							 @if($errors->has('title'))
-							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">     
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('title') }}">
 							@else
 							<div class="input-group">
 							@endif
@@ -76,10 +76,10 @@
 							 {{ Form::text('title', null, array('placeholder' => 'Title', 'class'=>'form-control')) }}
 						</div>
 							 @if($errors->has('question'))
-							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}"> 
+							<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('question') }}">
 							@else
 							<div class="input-group">
-							@endif  
+							@endif
 							 {{ Form::textarea('question', null, array('rows' => '5', 'placeholder' => 'Describe the question', 'class'=>'form-control')) }}
 						</div>
 						{{ Form::submit('Post', array('class'=>'form-control')) }}
@@ -96,7 +96,7 @@
 				  <a class="list-group-item" href="{{ URL::action('LessonController@courseAdd', [$course->id]) }}"><i class="fa fa-plus fa-fw"></i> Add Lesson</a>
 				  <a class="list-group-item" href="{{ URL::action('CourseController@courseEdit', [$course->id]) }}"><i class="fa fa-edit fa-fw"></i> Edit Course</a>
 				</div>
-				
+
 			  </div>
 			</div>
 			@endif
@@ -112,9 +112,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -128,27 +128,35 @@
 				@endif
 				</div>
 			</div>
-					<?php $num = 1; ?>
+			<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
+
+			@if(!$isMore)
 
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			 @endif
-
-			@endforeach
-</div>
-</div>
-</div>
-</div>
+				<div class="panel-body">
+					<div class="list-group">
+						@foreach($rankingList as $ranking)
+							@if ($ranking->id != $course->user_id)
+							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+							</a>
+							<?php $num++;?>
+							@endif
+						@endforeach
+					</div>
+				</div>
+			</div>
+			@endif
+		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 			<div class="col-lg-8">
 				</div>
@@ -158,11 +166,11 @@
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">Questions</h3>
 		  </div>
-		  <div class="panel-body"> 
+		  <div class="panel-body">
 			  	<div class="list-group">
 					@foreach ($questionList as $question)
 					 	<a class="list-group-item" href="{{ URL::action('DiscussionController@courseAnswer', [$course->id, $question->id]) }}">
-					 		 {{ $question->title; }} 
+					 		 {{ $question->title; }}
 					 	</a>
 					@endforeach
 	    		</div>

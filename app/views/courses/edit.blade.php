@@ -20,7 +20,7 @@
 				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 			</div>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-					{{ $studentCount }} 
+					{{ $studentCount }}
 				</span>
 		</div>
 		<div class="col-xs-12 col-md-9">
@@ -53,7 +53,7 @@
 		</ul>
 	</div>
 </div>
-<div class="container"> 
+<div class="container">
 	<div class="col-xs-12 col-sm-8 follow">
 		<div class="panel panel-default settings-panel actions place">
 		    <div class="panel-heading">
@@ -64,12 +64,12 @@
 						@if($errors->has('pic'))
 							<div class="alert alert-danger" role="alert"> {{ $errors->first('pic') }} </div>
 						@endif
-						Description: 
+						Description:
 						@if($errors->has('description'))
-						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">  
-						@else             
+						<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('description') }}">
+						@else
 						<div class="input-group">
-						@endif  
+						@endif
 						{{ Form::textarea('description', $course->description, array('class'=>'form-control')) }}
 						</div>
 
@@ -79,7 +79,7 @@
 							<div class="fileUpload btn btn-primary">
 							    <span>Change the picture</span>
 								{{ Form::file('image', array('id'=>'uploadBtn','class'=>'upload'))}}
-							</div>	
+							</div>
 						</div>
 						<div class="row-add">
 							<div class="alert alert-info" role="alert">
@@ -88,7 +88,7 @@
 						</div>
 					{{ Form::token() }}
 					{{ Form::submit('Save settings', array('class'=>'form-control register-button')) }}
-				{{ Form::close() }}	
+				{{ Form::close() }}
 			</div>
 		</div>
 	</div>

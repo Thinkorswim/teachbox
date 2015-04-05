@@ -22,23 +22,25 @@
       </div>
       <div class="modal-body">
 		<ul class="nav nav-tabs hidden">
-		<?php $isActive = true; $id= 1; $user=Auth::User();?> 
+		<?php $isActive = true;
+$id = 1;
+$user = Auth::User();?>
 		@foreach ($questions as $questionTab)
 		@if($isActive)
 			<li class="active"><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
-			<?php $isActive= false; ?>
+			<?php $isActive = false;?>
 		@endif
-			<?php $id++; ?>
+			<?php $id++;?>
 			<li><a href="#tab{{$id}}" data-toggle="tab">Question</a></li>
 		@endforeach
 		</ul>
-			  {{ Form::open(array('action' => array('LessonController@postLessonTest', $course->id, $lesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+			  {{ Form::open(array('action' => array('LessonController@postLessonTest', $course->id, $lesson->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }}
 		<div class="tab-content">
 		<?php $isActiveTab = True;?>
 		@foreach ($questions as $question)
 		@if($isActiveTab)
-			<?php $answer = 1; ?>
-			<?php $id_question = 1; ?>
+			<?php $answer = 1;?>
+			<?php $id_question = 1;?>
 		    <div role="tabpanel" class="tab-pane  active" id="tab{{$id_question}}">
 		        <h4>{{$question->question}}</h4>
 					<section>
@@ -49,7 +51,7 @@
 								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_1 }}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
@@ -57,7 +59,7 @@
 								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_2}}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_3 != NULL)
 								<li>
@@ -65,7 +67,7 @@
 								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_3}}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_4 != NULL)
 								<li>
@@ -84,10 +86,10 @@
 					 @endif
 					 </div>
       		</div>
-      		<?php $id_question++; ?>
-      		<?php $isActiveTab = false; ?>
+      		<?php $id_question++;?>
+      		<?php $isActiveTab = false;?>
         @else
-        <?php $answer = 1; ?>
+        <?php $answer = 1;?>
 		    <div role="tabpanel" class="tab-pane" id="tab{{$id_question}}">
 		        <h4>{{$question->question}}</h4>
 					<section>
@@ -98,7 +100,7 @@
 								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_1 }}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_2 != NULL)
 								<li>
@@ -106,7 +108,7 @@
 								<label for="r{{$id_question.$answer}}">
 								{{$question->choice_2}}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_3 != NULL)
 								<li>
@@ -114,7 +116,7 @@
 								<label for="r{{$id_question.$answer}}">
 									{{$question->choice_3}}
 								</label></li>
-								<?php $answer++; ?>
+								<?php $answer++;?>
 							@endif
 							@if($question->choice_4 != NULL)
 								<li>
@@ -136,7 +138,7 @@
 					 	@endif
 					 </div>
       		</div>
-      		<?php $id_question++; ?>
+      		<?php $id_question++;?>
       	@endif
       	@endforeach
 
@@ -183,13 +185,14 @@
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
 				<?php
-				if ( Auth::check() ) {
-				$idLesson = $lesson->id; $isDone = Result::where(function ($query) {
-				    $query->where('user_id', '=', Auth::user()->id);
-				})->where(function ($query) use ( $idLesson) {
-				    $query->where('lesson_id', '=', $idLesson);
-				})->first();
-				} ?>
+if (Auth::check()) {
+	$idLesson = $lesson->id;
+	$isDone = Result::where(function ($query) {
+		$query->where('user_id', '=', Auth::user()->id);
+	})->where(function ($query) use ($idLesson) {
+		$query->where('lesson_id', '=', $idLesson);
+	})->first();
+}?>
 			@if( Auth::check() && count($isDone) > 0)
 			<div id="on-end" class="on-end-no-vid">
 			@else
@@ -210,11 +213,11 @@
 	 @if(Auth::check() && count($isDone) > 0)
 		<div class="panel panel-default settings-panel actions place result">
 		  <div class="panel-body padding-panel">
-		    <?php 
-		    $result = $isDone->right;
-		    $maximum = $isDone->total;
-		    $overall = (intval($result)/intval($maximum)) * 100; ?>
-		  		<h2>You scored <?php echo intval($overall); ?>%!</h2>
+		    <?php
+$result = $isDone->right;
+$maximum = $isDone->total;
+$overall = (intval($result) / intval($maximum)) * 100;?>
+		  		<h2>You scored <?php echo intval($overall);?>%!</h2>
 		  </div>
 		</div>
 			@endif
@@ -239,25 +242,27 @@
 		  </div>
 		  <div class="panel-body">
 			  <div class="list-group" id="list-lessons">
-			  <?php $i = 1; ?>
+			  <?php $i = 1;?>
 				@foreach ($lessonList as $lesson_temp)
 				@if((Auth::check() && Auth::user()->admin) || $lesson_temp->approved || (Auth::check() && Auth::user()->id == $course->user_id))
 					@if ($lesson_temp->order == $lesson->order)
 			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
+				 				<strong><?php echo $i;
+$i++;?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson_temp->duration; }}</div> 
+				 			 	<div class="pull-right">{{ $lesson_temp->duration; }}</div>
 				 			</div>
 			 		 	 </a>
 			 		@else
 				 		<a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
-				 				<strong><?php echo $i; $i++; ?>. </strong> {{' '. $lesson_temp->name; }}
+				 				<strong><?php echo $i;
+$i++;?>. </strong> {{' '. $lesson_temp->name; }}
 				 			</div>
 				 			<div class="col-xs-3">
-				 			 	 <div class="pull-right">{{ $lesson_temp->duration; }}</div> 
+				 			 	 <div class="pull-right">{{ $lesson_temp->duration; }}</div>
 				 			</div>
 				 		</a>
 			 		@endif
@@ -280,13 +285,13 @@
 		 </div>
 		</div>
 		@if (Auth::check())
-		{{ Form::open(array('action' => array('StudentController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
+		{{ Form::open(array('action' => array('StudentController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }}
 			{{ Form::textarea('comment', null, array('class'=>'form-control comment-post', 'rows'=>'3','placeholder'=>'Add your comment')) }}
 			{{ Form::token() }}
 				@if($errors->has('comment'))
 								<div class="alert alert-danger" role="alert"> {{ $errors->first('comment') }} </div>
 				@endif
-		<div class="row"> 
+		<div class="row">
 			{{ Form::button('Submit', array('type' => 'submit','id'=>  'comment-post-button', 'class'=>'btn btn-primary hidden pull-right')) }}
 		</div>
 		{{ Form::close() }}
@@ -294,13 +299,13 @@
 		<div class="scroll status comments">
 		@foreach ($comments as $comment)
 		 <?php $userT = User::find($comment->user_id);
-		 		$replies = CommentReply::where('comment_id', '=', $comment->id)->get(); 
-		 		$shownComment = (CommentVote::where('comment_id', '=', $comment->id)->where('isReply', '=', '0')->count() > 0)?>
+$replies = CommentReply::where('comment_id', '=', $comment->id)->get();
+$shownComment = (CommentVote::where('comment_id', '=', $comment->id)->where('isReply', '=', '0')->count() > 0)?>
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						<strong>
-						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong> 
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
 						   commented
 						   <strong>{{dateTimeline($comment->created_at)}}</strong>
 						</p>
@@ -322,7 +327,7 @@
 					</div>
 					@foreach ($replies as $reply)
 		 <?php $userR = User::find($reply->user_id);
-		 	   $shownReply = (CommentVote::where('comment_id', '=', $reply->id)->where('isReply', '=', '1')->count() > 0)?>
+$shownReply = (CommentVote::where('comment_id', '=', $reply->id)->where('isReply', '=', '1')->count() > 0)?>
 				<div class="panel panel-default settings-panel actions replied">
 					<div class="panel-body">
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
