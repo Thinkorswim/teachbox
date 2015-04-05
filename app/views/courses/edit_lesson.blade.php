@@ -40,22 +40,22 @@
 			</div>
 		  	<div class="panel-body padding-panel">
 
-			{{ Form::open(array('action' => array('LessonController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }} 
+			{{ Form::open(array('action' => array('LessonController@postLessonEdit', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
 				 @if($errors->has('name'))
-				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">      
-				@else             
+				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('name') }}">
+				@else
 				<div class="input-group">
-				@endif  
+				@endif
 					<span class="input-group-addon">
 						<i class="fa fa-book"></i>
-					</span> 
+					</span>
 					 {{ Form::text('name', $lesson->name, array('class'=>'form-control')) }}
 				</div>
 				@if($errors->has('description'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
-				@else             
+				@else
 				<div class="input-group">
-				@endif  
+				@endif
 					 {{ Form::textarea('description', $lesson->description, array('class'=>'form-control')) }}
 				</div>
 

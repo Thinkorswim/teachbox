@@ -20,7 +20,7 @@
 					<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 				</div>
 				<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-					{{ $studentCount }} 
+					{{ $studentCount }}
 				</span>
 			</div>
 			<div class="col-xs-12 col-md-9">
@@ -77,9 +77,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -93,26 +93,34 @@
 				</div>
 				@endif
 			</div>
-			<?php $num = 1; ?>
+						<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
+
+			@if(!$isMore)
 
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			 @endif
-
-			@endforeach
+				<div class="panel-body">
+					<div class="list-group">
+						@foreach($rankingList as $ranking)
+							@if ($ranking->id != $course->user_id)
+							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+							</a>
+							<?php $num++;?>
+							@endif
+						@endforeach
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+			@endif
 		</div>
 		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 			<div class="panel panel-default description">
@@ -122,20 +130,21 @@
 			  </div>
 			</div>
 		@if (count($lessonList) > 0)
-			<?php $i = 1; ?>
+			<?php $i = 1;?>
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">Lessons</h3>
 		  </div>
-		  <div class="panel-body"> 
+		  <div class="panel-body">
 			  	<div class="list-group">
 					@foreach ($lessonList as $lesson)
 					 	<div class="list-group-item">
 							<div class="col-xs-9">
-							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							 	<strong><?php echo $i;
+$i++;?>.</strong> {{ $lesson->name; }}
 							</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
+				 			 	<div class="pull-right">{{ $lesson->duration; }}</div>
 				 			</div>
 				 		</div>
 					@endforeach
@@ -154,9 +163,9 @@
 			<div class="col-xs-12 col-sm-4 ">
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<?php $userT = User::find($review->user_id); ?>
+						<?php $userT = User::find($review->user_id);?>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong> 
+						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong>
 						rated
 					    @for ($i=1; $i <= 5 ; $i++)
 					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-o'}}"></span>
@@ -171,7 +180,7 @@
 			</div>
 		@endforeach
 		</div>
-		<div class="centered"> 
+		<div class="centered">
           <a class="btn btn-primary" href="{{ URL::action('StudentController@courseReviews', [$course->id]) }}">All reviews</a>
          </div>
 	</div>
@@ -184,7 +193,7 @@
 			<div class="col-xs-3">
 			</div>
 			<div class="col-xs-12 col-sm-6 text-center">
-				
+
 					<h1>Do you want to take {{$course->name}} course?</h1>
 					<a href="{{ URL::route('home') }}" class="btn btn-default">Register for free</a>
 			</div>

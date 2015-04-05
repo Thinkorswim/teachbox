@@ -33,7 +33,7 @@
 				<a class="list-group-item active" href="{{ URL::action('LessonController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
 			</div>
 		 </div>
-		</div> 
+		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions place">
@@ -49,7 +49,7 @@
 					<div class="fileUpload btn btn-primary no-upload">
 				    	<span id="choosen">Change the video</span>
 			    		{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
-			    	</div> 
+			    	</div>
 				</div>
 				<div class="row-add">
 					<div class="alert alert-info" role="alert">

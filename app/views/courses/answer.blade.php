@@ -23,7 +23,7 @@
 				<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}" alt="{{ $course->name }}">
 			</div>
 			<span class="age" data-toggle="tooltip" data-placement="right" title="@if($studentCount == 1) {{ $studentCount ." student" }}@else{{ $studentCount ." students" }}@endif">
-						{{ $studentCount }} 
+						{{ $studentCount }}
 					</span>
 			</div>
 			<div class="col-xs-12 col-xs-9">
@@ -93,9 +93,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -105,31 +105,39 @@
 				<div class="row">
 				@if($user->decription != '')
 				<hr>
-				
+
 					<p>{{$user->decription}}</p>
 				@endif
 				</div>
 			</div>
-			<?php $num = 1; ?>
+			<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
 
+			@if(!$isMore)
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			 @endif
+			  	<div class="panel-body">
+					<div class="list-group">
+					@foreach($rankingList as $ranking)
+					@if ($ranking->id != $course->user_id)
+					 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+					<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+					 </a>
+					 <?php $num++;?>
+					 @endif
 
-			@endforeach
+					@endforeach
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+			@endif
 	    </div>
 		<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 			<div class="panel panel-default settings-panel actions question">
@@ -141,7 +149,7 @@
 			  <div class="panel-body padding-panel">
 
 			  	<p>{{ $question->question }}</p>
-			  	<?php $user = User::find($question->user_id) ?>
+			  	<?php $user = User::find($question->user_id)?>
 			  	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 				<strong> <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a> </strong>
 			  </div>
@@ -151,7 +159,7 @@
 					 <div class="panel panel-default settings-panel actions question">
 					  	<div class="panel-body padding-panel">
 						  	<p>{{ $answer->answer }} </p>
-						  	<?php $user = User::find($answer->user_id) ?>
+						  	<?php $user = User::find($answer->user_id)?>
 						  	<a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 							<strong> <a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a> </strong>
 						</div>
@@ -164,12 +172,12 @@
 			  	<h3 class="panel-title">Answer</h3>
 			</div>
 			  <div class="panel-body padding-panel">
-				{{ Form::open(array('action' => array('DiscussionController@postCourseAnswer', $course->id, $question->id), 'enctype' => 'multipart/form-data')) }}                          
+				{{ Form::open(array('action' => array('DiscussionController@postCourseAnswer', $course->id, $question->id), 'enctype' => 'multipart/form-data')) }}
 				@if($errors->has('answer'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('answer') }}">  
-				@else             
+				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('answer') }}">
+				@else
 				<div class="input-group">
-				@endif  
+				@endif
 				{{ Form::textarea('answer', null, array('rows' => '5', 'placeholder' => 'Answer the question', 'class'=>'form-control')) }}
 				</div>
 					{{ Form::submit('Answer', array('class'=>'form-control')) }}

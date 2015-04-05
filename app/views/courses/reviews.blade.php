@@ -84,9 +84,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -96,34 +96,46 @@
 				<div class="row">
 				@if($user->decription != '')
 				<hr>
-				
+
 					<p>{{$user->decription}}</p>
 				@endif
 				</div>
 			</div>
-			<?php $num = 1; ?>
+					<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
+
+			@if(!$isMore)
+
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			@endforeach
+				<div class="panel-body">
+					<div class="list-group">
+						@foreach($rankingList as $ranking)
+							@if ($ranking->id != $course->user_id)
+							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+							</a>
+							<?php $num++;?>
+							@endif
+						@endforeach
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+			@endif
 	    </div>
 		<div class="col-xs-12 reviews status col-sm-8 col-sm-pull-4">
 		@if(count($reviews) == 0)
 			<div class="panel panel-default settings-panel actions no-timeline">
 				<div class="panel-body padding-panel">
 					<span><h2><strong>No reviews yet.</strong></h2></span>
-					
+
 				</div>
 			</div>
 		@endif
@@ -131,9 +143,9 @@
 			<div class="col-xs-12 col-sm-6 student">
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<?php $userT = User::find($review->user_id); ?>
+						<?php $userT = User::find($review->user_id);?>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong> 
+						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong>
 						rated
 					    @for ($i=1; $i <= 5 ; $i++)
 					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-o'}}"></span>
@@ -150,5 +162,5 @@
 		</div>
 	</div>
 	</div>
-	
+
 @endsection

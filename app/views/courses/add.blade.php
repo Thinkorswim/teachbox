@@ -91,23 +91,23 @@
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="lesson-info">
 				@if($errors->has('name'))
-				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">  
+				<div class="input-group shown" data-toggle="tooltip" title="{{ $errors->first('name') }}">
 				@else
 				<div class="input-group">
-				@endif  
+				@endif
 					<span class="input-group-addon">
 						<i class="fa fa-book"></i>
-					</span> 
+					</span>
 					 {{ Form::text('name', null, array('placeholder' => 'Lesson name', 'class'=>'form-control')) }}
 				</div>
 				@if($errors->has('description'))
 				<div class="input-group" data-toggle="tooltip" title="{{ $errors->first('description') }}">
 				@else
 				<div class="input-group">
-				@endif  
+				@endif
 					 {{ Form::textarea('description', null, array('placeholder' => 'Describe the lesson', 'class'=>'form-control')) }}
 				</div>
-				
+
 		    	<div class="row">
 			        <a class="btn btn-primary btnPrevious" >Previous</a>
 			        <a class="btn btn-primary btnNext pull-right" >Next</a>
@@ -142,7 +142,7 @@
 								</label></li>
 								</div>
 							</ul>
-							
+
 							<button type="button" id="1" class="btn btn-default btn-add-choice">Add choice</button>
 
 						</div>

@@ -107,26 +107,34 @@
 				@endif
 				</div>
 			</div>
-			<?php $num = 1; ?>
+			<?php $num = 1;
+$isMore = true;?>
+			@foreach($rankingList as $ranking)
+				@if ($ranking->id != $course->user_id)
+					$isMore = false;
+				@endif
+			@endforeach
+
+			@if(!$isMore)
 
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">
 					<h3 class="panel-title">Ranking</h3>
 				</div>
-			  <div class="panel-body">
-			<div class="list-group">
-			@foreach($rankingList as $ranking)
-			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
-			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
-			 </a>
-			 <?php $num++; ?>
-			 @endif
-
-			@endforeach
+				<div class="panel-body">
+					<div class="list-group">
+						@foreach($rankingList as $ranking)
+							@if ($ranking->id != $course->user_id)
+							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
+								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
+							</a>
+							<?php $num++;?>
+							@endif
+						@endforeach
+					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+			@endif
 	    </div>
 		<div  class="col-xs-12 col-sm-8 col-sm-pull-4">
 			<div class="panel panel-default description">
@@ -136,7 +144,7 @@
 			  </div>
 			</div>
 		@if (count($lessonList) > 0)
-			<?php $i = 1; ?>
+			<?php $i = 1;?>
 		<div class="panel panel-default actions">
 		  <div class="panel-heading">
 		  	<h3 class="panel-title">Lessons</h3>
@@ -150,13 +158,15 @@
 					@foreach ($lessonList as $lesson)
 					 <a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson->order]) }}">
 					@if (Auth::check() && Auth::user()->id == $course->user_id)
-					 <strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }}
+					 <strong><?php echo $i;
+$i++;?>.</strong> {{ $lesson->name; }}
 					 <a class="edit-lesson" href ="{{ URL::action('LessonController@postLessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 					 </a>
 					@else
 							<div class="col-xs-9">
-							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }}
+							 	<strong><?php echo $i;
+$i++;?>.</strong> {{ $lesson->name; }}
 							</div>
 				 			<div class="col-xs-3">
 				 			 	<div class="pull-right">{{ $lesson->duration; }}</div>
@@ -182,7 +192,7 @@
 			<div class="col-xs-12 col-sm-4">
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<?php $userT = User::find( $review->user_id ); ?>
+						<?php $userT = User::find($review->user_id);?>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
 						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong>
 						rated
@@ -199,9 +209,9 @@
 			</div>
 		@endforeach
 		</div>
-		<?php $userReviews = array(); ?>
+		<?php $userReviews = array();?>
 		@foreach ($reviews as $review)
-			<?php  $userReviews[] = $review->user_id; ?>
+			<?php $userReviews[] = $review->user_id;?>
 		@endforeach
 		<div class="centered">
 		@if ((!Auth::check()) || ((Auth::check() && !$isJoined) || (Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && in_array(Auth::user()->id, $userReviews))));

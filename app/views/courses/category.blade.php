@@ -15,9 +15,9 @@
 		<h5>Check also:
 		@foreach ($all as $categori)
 			@if( $categori->category != $category)
-			
+
 			<li role="presentation">
-			<a  href="{{ URL::action('CourseController@category', $categori->category) }}"> 
+			<a  href="{{ URL::action('CourseController@category', $categori->category) }}">
 				{{$categori->category}}
 			</a>
 			</li>
@@ -32,9 +32,9 @@
 	<div class="col-xs-12 col-sm-12">
 		<div class="scroll place">
 			<div class="row">
-			<?php $m = 0; ?>
+			<?php $m = 0;?>
 			@foreach ($courses as $course)
-			<?php $user = User::find($course->user_id); ?>
+			<?php $user = User::find($course->user_id);?>
 					<div class="col-xs-12 col-sm-4 course three-in-line">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
@@ -54,7 +54,7 @@
 						  </div>
 						</div>
 					</div>
-			<?php $m++; ?>
+			<?php $m++;?>
 			@endforeach
 		</div>
 	</div>
