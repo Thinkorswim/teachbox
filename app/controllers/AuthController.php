@@ -81,9 +81,16 @@ class AuthController extends \BaseController {
 				$i++;
 			}
 			$randomCourses = Course::where('approved', '=', 1)->orderByRaw("RAND()")->take(3)->get();
+			$avgReviews = array();
+			foreach ($randomCourses as $random) {
+				$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
+				FROM reviews WHERE reviews.course_id = '$random->id'" ) );
+				$avgReview = round( $avgReview[0]->avgReview );
+				$avgReviews[] = $avgReview;
+			}
 			return View::make('home.after')
 				->with(array('timeline' => $timeline, 'joinedList' => $joinedList, 'courses' => $courses, 'timelineCount' => $timelineCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray,
-					'randomCourses' => $randomCourses));
+					'randomCourses' => $randomCourses,'avgReviews'=> $avgReviews));
 		} else {
 			if (!Cookie::get('registrations-remaining')) {
 				$cookie = Cookie::forever('registrations-remaining', 'registrations-remaining');

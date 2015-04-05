@@ -97,6 +97,13 @@
   width: 100%;
   display: block;
 }
+.panel.panel-default.course-panel:hover .rating,
+.panel.panel-default.course-panel:hover .creator {
+  display: block!important;
+}
+.panel.panel-default.course-panel:hover .panel-body > a img {
+  opacity: .3;
+}
 .panel.panel-default.course-panel {
   overflow: hidden;
 }
@@ -107,14 +114,34 @@
 .panel.panel-default.course-panel .panel-body h4,
 .panel.panel-default.course-panel .panel-body h1,
 .panel.panel-default.course-panel .panel-body h3,
-.panel.panel-default.course-panel .panel-body p {
+.panel.panel-default.course-panel .panel-body p,
+.panel.panel-default.course-panel .panel-body small {
   padding: 0 20px;
+}
+.panel.panel-default.course-panel .panel-body small {
+  color: #2c3e50;
+}
+.panel.panel-default.course-panel .panel-body h4 {
+  margin-bottom: 0px!important;
+  font-weight: 900;
 }
 .panel.panel-default.course-panel .panel-body h1 {
   margin-top: 40px;
 }
 .panel.panel-default.course-panel .panel-body h1 strong {
   line-height: 1;
+}
+.panel.panel-default.course-panel .panel-body .rating {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  display: none;
+}
+.panel.panel-default.course-panel .panel-body .creator {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: none;
 }
 .panel.panel-default.course-panel .panel-body img {
   margin-bottom: 0;
@@ -213,6 +240,7 @@
   display: block;
   float: left;
   max-width: 100px;
+  min-width: 100px;
 }
 .student-card .row p {
   padding: 0 20px;

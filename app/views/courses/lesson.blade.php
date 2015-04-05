@@ -182,18 +182,21 @@
 				<source src="{{ URL::asset('courses/' . $course->id . '/' . $lesson->order . '/video.webm') }}" type="video/webm" />
 			    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
-				<?php $idLesson = $lesson->id; $isDone = Result::where(function ($query) {
+				<?php
+				if ( Auth::check() ) {
+				$idLesson = $lesson->id; $isDone = Result::where(function ($query) {
 				    $query->where('user_id', '=', Auth::user()->id);
 				})->where(function ($query) use ( $idLesson) {
 				    $query->where('lesson_id', '=', $idLesson);
-				})->first(); ?>
-			@if(count($isDone) > 0)
+				})->first();
+				} ?>
+			@if( Auth::check() && count($isDone) > 0)
 			<div id="on-end" class="on-end-no-vid">
 			@else
 			<div id="on-end">
 			@endif
 				<button id="repeat" type="button" onclick="playVid()"><i class="fa fa-repeat fa-4x" ></i></button>
-				@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
+				@if(Auth::check() && count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
 				<p>or</p>
 				<button class="btn btn-default btn-primary btn-lg" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
 				@endif
@@ -204,7 +207,7 @@
 </section>
 <div class="container">
 	<div class="col-xs-12 col-sm-4 col-sm-push-8">
-	 @if(count($isDone) > 0)
+	 @if(Auth::check() && count($isDone) > 0)
 		<div class="panel panel-default settings-panel actions place result">
 		  <div class="panel-body padding-panel">
 		    <?php 
@@ -224,7 +227,7 @@
 					{{ Form::close() }}
 				</div>
 			@endif
-			@if(count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
+			@if(Auth::check() && count($isDone) == 0 && Auth::user()->id != $course->user_id && $isJoined)
 				<button id="testBtn" class="btn btn-default  join place btn-primary" type="button" data-target="#testModal" data-toggle="modal" data-backdrop="static">Take the test</button>
 			@endif
 		<div class="panel panel-default actions playlist-panel place">
@@ -238,7 +241,7 @@
 			  <div class="list-group" id="list-lessons">
 			  <?php $i = 1; ?>
 				@foreach ($lessonList as $lesson_temp)
-				@if(Auth::user()->admin || $lesson_temp->approved || Auth::user()->id == $course->user_id)
+				@if((Auth::check() && Auth::user()->admin) || $lesson_temp->approved || (Auth::check() && Auth::user()->id == $course->user_id))
 					@if ($lesson_temp->order == $lesson->order)
 			 		 	<a class="list-group-item active" id="active"  href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson_temp->order]) }}">
 							<div class="col-xs-9">
@@ -269,13 +272,14 @@
 		  <div class="panel-body">
 			<h1>{{ $lesson->name }}</h1>
 	        <p>{{ $lesson->description }}</p>
-	        @if (Auth::user()->id == $course->user_id)
+	        @if (Auth::check() && Auth::user()->id == $course->user_id)
 				<a class="edit-lesson" href ="{{ URL::action('LessonController@lessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 				</a>
 			@endif
 		 </div>
 		</div>
+		@if (Auth::check())
 		{{ Form::open(array('action' => array('StudentController@postComment', $lesson->id, Auth::user()->id), 'id'=>'results-form' ,'class'=>'ac-custom ac-radio ac-circle') ) }} 
 			{{ Form::textarea('comment', null, array('class'=>'form-control comment-post', 'rows'=>'3','placeholder'=>'Add your comment')) }}
 			{{ Form::token() }}
@@ -286,6 +290,7 @@
 			{{ Form::button('Submit', array('type' => 'submit','id'=>  'comment-post-button', 'class'=>'btn btn-primary hidden pull-right')) }}
 		</div>
 		{{ Form::close() }}
+		@endif
 		<div class="scroll status comments">
 		@foreach ($comments as $comment)
 		 <?php $userT = User::find($comment->user_id);

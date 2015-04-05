@@ -253,3 +253,8 @@
   background: #1abc9c;
   border-color: #1abc9c;
 }
+.course-section .nav-tabs li,
+.course-section .nav-pills li {
+  float: none;
+  display: inline-block;
+}

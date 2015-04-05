@@ -28,7 +28,7 @@
 		</div>
 		<div class="col-xs-12 col-md-9">
 			<h1>{{ $course->name }}</h1>
-			<h5> in <strong><a href="#"> {{ $course->category; }} </a></strong></h5>
+			<h5> in <strong><a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }} </a></strong></h5>
 			<h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 			<h5>
 				 <strong>@for ($i=1; $i <= 5 ; $i++)

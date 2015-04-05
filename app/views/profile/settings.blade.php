@@ -93,9 +93,9 @@
 				{{ Form::selectRange('year', 2014, 1914, getYear($user->date)) }}
 				</div>
 				@if ($user->hide_email == 1)
-				{{ Form::checkbox('hideMail', null , true) }}
+				{{ Form::checkbox('hideMail', null , true, ['id' => 'hideMail']) }}
 				@else
-				{{ Form::checkbox('hideMail') }}
+				{{ Form::checkbox('hideMail', 1, false , ['id' => 'hideMail']) }}
 				@endif
 				{{ Form::label('hideMail', "Don't show my e-mail") }}
 				<div>

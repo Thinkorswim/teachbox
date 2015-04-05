@@ -13,8 +13,7 @@ class LessonController extends \BaseController {
 				} )->where( function ( $query ) use ( $id ) {
 					$query->where( 'course_id', '=', $id );
 				} )->count();
-
-
+			}
 			if ( $course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin ) {
 				$lesson = Lesson::where( function ( $query ) use ( $lesson ) {
 						$query->where( 'order', '=', $lesson );
@@ -41,21 +40,17 @@ class LessonController extends \BaseController {
 					$comments =  Comment::where( 'lesson_id', '=', $lesson->id )->orderBy( 'created_at', 'DESC' )->paginate( 15 );
 					$test = Test::find( $id );
 					$questions =  Test::where( 'lesson_id', '=', $lesson->id )->get();
-
+			if ( Auth::check() ) {
 					return View::make( 'courses.lesson' )
 					->with( array( 'course' => $course, 'isJoined' => $isJoined, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions, 'comments'=>$comments ) );
-				}else {
-					return Redirect::route( 'course-page', array( 'id' => $id ) );
-				}
-			}else {
-				return View::make( 'courses.not_join' )
-				->with( array( 'course' => $course, 'studentCount' => $studentCount ) );
+			}else{
+					return View::make( 'courses.lesson' )
+					->with( array( 'course' => $course, 'lesson' => $lesson, 'nextLesson' => $nextLesson, 'previousLesson' => $previousLesson, 'lessonList' => $lessonList, 'creator' => $creator, 'questions' => $questions, 'comments'=>$comments ) );
 			}
-		}else {
-			return View::make( 'home.before' );
-		}
-	}
 
+	}
+}
+}
 	public function courseAdd( $id ) {
 		$course = Course::find( $id );
 		$studentCount = UserCourse::where( 'course_id', '=', $id )->count();

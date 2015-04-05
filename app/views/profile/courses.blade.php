@@ -119,7 +119,7 @@
 		<div class="row">
 		@if(count($createdList) > 0)
 			<h2>Created courses</h2>
-
+				<?php $l=0; ?>
 				@foreach ($createdList as $course)
 					<div class="col-xs-12 col-sm-6 course two-in-line created">
 						<div class="panel panel-default course-panel">
@@ -128,12 +128,19 @@
 								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
-							   <p><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+							   <p class="creator"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
+						  	  <h4 class="rating">
+								@for ($i=1; $i <= 5 ; $i++)
+									<span class="fa fa-star{{ ($i <= $createdAvgReviews[$l]) ? '' : '-o'}}"></span>
+								@endfor
+						  	  </h4>
+						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 							  <p>{{ excerpt($course->description) }}</p>
 						  </div>
 						</div>
 					</div>
+					<?php $l++; ?>
 				@endforeach
 		@else
 		@endif
@@ -153,8 +160,14 @@
 								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
-						  	  <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
+						  	  <p class="creator"><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
+						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
+						  	  <h4 class="rating">
+								@for ($m=1; $m <= 5 ; $m++)
+									<span class="fa fa-star{{ ($m <= $avgReviews[$i]) ? '' : '-o'}}"></span>
+								@endfor
+						  	  </h4>
 							  <p>{{ excerpt($course->description) }}</p>
 							  @if($doneArray[$i] != 100)
 								<div class="progress">

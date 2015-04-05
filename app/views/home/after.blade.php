@@ -172,7 +172,7 @@ $userF = User::find($post->follower_id);
 	        	<?php $results_count++?>
 	  	 @endif
 	   	@endforeach
-			@if ($results_count)
+			@if ($results_count > 0)
 			<?php $i = 0;?>
 			<div class="panel panel-default actions results">
 				<div class="panel-heading">
@@ -180,7 +180,7 @@ $userF = User::find($post->follower_id);
 				</div>
 			  <div class="panel-body">
 			<div class="list-group">
-			@endif
+
 	        @foreach ($joinedList as $course)
 	        @if($course->user_id != Auth::user()->id)
 		        	<a class="list-group-item" href="{{ URL::action('CourseController@course', $course->id) }}">
@@ -198,21 +198,30 @@ $userF = User::find($post->follower_id);
 	        </div>
 		</div>
 		</div>
+		@endif
+		<?php $m =0; ?>
 		@foreach($randomCourses as $random)
-		<?php $creator = User::find($random->user_id);?>
-					<div class="course">
+		<?php  $creator = User::find($random->user_id);?>
+					<div class="col-xs-12 course">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$random->id]) }}">
 								<img src="{{ URL::asset('courses/'. $random->id . '/img/'. '/3x2' . $random->pic) }}">
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$random->id]) }}"> {{ $random->name; }} </a></h4>
-							   <p><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
+						  	  <h4 class="rating">
+								@for ($i=1; $i <= 5 ; $i++)
+									<span class="fa fa-star{{ ($i <= $avgReviews[$m]) ? '' : '-o'}}"></span>
+								@endfor
+						  	  </h4>
+						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $random->category) }}"> {{ $random->category; }}</a></small>
+							   <p class="creator"><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
 						  	  <strong><a href="{{ URL::action('ProfileController@user', $random->user_id) }}"> {{  $creator->name }} </a></strong></p>
 							  <p>{{ excerpt($random->description) }}</p>
 						  </div>
 						</div>
 					</div>
+					<?php $m++;?>
 		@endforeach
 	</div>
 	</div>

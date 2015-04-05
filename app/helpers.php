@@ -21,7 +21,10 @@
 
 		return '';
 	}
-
+	function replace($thing){
+		$thing = explode(' ',trim($thing));
+		return $thing[0];
+	}
 	function getYear($date){
 		if($date != ''){
 			$year = explode('/', $date);

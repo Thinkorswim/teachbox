@@ -245,6 +245,12 @@
 					 'as' => 'explore',
 					 'uses' => 'CourseController@explore'
 			));	
+
+		// COURSE Category
+			Route::get('/category/{category}',array(
+					 'as' => 'category',
+					 'uses' => 'CourseController@category'
+			));	
 		// ALL REVIEWS
 			Route::get('/course/{id}/reviews',array(
 					 'as' => 'reviews',

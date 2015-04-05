@@ -25,7 +25,7 @@
 			</div>
 			<div class="col-xs-12 col-md-9">
 					<h1>{{ $course->name }}</h1>
-					<h5> in <strong><a href="#"> {{ $course->category; }} </a></strong></h5>
+					<h5> in <strong><a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }} </a></strong></h5>
 				    <h5> by <strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h5>
 					<h5>
 					 <strong>@for ($i=1; $i <= 5 ; $i++)
@@ -80,11 +80,11 @@
 					@endif 
 				    @if ($user->country != '')
 					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
-						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country && $user->country), @endif {{ $user->country }}">
+						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user->country }}">
 					</span>
 					@endif
 			  		<h4><a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{ $user->name }} </a></h4>
-			  		<small>{{ $user->city }}@if($user->country && $user->country), @endif {{ $user-> country }}</small>
+			  		<small>{{ $user->city }}@if($user->city != '' && $user->country != ''), @endif {{ $user-> country }}</small>
 			  	</div>
 			  	@if($user->decription != '')
 				<div class="row">
@@ -148,6 +148,7 @@
 @if(count($reviews) != 0)
 <section class="reviews status">
 	<div class="container">
+	<div class="row">
 		@foreach($reviews as $review)
 			<div class="col-xs-12 col-sm-4 ">
 				<div class="panel panel-default settings-panel actions">
@@ -168,6 +169,7 @@
 				</div>
 			</div>
 		@endforeach
+		</div>
 		<div class="centered"> 
           <a class="btn btn-primary" href="{{ URL::action('StudentController@courseReviews', [$course->id]) }}">All reviews</a>
          </div>

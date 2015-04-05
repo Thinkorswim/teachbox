@@ -1,29 +1,33 @@
 @extends('layouts.master-after')
 @section('title')
-	 Explore -
+	 {{$category}} courses -
 @stop
 
 @section('description')
-	Explore the courses in teachbox
+	 {{$category}} courses in teachbox
 @stop
 
 @section('content')
 <div class="course-section">
 	<div class="container centered">
-		<h1>Courses in all categories.</h1>
-		<ul class="nav nav-pills" style="text-align:center">
-				<h5>Categories:
-				@foreach ($all as $categori)
-					<li role="presentation">
-					<a  href="{{ URL::action('CourseController@category', $categori->category) }}"> 
-						{{$categori->category}}
-					</a>
-					</li>
-				@endforeach
-				</h5>
-		</ul>
+		<h1>{{$category}} courses.</h1>
+<ul class="nav nav-pills" style="text-align:center">
+		<h5>Check also:
+		@foreach ($all as $categori)
+			@if( $categori->category != $category)
+			
+			<li role="presentation">
+			<a  href="{{ URL::action('CourseController@category', $categori->category) }}"> 
+				{{$categori->category}}
+			</a>
+			</li>
+			@endif
+		@endforeach
+		</h5>
+</ul>
 	</div>
 </div>
+
 <div class="container follow">
 	<div class="col-xs-12 col-sm-12">
 		<div class="scroll place">

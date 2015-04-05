@@ -412,7 +412,15 @@ class ProfileController extends \BaseController {
 		$createdAll = Course::where( 'user_id', '=', $id )->count();
 		$courseListId = UserCourse::where( 'user_id', '=', $id )->get();
 		$joinedList = array();
-
+		$createdAvgReviews = array();
+		$l = 0;
+		foreach ($createdList as $created) {
+			$createdAvgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
+			FROM reviews WHERE reviews.course_id = '$created->id'" ) );
+			$createdAvgReview = round( $createdAvgReview[0]->avgReview );
+			$createdAvgReviews[$l] = $createdAvgReview;
+			$l++;
+		}
 		$followersCount = Follow::where( 'following_id', '=', $id )->count();
 		$followingCount = Follow::where( 'follower_id', '=', $id )->count();
 		if ( Auth::check() ) {
@@ -428,10 +436,15 @@ class ProfileController extends \BaseController {
 		$m = 0;
 		$avgArray = array();
 		$doneArray = array();
+		$avgReviews = array();
 		foreach ( $courseListId as $userCourse ) {
 			$joinedList[] = Course::find( $userCourse->course_id );
 			$joinUser = $joinedList[$i]->user_id;
 			if ( $user->id != $joinedList[$i]->user_id && $joinedList[$i]->approved ) {
+				$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
+				FROM reviews WHERE reviews.course_id = '$userCourse->course_id'" ) );
+				$avgReview = round( $avgReview[0]->avgReview );
+				$avgReviews[$i] = $avgReview;
 				$myId = $user->id;
 				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
 				FROM results
@@ -464,7 +477,7 @@ class ProfileController extends \BaseController {
 		}
 		return View::make( 'profile.courses' )
 		->with( array( 'joinedList' => $joinedList, 'user' => $user, 'isFollowing' => $isFollowing,
-				'createdList' => $createdList, 'followersCount' => $followersCount, 'followingCount' => $followingCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray, 'createdAll'=> $createdAll ) );
+				'createdList' => $createdList, 'followersCount' => $followersCount, 'followingCount' => $followingCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray, 'createdAll'=> $createdAll,'avgReviews'=>$avgReviews ,'createdAvgReviews'=>$createdAvgReviews) );
 	}
 
 	public function userFollowers( $id ) {

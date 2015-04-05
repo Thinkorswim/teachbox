@@ -26,6 +26,7 @@
 	    <link href="//vjs.zencdn.net/4.11/video-js.css" rel="stylesheet">
 	    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/sweet-alert.css') }}">
 	@endif
+
 	<script>
         var base_url = '{{ URL::to('/') }}';
         var _token = '{{ csrf_token() }}';
@@ -543,10 +544,11 @@ $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass(
 					if(ui.item.isUser == false && ui.item.isLesson == false){
 						window.location="{{URL::to('course/" + ui.item.course_id + "')}}";
 					}
-					if(ui.item.isUser == false && ui.item.isLesson == true){
+					else if(ui.item.isUser == false && ui.item.isLesson == true){
 						var lesson = ui.item.course_id + "/lesson/" +ui.item.lesson_order;
 						window.location="{{URL::to('course/" + lesson + "')}}";
-					}else{
+					}
+					else if(ui.item.isUser == true){
 					window.location="{{URL::to('user/" + ui.item.user_id + "')}}";
 
 					}
@@ -649,7 +651,7 @@ $("#upload-video").click(function(){
 			});
 		</script>
 	@endif
-	@if(Route::current()->getName() == 'course-lesson')
+	@if(Auth::check() && Route::current()->getName() == 'course-lesson')
 		<script type="text/javascript">
 			$(".reply").one("click",function() {
 				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio reply-form"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit pull right" id="comment-post-button" class="btn btn-primary ">Submit</button></div></form>');
@@ -717,63 +719,6 @@ $("#upload-video").click(function(){
 })();
 	</script>
 @endif
-<script>
-		$(".input__field").one("change keyup",function(){
-    //Do something, probably with $(this).val()
-    	if($(this).val() != ' '){
-       		$(this).parent().addClass("input--filled");	
-       	}
-   		
-});
 
-var ua = navigator.userAgent.toLowerCase(); 
-  if (ua.indexOf('safari') != -1) { 
-    if (ua.indexOf('chrome') > -1) {
-      $(".input__field").removeAttr('placeholder');
-    } else {
-    	$(".input__field").addClass("form-control");
-    	$(".input__field").css('border', '1px solid #333');
-    }
-  }else{
-
-  	$(".input__field").removeAttr('placeholder');
-  }
-	</script>
-
-<script src="{{ URL::asset('js/classie.js')}}"></script>
-		<script>
-			(function() {
-				// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-				if (!String.prototype.trim) {
-					(function() {
-						// Make sure we trim BOM and NBSP
-						var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-						String.prototype.trim = function() {
-							return this.replace(rtrim, '');
-						};
-					})();
-				}
-
-				[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-					// in case the input is already filled..
-					if( inputEl.value.trim() !== '' ) {
-						classie.add( inputEl.parentNode, 'input--filled' );
-					}
-					// events:
-					inputEl.addEventListener( 'focus', onInputFocus );
-					inputEl.addEventListener( 'blur', onInputBlur );
-				} );
-
-				function onInputFocus( ev ) {
-					classie.add( ev.target.parentNode, 'input--filled' );
-				}
-
-				function onInputBlur( ev ) {
-					if( ev.target.value.trim() === '' ) {
-						classie.remove( ev.target.parentNode, 'input--filled' );
-					}
-				}
-			})();
-		</script>
   </body>
 </html>
