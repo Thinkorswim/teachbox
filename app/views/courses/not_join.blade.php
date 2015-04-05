@@ -97,11 +97,11 @@
 $isMore = true;?>
 			@foreach($rankingList as $ranking)
 				@if ($ranking->id != $course->user_id)
-					$isMore = false;
-				@endif
+					<?php $isMore = false;?>
+ 				@endif
 			@endforeach
 
-			@if(!$isMore)
+			@if($isMore)
 
 			<div class="panel panel-default actions rankings">
 				<div class="panel-heading">

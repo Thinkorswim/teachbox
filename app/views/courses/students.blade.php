@@ -117,7 +117,7 @@
 $isMore = true;?>
 			@foreach($rankingList as $ranking)
 				@if ($ranking->id != $course->user_id)
-					$isMore = false;
+					<?php $isMore = false;?>
 				@endif
 			@endforeach
 
