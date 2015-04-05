@@ -13,12 +13,12 @@ class CourseController extends \BaseController {
 	}
 
 	public function explore() {
-	 	$all = DB::select( DB::raw("SELECT DISTINCT `category` FROM `courses`  AS category"));
+		$all = DB::select( DB::raw( "SELECT DISTINCT `category` FROM `courses`  AS category" ) );
 		$avgReviews = array();
 		$countCourse = Course::where( 'approved', '=', '1' )->count();
 		$courses = Course::where( 'approved', '=', '1' )->get();
 
-		foreach ($courses as $course) {
+		foreach ( $courses as $course ) {
 			$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 			$avgReview = round( $avgReview[0]->avgReview );
@@ -26,23 +26,24 @@ class CourseController extends \BaseController {
 		}
 
 		return View::make( 'courses.explore' )
-		->with( array( 'courses' => $courses,'all'=>$all, 'countCourse' => $countCourse,'avgReviews'=>$avgReviews ) );
+		->with( array( 'courses' => $courses, 'all'=>$all, 'countCourse' => $countCourse, 'avgReviews'=>$avgReviews ) );
 
 	}
-	 public function category($category){
-	 	$all = DB::select( DB::raw("SELECT DISTINCT `category` FROM `courses` AS category"));
-	 	$courses = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->get();
-	 	$countCourse = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->count();
-		foreach ($courses as $course) {
-		$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
-		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
-		$avgReview = round( $avgReview[0]->avgReview );
-		$avgReviews[] = $avgReview;
+	public function category( $category ) {
+		$all = DB::select( DB::raw( "SELECT DISTINCT `category` FROM `courses` AS category" ) );
+		$courses = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->get();
+		$countCourse = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->count();
+		$avgReviews = array();
+		foreach ( $courses as $course ) {
+			$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+			$avgReview = round( $avgReview[0]->avgReview );
+			$avgReviews[] = $avgReview;
 		}
 
 		return View::make( 'courses.category' )
-		->with( array( 'courses' => $courses,'category'=> $category, 'all'=>$all, 'countCourse' => $countCourse,'avgReviews'=>$avgReviews ) );
-	 }
+		->with( array( 'courses' => $courses, 'category' => $category, 'all' => $all, 'countCourse' => $countCourse, 'avgReviews' => $avgReviews ) );
+	}
 	public function postCreate() {
 
 		if ( Auth::check() ) {

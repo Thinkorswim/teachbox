@@ -90,9 +90,9 @@
 					<span class="age" data-toggle="tooltip" data-placement="left" title="{{ageCalculator( $user->date )}} years old">
 						{{ageCalculator( $user->date )}}
 					</span>
-					@endif 
+					@endif
 				    @if ($user->country != '')
-					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center" 
+					<span class="country" style="background:url('{{ URL::asset(countryFlag( $user->country ))}}') center center"
 						data-toggle="tooltip" data-placement="left" title="{{ $user->city }}@if($user->country != '' && $user->city != '' ), @endif {{ $user->country }}">
 					</span>
 					@endif
@@ -102,7 +102,7 @@
 				<div class="row">
 				@if($user->decription != '')
 				<hr>
-				
+
 					<p>{{$user->decription}}</p>
 				@endif
 				</div>
@@ -117,7 +117,7 @@
 			<div class="list-group">
 			@foreach($rankingList as $ranking)
 			@if ($ranking->id != $course->user_id)
-			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}"> 
+			 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
 			<strong><?php echo $num; ?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
 			 </a>
 			 <?php $num++; ?>
@@ -149,16 +149,16 @@
 					@foreach ($lessonList as $lesson)
 					 <a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson->order]) }}">
 					@if (Auth::check() && Auth::user()->id == $course->user_id)
-					 <strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+					 <strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }}
 					 <a class="edit-lesson" href ="{{ URL::action('LessonController@postLessonEdit', [$course->id,$lesson->order]) }}" >
 						<i class="fa fa-edit"></i>
 					 </a>
 					@else
 							<div class="col-xs-9">
-							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }} 
+							 	<strong><?php echo $i; $i++; ?>.</strong> {{ $lesson->name; }}
 							</div>
 				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson->duration; }}</div> 
+				 			 	<div class="pull-right">{{ $lesson->duration; }}</div>
 				 			</div>
 					@endif
 				</a>
@@ -170,7 +170,7 @@
 
         </div>
 
-	
+
 	</div>
 	</div>
 	</div>
@@ -181,9 +181,9 @@
 			<div class="col-xs-12 col-sm-4">
 				<div class="panel panel-default settings-panel actions">
 					<div class="panel-body">
-						<?php $userT = User::find($review->user_id); ?>
+						<?php $userT = User::find( $review->user_id ); ?>
 					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong> 
+						</strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{ $userT->name }} </a></strong>
 						rated
 					    @for ($i=1; $i <= 5 ; $i++)
 					      <span class="fa fa-star{{ ($i <= $review->rating) ? '' : '-o'}}"></span>
@@ -198,12 +198,12 @@
 			</div>
 		@endforeach
 		</div>
-		<?php $userReviews = array(); ?> 
+		<?php $userReviews = array(); ?>
 		@foreach ($reviews as $review)
 			<?php  $userReviews[] = $review->user_id; ?>
 		@endforeach
-		<div class="centered"> 
-		@if ((Auth::check() && !$isJoined) || (Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && in_array(Auth::user()->id, $userReviews)));
+		<div class="centered">
+		@if ((!Auth::check()) || ((Auth::check() && !$isJoined) || (Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && in_array(Auth::user()->id, $userReviews))));
 		@else
 	          <a class="btn btn-primary" href="#reviews-anchor" data-toggle="modal" data-target="#reviews">Leave a Review</a>
         @endif
@@ -221,15 +221,15 @@
 	      <div class="modal-body">
             <div id="post-review-box" >
                   {{ Form::open(array('action' => array('StudentController@postCourseReview', $course->id))) }}
-                        <input id="ratings-hidden" name="rating" type="hidden"> 
+                        <input id="ratings-hidden" name="rating" type="hidden">
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-        
+
                         <div class="text-right">
                             <div class="stars starrr" data-rating="1"></div>
                             <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
                             <span class="fa fa-times"></span>Cancel</a>
 								{{ Form::token() }}
-								<div class="row"> 
+								<div class="row">
 								{{ Form::submit('Submit', array('class'=>'btn btn-success')) }}
 								</div>
                         </div>
