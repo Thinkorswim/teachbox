@@ -54,9 +54,11 @@
 	</div>
 	<div class="container follow">
 	    <div class="col-xs-12 col-sm-4 author-card col-sm-push-8">
+	    @if(Auth::check() && ($isJoined))
 	   	<div class="panel panel-default settings-panel actions join ask">
 	    		<input type="submit" class="btn btn-default join" value="Ask your question">
 	    </div>
+	    @endif
 	    		<div id="ask" class="panel panel-default settings-panel actions">
 					<div class="panel-heading">
 					  	<h3 class="panel-title">Ask your question</h3>
@@ -84,7 +86,7 @@
 					{{ Form::close() }}
 				  </div>
 				</div>
-			@if (Auth::user()->id == $course->user_id)
+			@if ((Auth::check()) && Auth::user()->id == $course->user_id)
 			<div class="panel panel-default actions author">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Actions</h3>

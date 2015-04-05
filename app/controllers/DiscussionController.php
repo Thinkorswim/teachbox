@@ -3,13 +3,8 @@
 class DiscussionController extends \BaseController {
 
 	public function courseQuestion( $id ) {
-		if ( Auth::check() ) {
 			$course = Course::find( $id );
-			$isJoined = UserCourse::where( function ( $query ) {
-					$query->where( 'user_id', '=', Auth::user()->id );
-				} )->where( function ( $query ) use ( $id ) {
-					$query->where( 'course_id', '=', $id );
-				} )->count();
+			$user = User::find( $course->user_id );
 			$studentCount = UserCourse::where( 'course_id', '=', $id )->count();
 			$studentCount = $studentCount - 1;
 			if ( $studentCount > 999 ) {
@@ -25,11 +20,6 @@ class DiscussionController extends \BaseController {
 			$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 			$avgReview = round( $avgReview[0]->avgReview );
-			$isJoined = UserCourse::where( function ( $query ) {
-					$query->where( 'user_id', '=', Auth::user()->id );
-				} )->where( function ( $query ) use ( $id ) {
-					$query->where( 'course_id', '=', $id );
-				} )->count();
 			$students = UserCourse::where( 'course_id', '=', $id )->get();
 			$avgArray = array();
 			$rankingList = array();
@@ -54,19 +44,22 @@ class DiscussionController extends \BaseController {
 					} ) );
 			$rankingList = array_reverse( $rankingList );
 			$rankingList = array_slice( $rankingList, 0, 10 );
-			$user = User::find( $course->user_id );
 			$questionList = CourseQuestion::where( 'course_id', '=', $id )->get();
-
-			if ( ( $isJoined && ( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) || Auth::user()->admin = 1 ) {
+			if(Auth::check()){
+			$isJoined = UserCourse::where( function ( $query ) {
+					$query->where( 'user_id', '=', Auth::user()->id );
+				} )->where( function ( $query ) use ( $id ) {
+					$query->where( 'course_id', '=', $id );
+				} )->count();
 				return View::make( 'courses.question' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview, 'rankingList'=>$rankingList, 'isJoined' => $isJoined  ) );
+					->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
+			}
+			if ( (( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) || Auth::user()->admin = 1 ) {
+				return View::make( 'courses.question' )
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview, 'rankingList'=>$rankingList ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}
-
-		}else {
-			return View::make( 'home.before' );
-		}
 	}
 
 	public function postCourseQuestion( $id ) {

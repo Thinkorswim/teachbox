@@ -50,7 +50,7 @@
 	<div class="container follow">
 	<div class="row">
     <div  class="col-xs-12 col-sm-4 col-sm-push-8">
-			@if (Auth::user()->id == $course->user_id)
+			@if ((Auth::check()) && (Auth::user()->id == $course->user_id))
 			<div class="panel panel-default actions">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Actions</h3>

@@ -164,11 +164,15 @@ class StudentController extends \BaseController {
 			$thousand = substr( $studentCount, 1, 1 );
 			$studentCount = $million . '.'. $thousand . 'm';
 		}
+		if(Auth::check()){
 		$isJoined = UserCourse::where( function ( $query ) {
 				$query->where( 'user_id', '=', Auth::user()->id );
 			} )->where( function ( $query ) use ( $id ) {
 				$query->where( 'course_id', '=', $id );
 			} )->count();
+			return View::make( 'courses.reviews' )
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview,  'isJoined' => $isJoined, 'rankingList' => $rankingList ) );	
+		}
 		$students = UserCourse::where( 'course_id', '=', $id )->get();
 		$avgArray = array();
 		$rankingList = array();
@@ -199,7 +203,7 @@ class StudentController extends \BaseController {
 		$reviews = Review::where( 'course_id', '=', $course->id )->get();
 
 		return View::make( 'courses.reviews' )
-		->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview,  'isJoined' => $isJoined, 'rankingList' => $rankingList ) );
+		->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview, 'rankingList' => $rankingList ) );
 
 	}
 
