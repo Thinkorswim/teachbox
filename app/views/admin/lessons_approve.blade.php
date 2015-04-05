@@ -26,7 +26,7 @@
                     <?php $course = Course::find($lesson->course_id);
                           $user = User::find($course->user_id); ?>
                 <div class="list-group-item">
-							 	<a href="{{ URL::action('CourseController@courseLesson', [$course->id, $lesson->order]  ) }}"> {{ $lesson->name; }}</a>
+							 	<a href="{{ URL::action('LessonController@courseLesson', [$course->id, $lesson->order]  ) }}"> {{ $lesson->name; }}</a>
                 from <a href="{{ URL::action('CourseController@course', [$course->id]) }}">{{$course->name}}</a>
                 by <a href="{{ URL::action('ProfileController@user', [$user->id]) }}">{{$user->name}}</a> 
                                 {{ Form::open(array('action' => array('AdminController@approveLesson', $lesson->id))) }}
