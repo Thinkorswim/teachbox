@@ -55,7 +55,7 @@
 	}
 	function sample($description){
 		$excerpt = substr($description, 0, 200);
-		return $excerpt . '...';
+		return $excerpt;
 	}
 	function rest($description){
 		$excerpt = substr($description, 200, 40000);

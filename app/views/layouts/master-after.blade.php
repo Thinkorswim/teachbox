@@ -737,6 +737,8 @@ $("#upload-video").click(function(){
 })();
 	</script>
 @endif
+
+@if(Route::current()->getName() == 'course-page')
 <script type="text/javascript">
 $('.read-more-content').addClass('hide')
 
@@ -758,6 +760,11 @@ $('.read-more-hide').on('click', function(e) {
   e.preventDefault();
 });
 </script>
-
+@endif
+@if(Route::current()->getName() == 'course-page' && $rest == "")
+<script type="text/javascript">
+	$('.read-more-show').remove();
+</script>
+@endif
   </body>
 </html>
