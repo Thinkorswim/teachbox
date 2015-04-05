@@ -1,6 +1,6 @@
 @extends('layouts.master-after')
 @section('title')
-	 search term -
+	 {{$keyword}} -
 @stop
 
 @section('description')
@@ -30,6 +30,10 @@
 				  <a class="list-group-item" href="{{ URL::action('SearchController@search', [$keyword]) }}">
 				    <span class="badge">{{$countCourse}}</span>
 				    Courses
+				  </a>
+				  <a class="list-group-item" href="{{ URL::action('SearchController@searchLesson', [$keyword]) }}">
+				    <span class="badge">{{$countLesson}}</span>
+				    Lessons
 				  </a>
 				  <a class="list-group-item active" href="{{ URL::action('SearchController@searchUser', [$keyword]) }}">
 				    <span class="badge">{{$countUser}}</span>

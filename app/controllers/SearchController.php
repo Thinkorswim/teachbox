@@ -6,30 +6,42 @@ class SearchController extends \BaseController {
 		$countCourse = Course::where( 'approved', '=', '1' )
 		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
 		$countUser = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$countLesson = Lesson::where( 'approved', '=', '1' )->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
 		$courses = Course::where( 'approved', '=', '1' )
 		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->paginate( 5 );
 
 		return View::make( 'search.index' )
-		->with( array( 'courses' => $courses, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser ) );
+		->with( array( 'courses' => $courses, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser, 'countLesson'=>$countLesson ) );
 	}
 	public function searchFront() {
 		$keyword = null;
 		$countCourse = Course::where( 'approved', '=', '1' )
 		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
 		$countUser = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$countLesson = Lesson::where( 'approved', '=', '1' )->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
 		$courses = Course::where( 'approved', '=', '1' )
 		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->paginate( 5 );
 
 		return View::make( 'search.index' )
-		->with( array( 'courses' => $courses, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser ) );
+		->with( array( 'courses' => $courses, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser , 'countLesson'=>$countLesson) );
 	}
 	public function searchUser( $keyword ) {
 		$countCourse = Course::where( 'approved', '=', '1' )
 		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
 		$countUser = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
-		$users = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->paginate( 5 );
+		$countLesson = Lesson::where( 'approved', '=', '1' )->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$users = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->paginate( 10 );
 		return View::make( 'search.user-search' )
-		->with( array( 'users' => $users, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser ) );
+		->with( array( 'users' => $users, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser, 'countLesson'=>$countLesson ) );
+	}
+	public function searchLesson( $keyword ) {
+		$countCourse = Course::where( 'approved', '=', '1' )
+		->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$countUser = User::where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$countLesson = Lesson::where( 'approved', '=', '1' )->where( 'name', 'LIKE',  '%' .$keyword. '%' )->count();
+		$lessons = Lesson::where( 'approved', '=', '1' )->where( 'name', 'LIKE',  '%' .$keyword. '%' )->paginate( 10 );
+		return View::make( 'search.lesson-search' )
+		->with( array( 'lessons' => $lessons, 'keyword' => $keyword, 'countCourse' => $countCourse, 'countUser' => $countUser, 'countLesson'=>$countLesson ) );
 	}
 	public function postSearch() {
 

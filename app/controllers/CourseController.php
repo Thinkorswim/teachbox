@@ -216,7 +216,7 @@ class CourseController extends \BaseController {
 					->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList  ) );
 				}
 			}else {
-				return View::make( 'courses.not_join' )
+				return View::make( 'courses.join' )
 				->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'avgReview'=>$avgReview, 'rankingList'=>$rankingList  ) );
 			}
 		}else {

@@ -77,95 +77,7 @@
 @endif
 
 <div class="container">
-		<div class="col-xs-12 col-sm-8 status">
-		@if(count($timeline) == 0)
-			<div class="panel panel-default settings-panel actions place">
-				<div class="panel-body padding-panel">
-					<h2><strong>Nothing on the timeline yet.</strong></h2>
-				</div>
-			</div>
-		@endif
-		<div class="scroll place">
-		@foreach ($timeline as $post)
-			@if (is_numeric($post->email))
-				  <?php $course = Course::find($post->id);
-$userT = User::find($post->email);
-?>
-
-				<div class="panel panel-default settings-panel actions">
-					<div class="panel-body">
-					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-						<strong>
-						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
-						@if (is_numeric($post->follower_id))
-						    joined
-						@else
-							created
-						@endif
-						<strong><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{	$course->name }} </a></strong> course.
-						</p>
-						<div class="clock">
-							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
-						</div>
-						<hr>
-						<div class="content-status">
-							<div class="course">
-								<div class="panel panel-default course-panel">
-								  <div class="panel-body">
-								  	<div class="col-xs-12 col-lg-3">
-										<a href="{{ URL::action('CourseController@course', $course->id) }}">
-											<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}">
-										</a>
-									</div>
-									<div class="col-xs-12 col-lg-9">
-								  	  <h3><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h3>
-									  @if (is_numeric($post->follower_id))
-									   	   <?php $userF = User::find($post->follower_id);?>
-										   <p><a href="{{ URL::action('ProfileController@user', $userF->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
-									  	   <strong><a href="{{ URL::action('ProfileController@user', $userF->id) }}"> {{  $userF->name }} </a></strong></p>
-										   <p> {{ excerpt($course->description) }}</p>
-									  @else
-									  	   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-									  	   <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong></p>
-										   <p> {{ excerpt($course->description) }}</p>
-				 					  @endif
-									</div>
-								  </div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			@else
-				<?php $userT = User::find($post->id);
-$userF = User::find($post->follower_id);
-?>
-				<div class="panel panel-default settings-panel actions">
-					<div class="panel-body">
-					  	 <p class="heading">
-							<a href="{{ URL::action('ProfileController@user', $userF->id) }}">
-					  	<img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
-						 <strong>
-							<a href="{{ URL::action('ProfileController@user', $userF->id) }}">
-						  {{  $userF->name }}
-
-						  </a></strong>
-						 followed
-						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
-						 </p>
-						<div class="clock">
-							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
-						</div>
-					</div>
-				</div>
-			@endif
-		@endforeach
-		@if(count($timeline) > 4)
-			{{ $timeline->links() }}
-		@endif
-		</div>
-		</div>
-		<div class="col-xs-12 col-sm-4 place">
+		<div class="col-xs-12 col-sm-4 col-sm-push-8 place">
 		<?php $results_count = 0?>
 		@foreach ($joinedList as $course)
 	        @if($course->user_id != Auth::user()->id)
@@ -224,5 +136,85 @@ $userF = User::find($post->follower_id);
 					<?php $m++;?>
 		@endforeach
 	</div>
+		<div class="col-xs-12 col-sm-8 col-sm-pull-4 status">
+		@if(count($timeline) == 0)
+			<div class="panel panel-default settings-panel actions place">
+				<div class="panel-body padding-panel">
+					<h2><strong>Nothing on the timeline yet.</strong></h2>
+				</div>
+			</div>
+		@endif
+		<div class="scroll place">
+		@foreach ($timeline as $post)
+			@if (is_numeric($post->email))
+				  <?php $course = Course::find($post->id);
+$userT = User::find($post->email);
+?>
+
+				<div class="panel panel-default settings-panel actions">
+					<div class="panel-body">
+					  	<p class="heading"><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
+						<strong>
+						<a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
+						@if (is_numeric($post->follower_id))
+						    joined
+						@else
+							created
+						@endif
+						<strong><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{	$course->name }} </a></strong> course.
+						</p>
+						<div class="clock">
+							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
+						</div>
+						<hr>
+						<div class="content-status">
+							<div class="course">
+								<div class="panel panel-default course-panel">
+								  <div class="panel-body">
+								  	<div class="col-xs-12 col-lg-3">
+										<a href="{{ URL::action('CourseController@course', $course->id) }}">
+											<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}">
+										</a>
+									</div>
+									<div class="col-xs-12 col-lg-9">
+								  	  <h4><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h4>
+								  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
+									  <p> {{ excerpt($course->description) }}</p>
+									</div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			@else
+				<?php $userT = User::find($post->id);
+$userF = User::find($post->follower_id);
+?>
+				<div class="panel panel-default settings-panel actions">
+					<div class="panel-body">
+					  	 <p class="heading">
+							<a href="{{ URL::action('ProfileController@user', $userF->id) }}">
+					  	<img class="small-profile" src="{{ URL::asset('img/'. $userF->id . '/' . $userF->pic) }}"></a>
+						 <strong>
+							<a href="{{ URL::action('ProfileController@user', $userF->id) }}">
+						  {{  $userF->name }}
+
+						  </a></strong>
+						 followed
+						 <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong>
+						 </p>
+						<div class="clock">
+							<small><i class="fa fa-clock-o"></i>{{dateTimeline($post->created_at)}}</small>
+						</div>
+					</div>
+				</div>
+			@endif
+		@endforeach
+		@if(count($timeline) > 4)
+			{{ $timeline->links() }}
+		@endif
+		</div>
+		</div>
 	</div>
 @endsection

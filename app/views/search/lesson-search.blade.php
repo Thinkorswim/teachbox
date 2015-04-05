@@ -27,11 +27,11 @@
 		  </div>
 			<div class="panel-body">
 				<div class="list-group">
-				  <a class="list-group-item active" href="#">
+				  <a class="list-group-item" href="{{ URL::action('SearchController@search', [$keyword]) }}">
 				    <span class="badge">{{$countCourse}}</span>
 				    Courses
 				  </a>
-				  <a class="list-group-item" href="{{ URL::action('SearchController@searchLesson', [$keyword]) }}">
+				  <a class="list-group-item active" href="{{ URL::action('SearchController@searchLesson', [$keyword]) }}">
 				    <span class="badge">{{$countLesson}}</span>
 				    Lessons
 				  </a>
@@ -45,36 +45,31 @@
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-8">
-		@if(count($courses) == 0)
+		@if(count($lessons) == 0)
 			<div class="place row centered">
-				<h2><strong>No results.</strong></h2>
+				<h2><strong>No lessons.</strong></h2>
 				<small>Maybe change your search to something less specific. </small>
 			</div>
 		@endif
-		<div class="search scroll">
-			@foreach ($courses as $course)
-					<div class="course">
+		<div class="scroll">
+			@foreach ($lessons as $result)
+					<div class="col-xs-6">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
-						  	<div class="col-xs-12 col-lg-3">
-							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/img/' . $course->pic) }}">
+							  <a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}">
+								<img src="{{ URL::asset('courses/'. $result->course_id . '/'. $result->order. '/thumb.png') }}">
 							  </a>
-							</div>
-							<div class="col-xs-12 col-lg-9">
-						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
-							  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
-							  <p>{{ excerpt($course->description) }}</p>
-
-							</div>
+						  	  <h4><a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}"> {{ $result->name; }} </a></h4>
+							  <p>{{ excerpt($result->description) }}</p>
 						  </div>
 						</div>
 					</div>
 
-			@endforeach
 
-		{{ $courses->links() }}
+			@endforeach
+		{{ $lessons->links() }}
 	</div>
+
 	</div>
 </div>
 @endif

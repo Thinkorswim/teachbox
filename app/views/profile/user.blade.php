@@ -157,9 +157,8 @@
 										</a>
 									</div>
 									<div class="col-xs-12 col-lg-9">
-								  	  <h3><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h3>
-									   <p><a href="{{ URL::action('ProfileController@user', $userT->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $userT->id . '/' . $userT->pic) }}"></a>
-								  	  <strong><a href="{{ URL::action('ProfileController@user', $userT->id) }}"> {{  $userT->name }} </a></strong></p>
+								  	  <h4><a href="{{ URL::action('CourseController@course', $course->id) }}"> {{$course->name }} </a></h4>
+								  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 									  <p> {{ excerpt($course->description) }}</p>
 									</div>
 								  </div>
