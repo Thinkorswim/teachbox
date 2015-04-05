@@ -131,7 +131,8 @@
 		<div  class="col-xs-12 col-sm-8 col-sm-pull-4">
 			<div class="panel panel-default description">
 			  <div class="panel-body">
-				<p>{{ $course->description }}</p>
+						<p class="show">{{ sample($course->description) }} <span class="read-more-content">{{ rest($course->description) }}</span></p>
+
 			  </div>
 			</div>
 		@if (count($lessonList) > 0)

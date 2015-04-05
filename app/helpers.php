@@ -53,6 +53,14 @@
 			$country = str_replace(' ', '-', $country);
 			return '/img/flags/'. $country . '.png';
 	}
+	function sample($description){
+		$excerpt = substr($description, 0, 200);
+		return $excerpt . '...';
+	}
+	function rest($description){
+		$excerpt = substr($description, 200, 40000);
+		return $excerpt;
+	}
 	function excerpt($description){
 		$excerpt = substr($description, 0, 70);
 		return $excerpt . '...';
