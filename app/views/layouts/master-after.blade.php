@@ -12,6 +12,7 @@
 	<meta property="og:description" content="@yield('description')" />
 	<meta property="og:site_name" content="Teachbox - online education"/>
 	<meta property="og:type"   content="website" />
+	<meta name="google-site-verification" content="zgK0Csjj9VKbtv4nylpA8wGfiDw5BaBE69J_UYjKBXg" />
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv1.css') }}">
@@ -58,11 +59,11 @@
 						{{Session::get('global-negative')}}
 						</div>
 						@endif
-						@if($errors->has('email_s'))					
+						@if($errors->has('email_s'))
 						<div id="mistake-mail" class="input-group" data-toggle="tooltip" title="{{$errors->first('email_s')}}">
 						 @else
 						<div class="input-group">
-						 @endif	
+						 @endif
 						 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 						{{ Form::open(['route' => 'sign-in']) }}
 							 {{ Form::text('email_s', null , array('placeholder'=>'E-mail','class'=>'form-control')) }}
@@ -71,7 +72,7 @@
 						<div id="mistake-pass" class="input-group" data-toggle="tooltip" title="{{$errors->first('password_s')}}">
 						  @else
 						<div class="input-group">
-						 @endif	
+						 @endif
 						  <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 						 	{{ Form::password('password_s', array('placeholder'=>'Password','class'=>'form-control')) }}
 						</div>
@@ -123,15 +124,14 @@
 	      	<li class="icon-list"><a href="{{ URL::action('CourseController@explore')}}"><i class="fa fa-2x fa-search fa-flip-horizontal"></i><span> Explore</span></a></li>
 	      	<!-- <li class="icon-list"><a href=""><i class="fa fa-2x fa-tachometer"></i><span> Tutor dashboard</span></a></li> -->
 	        <?php
-	        $courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();
-	        $createdList = Course::where('user_id', '=', Auth::user()->id)->get();
-	        $joinedListMenu= array();
+$courseListIdMenu = UserCourse::where('user_id', '=', Auth::user()->id)->get();
+$createdList = Course::where('user_id', '=', Auth::user()->id)->get();
+$joinedListMenu = array();
 
-	        foreach ($courseListIdMenu as $userCourse)
-					{
-						$joinedListMenu[] = Course::find($userCourse->course_id);
-					}
-			?>
+foreach ($courseListIdMenu as $userCourse) {
+	$joinedListMenu[] = Course::find($userCourse->course_id);
+}
+?>
 
 			@if(count($joinedListMenu) - count($createdList) > 0)
 	        <li class="heading-courses"> Enrolled courses </li>
@@ -158,9 +158,9 @@
 	        	@endif
 	        @endforeach
 	        @endif
-	        
+
 			<li><a href="{{ URL::action('ProfileController@userCourses', [Auth::user()->id]) }}">All courses</a></li>
-	      	
+
 	      	@endif
 	      </ul>
 
@@ -184,7 +184,7 @@
         <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message"></span></a></li>
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
-	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" /><span class="caret"></span> 
+	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" /><span class="caret"></span>
 	        </a>
 			<ul class="dropdown-menu pull-right" role="menu">
 				<li><a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}"><i class="fa fa-user"></i> My profile</a></li>
@@ -262,7 +262,7 @@
 	<script>
 	$('.list-group').scrollTo( $('.list-group .active') );
 
-	var vid = document.getElementById("video_main"); 
+	var vid = document.getElementById("video_main");
 	$( "#video_main" ).click(function() {
 	  	$('#on-end').hide();
 	    $('#video_main').css('opacity','1');
@@ -271,7 +271,7 @@
 	  	$('#testModal').modal('hide');
 	});
 	function playVid() {
-	    vid.play(); 
+	    vid.play();
 	    $('#on-end').hide();
 	    $('#video_main').css('opacity','1');
 	}
@@ -287,9 +287,9 @@
 	});
 
 		 $('  .btnNext').click(function(){
-		 
+
 		  $('.nav-tabs > .active').next('li').find('a').trigger('click');
-		
+
 		});
 
 		  $('.btnPrevious').click(function(){
@@ -297,7 +297,7 @@
 		});
 	</script>
 	@endif
-	
+
 	@if(Route::current()->getName() == 'search-user' && $countUser > 10 )
    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 	    <script type="text/javascript">
@@ -387,7 +387,7 @@
 					        }
 					    });
 					});
-				</script>		
+				</script>
 		@elseif(Route::current()->getName() == 'home'  &&  $timelineCount > 5)
 		    <script src="{{ URL::asset('js/jquery.jscroll.min.js') }}"></script>
 			    <script type="text/javascript">
@@ -404,7 +404,7 @@
 					        }
 					    });
 					});
-				</script>		
+				</script>
 		@endif
 	@endif
   <script>
@@ -463,7 +463,7 @@
 		        openReviewBtn.fadeIn(200);
 		      });
 		    closeReviewBtn.hide();
-		    
+
 		  });
 
 		  $('.starrr').on('starrr:change', function(e, value){
@@ -525,12 +525,12 @@
 	@endif
 
 <script>
-	
+
 $(document).ready(function() {
 var stickyNavTop = $('#visible').offset().top;
 var stickyNav = function(){
 var scrollTop = $(window).scrollTop();
-if (scrollTop > stickyNavTop) { 
+if (scrollTop > stickyNavTop) {
      $('#hidden').removeClass('hidden');
      $('#hidden').css('display','block!important');
 } else {
@@ -574,7 +574,7 @@ $(".fixed li").click(function(i){i.stopPropagation(),$(".fixed li").removeClass(
 				open: function() {
 				$('.lesson-item').first().before( "<li class='pre-menu-item'><strong>Lessons:</strong></li>" );
 				$('.course-item').first().before( "<li class='pre-menu-item'><strong>Courses:</strong></li>" );
-				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>"); 
+				$( ".user-item").first().before( "<li class='pre-menu-item'><strong>People:</strong></li>");
 			}
 		}).autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li class=" + item.classa +">" )
@@ -611,7 +611,7 @@ $("#upload-video").click(function(){
 		            }
 		        });
 
- 
+
 				$.post( base_url + '/comment/vote', {commentId: event.target.id.substring(2), isReply: isReply, vote: vote, userId: {{ Auth::id() }}, _token: _token}, function()
 	            {});
 
@@ -623,7 +623,7 @@ $("#upload-video").click(function(){
 	               		}else{
 	               			currentValue += 1;
 	               		}
-	               		$("#lr" + event.target.id.substring(2)).text(currentValue); 
+	               		$("#lr" + event.target.id.substring(2)).text(currentValue);
                 }else{
                 		var currentValue = parseInt($("#lc"  + event.target.id.substring(2)).text(),10);
 	               		$("#thumbs-comment-" + event.target.id.substring(2)).remove();
@@ -632,11 +632,11 @@ $("#upload-video").click(function(){
 	               		}else{
 	               			currentValue += 1;
 	               		}
-                		$("#lc" + event.target.id.substring(2)).text(currentValue); 
+                		$("#lc" + event.target.id.substring(2)).text(currentValue);
                 }
 
 
-			
+
 			});
 
 		$( ".comment-post").click(function() {
@@ -645,14 +645,14 @@ $("#upload-video").click(function(){
 			$("#comment-post-button").addClass("slideRight");
 		}
 		});
-		
+
 		$( "#r11" ).trigger( "click" );
 		$( "#r21" ).trigger( "click" );
 		$( "#r31" ).trigger( "click" );
 		$( "#r41" ).trigger( "click" );
 		$( "#r51" ).trigger( "click" );
 			$( "#results" ).click(function() {
-					
+
 			        $.post( base_url + '/course/' + {{ $course->id }} + '/lesson/' + {{ $lesson->id }} + '/test' , $('#results-form').serialize(), function(data)
 			        {
 			        	if(data['percentage'] < 50){
@@ -674,7 +674,7 @@ $("#upload-video").click(function(){
 			$(".reply").one("click",function() {
 				$("." + event.target.id).append('<form method="POST" action="' + base_url +'/course/' + {{ $lesson->id }} + '/lesson/'+ {{  Auth::user()->id }}+'/comment/' + event.target.id +'" accept-charset="UTF-8" id="results-form" class="ac-custom ac-radio reply-form"><input name="_token" type="hidden" value="' + _token + '"><textarea class="form-control comment-post" rows="3" placeholder="Add your comment" name="comment" cols="50"></textarea><div class="row"><button type="submit pull right" id="comment-post-button" class="btn btn-primary ">Submit</button></div></form>');
 			});
-		</script>	
+		</script>
 	@endif
 @if(Route::current()->getName() == 'course-add')
 	<script>
@@ -695,7 +695,7 @@ $("#upload-video").click(function(){
  	var choice = [3,3,3,3,3];
  	var question = 1;
  	var qCount = 0;
-   
+
 		 $('#qCollection').on('click','.btn-add-choice', function(){
   			$("#question-" + event.target.id).append('<li><input name="r'+ event.target.id +'" value="'+ event.target.id + (clickCount[event.target.id-1]+3) +'" type="radio"><label><input placeholder="' + 'Option ' +  choice[event.target.id-1]  + '  "' + 'class="form-control" name="'+ event.target.id +''+ (clickCount[event.target.id-1]+3) +'" type="text"></label></li>');
 
@@ -721,7 +721,7 @@ $("#upload-video").click(function(){
 			qCount+=1;
 			$("#qCollection").append('<div class="row question-row"><div class="input-group"><span class="input-group-addon"><i class="fa fa-question"></i></span><input placeholder="Your question" class="form-control" name="q'+ question +'" type="text"></div></div><ul id="question-'+ question +'"><li><input name="r'+ question +'" value="'+ question +'1" type="radio" checked="checked"><label for="r'+ question +'"><input placeholder="Option 1" class="form-control" name="'+ question +'1" type="text"></label></li><li><input name="r'+ question +'" value="'+ question +'2" type="radio"><label for="r'+ question +'"><input placeholder="Option 2" class="form-control" name="'+ question +'2" type="text"></label></li></ul><button type="button" id="'+ question +'" class="btn btn-default btn-add-choice">Add choice</button></div>');
 
-			$('#the_script').remove(); 
+			$('#the_script').remove();
 		    var script = document.createElement('script');
 		    script.id = 'the_script';
 		    //the script's source here
