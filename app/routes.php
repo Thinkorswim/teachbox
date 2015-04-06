@@ -512,7 +512,7 @@ Route::get('sitemap', function () {
 			$sitemap->add(URL::route('user-profile', [$user->id]), $lastWeek, '0.8', 'weekly');
 		}
 
-		$course = Course::all();
+		$courses = Course::all();
 		foreach ($courses as $course) {
 			$sitemap->add(URL::route('course-page', [$course->id]), $lastWeek, '1.0', 'weekly');
 
