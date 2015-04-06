@@ -15,7 +15,7 @@ body {
 .page-wrap {
   min-height: 100%;
   /* equal to footer height */
-  margin-bottom: -120px !important;
+  margin-bottom: -73px !important;
   margin-top: -54px !important;
   padding-top: 54px!important;
 }
@@ -27,4 +27,7 @@ body {
 .page-wrap:after {
   /* .push must be the same height as footer */
   height: 127px;
+}
+.add-margin {
+  margin-bottom: -47px;
 }

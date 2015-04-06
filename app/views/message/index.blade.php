@@ -55,7 +55,7 @@
 	  </div>
 	</div>
 	@if(count($users) > 0)
-<div class="container" role="tabpanel">
+<div class="container add-margin" role="tabpanel">
 	<div class="col-xs-12 col-sm-4">
 		<div class="panel panel-default actions playlist-panel message-list">
 		  <div class="panel-heading">
