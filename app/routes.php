@@ -533,3 +533,48 @@ Route::get('sitemap', function () {
 	return $sitemap->render('xml');
 
 });
+
+Route::get('sitemap.xml', function () {
+
+	// create new sitemap object
+	$sitemap = App::make("sitemap");
+
+	// set cache (key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean))
+	// by default cache is disabled
+	$sitemap->setCache('laravel.sitemap', 3600);
+
+	$yesterday = new Carbon('yesterday');
+	$lastWeek = new Carbon('last week');
+	$lastMonth = new Carbon('last month');
+
+	// check if there is cached sitemap and build new only if is not
+	if (!$sitemap->isCached()) {
+		// add item to the sitemap (url, date, priority, freq)
+		$sitemap->add(URL::to('/'), $yesterday, '1.0', 'daily');
+		$sitemap->add(URL::to('privacy'), $lastMonth, '0.7', 'monthly');
+		$sitemap->add(URL::to('contacts'), $lastMonth, '0.7', 'monthly');
+		$sitemap->add(URL::to('advertising'), $lastMonth, '0.7', 'monthly');
+		$sitemap->add(URL::to('feedback'), $lastMonth, '0.7', 'monthly');
+		$sitemap->add(URL::to('password-recovery'), $lastMonth, '0.7', 'monthly');
+
+		$users = User::all();
+		foreach ($users as $user) {
+			$sitemap->add(URL::route('user-profile', [$user->id]), $lastWeek, '0.8', 'weekly');
+		}
+
+		$courses = Course::all();
+		foreach ($courses as $course) {
+			$sitemap->add(URL::route('course-page', [$course->id]), $lastWeek, '1.0', 'weekly');
+
+			$lessons = Lesson::where('course_id', '=', $course->id)->get();
+			foreach ($lessons as $lesson) {
+				$sitemap->add(URL::route('course-lesson', [$course->id, $lesson->order]), $lastWeek, '0.9', 'weekly');
+			}
+		}
+
+	}
+
+	// show your sitemap (options: 'xml' (default), 'html', 'txt', 'ror-rss', 'ror-rdf')
+	return $sitemap->render('xml');
+
+});
