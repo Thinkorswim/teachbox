@@ -107,7 +107,7 @@
 				@endif
 				</div>
 			</div>
-			<?php $num = 1; $isMore = true;?>
+			<?php $num = 1; $isMore = true; $n = 0;?>
 			@foreach($rankingList as $ranking)
 				@if ($ranking->id != $course->user_id)
 					<?php $isMore = false;?>
@@ -124,11 +124,13 @@
 					<div class="list-group">
 						@foreach($rankingList as $ranking)
 							@if ($ranking->id != $course->user_id && $doneArray[$num] == 100)
+								<?php $n++; ?>
 							 <a class="list-group-item" href="{{ URL::action('ProfileController@user', $ranking->id) }}">
 								<strong><?php echo $num;?>.</strong> {{$ranking->name}}  <span class="pull-right">{{$ranking->avg}}%</span>
 							</a>
 							<?php $num++;?>
 							@endif
+
 						@endforeach
 					</div>
 				</div>

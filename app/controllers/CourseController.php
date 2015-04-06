@@ -170,8 +170,7 @@ class CourseController extends \BaseController {
 				}else {
 					$donePercent = 0;
 				}
-				$doneArray[$m] = $donePercent;
-			if($donePercent == 100){
+			$doneArray[$m] = $donePercent;
 			$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -183,9 +182,8 @@ class CourseController extends \BaseController {
 			$avg = intval( $avg );
 			$avgArray[$m] = $avg;
 			$rankingList[$m]->avg = $avg;
-			
-		}
-		$m++;
+			$m++;
+		
 		}
 		$rankingList = array_values( array_sort( $rankingList, function( $value ) {
 					return $value['avg'];
