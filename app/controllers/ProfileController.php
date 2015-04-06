@@ -413,12 +413,17 @@ class ProfileController extends \BaseController {
 		$courseListId = UserCourse::where( 'user_id', '=', $id )->get();
 		$joinedList = array();
 		$createdAvgReviews = array();
+		$createdReviewCounts = array();
 		$l = 0;
 		foreach ($createdList as $created) {
 			$createdAvgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 			FROM reviews WHERE reviews.course_id = '$created->id'" ) );
 			$createdAvgReview = round( $createdAvgReview[0]->avgReview );
 			$createdAvgReviews[$l] = $createdAvgReview;
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$created->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
+		$createdReviewCounts[$l] = $reviewCount;
 			$l++;
 		}
 		$followersCount = Follow::where( 'following_id', '=', $id )->count();
@@ -437,9 +442,14 @@ class ProfileController extends \BaseController {
 		$avgArray = array();
 		$doneArray = array();
 		$avgReviews = array();
+		$joinedReviewCounts = array();
 		foreach ( $courseListId as $userCourse ) {
 			$joinedList[] = Course::find( $userCourse->course_id );
 			$joinUser = $joinedList[$i]->user_id;
+			$jReviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+				FROM reviews WHERE reviews.course_id = '$userCourse->course_id'" ) );
+				$jReviewCount = $jReviewCount[0]->reviewCount; 
+				$joinedReviewCounts[$m] = $jReviewCount;
 			if ( $user->id != $joinedList[$i]->user_id && $joinedList[$i]->approved ) {
 				$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 				FROM reviews WHERE reviews.course_id = '$userCourse->course_id'" ) );
@@ -475,9 +485,10 @@ class ProfileController extends \BaseController {
 			}
 			$i++;
 		}
+		//dd($joinedReviewCounts);
 		return View::make( 'profile.courses' )
 		->with( array( 'joinedList' => $joinedList, 'user' => $user, 'isFollowing' => $isFollowing,
-				'createdList' => $createdList, 'followersCount' => $followersCount, 'followingCount' => $followingCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray, 'createdAll'=> $createdAll,'avgReviews'=>$avgReviews ,'createdAvgReviews'=>$createdAvgReviews) );
+				'createdList' => $createdList, 'followersCount' => $followersCount, 'followingCount' => $followingCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray, 'createdAll'=> $createdAll,'avgReviews'=>$avgReviews ,'createdAvgReviews'=>$createdAvgReviews, 'createdReviewCounts' => $createdReviewCounts, 'joinedReviewCounts' => $joinedReviewCounts) );
 	}
 
 	public function userFollowers( $id ) {

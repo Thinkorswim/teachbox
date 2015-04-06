@@ -51,6 +51,93 @@ class LessonController extends \BaseController {
 	}
 }
 }
+	public function lessons($id){
+		$course = Course::find( $id );
+		$user = User::find( $course->user_id );
+		$studentCount = UserCourse::where( 'course_id', '=', $id )->count();
+		$studentCount = $studentCount - 1;
+		$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$avgReview = round( $avgReview[0]->avgReview );
+		if ( $studentCount > 999 ) {
+			$thousand = substr( $studentCount, 0, 1 );
+			$hundred = substr( $studentCount, 1, 1 );
+			$studentCount = $thousand . '.'. $hundred . 'k';
+		}
+		elseif ( $studentCount > 999999 ) {
+			$million = substr( $studentCount, 0, 1 );
+			$thousand = substr( $studentCount, 1, 1 );
+			$studentCount = $million . '.'. $thousand . 'm';
+		}
+		$students = UserCourse::where( 'course_id', '=', $id )->get();
+		$avgArray = array();
+		$rankingList = array();
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
+		$reviews = Review::where( 'course_id', '=', $course->id )->orderBy( 'created_at', 'DESC' )->take( 3 )->get();
+		$m = 0;
+		foreach ( $students as $student ) {
+			$rankingList[] = User::find( $student->user_id );
+				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =   '$id' " ) );
+				$lessonsCount = Lesson::where( 'course_id', '=', $id )->count();
+				$done = $result[0]->result;
+				if ( $done != 0 ) {
+					$donePercent = intval( $done/$lessonsCount*100 );
+				}else {
+					$donePercent = 0;
+				}
+			$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =  '$id'" ) );
+			$avg = $avg[0]->avg;
+			$avg = intval( $avg );
+			$avgArray[$m] = $avg;
+			$rankingList[$m]->avg = $avg;
+			$rankingList[$m]->done = $donePercent;
+			$m++;
+		}
+		$rankingList = array_values( array_sort( $rankingList, function( $value ) {
+					return $value['avg'];
+				} ) );
+		$rankingList = array_reverse( $rankingList );
+		$rankingList = array_slice( $rankingList, 0, 10 );
+		if ( Auth::check() ) {
+			$isJoined = UserCourse::where( function ( $query ) {
+					$query->where( 'user_id', '=', Auth::user()->id );
+				} )->where( function ( $query ) use ( $id ) {
+					$query->where( 'course_id', '=', $id );
+				} )->count();
+		if ( $course->approved == 1 || $course->user_id == Auth::user()->id || Auth::user()->admin == 1 ) {
+
+
+			if ( ( Auth::check() && $course->user_id == Auth::user()->id ) || ( Auth::check() && Auth::user()->admin == 1 ) ) {
+				$lessonList = Lesson::where( 'course_id', '=', $id )->get();
+			}else {
+				$lessonList = Lesson::where( 'course_id', '=', $id )->where( 'approved', '=', 1 )->get();
+			}
+		return View::make( 'courses.lessons' )
+		->with( array( 'course' => $course, 'lessonList'=>$lessonList , 'user' => $user,'isJoined'=>$isJoined, 'studentCount' => $studentCount, 'avgReview' => $avgReview,
+				'rankingList' => $rankingList, 'reviews'=> $reviews, 'reviewCount'=>$reviewCount ) );
+		}else{
+		return View::make( 'courses.lessons' )
+		->with( array( 'course' => $course, 'user' => $user,'lessonList'=>$lessonList , 'studentCount' => $studentCount, 'avgReview' => $avgReview,
+				'rankingList' => $rankingList, 'reviews'=> $reviews, 'reviewCount'=>$reviewCount  ) );
+		}
+	}else{
+		return Redirect::route( 'home' );
+	}
+	}
 	public function courseAdd( $id ) {
 		$course = Course::find( $id );
 		$studentCount = UserCourse::where( 'course_id', '=', $id )->count();

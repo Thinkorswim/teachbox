@@ -25,6 +25,7 @@
 					 <strong>@for ($i=1; $i <= 5 ; $i++)
 						<span class="fa fa-star{{ ($i <= $avgReview) ? '' : '-o'}}"></span>
 					@endfor</strong>
+					<small class="number">({{$reviewCount}} reviews)</small>
 				</h5>
 			</div>
 		</div>
@@ -33,6 +34,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+			  <li role="presentation"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
@@ -42,6 +44,7 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 			  <li role="presentation" ><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+			  <li role="presentation"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>

@@ -25,6 +25,9 @@ class StudentController extends \BaseController {
 		$avgArray = array();
 		$rankingList = array();
 		$m = 0;
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
 		foreach ( $students as $student ) {
 			$rankingList[] = User::find( $student->user_id );
 				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
@@ -79,14 +82,14 @@ class StudentController extends \BaseController {
 			if ( $course->approved == 1 || $course->user_id == Auth::user()->id ) {
 				return View::make( 'courses.students' )
 				->with( array( 'course' => $course, 'isJoined' => $isJoined, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview,
-						'rankingList' => $rankingList ) );
+						'rankingList' => $rankingList, 'reviewCount'=> $reviewCount ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}
 
 		}else {
 			return View::make( 'courses.students' )
-			->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview, 'rankingList' => $rankingList ) );
+			->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview, 'rankingList' => $rankingList, 'reviewCount'=>$reviewCount ) );
 		}
 	}
 
@@ -184,6 +187,9 @@ class StudentController extends \BaseController {
 		$rankingList = array();
 		$m = 0;
 		$doneArray = array();
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
 		foreach ( $students as $student ) {
 			$rankingList[] = User::find( $student->user_id );
 				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
@@ -232,10 +238,10 @@ class StudentController extends \BaseController {
 				$query->where( 'course_id', '=', $id );
 			} )->count();
 			return View::make( 'courses.reviews' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview,  'isJoined' => $isJoined, 'rankingList' => $rankingList,'doneArray'=>$doneArray ) );	
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview,  'isJoined' => $isJoined, 'rankingList' => $rankingList,'doneArray'=>$doneArray, 'reviewCount'=> $reviewCount ) );	
 		}
 		return View::make( 'courses.reviews' )
-		->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview, 'rankingList' => $rankingList,'doneArray'=>$doneArray ) );
+		->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'reviews' => $reviews, 'avgReview' => $avgReview, 'rankingList' => $rankingList,'doneArray'=>$doneArray, 'reviewCount'=>$reviewCount ) );
 
 	}
 

@@ -45,7 +45,10 @@
 						  	  <h4 class="rating">
 								@for ($i=1; $i <= 5 ; $i++)
 									<span class="fa fa-star{{ ($i <= $avgReviews[$m]) ? '' : '-o'}}"></span>
+
 								@endfor
+								<br>
+								<small class="number">({{$reviewCounts[$m]}} reviews)</small>
 						  	  </h4>
 						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 							   <p class="creator"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>

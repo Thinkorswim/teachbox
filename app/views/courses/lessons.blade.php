@@ -39,8 +39,8 @@
 	<div id="visible" class="tabs-profile">
 		<div class="container">
 			<ul class="nav nav-pills">
-			  <li role="presentation" class="active"><a href="">About the course</a></li>
-			  <li role="presentation"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
+			  <li role="presentation"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
@@ -49,8 +49,8 @@
 	<div id="hidden" class="tabs-profile hidden">
 		<div class="container">
 			<ul class="nav nav-pills">
-			  <li role="presentation" class="active"><a href="">About the course</a></li>
-			  <li role="presentation"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
+			  <li role="presentation"><a href="{{ URL::action('CourseController@course', [$course->id]) }}">About the course</a></li>
+			  <li role="presentation" class="active"><a href="{{ URL::action('LessonController@lessons', [$course->id]) }}"> Lessons </a></li>
 			  <li role="presentation"><a href="{{ URL::action('DiscussionController@courseQuestion', [$course->id]) }}"> Discussion </a></li>
 			  <li role="presentation"><a href="{{ URL::action('StudentController@courseStudents', [$course->id]) }}">Students</a></li>
 			</ul>
@@ -139,54 +139,29 @@
 			@endif
 	    </div>
 		<div  class="col-xs-12 col-sm-8 col-sm-pull-4">
-			<div class="panel panel-default description">
-			  <div class="panel-body">
-			  			<?php $rest =  rest($course->description);?>
-						<p class="show">{{ sample($course->description) }} <span class="read-more-content">{{ rest($course->description) }}</span></p>
-
-			  </div>
-			</div>
 		@if (count($lessonList) > 0)
-			<?php $i = 1;?>
-		<div class="panel panel-default actions">
-		  <div class="panel-heading">
-		  	<h3 class="panel-title">Lessons</h3>
-		  </div>
-		  <div class="panel-body">
-		  @if (Auth::check() && Auth::user()->id == $course->user_id)
-		  <div class="list-group tutor-list">
-		  @else
-			  	<div class="list-group">
-			  @endif
-					@foreach ($lessonList as $lesson)
-					 <a class="list-group-item" href="{{ URL::action('LessonController@courseLesson', [$course->id,$lesson->order]) }}">
-					@if (Auth::check() && Auth::user()->id == $course->user_id)
-					 <strong><?php echo $i;
-$i++;?>.</strong> {{ $lesson->name; }}
-					 <a class="edit-lesson" href ="{{ URL::action('LessonController@postLessonEdit', [$course->id,$lesson->order]) }}" >
-						<i class="fa fa-edit"></i>
-					 </a>
-					@else
-							<div class="col-xs-9">
-							 	<strong><?php echo $i;
-$i++;?>.</strong> {{ $lesson->name; }}
-							</div>
-				 			<div class="col-xs-3">
-				 			 	<div class="pull-right">{{ $lesson->duration; }}</div>
-				 			</div>
-					@endif
-				</a>
-					@endforeach
-	    		</div>
-	       </div>
-	    </div>
+
+			@foreach ($lessonList as $result)
+					<div class="col-xs-6 course two-in-line joined">
+						<div class="panel panel-default course-panel">
+						  <div class="panel-body">
+							  <a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}">
+								<img src="{{ URL::asset('courses/'. $result->course_id . '/'. $result->order. '/thumb.png') }}">
+							  </a>
+						  	  <h4><a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}"> {{ $result->name; }} </a></h4>
+							  <p>{{ excerpt($result->description) }}</p>
+						  </div>
+						</div>
+					</div>
+
+
+			@endforeach
 	    @endif
 
         </div>
+	</div>
 
 
-	</div>
-	</div>
 	</div>
 <section class="reviews status">
 	<div class="container">

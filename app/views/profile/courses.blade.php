@@ -133,7 +133,10 @@
 						  	  <h4 class="rating">
 								@for ($i=1; $i <= 5 ; $i++)
 									<span class="fa fa-star{{ ($i <= $createdAvgReviews[$l]) ? '' : '-o'}}"></span>
+
 								@endfor
+								<br>
+								<small class="number">({{$createdReviewCounts[$l]}} reviews)</small>
 						  	  </h4>
 						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 							  <p>{{ excerpt($course->description) }}</p>
@@ -167,6 +170,8 @@
 								@for ($m=1; $m <= 5 ; $m++)
 									<span class="fa fa-star{{ ($m <= $avgReviews[$i]) ? '' : '-o'}}"></span>
 								@endfor
+								<br>
+								<small class="number">({{$joinedReviewCounts[$i]}} reviews)</small>
 						  	  </h4>
 							  <p>{{ excerpt($course->description) }}</p>
 							  @if($doneArray[$i] != 100)

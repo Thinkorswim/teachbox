@@ -25,6 +25,9 @@ class DiscussionController extends \BaseController {
 			$rankingList = array();
 			$doneArray = array();
 			$m = 0;
+			$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+			$reviewCount = $reviewCount[0]->reviewCount; 
 			foreach ( $students as $student ) {
 				$rankingList[] = User::find( $student->user_id );
 				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
@@ -68,11 +71,11 @@ class DiscussionController extends \BaseController {
 					$query->where( 'course_id', '=', $id );
 				} )->count();
 				return View::make( 'courses.question' )
-					->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
+					->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined, 'reviewCount'=>$reviewCount ) );
 			}
 			if ( (( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) || Auth::user()->admin = 1 ) {
 				return View::make( 'courses.question' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList ) );
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList,'reviewCount'=>$reviewCount ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}
@@ -168,6 +171,9 @@ class DiscussionController extends \BaseController {
 				$studentCount = $million . '.'. $thousand . 'm';
 			}
 			$students = UserCourse::where( 'course_id', '=', $id )->get();
+			$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+			$reviewCount = $reviewCount[0]->reviewCount; 
 			$avgArray = array();
 			$doneArray = array();
 			$rankingList = array();
@@ -221,7 +227,7 @@ class DiscussionController extends \BaseController {
 
 			if ( Auth::check() && ( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) {
 				return View::make( 'courses.answer' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList, 'avgReview' => $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList, 'avgReview' => $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined, 'reviewCount'=>$reviewCount ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}

@@ -53,7 +53,7 @@
 		@endif
 		<div class="scroll">
 			@foreach ($lessons as $result)
-					<div class="col-xs-6">
+					<div class="col-xs-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}">

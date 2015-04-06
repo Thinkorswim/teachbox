@@ -17,16 +17,20 @@ class CourseController extends \BaseController {
 		$avgReviews = array();
 		$countCourse = Course::where( 'approved', '=', '1' )->count();
 		$courses = Course::where( 'approved', '=', '1' )->get();
-
+		$reviewCounts = array();
 		foreach ( $courses as $course ) {
 			$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 			$avgReview = round( $avgReview[0]->avgReview );
 			$avgReviews[] = $avgReview;
+			$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+			$reviewCount = $reviewCount[0]->reviewCount; 
+			$reviewCounts[] = $reviewCount;
 		}
 
 		return View::make( 'courses.explore' )
-		->with( array( 'courses' => $courses, 'all'=>$all, 'countCourse' => $countCourse, 'avgReviews'=>$avgReviews ) );
+		->with( array( 'courses' => $courses, 'all'=>$all, 'countCourse' => $countCourse, 'avgReviews'=>$avgReviews, 'reviewCounts'=>$reviewCounts ) );
 
 	}
 	public function category( $category ) {
@@ -34,15 +38,20 @@ class CourseController extends \BaseController {
 		$courses = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->get();
 		$countCourse = Course::where( 'approved', '=', '1' )->where( 'category', '=', $category )->count();
 		$avgReviews = array();
+		$reviewCounts = array();
 		foreach ( $courses as $course ) {
 			$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+			$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+			FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 			$avgReview = round( $avgReview[0]->avgReview );
+			$reviewCount = $reviewCount[0]->reviewCount; 
 			$avgReviews[] = $avgReview;
+			$reviewCounts[] = $reviewCount;
 		}
 
 		return View::make( 'courses.category' )
-		->with( array( 'courses' => $courses, 'category' => $category, 'all' => $all, 'countCourse' => $countCourse, 'avgReviews' => $avgReviews ) );
+		->with( array( 'courses' => $courses, 'category' => $category, 'all' => $all, 'countCourse' => $countCourse, 'avgReviews' => $avgReviews, 'reviewCounts'=>$reviewCounts ) );
 	}
 	public function postCreate() {
 
@@ -154,6 +163,9 @@ class CourseController extends \BaseController {
 		$rankingList = array();
 		$doneArray= array();
 		$m = 0;
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
 		foreach ( $students as $student ) {
 			$rankingList[] = User::find( $student->user_id );
 			$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
@@ -228,15 +240,15 @@ class CourseController extends \BaseController {
 			if ( Auth::check() ) {
 				if ( Auth::user()->admin == 1 ) {
 					return View::make( 'courses.join' )
-					->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'avgReview'=>$avgReview,'doneArray'=>$doneArray, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList ) );
+					->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'avgReview'=>$avgReview,'doneArray'=>$doneArray, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList, 'reviewCount'=>$reviewCount ) );
 
 				}else {
 					return View::make( 'courses.join' )
-					->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'doneArray'=>$doneArray, 'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList  ) );
+					->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount,'doneArray'=>$doneArray, 'avgReview'=>$avgReview, 'isJoined'=>$isJoined, 'rankingList'=>$rankingList, 'reviewCount'=>$reviewCount  ) );
 				}
 			}else {
 				return View::make( 'courses.join' )
-				->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'doneArray'=>$doneArray,'avgReview'=>$avgReview, 'rankingList'=>$rankingList  ) );
+				->with( array( 'course' => $course, 'reviews' => $reviews, 'lessonList' => $lessonList, 'user' => $user, 'studentCount' => $studentCount, 'doneArray'=>$doneArray,'avgReview'=>$avgReview, 'rankingList'=>$rankingList, 'reviewCount'=>$reviewCount  ) );
 			}
 		}else {
 			return Redirect::route( 'home' );
@@ -277,7 +289,9 @@ class CourseController extends \BaseController {
 			$thousand = substr( $studentCount, 1, 1 );
 			$studentCount = $million . '.'. $thousand . 'm';
 		}
-
+		$reviewCount = DB::select( DB::raw( "SELECT COUNT(reviews.rating) AS reviewCount
+		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
+		$reviewCount = $reviewCount[0]->reviewCount; 
 		$avgReview = DB::select( DB::raw( "SELECT AVG(reviews.rating) AS avgReview
 		FROM reviews WHERE reviews.course_id = '$course->id'" ) );
 		$avgReview = round( $avgReview[0]->avgReview );
@@ -287,7 +301,7 @@ class CourseController extends \BaseController {
 
 				$user = User::find( $course->user_id );
 				return View::make( 'courses.edit' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'avgReview' => $avgReview ) );
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'avgReview' => $avgReview, 'reviewCount'=>$reviewCount ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}

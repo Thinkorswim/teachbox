@@ -272,6 +272,11 @@ Route::get('/course/{id}/add', array(
 	'uses' => 'LessonController@courseAdd',
 ));
 
+// Lessons
+Route::get('/course/{id}/lessons', array(
+	'as' => 'lessons',
+	'uses' => 'LessonController@lessons',
+));
 //View lesson
 Route::get('/course/{id}/lesson/{order}', array(
 	'as' => 'course-lesson',
