@@ -23,9 +23,26 @@ class DiscussionController extends \BaseController {
 			$students = UserCourse::where( 'course_id', '=', $id )->get();
 			$avgArray = array();
 			$rankingList = array();
+			$doneArray = array();
 			$m = 0;
 			foreach ( $students as $student ) {
 				$rankingList[] = User::find( $student->user_id );
+				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =   '$id' " ) );
+				$lessonsCount = Lesson::where( 'course_id', '=', $id )->count();
+				$done = $result[0]->result;
+				if ( $done != 0 ) {
+					$donePercent = intval( $done/$lessonsCount*100 );
+				}else {
+					$donePercent = 0;
+				}
+				$doneArray[$m] = $donePercent;
+			if($donePercent == 100){
 				$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -37,6 +54,7 @@ class DiscussionController extends \BaseController {
 				$avg = intval( $avg );
 				$avgArray[$m] = $avg;
 				$rankingList[$m]->avg = $avg;
+			}
 				$m++;
 			}
 			$rankingList = array_values( array_sort( $rankingList, function( $value ) {
@@ -52,11 +70,11 @@ class DiscussionController extends \BaseController {
 					$query->where( 'course_id', '=', $id );
 				} )->count();
 				return View::make( 'courses.question' )
-					->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
+					->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
 			}
 			if ( (( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) || Auth::user()->admin = 1 ) {
 				return View::make( 'courses.question' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview, 'rankingList'=>$rankingList ) );
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'questionList' => $questionList, 'avgReview'=> $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}
@@ -153,10 +171,27 @@ class DiscussionController extends \BaseController {
 			}
 			$students = UserCourse::where( 'course_id', '=', $id )->get();
 			$avgArray = array();
+			$doneArray = array();
 			$rankingList = array();
 			$m = 0;
 			foreach ( $students as $student ) {
 				$rankingList[] = User::find( $student->user_id );
+				$result = DB::select( DB::raw( "SELECT COUNT(results.id) AS result
+				FROM results
+				JOIN lessons
+				ON results.lesson_id = lessons.id
+				JOIN courses
+				ON lessons.course_id = courses.id
+				WHERE results.user_id = '$student->user_id' AND courses.id =   '$id' " ) );
+				$lessonsCount = Lesson::where( 'course_id', '=', $id )->count();
+				$done = $result[0]->result;
+				if ( $done != 0 ) {
+					$donePercent = intval( $done/$lessonsCount*100 );
+				}else {
+					$donePercent = 0;
+				}
+				$doneArray[$m] = $donePercent;
+			if($donePercent == 100){
 				$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -168,6 +203,7 @@ class DiscussionController extends \BaseController {
 				$avg = intval( $avg );
 				$avgArray[$m] = $avg;
 				$rankingList[$m]->avg = $avg;
+			}
 				$m++;
 			}
 			$rankingList = array_values( array_sort( $rankingList, function( $value ) {
@@ -189,7 +225,7 @@ class DiscussionController extends \BaseController {
 
 			if ( Auth::check() && ( $course->approved == 1 || $course->user_id == Auth::user()->id ) ) {
 				return View::make( 'courses.answer' )
-				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList, 'avgReview' => $avgReview, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
+				->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'question' => $question, 'answerList' => $answerList, 'avgReview' => $avgReview,'doneArray'=>$doneArray, 'rankingList'=>$rankingList, 'isJoined' => $isJoined ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
 			}
