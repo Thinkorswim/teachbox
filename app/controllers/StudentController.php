@@ -41,8 +41,6 @@ class StudentController extends \BaseController {
 				}else {
 					$donePercent = 0;
 				}
-				$doneArray[$m] = $donePercent;
-			if($donePercent == 100){
 			$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -54,7 +52,7 @@ class StudentController extends \BaseController {
 			$avg = intval( $avg );
 			$avgArray[$m] = $avg;
 			$rankingList[$m]->avg = $avg;
-		}
+			$rankingList[$m]->done = $donePercent;
 			$m++;
 		}
 		$rankingList = array_values( array_sort( $rankingList, function( $value ) {
@@ -80,7 +78,7 @@ class StudentController extends \BaseController {
 
 			if ( $course->approved == 1 || $course->user_id == Auth::user()->id ) {
 				return View::make( 'courses.students' )
-				->with( array( 'course' => $course, 'isJoined' => $isJoined,'doneArray'=>$doneArray, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview,
+				->with( array( 'course' => $course, 'isJoined' => $isJoined, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview,
 						'rankingList' => $rankingList ) );
 			}else {
 				return Redirect::route( 'course-page', array( 'id' => $id ) );
@@ -88,7 +86,7 @@ class StudentController extends \BaseController {
 
 		}else {
 			return View::make( 'courses.students' )
-			->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount,'doneArray'=>$doneArray, 'studentList' => $studentList, 'avgReview' => $avgReview, 'rankingList' => $rankingList ) );
+			->with( array( 'course' => $course, 'user' => $user, 'studentCount' => $studentCount, 'studentList' => $studentList, 'avgReview' => $avgReview, 'rankingList' => $rankingList ) );
 		}
 	}
 
@@ -203,7 +201,6 @@ class StudentController extends \BaseController {
 					$donePercent = 0;
 				}
 				$doneArray[$m] = $donePercent;
-			if($donePercent == 100){
 			$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -215,7 +212,8 @@ class StudentController extends \BaseController {
 			$avg = intval( $avg );
 			$avgArray[$m] = $avg;
 			$rankingList[$m]->avg = $avg;
-		}
+			$rankingList[$m]->done =  $donePercent;
+		
 			$m++;
 		}
 		$rankingList = array_values( array_sort( $rankingList, function( $value ) {

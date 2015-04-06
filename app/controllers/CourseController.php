@@ -182,6 +182,7 @@ class CourseController extends \BaseController {
 			$avg = intval( $avg );
 			$avgArray[$m] = $avg;
 			$rankingList[$m]->avg = $avg;
+			$rankingList[$m]->done =  $donePercent;
 			$m++;
 		
 		}
