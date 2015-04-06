@@ -343,7 +343,7 @@ $shownReply = (CommentVote::where('comment_id', '=', $reply->id)->where('isReply
 					</div>
 					<div class="panel-footer">
 							<a href="" class="hidden"></a>
-							<span id="lr{{$comment->id}}"> {{ $reply->liked }} </span>
+							<span id="lr{{$reply->id}}"> {{ $reply->liked }} </span>
 							@if(!$shownReply)
 							<span id="thumbs-reply-{{$reply->id}}">
 								<a href="javascript:void(0)" ><i class="fa fa-thumbs-up vote upvote yes"  id="cu{{ $reply->id }}"></i></a>
