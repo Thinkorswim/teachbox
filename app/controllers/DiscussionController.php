@@ -41,8 +41,6 @@ class DiscussionController extends \BaseController {
 				}else {
 					$donePercent = 0;
 				}
-				$doneArray[$m] = $donePercent;
-			if($donePercent == 100){
 				$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -54,7 +52,7 @@ class DiscussionController extends \BaseController {
 				$avg = intval( $avg );
 				$avgArray[$m] = $avg;
 				$rankingList[$m]->avg = $avg;
-			}
+				$rankingList[$m]->done =  $donePercent;
 				$m++;
 			}
 			$rankingList = array_values( array_sort( $rankingList, function( $value ) {
@@ -190,8 +188,6 @@ class DiscussionController extends \BaseController {
 				}else {
 					$donePercent = 0;
 				}
-				$doneArray[$m] = $donePercent;
-			if($donePercent == 100){
 				$avg = DB::select( DB::raw( "SELECT AVG(results.right/results.total * 100) AS avg
 				FROM results
 				JOIN lessons
@@ -203,7 +199,7 @@ class DiscussionController extends \BaseController {
 				$avg = intval( $avg );
 				$avgArray[$m] = $avg;
 				$rankingList[$m]->avg = $avg;
-			}
+				$rankingList[$m]->done =  $donePercent;
 				$m++;
 			}
 			$rankingList = array_values( array_sort( $rankingList, function( $value ) {
