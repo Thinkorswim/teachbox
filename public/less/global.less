@@ -25,6 +25,13 @@ body,html{
 	}
 	html body .number{
 		padding-left: 0!important;
+		color:@blue!important;
+		font-size: 1em;
+	}
+	html body .course{
+		.number{
+			margin-top: 5px;
+		}
 	}
 	.like-it{
 	margin-bottom: -54px;
@@ -128,6 +135,26 @@ body,html{
 		cursor: pointer;
 		opacity: 0;
 		filter: alpha(opacity=0);
+	}
+	.course-panel div > a{
+		background: @grey;
+	    padding: 0;
+	    display: block;
+	    overflow: hidden;
+	}
+	.course-panel div > a img:hover{
+		opacity: .5;
+			margin-bottom: 0;
+			.transition ( all .3s ease);
+			height: auto;
+			width: 100%;
+	}
+	.course-panel:hover div > a img{
+		opacity: .5;
+			margin-bottom: 0;
+			.transition ( all .3s ease);
+			height: auto;
+			width: 100%;
 	}
 	.register-button{
 		margin-top:20px;
@@ -411,6 +438,7 @@ footer{
 }
 .fa-star, .fa-star-o{
 	color: @blue;
+
 }
 .on-end-no-vid{
 	left:49%!important;

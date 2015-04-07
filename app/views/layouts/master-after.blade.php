@@ -195,7 +195,7 @@ foreach ($courseListIdMenu as $userCourse) {
       </ul>
 		@else
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li id="login"><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
+		        <li id="login-link"><a href="#"  data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		@endif
@@ -558,6 +558,7 @@ var divs = $(".three-in-line");
 for(var i = 0; i < divs.length; i+=3) {
   divs.slice(i, i+3).wrapAll("<div class='row'></div>");
 }
+
    </script>
 	<script>
 	var less = '/lesson/';

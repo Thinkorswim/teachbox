@@ -113,7 +113,7 @@
 		</div>
 		<div class="col-xs-9">
 			<ul class="nav nav-tabs navbar-before-registration pull-right">
-		        <li id="login"><a href="#" data-toggle="modal" data-target="#newModal">Login</a></li>
+		        <li id="login-link"><a href="#" data-toggle="modal" data-target="#newModal">Login</a></li>
 		        <li><a href="{{ URL::route('home') }}" class="btn btn-default">Register</a></li>
 			</ul>
 		</div>
