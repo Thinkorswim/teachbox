@@ -60,7 +60,7 @@
 <div class="container follow">
 	<?php $studentIdList = array();?>
 		<div class="col-xs-12 col-sm-4 col-sm-push-8">
-			@if ((in_array($user->id, $studentIdList)))
+			@if (Auth::check() &&(in_array(Auth::user()->id, $studentIdList)))
 			@else
 			<div class="panel panel-default settings-panel actions join ask">
 		    {{ Form::open(array('action' => array('CourseController@postJoin', $course->id))) }}

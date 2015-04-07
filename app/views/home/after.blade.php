@@ -117,18 +117,22 @@
 					<div class="col-xs-12 course">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
-							  <a href="{{ URL::action('CourseController@course', [$random->id]) }}">
+						  <a href="{{ URL::action('CourseController@course', [$random->id]) }}">
+							<figure class="effect-winston">
 								<img src="{{ URL::asset('courses/'. $random->id . '/img/'. '/3x2' . $random->pic) }}">
-							  </a>
-						  	  <h4><a href="{{ URL::action('CourseController@course', [$random->id]) }}"> {{ $random->name; }} </a></h4>
-						  	  <h4 class="rating">
+								<figcaption>
+									<h2><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+						  	  		<strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h2>
+									<p>
 								@for ($i=1; $i <= 5 ; $i++)
-									<span class="fa fa-star{{ ($i <= $avgReviews[$m]) ? '' : '-o'}}"></span>
+									<a href=""><i class="fa fa-star{{ ($i <= $avgReviews[$m]) ? '' : '-o'}}"></i></a>
 								@endfor
-						  	  </h4>
+									</p>
+								</figcaption>
+							</figure>
+						  </a>
+						  	  <h4><a href="{{ URL::action('CourseController@course', [$random->id]) }}"> {{ $random->name; }} </a></h4>
 						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $random->category) }}"> {{ $random->category; }}</a></small>
-							   <p class="creator"><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
-						  	  <strong><a href="{{ URL::action('ProfileController@user', $random->user_id) }}"> {{  $creator->name }} </a></strong></p>
 							  <p>{{ excerpt($random->description) }}</p>
 						  </div>
 						</div>

@@ -125,19 +125,20 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
-								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
+								<figure class="effect-winston">
+									<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
+									<figcaption>
+										<h2><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
+							  	  		<strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h2>
+										<p>
+									@for ($m=1; $m <= 5 ; $m++)
+										<a href=""><i class="fa fa-star{{ ($m <= $createdAvgReviews[$l]) ? '' : '-o'}}"></i></a>
+									@endfor
+										</p>
+									</figcaption>
+								</figure>
 							  </a>
 						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
-							   <p class="creator"><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{  $user->name }} </a></strong></p>
-						  	  <h4 class="rating">
-								@for ($i=1; $i <= 5 ; $i++)
-									<span class="fa fa-star{{ ($i <= $createdAvgReviews[$l]) ? '' : '-o'}}"></span>
-
-								@endfor
-								<br>
-								<small class="number">({{$createdReviewCounts[$l]}} reviews)</small>
-						  	  </h4>
 						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 							  <p>{{ excerpt($course->description) }}</p>
 						  </div>
@@ -159,20 +160,22 @@
 					<div class="col-xs-12 col-sm-6 course two-in-line joined">
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
-							  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+						  <a href="{{ URL::action('CourseController@course', [$course->id]) }}">
+							<figure class="effect-winston">
 								<img src="{{ URL::asset('courses/'. $course->id . '/img/'. '/3x2' . $course->pic) }}">
-							  </a>
-						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
-						  	  <p class="creator"><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
-						  	  <strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></p>
-						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
-						  	  <h4 class="rating">
+								<figcaption>
+									<h2><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
+						  	  		<strong><a href="{{ URL::action('ProfileController@user', $course->user_id) }}"> {{ $creator->name; }} </a></strong></h2>
+									<p>
 								@for ($m=1; $m <= 5 ; $m++)
-									<span class="fa fa-star{{ ($m <= $avgReviews[$i]) ? '' : '-o'}}"></span>
+									<a href=""><i class="fa fa-star{{ ($m <= $avgReviews[$i]) ? '' : '-o'}}"></i></a>
 								@endfor
-								<br>
-								<small class="number">({{$joinedReviewCounts[$i]}} reviews)</small>
-						  	  </h4>
+									</p>
+								</figcaption>
+							</figure>
+						  </a>
+						  	  <h4><a href="{{ URL::action('CourseController@course', [$course->id]) }}"> {{ $course->name; }} </a></h4>
+						  	  <small>Category: <a href="{{ URL::action('CourseController@category', $course->category) }}"> {{ $course->category; }}</a></small>
 							  <p>{{ excerpt($course->description) }}</p>
 							  @if($doneArray[$i] != 100)
 								<div class="progress">
