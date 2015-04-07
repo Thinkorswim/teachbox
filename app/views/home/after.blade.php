@@ -121,8 +121,8 @@
 							<figure class="effect-winston">
 								<img src="{{ URL::asset('courses/'. $random->id . '/img/'. '/3x2' . $random->pic) }}">
 								<figcaption>
-									<h2><a href="{{ URL::action('ProfileController@user', $user->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $user->id . '/' . $user->pic) }}"></a>
-						  	  		<strong><a href="{{ URL::action('ProfileController@user', $user->id) }}"> {{ $user->name; }} </a></strong></h2>
+									<h2><a href="{{ URL::action('ProfileController@user', $creator->id) }}"><img class="small-profile" src="{{ URL::asset('img/'. $creator->id . '/' . $creator->pic) }}"></a>
+						  	  		<strong><a href="{{ URL::action('ProfileController@user', $creator->id) }}"> {{ $creator->name; }} </a></strong></h2>
 									<p>
 								@for ($i=1; $i <= 5 ; $i++)
 									<a href=""><i class="fa fa-star{{ ($i <= $avgReviews[$m]) ? '' : '-o'}}"></i></a>
