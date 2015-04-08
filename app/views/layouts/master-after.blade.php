@@ -181,23 +181,22 @@ foreach ($courseListIdMenu as $userCourse) {
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-
-        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message"></span></a></li>
         <li class="dropdown">
 	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-globe"></i>
 			<span class="badge badge-notification">1</span>
 	        </a>
 			<ul class="dropdown-menu pull-right notifaction-list" role="menu">
+				<li class="pre-menu-item"><strong>Notifications:</strong></li>
 				<li>
 				<a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
-				 <img src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
+				 <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
 				 <p>uahduawhdud ad ua dau hdauw hdwah </p>
 				 </a>
 				 </li>
 				<li>
 				<a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
-				 <img src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
+				 <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
 				 <p>uahduawhdud ad ua dau hdauw hdwah </p>
 				 </a>
 				 </li>
@@ -206,6 +205,7 @@ foreach ($courseListIdMenu as $userCourse) {
 				 </li>
 			</ul>
 		</li>
+        <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message">1</span></a></li>
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
 	        	<img id="user-pic" src="{{ URL::asset('img/'. Auth::user()->id . '/' . getThumbName(Auth::user()->pic)) }}" /><span class="caret"></span>
