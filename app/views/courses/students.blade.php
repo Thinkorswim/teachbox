@@ -59,6 +59,10 @@
 </div>
 <div class="container follow">
 	<?php $studentIdList = array();?>
+		@foreach ($studentList as $student)
+		<?php $studentId = $student->id;
+		$studentIdList[] = $studentId;?>
+		@endforeach
 		<div class="col-xs-12 col-sm-4 col-sm-push-8">
 			@if (Auth::check() &&(in_array(Auth::user()->id, $studentIdList)))
 			@else
@@ -147,8 +151,7 @@
 
 	<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 		@foreach ($studentList as $student)
-		<?php $studentId = $student->id;
-$studentIdList[] = $studentId;?>
+
 		@if ($student->id != $user->id)
 		<div class="col-xs-12 col-sm-6 student">
 			<div class="panel panel-default student-card">
