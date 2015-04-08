@@ -146,7 +146,14 @@
 						<div class="panel panel-default course-panel">
 						  <div class="panel-body">
 							  <a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}">
-								<img src="{{ URL::asset('courses/'. $result->course_id . '/'. $result->order. '/thumb.png') }}">
+							<figure class="effect-winston">
+									<img src="{{ URL::asset('courses/'. $result->id . '/img/'. '/3x2' . $result->pic) }}">
+										<figcaption>
+										<p class="duration">
+										{{ $result->duration; }}
+										</p>
+									</figcaption>
+							</figure>
 							  </a>
 						  	  <h4><a href="{{ URL::action('LessonController@courseLesson', [$result->course_id, $result->order]) }}"> {{ $result->name; }} </a></h4>
 							  <p>{{ excerpt($result->description) }}</p>
