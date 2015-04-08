@@ -180,6 +180,15 @@ Route::group(array('before' => 'csrf'), function () {
 		'uses' => 'MessagesController@getNotification',
 	));
 
+	Route::post('/notification-amount', array(
+		'as' => 'notification-amount',
+		'uses' => 'NotificationController@getNotificationAmount',
+	));
+
+	Route::post('/notification', array(
+		'as' => 'notification',
+		'uses' => 'NotificationController@getNotification',
+	));
 });
 
 //Pofile ---------------------------------------------------------------------
