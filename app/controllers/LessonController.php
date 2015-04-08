@@ -265,16 +265,6 @@ class LessonController extends \BaseController {
 
 					if ($lesson) {
 
-						$course_users = UserCourse::where("course_id", '=', $course->id)->get();
-
-						foreach ($course_users as $course_user) {
-							$notification = Notification::create(array(
-								'user_id' => $course_user->user_id,
-								'type' => 1,
-								'event_id' => $lesson->id,
-							));
-						}
-
 						if (!Input::has("q1") || !Input::has("11") || !Input::has("12")) {
 							return Redirect::route('course-add', array('id' => $id, 'user' => $user))
 								->withErrors(array('test' => 'You have to create at least 1 question with 2 options.'));
