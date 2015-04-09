@@ -181,30 +181,30 @@ foreach ($courseListIdMenu as $userCourse) {
 <div class="col-xs-3">
 	@if(Auth::check())
       <ul class="nav nav-tabs pull-right">
-        <li class="dropdown">
-	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<i class="fa fa-globe"></i>
-			<span class="badge badge-notification">1</span>
-	        </a>
-			<ul class="dropdown-menu pull-right notifaction-list" role="menu">
-				<li class="pre-menu-item"><strong>Notifications:</strong></li>
-				<li>
-				<a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
-				 <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
-				 <p>uahduawhdud ad ua dau hdauw hdwah </p>
-				 </a>
-				 </li>
-				<li>
-				<a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
-				 <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
-				 <p>uahduawhdud ad ua dau hdauw hdwah </p>
-				 </a>
-				 </li>
-				 <li>
-				 <small><a href="#">more notifacations</a></small>
-				 </li>
-			</ul>
-		</li>
+        <li class="dropdown" id="notification-click">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		   <i class="fa fa-globe"></i>
+		   <span class="badge badge-notification">1</span>
+		         </a>
+		   <ul class="dropdown-menu pull-right notifaction-list" role="menu">
+		    <li class="pre-menu-item" id="notifications"><strong>Notifications:</strong></li>
+		    <li class="temp-notification">
+		     <a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
+		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
+		       <span>New lesson in <strong> How to make a course on techbox How to make a course on techbox.</strong> </span>
+		      </a>
+		    </li>
+		    <li class="temp-notification">
+		     <a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
+		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
+		       <span>4 New students in your <strong>How to make a course on techbox.</strong> </span>
+		      </a>
+		     </li>
+		     <li>
+		     <a href="#"> <small>more notifacations</small></a>
+		     </li>
+		   </ul>
+		  </li>
         <li><a href="{{ URL::action('MessagesController@index') }}"><i class="fa fa-comments"></i><span class="badge badge-message">1</span></a></li>
         <li class="dropdown">
 	        <a href="#" class="navbar-brand profile dropdown-toggle" data-toggle="dropdown">
@@ -497,6 +497,46 @@ foreach ($courseListIdMenu as $userCourse) {
 
    </script>
 
+   <script type="text/javascript">
+   		$(document).ready(function()
+		{
+		    pullNotifications();
+		});
+
+		function pullNotifications()
+		{
+		    getNotifications();
+		    setTimeout(pullNotifications,10000);
+		}
+
+
+		function getNotifications()
+		{
+		    $.post(base_url + '/notification-amount', {_token: _token}, function(data)
+		    {
+		        if(data != 0){
+		            $(".badge-notification").text(data);
+		        }else{
+		 			$(".badge-notification").text("");
+		        }
+
+		    });
+		}
+
+		$( "#notification-click" ).click(function() {
+			$('.notifaction-list').children('.temp-notification').remove();
+            $.post(base_url + '/notification', {_token: _token}, function(data)
+		    {
+		    	alert( data['follow']['last_id']);
+		    	alert( data['follow']['last_name']);
+		    	alert( data['follow']['amount']);
+		      //  $('#notifications').after('');
+
+		    });
+		});
+
+   </script>
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     @if(Route::current()->getName() != 'messages')
@@ -584,6 +624,8 @@ for(var i = 0; i < divs.length; i+=3) {
 }
 
    </script>
+
+
 	<script>
 	var less = '/lesson/';
 		$('#keyword').autocomplete({
