@@ -350,7 +350,7 @@ header .categories{
 	max-width: 400px;
 }
 .notifaction-list li{
-	margin: 10px;
+	margin:0;
 }
 .notifaction-list li:first-child, .notifaction-list li:last-child{
 	margin-left: 0;
@@ -361,7 +361,7 @@ header .categories{
 }
 .notifaction-list li a{
 	padding-left: 0!important;
-	padding-top: 0!important;
+	padding-top: 8px!important;
 	padding-bottom: 0!important;
 	overflow: hidden;
 	min-height: 51px;
@@ -370,25 +370,27 @@ header .categories{
   word-wrap: break-word;
   white-space: nowrap;
   float: left;
-  padding-top: 6px;
-  padding-left: 70px;
+  margin-top: -2px;
+  padding-left: 55px;
 }
 .notifaction-list li img{
   position: absolute;
   left: 10px;
-  width: 51px;
+  width: 35px;
 }
 .dropdown.open > a{
 	color:@blue;
 }
 .notifaction-list li small{
-	margin-top: 8px;
+	width: 100%;
 	display: block!important;
 	text-align: center;
 	color:@grey;
+	margin-bottom: 10px;
 }
 .notifaction-list li:last-child{
 	border-top:1px solid @lightGrey;
+	a{min-height: 1px;}
 }
 .notifaction-list .pre-menu-item{
 	color:@grey;
