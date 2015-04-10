@@ -361,7 +361,7 @@ class AdminController extends \BaseController {
 			$lesson = Lesson::find($id);
 			$lesson->approved = 1;
 			$lesson->save();
-
+            $course = Course::find($lesson->course_id);
 			if ($lesson) {
 				$course_users = UserCourse::where("course_id", '=', $course->id)->get();
 				foreach ($course_users as $course_user) {

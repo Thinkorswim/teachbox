@@ -30,7 +30,7 @@
 		<div class="panel-body">
 			<div class="list-group">
 				<a class="list-group-item" href="{{ URL::action('LessonController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
-				<a class="list-group-item active" href="{{ URL::action('LessonController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
+				<a class="list-group-item active" href="{{ URL::action('LessonController@deleteLesson', [$course->id, $lesson->order]) }}"> Delete the lesson </a>
 			</div>
 		 </div>
 		</div>
@@ -38,27 +38,13 @@
 	<div class="col-xs-12 col-sm-8">
 		<div class="panel panel-default settings-panel actions place">
 			<div class="panel-heading">
-				<h3 class="panel-title">Change the video</h3>
+				<h3 class="panel-title">Delete the lesson</h3>
 			</div>
 		  	<div class="panel-body padding-panel">
-				{{ Form::open(array('action' => array('LessonController@postChangeVideo', $course->id, $lesson->order), 'enctype' => 'multipart/form-data', 'files' => true  )) }}
-				@if($errors->has('video'))
-							<div class="alert alert-danger" role="alert"> {{ $errors->first('video') }} </div>
-				@endif
-				<div class="row">
-					<div class="fileUpload btn btn-primary no-upload">
-				    	<span id="choosen">Change the video</span>
-			    		{{ Form::file('video', array('id'=>'uploadBtn','class'=>'upload')) }}
-			    	</div>
-				</div>
-				<div class="row-add">
-					<div class="alert alert-info" role="alert">
-						<p>Please upload only *.mp4 files with a maximum size of 150mb.</p>
-					</div>
-				</div>
+				{{ Form::open(array('action' => array('LessonController@postDeleteLesson', $course->id, $lesson->order))) }}
 
 				<div class="row">
-					{{ Form::submit('Save changes', array('class'=>'form-control register-button')) }}
+					{{ Form::submit('DELETE', array('class'=>'form-control register-button')) }}
 				</div>
 				{{ Form::token() }}
 				{{ Form::close() }}
