@@ -527,10 +527,10 @@ foreach ($courseListIdMenu as $userCourse) {
 			$('.notifaction-list').children('.temp-notification').remove();
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
-		    	alert( data['follow']['last_id']);
-		    	alert( data['follow']['last_name']);
-		    	alert( data['follow']['amount']);
-		      //  $('#notifications').after('');
+		    	//alert( data['follow']['last_name']);
+		    	//alert( data['follow']['amount']);
+		        $('#notifications').after(' <li class="temp-notification"><a href="'+  base_url + '/user/' +  data[1]['last_id']  + '"><img class="pull-left" src="' + base_url + '/img/' + data[1]['last_id'] + '/user-100x100.png"><span>'+ (data[1]['amount']+1) +' New followers <strong>'+ data[1]['last_name'] +' and ' + data[1]['amount'] + ' others.</strong></span></a></li>');
+
 
 		    });
 		});

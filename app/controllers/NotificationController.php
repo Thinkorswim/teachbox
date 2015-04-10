@@ -30,16 +30,29 @@ class NotificationController extends \BaseController {
 			$notify = array();
 
 			$isFirstFollow = true;
-			$notify['follow']['amount'] = 0;
-
+			$notify[1]['amount'] = 0;
+			$i = 1;
 			foreach ($notifications as $notification) {
 				if ($notification->type = '1') {
 					if ($isFirstFollow) {
-						$notify['follow']['last_name'] = User::find($notification->event_id)->name;
-						$notify['follow']['last_id'] = $notification->event_id;
+						$notify[1]['last_name'] = User::find($notification->event_id)->name;
+						$notify[1]['last_id'] = $notification->event_id;
+						$isFirstFollow = false;
+						switch ($i) {
+							case 1:
+								$notify['order'][1] = 1;
+								break;
+							case 2:
+								$notify['order'][2] = 1;
+								break;
+							case 3:
+								$notify['order'][3] = 1;
+								break;
+						}
+						$i++;
+					} else {
+						$notify[1]['amount'] += 1;
 					}
-
-					$notify['follow']['amount'] += 1;
 				} else if ($notification->type = '2') {
 
 				} else if ($notification->type = '3') {
