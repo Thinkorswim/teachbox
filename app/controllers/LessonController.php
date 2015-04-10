@@ -385,7 +385,7 @@ class LessonController extends \BaseController {
 		}
 	}
 
-	public function changeVideo($id, $lesson) {
+	public function deleteLesson($id, $lesson) {
 		$course = Course::find($id);
 		if (Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id) {
 			$course = Course::find($id);
@@ -395,7 +395,7 @@ class LessonController extends \BaseController {
 				$query->where('course_id', '=', $id);
 			})->first();
 
-			return View::make('courses.change_video')->with(array('course' => $course, 'lesson' => $lesson));
+			return View::make('courses.delete_lesson')->with(array('course' => $course, 'lesson' => $lesson));
 		} else {
 			return View::make('home.before');
 		}
@@ -451,78 +451,33 @@ class LessonController extends \BaseController {
 		}
 	}
 
-	public function postChangeVideo($id, $lesson) {
-		$course = Course::find($id);
-		if (Auth::check() && ($course->approved == 1 || $course->user_id == Auth::user()->id) && $course->user_id == Auth::user()->id) {
-			if (Input::hasFile('video') && (Input::file('video')->getClientOriginalExtension() == "mp4")) {
+	public function postDeleteLesson($id, $lesson) {
+		if (Auth::check()) {
+			$course = Course::find($id);
 
-				$file = Input::file('video');
-				$course = Course::find($id);
-				$order = Lesson::where('course_id', '=', $id)->count();
+			$order = Lesson::where('course_id', '=', $id)->count();
 
-				$lesson = Lesson::where(function ($query) use ($lesson) {
-					$query->where('order', '=', $lesson);
-				})->where(function ($query) use ($id) {
-					$query->where('course_id', '=', $id);
-				})->first();
+			$lesson = Lesson::where(function ($query) use ($lesson) {
+				$query->where('order', '=', $lesson);
+			})->where(function ($query) use ($id) {
+				$query->where('course_id', '=', $id);
+			})->first();
 
-				$path = public_path() . '/courses/' . $course->id . '/' . $order;
-				$success = File::cleanDirectory($path);
-				$filename = "video.mp4";
-				$file->move($path, $filename);
-				$ffmpeg = public_path() . '/ffmpeg/ffmpeg';
-				$video = $path . '/' . $filename;
-				$full_duration = exec("$ffmpeg -i $video 2>&1 |
-				grep Duration | cut -d ' ' -f 4 | sed s/,//");
-				$hour = substr($full_duration, 0, 2);
-				$minute = substr($full_duration, 3, 2);
-				$second = substr($full_duration, 6, 2);
-				$duration = $minute . ':' . $second;
+			$isDB = $lesson->delete();
 
-				$hour_i = (int) $hour;
-				$minute_i = (int) $minute;
-				$second_i = (int) $second;
-				if ($hour_i != 0) {
-					$deleteMake = File::deleteDirectory(public_path() . '/courses/' . $course->id . '/' . $order);
-					return Redirect::route('course-add', array('id' => $id, 'user' => $user))
-						->withErrors(array('video' => 'The video is bigger than 5 minutes.'));
-				} else {
-					if ($minute_i <= 4 || ($minute_i == 5 && $second_i == 0)) {
-					} else {
-						$deleteMake = File::deleteDirectory(public_path() . '/courses/' . $course->id . '/' . $order);
-						return Redirect::route('course-add', array('id' => $id, 'user' => $user))
-							->withErrors(array('video' => 'The video is bigger than 5 minutes.'));
-					}
-				}
-				// Get Thumbnail
-				$image = $path . '/thumb.png';
-				$interval = 1;
-				$cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
-				shell_exec($cmd);
-				if (File::exists($path . '/thumb.png')) {
-					$image = Image::make($path . '/thumb.png');
-					$image->fit(300, 200);
-					$image->save($path . '/thumb300x200.png');
-					$image2 = Image::make($path . '/thumb.png');
-					$image2->fit(100, 100);
-					$image2->save($path . '/thumb100x100.png');
-				}
+			$isFile = File::deleteDirectory(public_path() . '/courses/' . $lesson->course_id . '/' . $lesson->order);
 
-				$lesson->filepath = $filename;
-				$lesson->duration = $duration;
-				$lesson->approved = 0;
+			if ($isDB && $isFile) {
 
-				if ($lesson->save()) {
-					return Redirect::route('course-page', array('id' => $id));
-				} else {
-					return Redirect::route('change-lesson-video', array('id' => $id))
-						->with('global-negative', 'You could not edit this lesson.');
-				}
-			} else {
+/*				$lessons = Lesson::where('course_id', '=', $id);
+				foreach ($lessons as $lesson) {
+					$order = Lesson::where('course_id', '=', $id)->count();
+					$lesson->order = $order - 1;
+					$lesson->save();
+				}*/
+
 				return Redirect::route('course-page', array('id' => $id));
 			}
-		} else {
-			return View::make('home.before');
 		}
 	}
 

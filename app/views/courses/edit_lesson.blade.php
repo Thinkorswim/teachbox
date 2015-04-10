@@ -28,7 +28,7 @@
 		<div class="panel-body">
 			<div class="list-group">
 				<a class="list-group-item active" href="{{ URL::action('LessonController@lessonEdit', [$course->id, $lesson->order]) }}">Lesson information</a>
-				<a class="list-group-item" href="{{ URL::action('LessonController@changeVideo', [$course->id, $lesson->order]) }}"> Change the video </a>
+				<a class="list-group-item" href="{{ URL::action('LessonController@deleteLesson', [$course->id, $lesson->order]) }}"> Delete the lesson</a>
 			</div>
 		</div>
 		</div>

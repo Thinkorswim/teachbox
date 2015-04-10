@@ -58,9 +58,9 @@ Route::group(array('before' => 'csrf'), function () {
 		'uses' => 'LessonController@postLessonEdit',
 	));
 
-	Route::post('/course/{id}/lesson/{order}/video-change', array(
-		'as' => 'post-change-video',
-		'uses' => 'LessonController@postChangeVideo',
+	Route::post('/course/{id}/lesson/{order}/lesson-delete', array(
+		'as' => 'post-delete-lesson',
+		'uses' => 'LessonController@postDeleteLesson',
 	));
 
 	Route::post('/course/{id}/lesson/{order}/test', array(
@@ -298,10 +298,10 @@ Route::get('/course/{id}/lesson/{order}/settings', array(
 	'uses' => 'LessonController@lessonEdit',
 ));
 
-//Change lesson video
-Route::get('/course/{id}/lesson/{order}/video-change', array(
-	'as' => 'change-lesson-video',
-	'uses' => 'LessonController@changeVideo',
+//Delete lesson video
+Route::get('/course/{id}/lesson/{order}/lesson-delete', array(
+	'as' => 'delete-lesson',
+	'uses' => 'LessonController@deleteLesson',
 ));
 
 //Course Questions
