@@ -468,14 +468,15 @@ class LessonController extends \BaseController {
 			$isFile = File::deleteDirectory(public_path() . '/courses/' . $lesson->course_id . '/' . $lesson->order);
 
 			if ($isDB && $isFile) {
-
-/*				$lessons = Lesson::where('course_id', '=', $id);
-				foreach ($lessons as $lesson) {
-					$order = Lesson::where('course_id', '=', $id)->count();
-					$lesson->order = $order - 1;
-					$lesson->save();
-				}*/
-
+				$lessons = Lesson::where('course_id', '=', $id)->get();
+				$newOrder = 1;
+				foreach ($lessons as $lesson)
+				{
+						$lesson->order = $newOrder;
+						$lesson->save();
+						$newOrder++;
+				}
+		
 				return Redirect::route('course-page', array('id' => $id));
 			}
 		}
