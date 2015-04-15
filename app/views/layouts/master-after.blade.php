@@ -194,12 +194,6 @@ foreach ($courseListIdMenu as $userCourse) {
 		       <span>New lesson in <strong> How to make a course on techbox How to make a course on techbox.</strong> </span>
 		      </a>
 		    </li>
-		    <li class="temp-notification">
-		     <a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
-		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
-		       <span>4 New students in your <strong>How to make a course on techbox.</strong> </span>
-		      </a>
-		     </li>
 		     <li>
 		     <a href="#"> <small>more notifacations</small></a>
 		     </li>
@@ -527,11 +521,24 @@ foreach ($courseListIdMenu as $userCourse) {
 			$('.notifaction-list').children('.temp-notification').remove();
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
-		    	//alert( data['follow']['last_name']);
-		    	//alert( data['follow']['amount']);
-		        $('#notifications').after(' <li class="temp-notification"><a href="'+  base_url + '/user/' +  data[1]['last_id']  + '"><img class="pull-left" src="' + base_url + '/img/' + data[1]['last_id'] + '/user-100x100.png"><span>'+ (data[1]['amount']+1) +' New followers <strong>'+ data[1]['last_name'] +' and ' + data[1]['amount'] + ' others.</strong></span></a></li>');
 
-
+		    	for (var i = 0; i<3; i++) {
+		    		switch(data['order'][i]){
+		    			case 0:
+		    					$('#notifications').after(' <li class="temp-notification"><a href="'+  base_url + '/user/' +  data['follow']['last_id']  + '"><img class="pull-left" src="' + base_url + '/img/' + data['follow']['last_id'] + '/user-100x100.png"><span>'+ (data['follow']['amount']+1) +' New followers <strong>'+ data['follow']['last_name'] +' and ' + data['follow']['amount'] + ' others.</strong></span></a></li>');
+								break;
+						case 1:
+									$('#notifications').after('<li class="temp-notification">
+		     <a href="{{ URL::action('ProfileController@user', [Auth::user()->id]) }}">
+		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
+		       <span>4 New students in your <strong>How to make a course on techbox.</strong> </span>
+		      </a>
+		     </li>');
+								break;
+						case 2:
+								break;
+		    		}
+		    	};
 		    });
 		});
 

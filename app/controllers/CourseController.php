@@ -265,7 +265,7 @@ class CourseController extends \BaseController {
 				$notification = Notification::create(array(
 					'user_id' => $course->user_id,
 					'type' => 3,
-					'event_id' => $user_id,
+					'event_id' => $userCourse,
 				));
 
 				return Redirect::route('course-page', array('id' => $id));
