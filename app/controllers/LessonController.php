@@ -467,20 +467,24 @@ class LessonController extends \BaseController {
 
 			$isFile = File::deleteDirectory(public_path() . '/courses/' . $lesson->course_id . '/' . $lesson->order);
 
+			for($i = $lesson->order; $i < $order; $i++)
+			{
+				$k = $i + 1;
+				$path = public_path() . '/courses/' . $lesson->course_id . '/' . $k;
+				$newPath = public_path() . '/courses/' . $lesson->course_id . '/' . $i;
+				rename($path, $newPath);
+			}
+
 			if ($isDB && $isFile) {
 				$lessons = Lesson::where('course_id', '=', $id)->get();
-				$order = Lesson::where('course_id', '=', $id)->count() + 1;
 				$newOrder = 1;
 				foreach ($lessons as $lesson)
 				{
-						$lesson->order = $newOrder;
-						$lesson->save();
-						$newOrder++;
-/*						$path = public_path() . '/courses/' . $course->id . '/' . $order;
-						$newPath = public_path() . '/courses/' . $course->id . '/' . $newOrder;
-						rename($path, $newPath);*/
+					$lesson->order = $newOrder;
+					$lesson->save();
+					$newOrder++;
 				}
-		
+
 				return Redirect::route('course-page', array('id' => $id));
 			}
 		}
