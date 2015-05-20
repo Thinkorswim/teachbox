@@ -22,6 +22,15 @@ class NotificationController extends \BaseController {
 		}
 	}
 
+	public function getNotificationClear() {
+		if (Auth::check()) {
+			$notifications = Notification::where('user_id', '=', Auth::id())->update(array('seen' => 1));
+			return 1;
+		}
+
+		return 0;
+	}
+
 	public function getNotification() {
 		if (Auth::check()) {
 			$myId = Auth::id();

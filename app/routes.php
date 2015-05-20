@@ -185,6 +185,11 @@ Route::group(array('before' => 'csrf'), function () {
 		'uses' => 'NotificationController@getNotificationAmount',
 	));
 
+	Route::post('/notification-clear', array(
+		'as' => 'notification-clear',
+		'uses' => 'NotificationController@getNotificationClear',
+	));
+
 	Route::post('/notification', array(
 		'as' => 'notification',
 		'uses' => 'NotificationController@getNotification',
