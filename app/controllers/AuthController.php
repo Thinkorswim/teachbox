@@ -8,8 +8,6 @@ class AuthController extends \BaseController {
 	 * @return Response
 	 */
 	public function index() {
-		$max_users = DB::table('users')->count();
-		$remaining = 1000 - $max_users;
 		if (Auth::check()) {
 
 			$user = Auth::user();
@@ -92,17 +90,10 @@ class AuthController extends \BaseController {
 				->with(array('timeline' => $timeline, 'joinedList' => $joinedList, 'courses' => $courses, 'timelineCount' => $timelineCount, 'avgArray' => $avgArray, 'doneArray' => $doneArray,
 					'randomCourses' => $randomCourses,'avgReviews'=> $avgReviews));
 		} else {
-			if (!Cookie::get('registrations-remaining')) {
-				$cookie = Cookie::forever('registrations-remaining', 'registrations-remaining');
-				$view = View::make('home.before')
-					->with(array('max_users' => $max_users, 'remaining' => $remaining));
 
-				return Response::make($view)->withCookie($cookie);
-
-			}
 
 			return View::make('home.before')
-				->with(array('max_users' => $max_users, 'remaining' => $remaining));
+				->with(array('max_users' => $max_users));
 		}
 	}
 
