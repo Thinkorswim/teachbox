@@ -528,7 +528,7 @@ foreach ($courseListIdMenu as $userCourse) {
 
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
-		    	if(data['order'][0]==null && data['order'][1]==null && data['order'][2]==null){
+		    	if(data['order']==null){
 		    		$('#notifications').after('<a href="#"> <small>No notifications yet</small></a>');
 		    	}
 		    	for (var i = 0; i<3; i++) {
