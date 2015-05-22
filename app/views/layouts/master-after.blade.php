@@ -194,7 +194,7 @@ foreach ($courseListIdMenu as $userCourse) {
 		       <span>New lesson in <strong> How to make a course on techbox How to make a course on techbox.</strong> </span>
 		      </a>-->
 		    </li>
-		     <li>
+		     <li id="no-notifcitaions">
 			     <!-- <a href="#"> <small>more notifacations</small></a> -->
 		     </li>
 		   </ul>
@@ -529,7 +529,8 @@ foreach ($courseListIdMenu as $userCourse) {
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
 		    	if(data['order']==null){
-		    		$('#notifications').after('<a href="#"> <small>No notifications yet</small></a>');
+		    		$('#no-notifcitaions').empty();
+		    		$('#no-notifcitaions').append('<a href="#"> <small>No notifications yet</small></a>');
 		    	}
 		    	for (var i = 0; i<3; i++) {
 		    		switch(data['order'][i]){
