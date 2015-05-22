@@ -528,7 +528,9 @@ foreach ($courseListIdMenu as $userCourse) {
 
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
-		    	var k=0;
+		    	if(data['order'][0]==null && data['order'][1]==null && data['order'][2]==null){
+		    		$('#notifications').after('<a href="#"> <small>No notifications yet</small></a>');
+		    	}
 		    	for (var i = 0; i<3; i++) {
 		    		switch(data['order'][i]){
 		    			case 0:
@@ -552,9 +554,7 @@ foreach ($courseListIdMenu as $userCourse) {
 		    		}
 		    	};
 
-		    	if(k==0){
-		    		$('#notifications').after('<a href="#"> <small>No notifications yet</small></a>');
-		    	}
+
 
 		    });
 		});
