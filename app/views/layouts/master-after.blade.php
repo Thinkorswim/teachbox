@@ -193,7 +193,6 @@ foreach ($courseListIdMenu as $userCourse) {
 		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
 		       <span>New lesson in <strong> How to make a course on techbox How to make a course on techbox.</strong> </span>
 		      </a>-->
-		      <a href="#"> <small>No notifications yet</small></a>
 		    </li>
 		     <li>
 			     <!-- <a href="#"> <small>more notifacations</small></a> -->
@@ -529,7 +528,7 @@ foreach ($courseListIdMenu as $userCourse) {
 
             $.post(base_url + '/notification', {_token: _token}, function(data)
 		    {
-
+		    	var k=0;
 		    	for (var i = 0; i<3; i++) {
 		    		switch(data['order'][i]){
 		    			case 0:
@@ -538,6 +537,7 @@ foreach ($courseListIdMenu as $userCourse) {
 		    					}else{
 		    						$('#notifications').after(' <li class="temp-notification"><a href="'+  base_url + '/user/' +  data['follow']['last_id']  + '"><img class="pull-left" src="' + base_url + '/img/' + data['follow']['last_id'] + '/user-100x100.png"><span><strong>' + data['follow']['last_name'] + ' followed you.</strong></span></a></li>');
 		    					}
+		    					k++;
 								break;
 						case 1:
 								if(data['join']['amount'] > 1){
@@ -545,11 +545,17 @@ foreach ($courseListIdMenu as $userCourse) {
 								}else{
 									$('#notifications').after(' <li class="temp-notification"><a href="'+  base_url + '/user/' +  data['join']['last_id'] + '"><img class="pull-left" src="' + base_url + '/img/' + data['join']['last_id'] + '/user-100x100.png"><span>'+ data['join']['last_name'] +' joined your <strong>' + data['join']['course'] + '</strong> course. </span></a></li>');
 								}
+								k++;
 								break;
 						case 2:
 								break;
 		    		}
 		    	};
+
+		    	if(k==0){
+		    		$('#notifications').after('<a href="#"> <small>No notifications yet</small></a>');
+		    	}
+
 		    });
 		});
 
