@@ -193,6 +193,7 @@ foreach ($courseListIdMenu as $userCourse) {
 		       <img class="pull-left" src="https://pbs.twimg.com/profile_images/558225939675762689/CAjYSQca.jpeg">
 		       <span>New lesson in <strong> How to make a course on techbox How to make a course on techbox.</strong> </span>
 		      </a>-->
+		      <a href="#"> <small>No notifications yet</small></a>
 		    </li>
 		     <li>
 			     <!-- <a href="#"> <small>more notifacations</small></a> -->
