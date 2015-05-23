@@ -13,7 +13,7 @@ class CourseController extends \BaseController {
 	}
 
 	public function explore() {
-		$all = DB::select(DB::raw("SELECT DISTINCT `category` FROM `courses`  AS category"));
+		$all = DB::select(DB::raw("SELECT DISTINCT `category` FROM `courses`  WHERE `approved` = 1"));
 		$avgReviews = array();
 		$countCourse = Course::where('approved', '=', '1')->count();
 		$courses = Course::where('approved', '=', '1')->get();
@@ -34,7 +34,7 @@ class CourseController extends \BaseController {
 
 	}
 	public function category($category) {
-		$all = DB::select(DB::raw("SELECT DISTINCT `category` FROM `courses` AS category"));
+		$all = DB::select(DB::raw("SELECT DISTINCT `category` FROM `courses` WHERE `approved` = 1"));
 		$courses = Course::where('approved', '=', '1')->where('category', '=', $category)->get();
 		$countCourse = Course::where('approved', '=', '1')->where('category', '=', $category)->count();
 		$avgReviews = array();
