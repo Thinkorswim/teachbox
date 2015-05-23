@@ -93,7 +93,7 @@ class AuthController extends \BaseController {
 
 
 			return View::make('home.before')
-				->with(array('max_users' => $max_users));
+				->with(array());
 		}
 	}
 

@@ -190,12 +190,11 @@
 									<h5>Completed!</h5>
 									<p>You got <strong>{{calculateMark($avgArray[$i])}}</strong> ({{$avgArray[$i]}}%)</p>
 								</div>
-								<?php $i++; ?>
 							@endif
 						  </div>
 						</div>
 					</div>
-
+					<?php $i++; ?>
 				@endif
 				
 			@endforeach
