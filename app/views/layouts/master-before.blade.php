@@ -24,14 +24,6 @@
     <![endif]-->
   </head>
   <body>
-  @if(!Cookie::get('registrations-remaining'))
-	  @if(Route::current()->getName() == 'home')
-		  <div class="absolute-screen">
-			<h2 class="centered">Only <strong>{{$remaining}}</strong> registrations remaining. <br><br>Don't miss the chance to be one of the first users on Teachbox !</h2>
-
-		</div>
-	  @endif
-   @endif
  	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery')
 		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
