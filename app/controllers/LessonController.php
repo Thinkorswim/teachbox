@@ -395,6 +395,8 @@ class LessonController extends \BaseController {
 				$query->where('course_id', '=', $id);
 			})->first();
 
+			DB::table('results')->where('lesson_id', '=', $lesson->id)->delete();
+
 			return View::make('courses.delete_lesson')->with(array('course' => $course, 'lesson' => $lesson));
 		} else {
 			return View::make('home.before');
@@ -467,8 +469,7 @@ class LessonController extends \BaseController {
 
 			$isFile = File::deleteDirectory(public_path() . '/courses/' . $lesson->course_id . '/' . $lesson->order);
 
-			for($i = $lesson->order; $i < $order; $i++)
-			{
+			for ($i = $lesson->order; $i < $order; $i++) {
 				$k = $i + 1;
 				$path = public_path() . '/courses/' . $lesson->course_id . '/' . $k;
 				$newPath = public_path() . '/courses/' . $lesson->course_id . '/' . $i;
@@ -478,8 +479,7 @@ class LessonController extends \BaseController {
 			if ($isDB && $isFile) {
 				$lessons = Lesson::where('course_id', '=', $id)->get();
 				$newOrder = 1;
-				foreach ($lessons as $lesson)
-				{
+				foreach ($lessons as $lesson) {
 					$lesson->order = $newOrder;
 					$lesson->save();
 					$newOrder++;
