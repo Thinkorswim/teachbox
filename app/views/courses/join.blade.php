@@ -188,6 +188,7 @@ $i++;?>.</strong> {{ $lesson->name; }}
 	</div>
 	</div>
 	</div>
+@if ( (Auth::check() && !$isJoined && count($reviews) > 0) || ( !Auth::check() &&  count($reviews) > 0) || (Auth::check() && $isJoined) )
 <section class="reviews status">
 	<div class="container">
 	<div class="row">
@@ -217,7 +218,7 @@ $i++;?>.</strong> {{ $lesson->name; }}
 			<?php $userReviews[] = $review->user_id;?>
 		@endforeach
 		<div class="centered">
-		@if ((!Auth::check()) || ((Auth::check() && !$isJoined) || (Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && in_array(Auth::user()->id, $userReviews))));
+		@if ((!Auth::check()) || ((Auth::check() && !$isJoined) || (Auth::check() && $course->user_id == Auth::user()->id) || (Auth::check() && in_array(Auth::user()->id, $userReviews))))
 		@else
 	          <a class="btn btn-primary" href="#reviews-anchor" data-toggle="modal" data-target="#reviews">Leave a Review</a>
         @endif
@@ -253,4 +254,5 @@ $i++;?>.</strong> {{ $lesson->name; }}
         </div>
         </div>
 </section>
+@endif
 @endsection

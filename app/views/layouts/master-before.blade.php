@@ -17,7 +17,7 @@
 	<meta name="google-site-verification" content="_npkPq6Oypg3K_Z-AUJkW_9pvxGtTAly8asiWtDMQNI" />
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv2.1.css') }}">
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
