@@ -71,7 +71,7 @@ class ProfileController extends \BaseController {
 
 				if ($size >= $file_max) {
 					return Redirect::route('change-picture', array('id' => $user->id))
-					                                                                                                                        ->withErrors(array('pic' => 'The file size is larger than 4mb.'));
+					                                                                                                                        ->wfuserithErrors(array('pic' => 'The file size is larger than 4mb.'));
 
 				}
 
@@ -447,7 +447,7 @@ class ProfileController extends \BaseController {
 				$avgReview = DB::select(DB::raw("SELECT AVG(reviews.rating) AS avgReview
 				FROM reviews WHERE reviews.course_id = '$userCourse->course_id'"));
 				$avgReview = round($avgReview[0]->avgReview);
-				$avgReviews[$i] = $avgReview;
+				$avgReviews[] = $avgReview;
 				$myId = $user->id;
 				$result = DB::select(DB::raw("SELECT COUNT(results.id) AS result
 				FROM results
