@@ -157,9 +157,8 @@
 	</div>
 		</div>
 	</div>
-		      <!-- <a href="" class="more"><i class="fa-4x pe-7s-angle-down-circle"></i></a> -->
-
 	</section>
+
 	<section class="full-screen learn-screen">
 		<div class="container">
 			<div class="col-sm-3">
@@ -188,6 +187,7 @@
 			</div>
 		</div>
 	</section>
+
 	<header class="relative-header">
 		<section class="full-screen explore">
 			<div class="col-xs-3">
@@ -205,31 +205,38 @@
 			</div>
 		</section>
 	</header>
-	<section class="full-screen responsive">
+
+	<section class="biz">
 		<div class="container">
-		<h2 class="centered">Learn on the go or in the comfort of your home!</h2>
-		<img src="{{ URL::asset('img/devices.png') }}">
+			<h2>If you have a business you'll be intereseted in our solution for your employees training.</h2>
+			<a href="#" class="btn btn-default">Let's talk business!</a>
 		</div>
 	</section>
-	<!--
+
 	<section class="full-screen testimonials">
 		<div class="container">
-			<h1>People talk about us</h1>
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-			  <div class="carousel-inner" role="listbox">
-			    <div class="item active">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>
-						"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"
-						 <small>Koko Donchev, Stepsss</small>
-			        </h3>
-
-			    </div>
-			    <div class="item">
-			        <h3><i class="fa fa-2x fa-quote-left"></i>The teachbox is on the right path. </h3>
-			    </div
+			<div class="col-xs-12 col-sm-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Emilian Kadiiski</strong> - teacher at SVHSE "John Atanasoff"
+					</div>
+					<div class="panel-body">
+						<p>"Teachbox is a great opportunity to spread the learning possibilities in our everyday life."</p>
+					</div>
+				</div>
 			</div>
+
+			<div class="col-xs-12 col-sm-6">
+				<div class="panel panel-default place">
+					<div class="panel-heading">
+						<strong>Nikola Donchev</strong> - Co-founder of Stepsss
+					</div>
+					<div class="panel-body">
+						<p>"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"</p>
+					</div>
+				</div>
+			</div>
+
 		</div>
-	</div>
-	</section>-->
+	</section>
 @endsection
