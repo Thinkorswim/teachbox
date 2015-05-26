@@ -71,7 +71,7 @@ class ProfileController extends \BaseController {
 
 				if ($size >= $file_max) {
 					return Redirect::route('change-picture', array('id' => $user->id))
-					                                                                                                                        ->wfuserithErrors(array('pic' => 'The file size is larger than 4mb.'));
+						->wfuserithErrors(array('pic' => 'The file size is larger than 4mb.'));
 
 				}
 
@@ -566,6 +566,9 @@ class ProfileController extends \BaseController {
 				'follower_id' => Auth::user()->id,
 				'following_id' => $id,
 			))->delete();
+
+			$notification = Notification::where('user_id', '=', $id)->where('event_id', '=', Auth::user()->id)->where('type', '=', 2);
+			$notification->delete();
 
 			if ($user) {
 				return Redirect::action('ProfileController@user', [$id])

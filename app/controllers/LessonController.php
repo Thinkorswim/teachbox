@@ -242,7 +242,7 @@ class LessonController extends \BaseController {
 					$cmd = "$ffmpeg -i $video -deinterlace -an -ss $interval -f mjpeg -t 1 -r 1 -y $image 2>&1";
 					shell_exec($cmd);
 
-					//Queue::push('Convert', array('video' => $video, 'path' => $path, 'ffmpeg' => $ffmpeg));
+					Queue::push('Convert', array('video' => $video, 'path' => $path, 'ffmpeg' => $ffmpeg));
 
 					if (File::exists($path . '/thumb.png')) {
 						$image = Image::make($path . '/thumb.png');
