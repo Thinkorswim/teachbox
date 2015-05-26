@@ -97,7 +97,7 @@
 						{{ Form::close() }}
 					</div>
 
-					
+
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}
@@ -206,12 +206,12 @@
 		</section>
 	</header>
 
-	<section class="biz">
+<!--	<section class="biz">
 		<div class="container">
 			<h2>If you have a business you'll be intereseted in our solution for your employees training.</h2>
 			<a href="#" class="btn btn-default">Let's talk business!</a>
 		</div>
-	</section>
+	</section> -->
 
 	<section class="full-screen testimonials">
 		<div class="container">
