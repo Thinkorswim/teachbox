@@ -160,31 +160,107 @@
 	</section>
 
 	<section class="full-screen learn-screen">
-		<div class="container">
-			<div class="col-sm-3">
+		<div class="container centered">
+			<h1>Why teachbox?</h1>
+			<div class="col-sm-12">
+		<div role="tabpanel">
 
-				<img src="{{ URL::asset('img/Browserpen.png') }}" alt="broswer pen">
-				<h2 class="centered">Teach</h2>
-				<p> We want to give everyone the right to share their knowledge. You can lead the education revolution and change the lifes of millions. </p>
-			</div>
-			<div class="col-sm-3">
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-pills front-ul" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Learn</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Teach</a></li>
+			  </ul>
 
-				<img src="{{ URL::asset('img/Education.png') }}" alt="edcation hat">
-				<h2 class="centered">Learn</h2>
-				<p> Learning has not been esier before. With our 5 minutes long lessons and quick tests you will become a master in any field in no time.  </p>
-			</div>
-			<div class="col-sm-3">
+  <!-- Tab panes -->
+			  <div class="tab-content">
 
-				<img src="{{ URL::asset('img/Dollarbag.png') }}" alt="dollar bag">
-				<h2 class="centered">Earn</h2>
-				<p> Earn by creating interactive paid courses and doing something valuable. Your time and effort will be greatly appriciated.  </p>
-			</div>
-			<div class="col-sm-3">
+			    <div role="tabpanel" class="tab-pane fade in  active" id="home">
+			    	<div class="row">
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/search.svg') }}" title="search.svg">
+							<p>Search whaterver you want to learn.</p>
+						</div>
 
-				<img src="{{ URL::asset('img/Hearts.png') }}" alt="hearts">
-				<h2 class="centered">Socialise</h2>
-				<p> Learning is a social experiance. Study with your friends or meet new people. Follow your favourite creators and see their activities. </p>
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/film_reel.svg') }}" title="film_reel.svg">
+							<p>Watch a lesson max 5 minutes long.</p>
+						</div>
+
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/advance.svg') }}" title="advance.svg">
+							<p>Take the course of the lesson.</p>
+						</div>
+
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/survey.svg') }}" title="survey.svg">
+							<p>Answer a quick test.</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/reading_ebook.svg') }}" title="reading_ebook.svg">
+							<p>Learn more.</p>
+						</div>
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/bar_chart.svg') }}" title="bar_chart.svg">
+							<p>Compete with the others.</p>
+						</div>
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/collaboration.svg') }}" title="collaboration.svg">
+							<p>Talk to your friends and make new ones.</p>
+						</div>
+
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/faq.svg') }}" title="faq.svg">
+							<p>Ask and answer.</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-3">
+						</div>
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/like.svg') }}" title="like.svg">
+							<p>Like it or not, write a simple review.</p>
+						</div>
+
+						<div class="col-sm-3">
+							<img class="icon" src="{{ URL::asset('svg/high_priority.svg') }}" title="high_priority.svg">
+							<p>Absolutely free.</p>
+						</div>
+					</div>
+			   </div>
+
+			    <div role="tabpanel" class="tab-pane fade" id="profile">
+							<div class="col-sm-3">
+								<img class="icon" src="{{ URL::asset('svg/search.svg') }}" title="search.svg">
+								<p>Search whaterver you want to learn.</p>
+								<img class="icon" src="{{ URL::asset('svg/reading_ebook.svg') }}" title="reading_ebook.svg">
+								<p>Learn more.</p>
+							</div>
+							<div class="col-sm-3">
+								<img class="icon" src="{{ URL::asset('svg/film_reel.svg') }}" title="film_reel.svg">
+								<p>Watch a lesson max 5 minutes long.</p>
+							</div>
+							<div class="col-sm-3">
+								<img class="icon" src="{{ URL::asset('svg/advance.svg') }}" title="advance.svg">
+								<p>Take the course of the lesson.</p>
+								<img class="icon" src="{{ URL::asset('svg/collaboration.svg') }}" title="collaboration.svg">
+								<p>Talk to your friends and make new ones.</p>
+							</div>
+
+							<div class="col-sm-3">
+								<img class="icon" src="{{ URL::asset('svg/survey.svg') }}" title="survey.svg">
+								<p>Answer a quick test.</p>
+								<img class="icon" src="{{ URL::asset('svg/high_priority.svg') }}" title="high_priority.svg">
+								<p>Absolutely free.</p>
+							</div>
+			    </div>
+			  </div>
+
 			</div>
+
 		</div>
 	</section>
 
@@ -206,12 +282,12 @@
 		</section>
 	</header>
 
-<!--	<section class="biz">
+	<section class="biz">
 		<div class="container">
 			<h2>If you have a business you'll be intereseted in our solution for your employees training.</h2>
 			<a href="#" class="btn btn-default">Let's talk business!</a>
 		</div>
-	</section> -->
+	</section>
 
 	<section class="full-screen testimonials">
 		<div class="container">

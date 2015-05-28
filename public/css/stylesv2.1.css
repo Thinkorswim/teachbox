@@ -8714,6 +8714,19 @@ footer {
   font-size: 24px;
   color: #d17581;
 }
+.icon {
+  max-width: 100px;
+  height: auto;
+  margin: 1rem;
+}
+.front-ul {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.front-ul li {
+  float: none;
+  display: inline-block;
+}
 .full-screen {
   padding: 30px 0 0px;
   min-height: 100vh;
@@ -8760,7 +8773,6 @@ footer {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 1px!important;
   padding-bottom: 30px;
 }
 .full-screen.main-screen > img {
@@ -8964,7 +8976,7 @@ footer small {
   padding: 0;
 }
 .ui-autocomplete li {
-  padding: 20px 5px;
+  padding: 5px 20px;
   cursor: pointer;
 }
 .biz {

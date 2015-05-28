@@ -44,7 +44,6 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 1px!important;
   padding-bottom: 30px;
 }
 .full-screen.main-screen > img {
@@ -248,7 +247,7 @@ footer small {
   padding: 0;
 }
 .ui-autocomplete li {
-  padding: 20px 5px;
+  padding: 5px 20px;
   cursor: pointer;
 }
 .biz {
