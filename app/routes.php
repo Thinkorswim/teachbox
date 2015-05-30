@@ -484,6 +484,14 @@ Route::get('/messages', array(
 	'uses' => 'MessagesController@index',
 ));
 
+//Bussines
+
+Route::get('/subscribe', array(
+	'as' => 'subscribe',
+	'uses' => 'BusinessController@subscribe',
+));
+
+
 class Convert {
 
 	public function fire($job, $data) {
