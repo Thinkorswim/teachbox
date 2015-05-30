@@ -20,14 +20,12 @@
 				<iframe id="thevideo" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-1">
-			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
 				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
 				|| $errors->has('password_again'))
-			<div class="col-xs-12 col-sm-12 col-md-4 tab-register shake">
+			<div class="col-xs-12 col-sm-12 col-md-5 tab-register shake">
 			@else
-			<div class="col-xs-12 col-sm-12 col-md-4 tab-register">
+			<div class="col-xs-12 col-sm-12 col-md-5 tab-register">
             @endif
 				<ul class="nav nav-tabs" role="tablist">
 				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>

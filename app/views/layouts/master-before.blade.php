@@ -112,7 +112,7 @@
 </header>@endif
 	    @yield('content')
  @if(Route::current()->getName() == 'home')
-	<footer class="front-page-footer footer-front">
+	<footer class="front-page-footer footer-front" style="padding:10px">
 @else
 	<footer class="front-page-footer">
 @endif

@@ -54,6 +54,9 @@
   color: #2c3e50;
   margin-bottom: 40px;
 }
+.full-screen.main-screen .nav-tabs > li.active > a {
+  border-color: transparent;
+}
 .full-screen.teach-screen {
   background: url(../img/19.jpg) no-repeat center center;
   -webkit-background-size: cover;

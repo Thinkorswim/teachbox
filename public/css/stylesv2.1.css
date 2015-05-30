@@ -8406,6 +8406,10 @@ h3 {
   padding: 0!important;
   margin: 0 0 20px!important;
 }
+.front-video .embed-responsive,
+.front-video .panel .embed-responsive {
+  min-height: 375px;
+}
 textarea,
 input[type="text"],
 input[type="password"],
@@ -8782,6 +8786,9 @@ footer {
 .full-screen.main-screen h2 {
   color: #2c3e50;
   margin-bottom: 40px;
+}
+.full-screen.main-screen .nav-tabs > li.active > a {
+  border-color: transparent;
 }
 .full-screen.teach-screen {
   background: url(../img/19.jpg) no-repeat center center;
@@ -9529,9 +9536,6 @@ h6:after {
 }
 .tab-register {
   background: #ffffff;
-  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
 }
 .tab-register .nav.nav-tabs {
   border: none;
