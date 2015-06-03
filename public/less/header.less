@@ -1,31 +1,31 @@
 @import "variables.less";
 @import "mixins.less";
-#bs-example-navbar-collapse-1 .btn{
+.categories .btn{
 	margin:0 30px;
 	background: @blue;
 	text-align: left;
 }
-.navbar-header {
+.categories .navbar-header {
   float: none;
 }
-.navbar-toggle {
+.categories .navbar-toggle {
   display: block;
 }
-.navbar-collapse {
+.categories .navbar-collapse {
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
 }
-.navbar-collapse.collapse {
+.categories .navbar-collapse.collapse {
   display: none!important;
 }
-.navbar-collapse.collapse.in{
+.categories .navbar-collapse.collapse.in{
   display: block!important;
 }
-.navbar-nav {
+.categories .navbar-nav {
   float: none!important;
   margin: 7.5px 0;
 }
-.navbar-nav>li {
+.categories .navbar-nav>li {
   float: none;
 }
 .navbar-nav>li>a {
@@ -217,7 +217,7 @@ header .col-xs-3, header .col-xs-6{
 		display: none;
 	}
 }
-.navbar-collapse{
+.categories .navbar-collapse{
 	padding-left:0;
 	padding-right:0;
 
@@ -264,7 +264,7 @@ body .ui-widget-content{
 		border-color: @lightGrey;
 		
 	}
-          .navbar-collapse {
+          .categories .navbar-collapse {
               top:53px;
               bottom:0;
               left:0px;
@@ -395,4 +395,23 @@ header .categories{
 .notifaction-list .pre-menu-item{
 	color:@grey;
 	margin-top:5px;
+}
+.navbar-front{
+	background: none;
+	position: absolute;
+	width: 100%;
+	.navbar-nav{
+		margin-top: 20px;
+		li a{
+			color: @grey;
+			margin: 0 5px;
+			padding-bottom: 6px;
+			&:hover{
+				background: none;
+			}
+		}
+		button{
+			margin-top: 4px;
+		}
+	}
 }

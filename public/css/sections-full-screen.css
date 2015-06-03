@@ -1,6 +1,5 @@
 .full-screen {
-  padding: 30px 0 0px;
-  min-height: 100vh;
+  padding: 130px 0 0px;
   height: auto;
   width: 100%;
 }
@@ -39,12 +38,13 @@
   background-size: cover;
 }
 .full-screen.main-screen {
-  background: url(../img/desc.jpg) no-repeat center center fixed;
+  background: url(../img/desc.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
+  text-align: center;
 }
 .full-screen.main-screen > img {
   display: block;

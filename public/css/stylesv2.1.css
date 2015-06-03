@@ -8718,10 +8718,18 @@ footer {
   font-size: 24px;
   color: #d17581;
 }
-.icon {
-  max-width: 100px;
-  height: auto;
-  margin: 1rem;
+.svg-icon {
+  width: 3em;
+  height: 3em;
+}
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }
 .front-ul {
   text-align: center;
@@ -8731,9 +8739,52 @@ footer {
   float: none;
   display: inline-block;
 }
+.btn.btn-empty {
+  background: none;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border: 1px solid #2c3e50;
+  padding: 5px 15px;
+  color: #2c3e50;
+}
+.btn.btn-empty .fa {
+  vertical-align: middle;
+  font-size: 3em;
+  float: left;
+}
+.btn.btn-empty div {
+  margin: 12px;
+  float: left;
+}
+.btn.btn-empty:hover {
+  background: #2c3e50;
+  color: #ffffff;
+}
+.btn.btn-empty:focus {
+  outline: 0;
+}
+#play {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+#play:hover {
+  stroke: #ffffff;
+}
+#video {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  z-index: 9999;
+  display: none;
+  transform: translateY(-50%);
+  margin: 0 auto;
+}
 .full-screen {
-  padding: 30px 0 0px;
-  min-height: 100vh;
+  padding: 130px 0 0px;
   height: auto;
   width: 100%;
 }
@@ -8772,12 +8823,13 @@ footer {
   background-size: cover;
 }
 .full-screen.main-screen {
-  background: url(../img/desc.jpg) no-repeat center center fixed;
+  background: url(../img/desc.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
+  text-align: center;
 }
 .full-screen.main-screen > img {
   display: block;
@@ -9064,32 +9116,32 @@ footer small {
 .social li:nth-child(4) a:hover {
   color: #3f729b;
 }
-#bs-example-navbar-collapse-1 .btn {
+.categories .btn {
   margin: 0 30px;
   background: #1abc9c;
   text-align: left;
 }
-.navbar-header {
+.categories .navbar-header {
   float: none;
 }
-.navbar-toggle {
+.categories .navbar-toggle {
   display: block;
 }
-.navbar-collapse {
+.categories .navbar-collapse {
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.navbar-collapse.collapse {
+.categories .navbar-collapse.collapse {
   display: none!important;
 }
-.navbar-collapse.collapse.in {
+.categories .navbar-collapse.collapse.in {
   display: block!important;
 }
-.navbar-nav {
+.categories .navbar-nav {
   float: none!important;
   margin: 7.5px 0;
 }
-.navbar-nav > li {
+.categories .navbar-nav > li {
   float: none;
 }
 .navbar-nav > li > a {
@@ -9294,7 +9346,7 @@ header .col-xs-6 {
     display: none;
   }
 }
-.navbar-collapse {
+.categories .navbar-collapse {
   padding-left: 0;
   padding-right: 0;
 }
@@ -9341,7 +9393,7 @@ body .ui-widget-content {
   list-style-image: none;
   border-color: #efefef;
 }
-.navbar-collapse {
+.categories .navbar-collapse {
   top: 53px;
   bottom: 0;
   left: 0px;
@@ -9470,11 +9522,30 @@ header .categories .icon-list:nth-child(3) i {
   color: #2c3e50;
   margin-top: 5px;
 }
+.navbar-front {
+  background: none;
+  position: absolute;
+  width: 100%;
+}
+.navbar-front .navbar-nav {
+  margin-top: 20px;
+}
+.navbar-front .navbar-nav li a {
+  color: #2c3e50;
+  margin: 0 5px;
+  padding-bottom: 6px;
+}
+.navbar-front .navbar-nav li a:hover {
+  background: none;
+}
+.navbar-front .navbar-nav button {
+  margin-top: 4px;
+}
 .full-screen h1 {
   margin-top: 0px;
 }
 .tab-register {
-  margin-bottom: 15px;
+  margin-top: 20px;
 }
 .tab-register .row {
   margin-top: 14px;
@@ -9536,6 +9607,8 @@ h6:after {
 }
 .tab-register {
   background: #ffffff;
+  position: relative;
+  bottom: 0;
 }
 .tab-register .nav.nav-tabs {
   border: none;
@@ -9546,7 +9619,7 @@ h6:after {
   color: #1abc9c;
 }
 .tab-register .nav.nav-tabs li {
-  width: 50%;
+  width: 100%;
   background: #2c3e50;
   border-radius: 0;
 }
@@ -9636,6 +9709,9 @@ h6:after {
   min-width: 100%;
   background: #2c3e50;
   color: #ffffff;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 .input-group .input-group-addon {
   border-radius: 0;
@@ -9653,7 +9729,9 @@ h6:after {
   font-size: 20px;
 }
 .input-group .form-control {
-  border: 0px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
 }
 .input-group:hover {
   border: 1px solid #1abc9c;

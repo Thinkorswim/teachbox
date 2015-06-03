@@ -18,6 +18,7 @@
 
 	<link rel="SHORTCUT ICON" href="{{ URL::asset('img/favicon.ico') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/stylesv2.1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/sweet-alert.css') }}">
     <!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -110,6 +111,31 @@
 		</div>
 
 </header>@endif
+<nav class="navbar navbar-front">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="60px"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Why teachbox?</a></li>
+        <li><a href="#">Business</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><button type="button" class="btn btn-primary">Register</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 	    @yield('content')
  @if(Route::current()->getName() == 'home')
 	<footer class="front-page-footer footer-front" style="padding:10px">
@@ -344,6 +370,17 @@ var ua = navigator.userAgent.toLowerCase();
 	  ga('create', 'UA-60502699-1', 'auto');
 	  ga('send', 'pageview');
 
+	</script>
+	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
+
+	<script>
+		$(document).ready(function() {
+		    $('#play').on('click', function(ev) {
+		    	$("#video")[0].src += "&autoplay=1";
+		    	 $("#video").show();
+		        ev.preventDefault();
+		    });
+		});
 	</script>
    </body>
 </html>

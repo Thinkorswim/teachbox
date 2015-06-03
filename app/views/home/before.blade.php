@@ -9,27 +9,33 @@
 @stop
 
 @section('content')
-
+	<iframe id="video" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 	<section class="full-screen main-screen">
 
-	<img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="100px">
 		<h2 class="centered">Find and create interactive courses.</h2>
+		<svg  version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+		<g>
+			<polygon fill="none" stroke="#2c3e50" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="10" points="27,21 41,32 
+				27,43 	"/>
+			<path fill="none" stroke="#2c3e50" stroke-width="2" stroke-miterlimit="10" d="M53.92,10.081
+				c12.107,12.105,12.107,31.732,0,43.838c-12.106,12.108-31.734,12.108-43.839,0c-12.107-12.105-12.107-31.732,0-43.838
+				C22.186-2.027,41.813-2.027,53.92,10.081z"/>
+		</g>
+		</svg>
 		<div class="container">
-			<div class="col-xs-12 col-sm-12 col-md-7 front-video">
-				<div class="embed-responsive embed-responsive-16by9">
-				<iframe id="thevideo" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
-				</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
 				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
 				|| $errors->has('password_again'))
-			<div class="col-xs-12 col-sm-12 col-md-5 tab-register shake">
+			<div class="col-xs-12 col-sm-12 col-md-4 tab-register shake">
 			@else
-			<div class="col-xs-12 col-sm-12 col-md-5 tab-register">
+			<div class="col-xs-12 col-sm-12 col-md-4 tab-register">
             @endif
 				<ul class="nav nav-tabs" role="tablist">
 				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
-				  <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
 				</ul>
 				<div class="tab-content">
 				<!-- Login -->
@@ -160,104 +166,9 @@
 	<section class="full-screen learn-screen">
 		<div class="container centered">
 			<h1>Why teachbox?</h1>
-			<div class="col-sm-12">
-		<div role="tabpanel">
-
-			  <!-- Nav tabs -->
-			  <ul class="nav nav-pills front-ul" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Learn</a></li>
-			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Teach</a></li>
-			  </ul>
-
-  <!-- Tab panes -->
-			  <div class="tab-content">
-
-			    <div role="tabpanel" class="tab-pane fade in  active" id="home">
-			    	<div class="row">
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/search.svg') }}" title="search.svg">
-							<p>Search whaterver you want to learn.</p>
-						</div>
-
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/film_reel.svg') }}" title="film_reel.svg">
-							<p>Watch a lesson max 5 minutes long.</p>
-						</div>
-
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/advance.svg') }}" title="advance.svg">
-							<p>Take the course of the lesson.</p>
-						</div>
-
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/survey.svg') }}" title="survey.svg">
-							<p>Answer a quick test.</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/reading_ebook.svg') }}" title="reading_ebook.svg">
-							<p>Learn more.</p>
-						</div>
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/bar_chart.svg') }}" title="bar_chart.svg">
-							<p>Compete with the others.</p>
-						</div>
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/collaboration.svg') }}" title="collaboration.svg">
-							<p>Talk to your friends and make new ones.</p>
-						</div>
-
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/faq.svg') }}" title="faq.svg">
-							<p>Ask and answer.</p>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-3">
-						</div>
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/like.svg') }}" title="like.svg">
-							<p>Like it or not, write a simple review.</p>
-						</div>
-
-						<div class="col-sm-3">
-							<img class="icon" src="{{ URL::asset('svg/high_priority.svg') }}" title="high_priority.svg">
-							<p>Absolutely free.</p>
-						</div>
-					</div>
-			   </div>
-
-			    <div role="tabpanel" class="tab-pane fade" id="profile">
-							<div class="col-sm-3">
-								<img class="icon" src="{{ URL::asset('svg/search.svg') }}" title="search.svg">
-								<p>Search whaterver you want to learn.</p>
-								<img class="icon" src="{{ URL::asset('svg/reading_ebook.svg') }}" title="reading_ebook.svg">
-								<p>Learn more.</p>
-							</div>
-							<div class="col-sm-3">
-								<img class="icon" src="{{ URL::asset('svg/film_reel.svg') }}" title="film_reel.svg">
-								<p>Watch a lesson max 5 minutes long.</p>
-							</div>
-							<div class="col-sm-3">
-								<img class="icon" src="{{ URL::asset('svg/advance.svg') }}" title="advance.svg">
-								<p>Take the course of the lesson.</p>
-								<img class="icon" src="{{ URL::asset('svg/collaboration.svg') }}" title="collaboration.svg">
-								<p>Talk to your friends and make new ones.</p>
-							</div>
-
-							<div class="col-sm-3">
-								<img class="icon" src="{{ URL::asset('svg/survey.svg') }}" title="survey.svg">
-								<p>Answer a quick test.</p>
-								<img class="icon" src="{{ URL::asset('svg/high_priority.svg') }}" title="high_priority.svg">
-								<p>Absolutely free.</p>
-							</div>
-			    </div>
-			  </div>
-
-			</div>
+			<svg class="svg-icon" viewBox="0 0 20 20">
+				<path d="M17.659,9.597h-1.224c-0.199-3.235-2.797-5.833-6.032-6.033V2.341c0-0.222-0.182-0.403-0.403-0.403S9.597,2.119,9.597,2.341v1.223c-3.235,0.2-5.833,2.798-6.033,6.033H2.341c-0.222,0-0.403,0.182-0.403,0.403s0.182,0.403,0.403,0.403h1.223c0.2,3.235,2.798,5.833,6.033,6.032v1.224c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403v-1.224c3.235-0.199,5.833-2.797,6.032-6.032h1.224c0.222,0,0.403-0.182,0.403-0.403S17.881,9.597,17.659,9.597 M14.435,10.403h1.193c-0.198,2.791-2.434,5.026-5.225,5.225v-1.193c0-0.222-0.182-0.403-0.403-0.403s-0.403,0.182-0.403,0.403v1.193c-2.792-0.198-5.027-2.434-5.224-5.225h1.193c0.222,0,0.403-0.182,0.403-0.403S5.787,9.597,5.565,9.597H4.373C4.57,6.805,6.805,4.57,9.597,4.373v1.193c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403V4.373c2.791,0.197,5.026,2.433,5.225,5.224h-1.193c-0.222,0-0.403,0.182-0.403,0.403S14.213,10.403,14.435,10.403"/>
+			</svg>
 
 		</div>
 	</section>

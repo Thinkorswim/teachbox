@@ -484,10 +484,20 @@ footer{
 	    color: #d17581;
 	}
 
-.icon {
-	max-width: 100px;
-	height: auto;
-	margin: 1rem;
+.svg-icon {
+  width: 3em;
+  height: 3em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 1;
 }
 .front-ul{
 	text-align: center;
@@ -496,4 +506,47 @@ footer{
 		float: none;
 		display: inline-block;
 	}
+}
+.btn.btn-empty{
+	background: none;
+	.RoundBorders(3px);
+	border: 1px solid @grey;
+	padding: 5px 15px;
+	color: @grey;
+	.fa{
+		vertical-align: middle;
+	    font-size: 3em;
+	    float: left;
+	}
+	div{
+		margin: 12px;
+		float: left;
+	}
+	&:hover{
+		background: @grey;
+		color: @white;
+	}
+	&:focus{
+		outline:0;
+	}
+
+}
+#play{
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	&:hover{
+		stroke: @white;
+	}
+}
+#video{
+	position: absolute;
+	top:50%;
+	width: 50%;
+	height: 50%;
+	left: 25%;
+	z-index: 9999;
+	display: none;
+	transform: translateY(-50%);
+	margin: 0 auto;
 }
