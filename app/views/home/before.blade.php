@@ -101,7 +101,7 @@
 						{{ Form::close() }}
 					</div>
 
-
+					
 					<!-- Registration -->
 					<div role="tabpanel" class="tab-pane register centered" id="register">
 						{{ Form::open(['route' => 'create-account']) }}
