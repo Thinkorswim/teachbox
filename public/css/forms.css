@@ -29,9 +29,6 @@
 .input-group {
   margin: 1px 0 0px;
 }
-.form-control {
-  height: 30px;
-}
 .input-group {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;

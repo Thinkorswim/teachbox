@@ -131,7 +131,7 @@
         <li><a href="#">Business</a></li>
         <li><a href="#">Team</a></li>
         <li><a href="#">Contact</a></li>
-        <li><button type="button" class="btn btn-primary">Register</button></li>
+        <li><button type="button" id="register-button" class="btn btn-primary">Register</button></li>
       </ul>
     </div>
   </div>
@@ -372,7 +372,11 @@ var ua = navigator.userAgent.toLowerCase();
 
 	</script>
 	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
-
+	<script>
+	$('#register-button').on('click', function(ev) {
+		swal({   title: 'HTML example',   html:     'You can use <b>bold text</b>, ' +     '<a href="//github.com">links</a> ' +     'and other HTML tags' });
+	});
+	</script>
 	<script>
 		$(document).ready(function() {
 		    $('#play').on('click', function(ev) {

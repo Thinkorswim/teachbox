@@ -10,8 +10,6 @@
 
 @section('content')
    <section class="full-screen main-screen">
-    <img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="100px">
-    <h2 class="centered">Find and create interactive courses.</h2>
       <div class="container">
          <div class="col-xs-1 col-sm-3 col-md-4">
          </div>

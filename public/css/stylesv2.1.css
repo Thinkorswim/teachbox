@@ -8786,6 +8786,7 @@ footer {
 .full-screen {
   padding: 130px 0 0px;
   height: auto;
+  min-height: calc(100% - 118px);
   width: 100%;
 }
 .full-screen .more {
@@ -9682,9 +9683,6 @@ h6:after {
 }
 .input-group {
   margin: 1px 0 0px;
-}
-.form-control {
-  height: 30px;
 }
 .input-group {
   transition: all 0.3s ease;
