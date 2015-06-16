@@ -2,7 +2,7 @@
 @import "mixins.less";
 
 .full-screen{
-  padding:130px 0 0px;
+  padding:100px 0 0px;
   height:auto;
   min-height: calc(~"100% - 118px");
   width:100%;
@@ -43,20 +43,24 @@
   background-size: cover;
 }
 &.main-screen{
-  background: url(../img/desc.jpg) no-repeat center center; 
+  background: url(../img/desc.png) no-repeat center center; 
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   padding-bottom: 0px;
-  text-align: center;
   & > img{
     display: block;
     margin: 0 auto;
   }
+  p{
+    max-width: 420px;
+    font-size: 1.2em;
+    color: #000;
+  }
   h2{
     color:@grey;
-    margin-bottom: 40px;
+    margin: 100px 0 10px;
   }
   .nav-tabs > li.active > a{
     border-color: transparent;
@@ -97,6 +101,10 @@
     img{
       display: block;
       margin: 0 auto;
+    }
+    h1,h3{
+      color: @grey;
+      font-weight: 900;
     }
 }
 &.learn-screen, &.explore{

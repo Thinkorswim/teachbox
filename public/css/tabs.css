@@ -2,7 +2,7 @@
   margin-top: 0px;
 }
 .tab-register {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 .tab-register .row {
   margin-top: 14px;
@@ -75,7 +75,7 @@ h6:after {
   color: #1abc9c;
 }
 .tab-register .nav.nav-tabs li {
-  width: 100%;
+  width: 50%;
   background: #2c3e50;
   border-radius: 0;
 }

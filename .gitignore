@@ -104,3 +104,5 @@ bootstrap/start.php
 public/img/38/user-100x100.png
 public/img/3/user-100x100.png
 public/img/3/user.png
+app/config/database.php
+app/config/mail.php

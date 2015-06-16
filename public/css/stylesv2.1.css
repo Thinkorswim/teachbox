@@ -8741,9 +8741,6 @@ footer {
 }
 .btn.btn-empty {
   background: none;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border: 1px solid #2c3e50;
   padding: 5px 15px;
   color: #2c3e50;
@@ -8766,8 +8763,6 @@ footer {
 }
 #play {
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
 }
 #play:hover {
   stroke: #ffffff;
@@ -8784,7 +8779,7 @@ footer {
   margin: 0 auto;
 }
 .full-screen {
-  padding: 130px 0 0px;
+  padding: 100px 0 0px;
   height: auto;
   min-height: calc(100% - 118px);
   width: 100%;
@@ -8824,21 +8819,25 @@ footer {
   background-size: cover;
 }
 .full-screen.main-screen {
-  background: url(../img/desc.jpg) no-repeat center center;
+  background: url(../img/desc.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   padding-bottom: 0px;
-  text-align: center;
 }
 .full-screen.main-screen > img {
   display: block;
   margin: 0 auto;
 }
+.full-screen.main-screen p {
+  max-width: 420px;
+  font-size: 1.2em;
+  color: #000;
+}
 .full-screen.main-screen h2 {
   color: #2c3e50;
-  margin-bottom: 40px;
+  margin: 100px 0 10px;
 }
 .full-screen.main-screen .nav-tabs > li.active > a {
   border-color: transparent;
@@ -8879,6 +8878,11 @@ footer {
 .full-screen.learn-screen img {
   display: block;
   margin: 0 auto;
+}
+.full-screen.learn-screen h1,
+.full-screen.learn-screen h3 {
+  color: #2c3e50;
+  font-weight: 900;
 }
 .full-screen.learn-screen,
 .full-screen.explore {
@@ -9528,6 +9532,9 @@ header .categories .icon-list:nth-child(3) i {
   position: absolute;
   width: 100%;
 }
+.navbar-front .navbar-brand {
+  height: auto;
+}
 .navbar-front .navbar-nav {
   margin-top: 20px;
 }
@@ -9546,7 +9553,7 @@ header .categories .icon-list:nth-child(3) i {
   margin-top: 0px;
 }
 .tab-register {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 .tab-register .row {
   margin-top: 14px;
@@ -9620,7 +9627,7 @@ h6:after {
   color: #1abc9c;
 }
 .tab-register .nav.nav-tabs li {
-  width: 100%;
+  width: 50%;
   background: #2c3e50;
   border-radius: 0;
 }
@@ -9707,9 +9714,6 @@ h6:after {
   min-width: 100%;
   background: #2c3e50;
   color: #ffffff;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
 }
 .input-group .input-group-addon {
   border-radius: 0;
@@ -9725,11 +9729,6 @@ h6:after {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   font-size: 20px;
-}
-.input-group .form-control {
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
 }
 .input-group:hover {
   border: 1px solid #1abc9c;

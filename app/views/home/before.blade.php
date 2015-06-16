@@ -11,20 +11,21 @@
 @section('content')
 	<iframe id="video" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
 	<section class="full-screen main-screen">
-
-		<h2 class="centered">Find and create interactive courses.</h2>
-		<svg  version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-		<g>
-			<polygon fill="none" stroke="#2c3e50" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="10" points="27,21 41,32 
-				27,43 	"/>
-			<path fill="none" stroke="#2c3e50" stroke-width="2" stroke-miterlimit="10" d="M53.92,10.081
-				c12.107,12.105,12.107,31.732,0,43.838c-12.106,12.108-31.734,12.108-43.839,0c-12.107-12.105-12.107-31.732,0-43.838
-				C22.186-2.027,41.813-2.027,53.92,10.081z"/>
-		</g>
-		</svg>
 		<div class="container">
-			<div class="col-xs-12 col-sm-12 col-md-4">
+			<div class="col-xs-12 col-sm-12 col-md-8">
+
+				<h2>Find and create interactive courses.</h2>
+				<p>Teachbox is an online educational platform where you can conquer new frontiers by learning from high quality courses on various topics and sharing your immense knowledge with everyone in the world.</p>
+				<svg  version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+				<g>
+					<polygon fill="none" stroke="#000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="10" points="27,21 41,32 
+						27,43 	"/>
+					<path fill="none" stroke="#000" stroke-width="2" stroke-miterlimit="10" d="M53.92,10.081
+						c12.107,12.105,12.107,31.732,0,43.838c-12.106,12.108-31.734,12.108-43.839,0c-12.107-12.105-12.107-31.732,0-43.838
+						C22.186-2.027,41.813-2.027,53.92,10.081z"/>
+				</g>
+				</svg>
 
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
@@ -36,6 +37,7 @@
             @endif
 				<ul class="nav nav-tabs" role="tablist">
 				  <li role="presentation" class="active"><a href="#login" role="tab" data-toggle="tab">Login</a></li>
+				   <li role="presentation" class="register"><a href="#register" role="tab" data-toggle="tab">Register</a></li>
 				</ul>
 				<div class="tab-content">
 				<!-- Login -->
@@ -164,11 +166,29 @@
 	</section>
 
 	<section class="full-screen learn-screen">
-		<div class="container centered">
-			<h1>Why teachbox?</h1>
-			<svg class="svg-icon" viewBox="0 0 20 20">
-				<path d="M17.659,9.597h-1.224c-0.199-3.235-2.797-5.833-6.032-6.033V2.341c0-0.222-0.182-0.403-0.403-0.403S9.597,2.119,9.597,2.341v1.223c-3.235,0.2-5.833,2.798-6.033,6.033H2.341c-0.222,0-0.403,0.182-0.403,0.403s0.182,0.403,0.403,0.403h1.223c0.2,3.235,2.798,5.833,6.033,6.032v1.224c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403v-1.224c3.235-0.199,5.833-2.797,6.032-6.032h1.224c0.222,0,0.403-0.182,0.403-0.403S17.881,9.597,17.659,9.597 M14.435,10.403h1.193c-0.198,2.791-2.434,5.026-5.225,5.225v-1.193c0-0.222-0.182-0.403-0.403-0.403s-0.403,0.182-0.403,0.403v1.193c-2.792-0.198-5.027-2.434-5.224-5.225h1.193c0.222,0,0.403-0.182,0.403-0.403S5.787,9.597,5.565,9.597H4.373C4.57,6.805,6.805,4.57,9.597,4.373v1.193c0,0.222,0.182,0.403,0.403,0.403s0.403-0.182,0.403-0.403V4.373c2.791,0.197,5.026,2.433,5.225,5.224h-1.193c-0.222,0-0.403,0.182-0.403,0.403S14.213,10.403,14.435,10.403"/>
-			</svg>
+		<div class="container">
+			<h1 class="centered">Introducing teachbox.</h1>
+			<div class="col-xs-4">
+				<h3>Fast lessons.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<h3>It's all free.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<h3>Connect.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+			</div>
+
+			<div class="col-xs-4">
+
+			</div>
+
+			<div class="col-xs-4">
+				<h3>Share knowledge.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<h3>Earn money.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<h3>Marketing.</h3>
+				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+			</div>
 
 		</div>
 	</section>
