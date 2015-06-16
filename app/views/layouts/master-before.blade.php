@@ -112,7 +112,7 @@
 
 </header>@endif
 <nav class="navbar navbar-front">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
@@ -131,7 +131,6 @@
         <li><a href="#">Business</a></li>
         <li><a href="#">Team</a></li>
         <li><a href="#">Contact</a></li>
-        <li><button type="button" id="register-button" class="btn btn-primary">Register</button></li>
       </ul>
     </div>
   </div>
