@@ -194,6 +194,11 @@ Route::group(array('before' => 'csrf'), function () {
 		'as' => 'notification',
 		'uses' => 'NotificationController@getNotification',
 	));
+
+	Route::post('/subscribe', array(
+		'as' => 'choose',
+		'uses' => 'BusinessController@choose',
+	));
 });
 
 //Pofile ---------------------------------------------------------------------
@@ -490,6 +495,8 @@ Route::get('/subscribe', array(
 	'as' => 'subscribe',
 	'uses' => 'BusinessController@subscribe',
 ));
+
+Route::controller('braintree', "BraintreeController");
 
 
 class Convert {

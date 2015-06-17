@@ -11,4 +11,16 @@ class BusinessController extends \BaseController {
 			return Redirect::action('AuthController@index');
 		}
 	}
+
+	public function choose() {
+		if (Auth::check()) {
+
+			
+			return View::make('business.subscribe');
+		} else {
+			return Redirect::action('AuthController@index');
+		}
+	}
+
+
 }
