@@ -127,7 +127,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Why teachbox?</a></li>
         <li><a href="#">Business</a></li>
         <li><a href="#">Team</a></li>
         <li><a href="#">Contact</a></li>
@@ -370,20 +369,12 @@ var ua = navigator.userAgent.toLowerCase();
 	  ga('send', 'pageview');
 
 	</script>
-	<script src="{{ URL::asset('js/sweet-alert.min.js') }}"></script>
-	<script>
-	$('#register-button').on('click', function(ev) {
-		swal({   title: 'HTML example',   html:     'You can use <b>bold text</b>, ' +     '<a href="//github.com">links</a> ' +     'and other HTML tags' });
-	});
-	</script>
-	<script>
-		$(document).ready(function() {
-		    $('#play').on('click', function(ev) {
-		    	$("#video")[0].src += "&autoplay=1";
-		    	 $("#video").show();
-		        ev.preventDefault();
-		    });
-		});
+	<script src="{{ URL::asset('js/ekko-lightbox.js')}}"></script>
+	<script type="text/javascript">
+		$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+		    event.preventDefault();
+		    $(this).ekkoLightbox();
+		}); 
 	</script>
    </body>
 </html>

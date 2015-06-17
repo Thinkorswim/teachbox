@@ -263,8 +263,13 @@ footer small{
     cursor: pointer;
   }
 }
+.ekko-lightbox{
+  .modal-header{
+    display: none;
+  }
+}
 .biz{
-  background:@blue;
+  background:lighten(@grey, 10%);
   color: @white;
   text-align: center;
   .btn.btn-default{
@@ -277,7 +282,7 @@ footer small{
     border: 4px solid @white;
     &:hover{
       background: @white;
-      color: @blue;
+      color: lighten(@grey, 10%);
     }
   }
   h2{

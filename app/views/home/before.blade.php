@@ -9,14 +9,25 @@
 @stop
 
 @section('content')
-	<iframe id="video" class="embed-responsive-item" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
+
+<div class="modal no-margin fade" id="video-modal" tabindex="-1" role="dialog" data-keyboard="false"
+  data-backdrop='static' aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button id="close-that" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<iframe id="vid" src="https://www.youtube.com/embed/MK0Y2M2KFME?rel=0&showinfo=0&autohide=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 	<section class="full-screen main-screen">
 		<div class="container">
 			<div class="col-xs-12 col-sm-12 col-md-8">
 
 				<h2>Find and create interactive courses.</h2>
 				<p>Teachbox is an online educational platform where you can conquer new frontiers by learning from high quality courses on various topics and sharing your immense knowledge with everyone in the world.</p>
-				<svg  version="1.1" id="play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				<a href="https://www.youtube.com/embed/MK0Y2M2KFME" data-toggle="lightbox"><svg  version="1.1" id="play"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
 				<g>
 					<polygon fill="none" stroke="#000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="10" points="27,21 41,32 
@@ -26,6 +37,7 @@
 						C22.186-2.027,41.813-2.027,53.92,10.081z"/>
 				</g>
 				</svg>
+				</a>
 
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
@@ -168,7 +180,7 @@
 	<section class="full-screen learn-screen">
 		<div class="container">
 			<h1 class="centered">Introducing teachbox.</h1>
-			<div class="col-xs-4">
+			<div class="col-sm-4">
 				<h3>Fast lessons.</h3>
 				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
 				<h3>It's all free.</h3>
@@ -177,11 +189,12 @@
 				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
 			</div>
 
-			<div class="col-xs-4">
-
+			<div class="col-sm-4">
+			
+			<img class="img-responsive" src="{{ URL::asset('img/women.jpg') }}" alt="women">
 			</div>
 
-			<div class="col-xs-4">
+			<div class="col-sm-4">
 				<h3>Share knowledge.</h3>
 				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
 				<h3>Earn money.</h3>
@@ -192,25 +205,6 @@
 
 		</div>
 	</section>
-
-	<header class="relative-header">
-		<section class="full-screen explore">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-12 col-sm-6">
-				<h1>Search from hundreds of courses!</h1>
-				{{ Form::open(array('url' => '/search')) }}
-				    <div class="input-group">
-				      {{ Form::text('keyword', null, array('class' => 'form-control', 'placeholder' => 'Search for...', 'id' => 'keyword-two' ))}}
-				      <span class="input-group-btn">
-				        <button class="btn" type="submit button"><i class="fa fa-search"></i></button>
-				      </span>
-				    </div>
-			    {{ Form::close() }}
-			</div>
-		</section>
-	</header>
-
 	<section class="biz">
 		<div class="container">
 			<h2>If you have a business you'll be intereseted in our solution for your employees training.</h2>

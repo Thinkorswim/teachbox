@@ -2,7 +2,8 @@
 @import "mixins.less";
 
 .modal{
-	margin: 50px auto 0;
+	margin: 0px auto 0;
+	padding-top: 50px;
 	.modal-content{
 		box-shadow: none;
 		border-radius: 0;
@@ -22,6 +23,16 @@
 	}
 	textarea{
 		margin-bottom: 15px;
+	}
+}
+.modal iframe{
+  width: 100%;
+  min-height: 400px;
+}
+#video-modal .modal-body{
+	padding: 0;
+	iframe{
+		margin-bottom: -10px;
 	}
 }
 #list-modal .modal-body{

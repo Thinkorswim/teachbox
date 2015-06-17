@@ -5492,20 +5492,10 @@ button.close {
   outline: 0;
 }
 .modal.fade .modal-dialog {
-  -webkit-transform: translate(0, -25%);
-  -ms-transform: translate(0, -25%);
-  -o-transform: translate(0, -25%);
-  transform: translate(0, -25%);
   -webkit-transition: -webkit-transform 0.3s ease-out;
   -moz-transition: -moz-transform 0.3s ease-out;
   -o-transition: -o-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
-}
-.modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
-  -o-transform: translate(0, 0);
-  transform: translate(0, 0);
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -8474,6 +8464,9 @@ textarea {
 .reply-form .comment-post {
   margin-top: 15px;
 }
+.modal.no-margin {
+  margin-top: 0;
+}
 .status.comments hr {
   margin-top: 8px;
   margin-bottom: 0px;
@@ -9043,8 +9036,11 @@ footer small {
   padding: 5px 20px;
   cursor: pointer;
 }
+.ekko-lightbox .modal-header {
+  display: none;
+}
 .biz {
-  background: #1abc9c;
+  background: #3e5771;
   color: #ffffff;
   text-align: center;
 }
@@ -9059,7 +9055,7 @@ footer small {
 }
 .biz .btn.btn-default:hover {
   background: #ffffff;
-  color: #1abc9c;
+  color: #3e5771;
 }
 .biz h2 {
   color: #ffffff;
@@ -9553,7 +9549,7 @@ header .categories .icon-list:nth-child(3) i {
   margin-top: 0px;
 }
 .tab-register {
-  margin: 20px 0;
+  margin: 20px 0 60px;
 }
 .tab-register .row {
   margin-top: 14px;
@@ -10907,6 +10903,60 @@ figure.effect-winston p a i {
   float: none;
   display: inline-block;
 }
+/*!
+ * Lightbox for Bootstrap 3 by @ashleydw
+ * https://github.com/ashleydw/lightbox
+ *
+ * License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
+ */
+.ekko-lightbox-container {
+  position: relative;
+}
+.ekko-lightbox-nav-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+}
+.ekko-lightbox-nav-overlay a {
+  z-index: 100;
+  display: block;
+  width: 49%;
+  height: 100%;
+  font-size: 30px;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+  opacity: 0;
+  filter: dropshadow(color=#000000, offx=2, offy=2);
+  -webkit-transition: opacity .5s;
+  -moz-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity 0.5s;
+}
+.ekko-lightbox-nav-overlay a:empty {
+  width: 49%;
+}
+.ekko-lightbox a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+.ekko-lightbox .glyphicon-chevron-left {
+  left: 0;
+  float: left;
+  padding-left: 15px;
+  text-align: left;
+}
+.ekko-lightbox .glyphicon-chevron-right {
+  right: 0;
+  float: right;
+  padding-right: 15px;
+  text-align: right;
+}
+.ekko-lightbox .modal-footer {
+  text-align: left;
+}
 body .vjs-default-skin .vjs-big-play-button {
   background: none;
   border: none;
@@ -11151,7 +11201,8 @@ body .vjs-default-skin .vjs-slider-handle:before {
   }
 }
 .modal {
-  margin: 50px auto 0;
+  margin: 0px auto 0;
+  padding-top: 50px;
 }
 .modal .modal-content {
   box-shadow: none;
@@ -11172,6 +11223,16 @@ body .vjs-default-skin .vjs-slider-handle:before {
 }
 .modal textarea {
   margin-bottom: 15px;
+}
+.modal iframe {
+  width: 100%;
+  min-height: 400px;
+}
+#video-modal .modal-body {
+  padding: 0;
+}
+#video-modal .modal-body iframe {
+  margin-bottom: -10px;
 }
 #list-modal .modal-body {
   padding: 0;
