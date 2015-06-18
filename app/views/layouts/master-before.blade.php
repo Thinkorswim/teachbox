@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
   <body>
- 	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery')
+ 	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery' && Route::current()->getName() != 'business-info')
 		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">

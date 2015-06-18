@@ -332,6 +332,12 @@ Route::get('/course/{id}/students', array(
 	'uses' => 'StudentController@courseStudents',
 ));
 
+// Business info
+Route::get('/business-info', array(
+	'as' => 'business-info',
+	'uses' => 'BusinessController@businessinfo',
+));
+
 //Search ----------------------------------------------------------------------------------
 Route::get('/search/{keyword}', array(
 	'as' => 'search',

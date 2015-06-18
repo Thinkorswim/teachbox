@@ -8734,14 +8734,16 @@ footer {
 }
 .btn.btn-empty {
   background: none;
-  border: 1px solid #2c3e50;
+  border: 0.1em solid #2c3e50;
   padding: 5px 15px;
   color: #2c3e50;
+  font-weight: 900;
+  font-size: 1.1em;
 }
-.btn.btn-empty .fa {
+.btn.btn-empty svg {
   vertical-align: middle;
-  font-size: 3em;
   float: left;
+  margin-top: 7px;
 }
 .btn.btn-empty div {
   margin: 12px;
@@ -8753,6 +8755,9 @@ footer {
 }
 .btn.btn-empty:focus {
   outline: 0;
+}
+.btn.btn-empty:hover .path {
+  stroke: #ffffff;
 }
 #play {
   cursor: pointer;
@@ -8776,6 +8781,15 @@ footer {
   height: auto;
   min-height: calc(100% - 118px);
   width: 100%;
+}
+.full-screen p {
+  max-width: 420px;
+  font-size: 1.2em;
+  color: #000;
+}
+.full-screen h2 {
+  color: #2c3e50;
+  margin: 100px 0 10px;
 }
 .full-screen .more {
   text-align: center;
@@ -8805,7 +8819,14 @@ footer {
   margin-bottom: 20px;
 }
 .full-screen.us {
-  background: url(../img/86.jpg) no-repeat center center;
+  background: url(../img/people.png) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.full-screen.biznes {
+  background: url(../img/people.png) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -8822,15 +8843,6 @@ footer {
 .full-screen.main-screen > img {
   display: block;
   margin: 0 auto;
-}
-.full-screen.main-screen p {
-  max-width: 420px;
-  font-size: 1.2em;
-  color: #000;
-}
-.full-screen.main-screen h2 {
-  color: #2c3e50;
-  margin: 100px 0 10px;
 }
 .full-screen.main-screen .nav-tabs > li.active > a {
   border-color: transparent;
@@ -9047,7 +9059,6 @@ footer small {
 .biz .btn.btn-default {
   margin-bottom: 40px;
   font-size: 2em;
-  border-radius: 0;
   color: #ffffff;
   background: none;
   padding: 15px 20px;

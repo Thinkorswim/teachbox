@@ -6,6 +6,15 @@
   height:auto;
   min-height: calc(~"100% - 118px");
   width:100%;
+  p{
+    max-width: 420px;
+    font-size: 1.2em;
+    color: #000;
+  }
+  h2{
+    color:@grey;
+    margin: 100px 0 10px;
+  }
   .more{
   	text-align:center;
   	max-width:50px;
@@ -36,7 +45,14 @@
     margin-bottom: 20px;
   }
 &.us{
-  background: url(../img/86.jpg) no-repeat center center; 
+  background: url(../img/people.png) no-repeat center center; 
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+&.biznes{
+  background: url(../img/people.png) no-repeat center center; 
     -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -53,15 +69,7 @@
     display: block;
     margin: 0 auto;
   }
-  p{
-    max-width: 420px;
-    font-size: 1.2em;
-    color: #000;
-  }
-  h2{
-    color:@grey;
-    margin: 100px 0 10px;
-  }
+
   .nav-tabs > li.active > a{
     border-color: transparent;
   }
@@ -275,7 +283,6 @@ footer small{
   .btn.btn-default{
     margin-bottom: 40px;
     font-size: 2em;
-    border-radius: 0;
     color: @white;
     background: none;
     padding:15px 20px;

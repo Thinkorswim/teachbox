@@ -512,13 +512,15 @@ footer{
 }
 .btn.btn-empty{
 	background: none;
-	border: 1px solid @grey;
+	border: 0.1em solid @grey;
 	padding: 5px 15px;
 	color: @grey;
-	.fa{
+	font-weight: 900;
+	font-size: 1.1em;
+	svg{
 		vertical-align: middle;
-	    font-size: 3em;
 	    float: left;
+	    margin-top: 7px;
 	}
 	div{
 		margin: 12px;
@@ -532,6 +534,9 @@ footer{
 		outline:0;
 	}
 
+}
+.btn.btn-empty:hover .path{
+	stroke: @white;
 }
 #play{
 	cursor: pointer;

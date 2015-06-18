@@ -22,5 +22,7 @@ class BusinessController extends \BaseController {
 		}
 	}
 
-
+	public function businessinfo() {
+			return View::make('business.business-info');
+	}
 }
