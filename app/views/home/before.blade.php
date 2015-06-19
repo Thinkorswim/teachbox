@@ -200,8 +200,8 @@
 	</section>
 	<section class="biz">
 		<div class="container">
-			<h2>If you have a business you'll be intereseted in our solution for your employees training.</h2>
-			<a href="#" class="btn btn-default">Let's talk business!</a>
+			<h2>Business owners and leaders, train your employees online!</h2>
+			<a href="{{ URL::action('BusinessController@businessinfo')}}" class="btn btn-default">Let's talk business!</a>
 		</div>
 	</section>
 

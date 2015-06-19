@@ -25,7 +25,7 @@
     <![endif]-->
   </head>
   <body>
- 	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery' && Route::current()->getName() != 'business-info')
+ 	@if(Route::current()->getName() != 'home' && Route::current()->getName() != 'password-recovery' && Route::current()->getName() != 'business-info' && Route::current()->getName() != 'contacts')
 		<div class="modal fade settings-panel actions" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModal" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -117,18 +117,16 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
         <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+		<i class="fa fa-2x fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#"><img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="60px"></a>
+      <a class="navbar-brand" href="{{ URL::route('home') }}"><img src="{{ URL::asset('img/teachbox-logo-front.png') }}" alt="teachbox" height="60px"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Team</a></li>
+        <li><a href="{{ URL::action('BusinessController@businessinfo')}}">Business</a></li>
+        <li><a href="{{ URL::action('ProfileController@contacts')}}">Team</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>

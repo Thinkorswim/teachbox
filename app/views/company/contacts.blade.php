@@ -1,4 +1,4 @@
-@extends('layouts.master-after')
+@extends('layouts.master-before')
 @section('title')
 	Contacts -
 @stop
@@ -7,16 +7,14 @@
 
 @stop
 @section('content')
-
-		<div class="container">
+<section class="full-screen main-screen">
+		<div class="col-sm-3">
+		</div>
+		<div class="col-sm-6">
 				<div class="course place">
 					<div class="panel panel-default course-panel">
 					  <div class="panel-body">
-					  	<div class="col-xs-12 col-lg-3">
-							<img src="{{ URL::asset('img/teachbox-logo.jpg') }}">
-						</div>
-						<div class="col-xs-12 col-lg-9">
-					  	  <h1><strong>About us</strong></h1>
+					  	  <h1 class="centered"><strong>About us</strong></h1>
 					  	  <br>
 						  <p style="font-size:16px">Teachbox is the only web aplication which incorporates a teaching platform with the accessibility 
 						  and usability of a social network and is led by our revolutional vision of contemporary online education.
@@ -27,11 +25,11 @@
 						  <br>
 							You can always contact us on <a href="mailto:info@teachbox.io">info@teachbox.io</a> !
 						  </p>
-						</div>
 					  </div>
 					</div>
 				</div>
 				</div>
+</section>
 	<section id="team" class=" us text-center">
 		<div class="container">
 			<div class="col-xs-12 col-sm-4 course">

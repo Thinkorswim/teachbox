@@ -1,6 +1,8 @@
 @import "variables.less";
 @import "mixins.less";
-
+#team{
+  padding: 30px 0 20px;
+}
 .full-screen{
   padding:100px 0 0px;
   height:auto;
@@ -10,6 +12,12 @@
     max-width: 420px;
     font-size: 1.2em;
     color: #000;
+  }
+  .course{
+    margin-top: 70px!important;
+  }
+  .course p{
+    max-width: 100%;
   }
   h2{
     color:@grey;
@@ -171,6 +179,7 @@
       color: @grey;
       p{
         margin-bottom: 0;
+        max-width: 100%;
       }
     }
     &.place{
@@ -277,23 +286,23 @@ footer small{
   }
 }
 .biz{
-  background:lighten(@grey, 10%);
-  color: @white;
+  background:@lightGrey;
+  color: @grey;
   text-align: center;
   .btn.btn-default{
     margin-bottom: 40px;
     font-size: 2em;
-    color: @white;
+    color: @grey;
     background: none;
     padding:15px 20px;
-    border: 4px solid @white;
+    border: 4px solid @grey;
     &:hover{
-      background: @white;
-      color: lighten(@grey, 10%);
+      background: @grey;
+      color: @white;
     }
   }
   h2{
-    color: @white;
+    color: @grey;
     font-size: 3em;
     padding: 20px 0;
   }
