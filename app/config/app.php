@@ -124,6 +124,7 @@ return array(
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Roumen\Sitemap\SitemapServiceProvider',
+		'Mschinis\Braintree\BraintreeServiceProvider',
 
 	),
 

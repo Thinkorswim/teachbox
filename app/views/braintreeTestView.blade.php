@@ -1,3 +1,4 @@
+use \Braintree_ClientToken
 <!doctype html>
 <html lang="en">
 <head>

@@ -173,11 +173,11 @@
 			<h1 class="centered">Introducing teachbox.</h1>
 			<div class="col-sm-4">
 				<h3>Fast lessons.</h3>
-				<p>We prioritize your time. In teachbox the lessons are videos no longer than 5 mniutes.</p>
+				<p>We prioritize your time. In teachbox all lessons are no longer than 5 mniutes.</p>
 				<h3>Test yourself.</h3>
 				<p>There is a short test after every lesson.</p>
 				<h3>It's all free.</h3>
-				<p>The courses in the platform are free as long as you don't wanna use our <a href=""><strong>bussiness option</strong></a>.</p>
+				<p>You can join and create interactive courses without paying any fees.</p>
 				<h3>Connect.</h3>
 				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
 			</div>
@@ -189,11 +189,11 @@
 
 			<div class="col-sm-4">
 				<h3>Share knowledge.</h3>
-				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<p>Create a course, spread your knowledge and change a life. Every video counts. </p>
 				<h3>Earn money.</h3>
-				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<p>Get a big user base and we will offer you a partnership programme. Build a community that will be with you through every step of the journey.</p>
 				<h3>Marketing.</h3>
-				<p>Donec tincidunt elit vitae dui auctor, ut gravida odio porta. Etiam euismod commodo nisi, nec ornare nibh aliquet in. Phasellus quis interdum dolor.</p>
+				<p>Show off your brand by educating thousands of users. Teach people how to use your product and make them want it.</p>
 			</div>
 
 		</div>

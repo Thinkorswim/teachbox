@@ -1,6 +1,7 @@
+
 <?php
 
-class BraintreeController extends \BaseController{
+class BraintreeController extends \BaseController {
     public function postCheckout(){
         $paymentNonce = Input::get('payment_method_nonce');
         /* To learn more about transactions,
@@ -23,8 +24,9 @@ class BraintreeController extends \BaseController{
     public function getTestPage(){
         /* To learn more about generating a token,
         check out https://developers.braintreepayments.com/javascript+php/sdk/overview/generate-client-token */
-        $clientToken = Braintree_clientToken::generate();
-
+       $clientToken = Braintree_ClientToken::generate(array(
+            "customerId" => 1
+        ));
         return View::make('braintreeTestView')->with(array('braintreeClientToken'=>$clientToken));
     }
 }
