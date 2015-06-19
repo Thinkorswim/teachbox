@@ -16,5 +16,28 @@
 			</div>
 		</div>
 	</section>
+	<section class="full-screen learn-screen">
+		<div class="container centered">
+			<h1>Why?</h1>
+			<div class="col-sm-3">
+				<h3>Consistency</h3>
+				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
+			</div>
 
+			<div class="col-sm-3">
+				<h3>Security</h3>
+				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
+			</div>
+
+			<div class="col-sm-3">
+				<h3>Security</h3>
+				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
+			</div>
+
+			<div class="col-sm-3">
+				<h3>24/7 Security</h3>
+				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
+			</div>
+		</div>
+	</section>
 @endsection
