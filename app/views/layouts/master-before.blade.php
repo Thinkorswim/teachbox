@@ -126,7 +126,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ URL::action('BusinessController@businessinfo')}}">Business</a></li>
-        <li><a href="{{ URL::action('ProfileController@contacts')}}">Team</a></li>
         <li><a href="{{ URL::action('ProfileController@contacts')}}">Contact</a></li>
       </ul>
     </div>
