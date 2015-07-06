@@ -8776,6 +8776,9 @@ footer {
   transform: translateY(-50%);
   margin: 0 auto;
 }
+.tab-sub {
+  padding: 0px 20px 20px 20px;
+}
 #team {
   padding: 30px 0 20px;
 }
@@ -8840,6 +8843,7 @@ footer {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding: 150px 0 100px;
 }
 .full-screen.main-screen {
   background: url(../img/desc.png) no-repeat center center;
@@ -9082,6 +9086,9 @@ footer small {
   color: #2c3e50;
   font-size: 3em;
   padding: 20px 0;
+}
+.sub-space {
+  margin-top: 40px!important;
 }
 .front-page-footer {
   background: #2c3e50;
@@ -9671,7 +9678,7 @@ h6:after {
 }
 .tab-register .tab-pane {
   background: #ffffff;
-  min-height: 100px;
+  min-height: 330px;
   padding: 20px;
 }
 .tab-register .tab-pane .col-xs-6:last-child {

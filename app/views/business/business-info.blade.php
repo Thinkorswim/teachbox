@@ -14,10 +14,9 @@
 				<h2>Teachbox for business.</h2>
 				<p>Make private courses for your company needs.</p>
 			</div>
-			<div class="col-md-4 tab-register">
-					<div role="tabpanel" class="tab-pane register" id="register">
+			<div class="col-md-4 tab-register sub-space">
+					<div role="tabpanel" class="tab-sub">
 						<h3>Request an invitation.</h3>
-						<p>Please subscribe for future registrations.</p>
 						  	{{ Form::open(['route' => 'post-subscribe']) }}
 							@if($errors->has('email'))
 							<span id="mail-error" class="input input--hoshi" data-toggle="tooltip" title="{{$errors->first('email')}}">
@@ -39,6 +38,7 @@
 			</div>
 		</div>
 	</section>
+	<!--
 	<section class="full-screen learn-screen">
 		<div class="container centered">
 			<h1>Why?</h1>
@@ -87,5 +87,5 @@
 				<p>Stay in touch with your friends and get to know people with similar interests as yours.</p>
 			</div>
 		</div>
-	</section>
+	</section> -->
 @endsection

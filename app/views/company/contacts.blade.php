@@ -12,10 +12,8 @@
 		</div>
 		<div class="col-sm-6">
 				<div class="course place">
-					<div class="panel panel-default course-panel">
+					<div class="panel panel-default" style="background:none">
 					  <div class="panel-body">
-					  	  <h1 class="centered"><strong>About us</strong></h1>
-					  	  <br>
 						  <p style="font-size:16px">Teachbox is the only web aplication which incorporates a teaching platform with the accessibility 
 						  and usability of a social network and is led by our revolutional vision of contemporary online education.
 						  We are currently in beta and would be glad to have any kind of support from you. The easiest way to do that
