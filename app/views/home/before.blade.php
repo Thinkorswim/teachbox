@@ -224,7 +224,7 @@
 						<strong>Nikola Donchev</strong> - Co-founder of Stepsss
 					</div>
 					<div class="panel-body">
-						<p>"A new better and more entertainment way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"</p>
+						<p>"A new better and more entertaining way to learn new things and exchange your knowledge with other like you. It's definitely worth giving it a try!"</p>
 					</div>
 				</div>
 			</div>
