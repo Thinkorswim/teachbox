@@ -112,6 +112,7 @@
 		</div>
 		@endif
 		<?php $m =0; ?>
+		<iframe src="https://www.indiegogo.com/project/teachbox-find-and-create-interactive-courses/embedded/11069199" width="222px" height="445px" frameborder="0" scrolling="no"></iframe>
 		@foreach($randomCourses as $random)
 		<?php  $creator = User::find($random->user_id);?>
 					<div class="col-xs-12 course">
@@ -139,6 +140,7 @@
 					</div>
 					<?php $m++;?>
 		@endforeach
+
 	</div>
 		<div class="col-xs-12 col-sm-8 col-sm-pull-4 status">
 		@if(count($timeline) == 0)

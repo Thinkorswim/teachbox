@@ -8,6 +8,10 @@
 	Teachbox is an educational website that helps you find or create online courses. Learn and earn while socializing and having fun.
 @stop
 
+@section('fb-image')
+	{{ URL::asset('img/fb.jpg') }}
+@stop
+
 @section('content')
 
 
@@ -29,7 +33,9 @@
 				</svg>
 				<div>Watch a video</div>
 				</a>
-
+				<a class="btn btn-empty" href="https://www.indiegogo.com/projects/teachbox-find-and-create-interactive-courses/x/11109900#/story" style="padding:17px 15px; margin-left:20px; background:#2c3e50; color:#fff">
+					Support us at indiegogo
+				</a>
 			</div>
 				@if(Session::has('global-positive') || Session::has('global-negative') || $errors->has('email_s')
 				|| $errors->has('password_s') || $errors->has('name') || $errors->has('email') ||$errors->has('password')
@@ -199,15 +205,6 @@
 		</div>
 	</section>
 
-	<section class="biz">
-		<div class="container">
-			<h1 class="centered">People who believed in us</h1>
-			<style>
-		      #map-canvas {
-		        width: center;
-		        height: 500px;
-		      }
-		    </style>
 		    <script src="https://maps.googleapis.com/maps/api/js"></script>
 		    <script>
 		      function initialize() {
@@ -227,10 +224,10 @@
 		      }
 		      google.maps.event.addDomListener(window, 'load', initialize);
 		    </script>
-			<div id="map-canvas"></div>
-		</div>
-		<a href="https://www.indiegogo.com/projects/teachbox-find-and-create-interactive-courses/x/11109900#/story" class="btn btn-default">Support our IndieGoGo campaign!</a>
-	</section>
+		    <section class="map biz">
+		    	<h2 class="centered heading-indie">People who support teachbox</h2>
+				<div id="map-canvas"></div>
+			</section>
 
 	<section class="biz">
 		<div class="container">
@@ -244,7 +241,7 @@
 			<div class="col-xs-12 col-sm-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<strong>Emilian Kadiiski</strong> - teacher at SVHSE "John Atanasoff"
+						<strong>Emilian Kadiiski</strong> - founder of Vratsa Software
 					</div>
 					<div class="panel-body">
 						<p>"Teachbox is a great opportunity to spread the learning possibilities in our everyday life."</p>
