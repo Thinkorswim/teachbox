@@ -198,6 +198,40 @@
 
 		</div>
 	</section>
+
+	<section class="biz">
+		<div class="container">
+			<h1 class="centered">People who believed in us</h1>
+			<style>
+		      #map-canvas {
+		        width: center;
+		        height: 500px;
+		      }
+		    </style>
+		    <script src="https://maps.googleapis.com/maps/api/js"></script>
+		    <script>
+		      function initialize() {
+		        var mapCanvas = document.getElementById('map-canvas');
+		        var mapOptions = {
+		          center: new google.maps.LatLng(42.36, -71.06),
+		          zoom: 3,
+		          mapTypeId: google.maps.MapTypeId.ROADMAP
+		        }
+		        var map = new google.maps.Map(mapCanvas, mapOptions)
+		        var image = 'img/indie1.png';
+				var marker = new google.maps.Marker({
+				  position:  new google.maps.LatLng(42.36, -71.06),
+				  map: map,
+				  icon: image
+				});
+		      }
+		      google.maps.event.addDomListener(window, 'load', initialize);
+		    </script>
+			<div id="map-canvas"></div>
+		</div>
+		<a href="https://www.indiegogo.com/projects/teachbox-find-and-create-interactive-courses/x/11109900#/story" class="btn btn-default">Support our IndieGoGo campaign!</a>
+	</section>
+
 	<section class="biz">
 		<div class="container">
 			<h2>Business owners and leaders, train your employees online!</h2>
