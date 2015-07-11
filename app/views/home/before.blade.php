@@ -220,6 +220,12 @@
 				  position:  new google.maps.LatLng(42.36, -71.06),
 				  map: map,
 				  icon: image
+				 }); 
+				var image1 = 'img/indie2.png';
+				var marker = new google.maps.Marker({
+				  position:  new google.maps.LatLng(42.69771, 23.32187),
+				  map: map,
+				  icon: image1
 				});
 		      }
 		      google.maps.event.addDomListener(window, 'load', initialize);
