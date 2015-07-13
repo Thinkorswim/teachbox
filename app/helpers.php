@@ -3,7 +3,18 @@
 		$firstname = explode(' ', $name);
 		return $firstname[0];
 	}
-
+	function getDay2($date){
+			$day = explode('-', $date);
+			return $day[2];
+		}
+	function getMonth2($date){
+			$day = explode('-', $date);
+			return $day[1];
+		}
+	function getYear2($date){
+			$day = explode('-', $date);
+			return $day[0];
+		}
 	function getDay($date){
 		if($date != ''){
 			$day = explode('/', $date);

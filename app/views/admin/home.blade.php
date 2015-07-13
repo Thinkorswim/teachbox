@@ -4,7 +4,11 @@
 <div class="container">
           
         <div id="curve_chart" style="width: 100%; height: 500px"></div>
+        {{ Form::open(array('action' => array('AdminController@usermails'))) }} 
 
+                {{ Form::token() }}
+                                        {{ Form::button('<i class="fa fa-plus"></i> Make spam', array('type' => 'submit','class'=>'btn btn-info pull-left')) }}
+                    {{ Form::close() }}
     <h1> Admins </h1>
         <table class="table table-responsive table-bordered table-striped">
             <thead>

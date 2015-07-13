@@ -89,6 +89,12 @@ Route::group(array('before' => 'csrf'), function () {
 		'uses' => 'StudentController@postCourseReview',
 	));
 
+	//Review
+	Route::post('/admin/users', array(
+		'as' => 'user-mails',
+		'uses' => 'AdminController@usermails',
+	));
+
 	Route::post('/search', array(
 		'as' => 'post-search',
 		'uses' => 'SearchController@postSearch',

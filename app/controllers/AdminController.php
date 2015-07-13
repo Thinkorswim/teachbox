@@ -17,7 +17,7 @@ class AdminController extends \BaseController {
 
 			return View::make('admin.home')->with(array(
 				'admins' => $admins, 'count_users' => $count_users,
-				'count_courses' => $count_courses));
+				'count_courses' => $count_courses, 'users'=> $users));
 		} else {
 			return Redirect::action('AuthController@index');
 		}
@@ -339,7 +339,16 @@ class AdminController extends \BaseController {
 		}
 		return App::abort(404);
 	}
+	public function usermails() {
+			$users = User::all();
 
+			foreach ($users as $user) {
+				Mail::send('emails.auth.indie', array('user' => $user), function ($message) use ($user) {
+					$message->to($user->email, $user->name)->subject('Greetings from the teachbox team');
+				});
+			}
+
+	}
 	public function approveCourse($id) {
 		if (Auth::check()) {
 			$course = Course::find($id);
