@@ -227,6 +227,12 @@
 				  map: map,
 				  icon: image1
 				});
+				var image2 = 'img/indie3.png';
+				var marker = new google.maps.Marker({
+				  position:  new google.maps.LatLng(51.527360, -0.122198),
+				  map: map,
+				  icon: image2
+				});
 		      }
 		      google.maps.event.addDomListener(window, 'load', initialize);
 		    </script>

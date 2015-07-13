@@ -7,9 +7,7 @@ class BusinessController extends \BaseController {
 
 			
 			return View::make('business.subscribe');
-		} else {
-			return Redirect::action('AuthController@index');
-		}
+		} 
 	}
 
 	public function choose() {

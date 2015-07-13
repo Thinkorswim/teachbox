@@ -9,8 +9,8 @@
 <div style="background:#fff;margin-left:40px; margin-right:40px;">
 		<img src="{{ URL::asset('img/ready.jpg') }}" alt="your first steps in teachbox" style="max-width:100%; height:auto">
 		<h1 style="color:#2c3e50; padding-left:20px;padding-right:20px;text-align:left;">Congratulations!</h1>
-		<p style="color:#000; padding-left:20px;padding-right:20px">We have received your request for a subscription to our mailing list.</p>
-		<p style="color:#000; padding-left:20px;padding-right:20px">We are working hard before our official launch. We'll let you know as soon as we're ready.</p>
+		<p style="color:#000; padding-left:20px;padding-right:20px">Thank you for the interest in our business solution.</p>
+		<p style="color:#000; padding-left:20px;padding-right:20px">We are working 24/7 to make it perfect. We'll let you know as soon as we're ready.</p>
 		<br><br>
 		<p style="color:#000; padding-left:20px;padding-right:20px">
 		Teachbox Team
