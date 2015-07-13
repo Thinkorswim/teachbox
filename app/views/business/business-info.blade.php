@@ -15,7 +15,7 @@
 				<p>Make private courses for your company needs.</p>
 				<h2>Coming soon.</h2>
 			</div>
-			<!-- <div class="col-md-4 tab-register sub-space">
+			<div class="col-md-4 tab-register sub-space">
 					<div role="tabpanel" class="tab-sub">
 						<h3>Request an invitation.</h3>
 						  	{{ Form::open(['route' => 'post-subscribe']) }}
@@ -36,7 +36,7 @@
 						  {{ Form::close() }}
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</section>
 	<!--
